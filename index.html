@@ -4,679 +4,315 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Daisuke Hayashi | 林 大介</title>
-  <meta
-    name="description"
-    content="Daisuke Hayashi (林 大介) - Researcher / Engineer in computer vision, machine learning, and applied AI systems."
-  />
+  <meta name="description" content="Daisuke Hayashi / 林 大介 の個人プロフィールページ" />
   <style>
-    :root {
-      --bg: #f6f8fb;
-      --card: #ffffff;
-      --text: #172033;
-      --muted: #5f6b85;
-      --line: #e4e9f2;
-      --accent: #1f5eff;
-      --accent-2: #eaf0ff;
-      --maxw: 1080px;
-      --shadow: 0 10px 30px rgba(20, 30, 55, 0.08);
-      --radius: 18px;
-    }
-
-    * { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans JP",
-        "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
-      color: var(--text);
-      background: linear-gradient(180deg, #f8faff 0%, #f6f8fb 100%);
-      line-height: 1.75;
+        "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+      line-height: 1.7;
+      color: #222;
+      background: #fafafa;
     }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    a:hover { text-decoration: underline; }
 
     .container {
-      width: min(var(--maxw), calc(100% - 32px));
+      max-width: 900px;
       margin: 0 auto;
-    }
-
-    .header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(246, 248, 251, 0.86);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(228, 233, 242, 0.9);
-    }
-
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 14px 0;
-    }
-
-    .brand {
-      font-size: 1.05rem;
-      font-weight: 800;
-      letter-spacing: 0.02em;
-    }
-
-    .nav {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .nav a {
-      color: var(--muted);
-      font-weight: 700;
-      font-size: 0.95rem;
-    }
-
-    .nav a:hover {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    .hero {
-      padding: 48px 0 24px;
-    }
-
-    .hero-card {
-      display: grid;
-      grid-template-columns: 1.45fr 0.95fr;
-      gap: 24px;
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      box-shadow: var(--shadow);
-      padding: 36px;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      margin-bottom: 14px;
-      padding: 7px 12px;
-      border-radius: 999px;
-      background: var(--accent-2);
-      color: var(--accent);
-      font-size: 0.84rem;
-      font-weight: 800;
-      letter-spacing: 0.03em;
+      padding: 40px 20px 80px;
+      background: #fff;
+      min-height: 100vh;
     }
 
     h1 {
-      margin: 0 0 8px;
-      font-size: clamp(2.2rem, 4.4vw, 3.4rem);
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-    }
-
-    .name-ja {
-      color: var(--muted);
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .subtitle {
-      color: var(--accent);
-      font-size: 1.06rem;
-      font-weight: 800;
-      margin: 0 0 16px;
-    }
-
-    .lead {
-      margin: 0;
-      color: var(--muted);
-      font-size: 1rem;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 22px;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 11px 16px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: #fff;
-      color: var(--text);
-      font-weight: 800;
-      transition: transform .15s ease, box-shadow .15s ease;
-    }
-
-    .btn:hover {
-      text-decoration: none;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 18px rgba(31, 94, 255, 0.14);
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-      border-color: var(--accent);
-    }
-
-    .hero-side {
-      display: grid;
-      gap: 14px;
-      align-content: start;
-    }
-
-    .mini-card {
-      background: #fbfcff;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 18px;
-    }
-
-    .mini-card h3 {
-      margin: 0 0 10px;
-      font-size: 1rem;
-    }
-
-    .mini-card p,
-    .mini-card li {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .mini-card ul {
-      margin: 0;
-      padding-left: 18px;
-    }
-
-    .section {
-      padding: 16px 0;
-    }
-
-    .section-card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 28px;
-    }
-
-    .section-head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 18px;
-      flex-wrap: wrap;
+      font-size: 2rem;
+      margin-bottom: 0.2em;
     }
 
     h2 {
-      margin: 0;
-      font-size: 1.6rem;
-      letter-spacing: -0.02em;
+      font-size: 1.3rem;
+      margin-top: 2.2em;
+      margin-bottom: 0.8em;
+      padding-bottom: 0.3em;
+      border-bottom: 1px solid #ddd;
     }
 
-    .section-note {
-      color: var(--muted);
+    p, li {
+      font-size: 1rem;
+    }
+
+    ul {
+      padding-left: 1.4em;
+    }
+
+    li {
+      margin-bottom: 0.5em;
+    }
+
+    .muted {
+      color: #666;
+    }
+
+    .section {
+      margin-top: 1.5em;
+    }
+
+    .nested {
+      margin-top: 0.4em;
+      margin-bottom: 0.8em;
+    }
+
+    a {
+      color: #0b57d0;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .note {
+      color: #666;
       font-size: 0.95rem;
     }
 
-    .muted { color: var(--muted); }
-
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+    .patent-box {
+      background: #f7f7f7;
+      border: 1px solid #e0e0e0;
+      padding: 14px 16px;
+      border-radius: 8px;
+      margin-bottom: 12px;
     }
 
-    .chip {
-      display: inline-block;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: var(--accent-2);
-      color: #2451cf;
-      font-weight: 800;
-      font-size: 0.9rem;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .stat {
-      background: #fbfcff;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 18px;
-      text-align: center;
-    }
-
-    .stat .num {
-      display: block;
-      font-size: 1.8rem;
-      line-height: 1.1;
-      font-weight: 900;
-      color: var(--accent);
-      margin-bottom: 6px;
-    }
-
-    .stat .label {
-      color: var(--muted);
-      font-size: 0.92rem;
-      font-weight: 700;
-    }
-
-    .list {
-      margin: 0;
-      padding-left: 20px;
-    }
-
-    .list li + li { margin-top: 8px; }
-
-    .item {
-      padding: 16px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .item:first-child {
-      border-top: none;
-      padding-top: 0;
-    }
-
-    .item-title {
-      font-size: 1.03rem;
-      font-weight: 800;
-      margin-bottom: 4px;
-    }
-
-    .item-meta {
-      color: var(--muted);
-      font-size: 0.94rem;
-      margin-bottom: 6px;
-    }
-
-    .timeline {
-      display: grid;
-      gap: 14px;
-    }
-
-    .timeline-item {
-      border: 1px solid var(--line);
-      background: #fbfcff;
-      border-radius: 16px;
-      padding: 18px;
-    }
-
-    .timeline-year {
-      color: var(--accent);
-      font-weight: 900;
-      font-size: 0.92rem;
-      margin-bottom: 5px;
-    }
-
-    .timeline-title {
-      font-weight: 800;
-      margin-bottom: 4px;
-    }
-
-    .footer {
-      padding: 32px 0 56px;
-      text-align: center;
-      color: var(--muted);
+    footer {
+      margin-top: 3em;
+      color: #777;
       font-size: 0.92rem;
     }
 
-    @media (max-width: 900px) {
-      .hero-card,
-      .grid-2,
-      .grid-3 {
-        grid-template-columns: 1fr;
+    @media (max-width: 640px) {
+      .container {
+        padding: 28px 16px 56px;
       }
 
-      .header-inner {
-        flex-direction: column;
-        align-items: flex-start;
+      h1 {
+        font-size: 1.7rem;
+      }
+
+      h2 {
+        font-size: 1.15rem;
       }
     }
   </style>
 </head>
 <body>
-  <header class="header">
-    <div class="container header-inner">
-      <div class="brand">Daisuke Hayashi</div>
-      <nav class="nav">
-        <a href="#about">About</a>
-        <a href="#research">Research</a>
-        <a href="#publications">Works</a>
-        <a href="#awards">Awards</a>
-        <a href="#media">Media</a>
-        <a href="#links">Links</a>
-      </nav>
-    </div>
-  </header>
+  <div class="container">
+    <header>
+      <h1>Daisuke Hayashi | 林 大介</h1>
+      <p class="muted">Hitachi, Ltd. Central Research Laboratory</p>
+    </header>
 
-  <main>
-    <section class="hero">
-      <div class="container">
-        <div class="hero-card">
-          <div>
-            <div class="eyebrow">Researcher / Engineer</div>
-            <h1>Daisuke Hayashi</h1>
-            <div class="name-ja">林 大介</div>
-            <p class="subtitle">Computer Vision · Machine Learning · Applied AI Systems</p>
-            <p class="lead">
-              I am a researcher and engineer working on computer vision, machine learning, and practical
-              AI deployment. My work spans visual recognition, industrial AI applications, and product-facing
-              systems that connect research with real-world impact.
-            </p>
-
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="https://github.com/disk-hayashi" target="_blank" rel="noopener noreferrer">GitHub</a>
-              <a class="btn" href="https://researchmap.jp/daisuke_hayashi" target="_blank" rel="noopener noreferrer">researchmap</a>
-              <a class="btn" href="https://scholar.google.com/citations?hl=ja&user=mHRLTWoAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a>
-              <a class="btn" href="https://www.linkedin.com/in/daisuke-hayashi/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            </div>
-          </div>
-
-          <aside class="hero-side">
-            <div class="mini-card">
-              <h3>Affiliation</h3>
-              <p>Hitachi, Ltd. Central Research Laboratory</p>
-            </div>
-            <div class="mini-card">
-              <h3>Keywords</h3>
-              <ul>
-                <li>Computer Vision</li>
-                <li>Machine Learning</li>
-                <li>Applied AI</li>
-                <li>Industrial Product Development</li>
-              </ul>
-            </div>
-            <div class="mini-card">
-              <h3>Highlights</h3>
-              <ul>
-                <li>Young Inventor Top 50</li>
-                <li>MI Research Encouragement Award</li>
-                <li>Media-covered product contributions</li>
-              </ul>
-            </div>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="section">
-      <div class="container">
-        <div class="section-card">
-          <div class="section-head">
-            <h2>About</h2>
-            <div class="section-note">Academic profile + technical portfolio</div>
-          </div>
-
-          <p class="muted">
-            My interests lie in the intersection of machine learning research and product development.
-            I work on methods and systems that make AI practical, reliable, and useful in real products,
-            especially where computer vision and intelligent user support are involved.
-          </p>
-
-          <div style="height:16px"></div>
-
-          <div class="grid-3">
-            <div class="stat">
-              <span class="num">2024</span>
-              <span class="label">Young Inventor Top 50</span>
-            </div>
-            <div class="stat">
-              <span class="num">2024</span>
-              <span class="label">MI Research Encouragement Award</span>
-            </div>
-            <div class="stat">
-              <span class="num">2019</span>
-              <span class="label">ET Research Encouragement Award</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="research" class="section">
-      <div class="container">
-        <div class="section-card">
-          <div class="section-head">
-            <h2>Research Interests</h2>
-            <div class="section-note">Based on researchmap keywords and profile links</div>
-          </div>
-
-          <div class="chips">
-            <span class="chip">Computer Vision</span>
-            <span class="chip">Machine Learning</span>
-            <span class="chip">Image Recognition</span>
-            <span class="chip">AI for Products</span>
-            <span class="chip">Practical Deployment</span>
-          </div>
-
-          <div style="height:18px"></div>
-
-          <div class="grid-2">
-            <div>
-              <ul class="list muted">
-                <li>Computer vision and visual recognition</li>
-                <li>Machine learning for applied systems</li>
-                <li>Industrial AI and production-facing workflows</li>
-                <li>Bridging research prototypes and shipped products</li>
-              </ul>
-            </div>
-            <div>
-              <ul class="list muted">
-                <li>AI-assisted user support and recommendation systems</li>
-                <li>Image-based understanding in consumer products</li>
-                <li>Robust and practical model design</li>
-                <li>Technology transfer from research to deployment</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="publications" class="section">
-      <div class="container">
-        <div class="section-card">
-          <div class="section-head">
-            <h2>Selected Works</h2>
-            <div class="section-note">Visible from researchmap search results</div>
-          </div>
-
-          <div class="item">
-            <div class="item-title">3D-CNNを用いた脳MRI画像に基づく脳疾患分類</div>
-            <div class="item-meta">Listed on researchmap profile</div>
-            <div class="muted">
-              Representative work shown in the visible researchmap search snippet.
-            </div>
-          </div>
-
-          <div class="item">
-            <div class="item-title">CNNを用いた次世代DNAシーケンサ向け塩基識別モデル</div>
-            <div class="item-meta">Listed on researchmap profile</div>
-            <div class="muted">
-              Example of machine-learning-based modeling work appearing in the researchmap snippet.
-            </div>
-          </div>
-
-          <div class="item">
-            <div class="item-title">Siamese Networkによる筆記画像と動的情報を用いた ...</div>
-            <div class="item-meta">Listed on researchmap profile</div>
-            <div class="muted">
-              The visible snippet is truncated, but indicates work involving Siamese Networks and handwriting-related data.
-            </div>
-          </div>
-
-          <div class="item">
-            <div class="item-title">Webテスティングにおける機械学習を用いた筆記認証法の提案</div>
-            <div class="item-meta">MISC, 2019-03-20, first author indicated on researchmap search result</div>
-            <div class="muted">
-              A researchmap MISC entry explicitly surfaced by web search.
-            </div>
-          </div>
-
-          <div class="item">
-            <div class="item-title">Full publication list</div>
-            <div class="item-meta">
-              <a href="https://researchmap.jp/daisuke_hayashi" target="_blank" rel="noopener noreferrer">researchmap</a>
-              /
-              <a href="https://scholar.google.com/citations?hl=ja&user=mHRLTWoAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a>
-            </div>
-            <div class="muted">
-              For the up-to-date and complete record, please see the external profile pages above.
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="awards" class="section">
-      <div class="container">
-        <div class="section-card">
-          <div class="section-head">
-            <h2>Awards & Recognition</h2>
-            <div class="section-note">Confirmed from researchmap search snippets</div>
-          </div>
-
-          <div class="timeline">
-            <div class="timeline-item">
-              <div class="timeline-year">2024-12</div>
-              <div class="timeline-title">若手発明者トップ50</div>
-              <div class="muted">Hitachi, Ltd.</div>
-            </div>
-
-            <div class="timeline-item">
-              <div class="timeline-year">2024-06</div>
-              <div class="timeline-title">令和5年度 MI研究奨励賞</div>
-              <div class="muted">電子情報通信学会 医用画像研究会</div>
-            </div>
-
-            <div class="timeline-item">
-              <div class="timeline-year">2019-11</div>
-              <div class="timeline-title">ET研究奨励賞</div>
-              <div class="muted">電子情報通信学会 ET</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="media" class="section">
-      <div class="container">
-        <div class="section-card">
-          <div class="section-head">
-            <h2>Media & Product Coverage</h2>
-            <div class="section-note">Selected entries from the GitHub media repository README</div>
-          </div>
-
-          <div class="item">
-            <div class="item-title">日立冷蔵庫コンシェルジュアプリ / ハピネスアップ / ぱっとレシピけいかく</div>
-            <div class="item-meta">2025</div>
-            <div class="muted">
-              Media and official pages indicate product-related work around recipe planning and household support features.
-            </div>
-          </div>
-
-          <div class="item">
-            <div class="item-title">冷蔵庫カメラ関連メディア掲載</div>
-            <div class="item-meta">2024–2025</div>
-            <div class="muted">
-              The README aggregates multiple articles and official pages about camera-equipped refrigerator features and food management support.
-            </div>
-          </div>
-
-          <div class="item">
-            <div class="item-title">Selected Links</div>
-            <div class="item-meta">Open in a new tab</div>
-            <div class="muted">
-              <a href="https://www.hitachi.co.jp/New/cnews/month/2025/05/0522.html" target="_blank" rel="noopener noreferrer">Hitachi News Release (2025/05/22)</a><br>
-              <a href="https://kaden.watch.impress.co.jp/docs/news/2019567.html" target="_blank" rel="noopener noreferrer">家電Watch (2025/06/04)</a><br>
-              <a href="https://kadenfan.hitachi.co.jp/app/rei/series01/index.html" target="_blank" rel="noopener noreferrer">Hitachi Refrigerator Concierge App</a><br>
-              <a href="https://kaden.watch.impress.co.jp/docs/column_review/kdnreview/1615914.html" target="_blank" rel="noopener noreferrer">家電Watch Review (2024/08/30)</a><br>
-              <a href="https://www.hitachi.co.jp/New/cnews/month/2024/01/0118.pdf" target="_blank" rel="noopener noreferrer">Hitachi News Release (2024/01/18)</a>
-            </div>
-          </div>
-        </div>
-      </div>
+    <section class="section">
+      <h2>Basic Information | 基本情報</h2>
+      <ul>
+        <li>林 大介 (Daisuke Hayashi)</li>
+        <li>(株)日立製作所 中央研究所</li>
+      </ul>
     </section>
 
     <section class="section">
-      <div class="container">
-        <div class="section-card">
-          <div class="section-head">
-            <h2>Career Snapshot</h2>
-            <div class="section-note">Simple version for a personal profile site</div>
-          </div>
-
-          <div class="timeline">
-            <div class="timeline-item">
-              <div class="timeline-year">Current</div>
-              <div class="timeline-title">Researcher, Hitachi, Ltd. Central Research Laboratory</div>
-              <div class="muted">
-                Working on machine learning, computer vision, and applied AI systems.
-              </div>
-            </div>
-
-            <div class="timeline-item">
-              <div class="timeline-year">Focus</div>
-              <div class="timeline-title">Research to product</div>
-              <div class="muted">
-                Building and transferring AI technologies into practical products and user-facing systems.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <h2>External Links | 外部リンク</h2>
+      <ul>
+        <li><a href="https://www.linkedin.com/in/daisuke-hayashi/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://researchmap.jp/daisuke_hayashi" target="_blank" rel="noopener noreferrer">researchmap</a></li>
+        <li><a href="https://scholar.google.com/citations?hl=ja&user=mHRLTWoAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a></li>
+        <li><a href="https://github.com/disk-hayashi" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+      </ul>
     </section>
 
-    <section id="links" class="section">
-      <div class="container">
-        <div class="section-card">
-          <div class="section-head">
-            <h2>Links</h2>
-            <div class="section-note">Primary external profiles</div>
-          </div>
+    <section class="section">
+      <h2>Patents | 特許</h2>
+      <p class="note">
+        ここに代表特許や特許実績を追記できます。まずは概要だけ載せて、あとで個別特許を追加する運用がおすすめです。
+      </p>
 
-          <ul class="list">
-            <li><a href="https://github.com/disk-hayashi" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-            <li><a href="https://github.com/disk-hayashi/media" target="_blank" rel="noopener noreferrer">GitHub media repository</a></li>
-            <li><a href="https://researchmap.jp/daisuke_hayashi" target="_blank" rel="noopener noreferrer">researchmap</a></li>
-            <li><a href="https://scholar.google.com/citations?hl=ja&user=mHRLTWoAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a></li>
-            <li><a href="https://www.linkedin.com/in/daisuke-hayashi/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+      <div class="patent-box">
+        <strong>Patent Summary | 特許概要</strong>
+        <ul class="nested">
+          <li>特許出願：21件</li>
+          <li>主発明：15件</li>
+          <li>登録特許：3件</li>
+          <li>製品活用特許：2件</li>
+        </ul>
+      </div>
+
+      <div class="patent-box">
+        <strong>Selected Patents | 代表特許</strong>
+        <ul class="nested">
+          <li>[特許タイトルをここに追加]</li>
+          <li>[特許タイトルをここに追加]</li>
+          <li>[特許タイトルをここに追加]</li>
+        </ul>
+      </div>
+
+      <p class="note">
+        個別に書く場合は「特許名 / 出願番号 / 登録番号 / 年 / 主発明かどうか / 製品使用有無」の形式にすると見やすいです。
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Media Coverage | メディア報道</h2>
+      <ul>
+        <li>
+          <a href="https://kadenfan.hitachi.co.jp/connected/happinessup/feature_recipeplan/" target="_blank" rel="noopener noreferrer">
+            (2025/5/22) 日立HP | 安心して使える家事サポートアプリ「ハピネスアップ」
+          </a>
+          <ul class="nested">
+            <li>
+              <a href="https://dime.jp/genre/1981852/" target="_blank" rel="noopener noreferrer">
+                (2025/6/14) @DIME | 「今日は何を作る？」の悩みを解決！7日分のレシピをおまかせできる日立の神アプリ「ぱっとレシピけいかく」
+              </a>
+            </li>
+            <li>
+              <a href="https://kaden.watch.impress.co.jp/docs/news/2019567.html" target="_blank" rel="noopener noreferrer">
+                (2025/6/4) 家電Watch | 日立、冷蔵庫の中身から献立提案するアプリ
+              </a>
+            </li>
+            <li>
+              <a href="https://kadenfan.hitachi.co.jp/app/rei/series01/index.html" target="_blank" rel="noopener noreferrer">
+                (2025/5/28) 日立HP | 日立冷蔵庫コンシェルジュアプリ
+              </a>
+            </li>
+            <li>
+              <a href="https://www.hitachi.co.jp/New/cnews/month/2025/05/0522.html" target="_blank" rel="noopener noreferrer">
+                (2025/5/22) 日立ニュースリリース | 家事サポートアプリ「ハピネスアップ」に、悩みがちな日々の献立決めをサポートする新機能「ぱっとレシピけいかく」を追加
+              </a>
+            </li>
           </ul>
-        </div>
-      </div>
-    </section>
-  </main>
+        </li>
 
-  <footer class="footer">
-    <div class="container">
+        <li>
+          <a href="https://kaden.watch.impress.co.jp/docs/column_review/kdnreview/1615914.html" target="_blank" rel="noopener noreferrer">
+            (2024/8/30) 家電Watch | 日立の「冷蔵庫カメラ」本当に便利? 3カ月使ってわかった
+          </a>
+          <ul class="nested">
+            <li>
+              <a href="https://kadenfan.hitachi.co.jp/rei/lineup/rgxcc67x/feature07.html" target="_blank" rel="noopener noreferrer">
+                (2025/5/29) 日立HP | R-GXCC67X：食材管理がらくに。[冷蔵庫カメラ]
+              </a>
+            </li>
+            <li>
+              <a href="https://kaden.watch.impress.co.jp/docs/news/1655037.html" target="_blank" rel="noopener noreferrer">
+                (2025/1/17) 家電Watch | 日立、冷凍の霜を防いでおいしさ保つ大容量冷蔵庫
+              </a>
+            </li>
+            <li>
+              <a href="https://kadenfan.hitachi.co.jp/rei/lineup/rhxcc54x/feature07.html" target="_blank" rel="noopener noreferrer">
+                (2025/1/16) 日立HP | R-HXCC54X：食材管理がらくに。[冷蔵庫カメラ]
+              </a>
+            </li>
+            <li>
+              <a href="https://kadenfan.hitachi.co.jp/rei/lineup/rhxcc62x/feature07.html" target="_blank" rel="noopener noreferrer">
+                (2025/1/16) 日立HP | R-HXCC62X：食材管理がらくに。[冷蔵庫カメラ]
+              </a>
+            </li>
+            <li>
+              <a href="https://www.hitachi.co.jp/New/cnews/month/2025/01/0116.pdf" target="_blank" rel="noopener noreferrer">
+                (2025/1/16) 日立ニュースリリース | ｢らくうま！ひろ in 冷凍プラス｣採用の冷蔵庫｢まんなか冷凍 HXCC タイプ｣を発売
+              </a>
+            </li>
+            <li>
+              <a href="https://kadenfan.hitachi.co.jp/rei/lineup/rgxcc67w/feature07.html" target="_blank" rel="noopener noreferrer">
+                (2024/11/14) 日立HP | R-GXCC67W：あれあったっけ？がスマホで確認できる。食材管理がらくに。[冷蔵庫カメラ]
+              </a>
+            </li>
+            <li>
+              <a href="https://corp.hitachi-gls.co.jp/_ct/17703307" target="_blank" rel="noopener noreferrer">
+                (2024/6/4) 日立 くらしのラボ YouTube | 冷蔵庫カメラで食材管理がアップデート！買い忘れ、買いすぎ防止に役立ちます！(by くらしのラボ)
+              </a>
+            </li>
+            <li>
+              <a href="https://review.kakaku.com/review/K0001597591/ReviewCD=1836900/" target="_blank" rel="noopener noreferrer">
+                (2024/4/21) 価格.com | 大きな冷凍室の使い勝手が抜群。カメラで冷凍室の食材管理が可能
+              </a>
+            </li>
+            <li>
+              <a href="https://www.hitachi.co.jp/products/it/lumada/spcon/fieldtrip/02/index.html" target="_blank" rel="noopener noreferrer">
+                (2024/4/15) 日立 Lumadaコラム YouTube | 第2回 令和時代の家電幸福論
+              </a>
+            </li>
+            <li>
+              <a href="https://kadenfan.hitachi.co.jp/rei/lineup/rhxcc62v/feature07.html" target="_blank" rel="noopener noreferrer">
+                (2024/3/28) 日立HP | R-HXCC62V：食材管理がらくに。[冷蔵庫カメラ]
+              </a>
+            </li>
+            <li>
+              <a href="https://kadenfan.hitachi.co.jp/rei/lineup/rhxcc54v/feature07.html" target="_blank" rel="noopener noreferrer">
+                (2024/3/28) 日立HP | R-HXC54CV：食材管理がらくに。[冷蔵庫カメラ]
+              </a>
+            </li>
+            <li>
+              <a href="https://kadenfan.hitachi.co.jp/rei/lineup/rkxcc57v/feature07.html" target="_blank" rel="noopener noreferrer">
+                (2024/3/28) 日立HP | R-KXCC57V：食材管理がらくに。[冷蔵庫カメラ]
+              </a>
+            </li>
+            <li>
+              <a href="https://kadenfan.hitachi.co.jp/rei/lineup/rgxcc67v/feature07.html" target="_blank" rel="noopener noreferrer">
+                (2024/3/28) 日立HP | R-GXCC67V：食材管理がらくに。[冷蔵庫カメラ]
+              </a>
+            </li>
+            <li>
+              <a href="https://www.monoshop.biz/SHOP/mm0933.html" target="_blank" rel="noopener noreferrer">
+                (2024/3/16) モノ・マガジン2024年3月16日情報号 |【総力特集】大人がハマる小粋な植物とオツな野菜 植物道楽
+              </a>
+            </li>
+            <li>
+              <a href="https://kaden.watch.impress.co.jp/docs/topic/special/1565725.html" target="_blank" rel="noopener noreferrer">
+                (2024/2/15) 家電Watch | 冷蔵庫は冷凍も野菜も「使いやすさ」と「鮮度」が決め手! 日立はムダ防ぎ食生活が豊かに
+              </a>
+            </li>
+            <li>
+              <a href="https://monocotolab.com/hitachi-mannakareitou-gxcctype-240121/" target="_blank" rel="noopener noreferrer">
+                (2024/2/6) MONOCOTO | 「日立」カメラ搭載冷蔵庫がさらに進化！冷蔵室のほか冷凍室と野菜室も撮影できるようになった
+              </a>
+            </li>
+            <li>
+              <a href="https://dempa-digital.com/article/520198" target="_blank" rel="noopener noreferrer">
+                (2024/1/23) 電波新聞 | 日立GLSがカメラ付き冷蔵庫新型　冷凍・野菜室も高解像度で撮影　食材リスト自動登録
+              </a>
+            </li>
+            <li>
+              <a href="https://news.mynavi.jp/article/20240122-hitachi-gls/" target="_blank" rel="noopener noreferrer">
+                (2024/1/22) マイナビニュース | 日立のカメラ付き冷蔵庫「GXCC」タイプ、野菜室・冷凍室も撮影可能に - 外出先で庫内を見て買いすぎ・買い忘れを防ぐ！
+              </a>
+            </li>
+            <li>
+              <a href="https://newswitch.jp/p/40163" target="_blank" rel="noopener noreferrer">
+                (2024/1/22) 日刊工業新聞 | 日立GLSが発売、カメラを搭載した最新冷蔵庫が実現する機能
+              </a>
+            </li>
+            <li>
+              <a href="https://www.seikatsukaden.com/?p=39062" target="_blank" rel="noopener noreferrer">
+                (2024/1/19) 生活家電.com | 【冷蔵庫】日立、冷蔵室に加え、冷凍室下段・野菜室の中の食材もスマートフォンで確認できる「冷蔵庫カメラ」搭載。「まんなか冷凍 GXCCタイプ」を発売。
+              </a>
+            </li>
+            <li>
+              <a href="https://kaden.watch.impress.co.jp/docs/news/1561932.html" target="_blank" rel="noopener noreferrer">
+                (2024/1/19) 家電Watch | 冷凍室ひろびろ、日立の大容量冷蔵庫は整理しやすく鮮度を保つ
+              </a>
+            </li>
+            <li>
+              <a href="https://www.hitachi.co.jp/New/cnews/month/2024/01/0118.pdf" target="_blank" rel="noopener noreferrer">
+                (2024/1/18) 日立ニュースリリース | 「冷蔵庫カメラ」搭載の冷蔵庫「まんなか冷凍 GXCCタイプ」を発売
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <footer>
       © 2026 Daisuke Hayashi
-    </div>
-  </footer>
+    </footer>
+  </div>
 </body>
 </html>
