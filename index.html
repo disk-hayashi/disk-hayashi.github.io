@@ -4,277 +4,612 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Daisuke Hayashi | 林 大介</title>
-  <meta name="description" content="Daisuke Hayashi / 林 大介 の個人プロフィールページ" />
+  <meta name="description" content="Daisuke Hayashi / 林 大介 の研究者プロフィールサイト" />
   <style>
+    :root {
+      --bg: #f7f8fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --primary: #dbeafe;
+      --registered: #dcfce7;
+      --product: #fef3c7;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+      --maxw: 1080px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans JP",
         "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
       line-height: 1.7;
-      color: #222;
-      background: #fafafa;
-    }
-
-    .container {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 40px 20px 80px;
-      background: #fff;
-      min-height: 100vh;
-    }
-
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 0.2em;
-    }
-
-    h2 {
-      font-size: 1.35rem;
-      margin-top: 2.2em;
-      margin-bottom: 0.8em;
-      padding-bottom: 0.3em;
-      border-bottom: 1px solid #ddd;
-    }
-
-    h3 {
-      font-size: 1.1rem;
-      margin-top: 1.8em;
-      margin-bottom: 0.8em;
-      color: #333;
-    }
-
-    p, li {
-      font-size: 1rem;
-    }
-
-    ul {
-      padding-left: 1.4em;
+      color: var(--text);
+      background: var(--bg);
     }
 
     a {
-      color: #0b57d0;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover { text-decoration: underline; }
+
+    .container {
+      width: min(var(--maxw), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(247, 248, 251, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(229, 231, 235, 0.9);
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      font-size: 1.05rem;
+    }
+
+    .nav {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+    .nav a:hover {
+      color: var(--accent);
       text-decoration: none;
     }
 
-    a:hover {
-      text-decoration: underline;
+    .hero {
+      padding: 44px 0 20px;
     }
 
-    .muted {
-      color: #666;
+    .hero-card {
+      display: grid;
+      grid-template-columns: 1.35fr 0.85fr;
+      gap: 24px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      padding: 34px;
     }
 
-    .note {
-      color: #666;
+    .eyebrow {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 0.84rem;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    .name-ja {
+      color: var(--muted);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      margin: 0 0 14px;
+      font-size: 1.04rem;
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .lead {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--text);
+      font-weight: 700;
+    }
+    .btn:hover {
+      transform: translateY(-1px);
+      text-decoration: none;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+
+    .mini-card,
+    .section-card,
+    .stat,
+    .patent-card,
+    .media-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .mini-card {
+      padding: 18px;
+      background: #fcfcff;
+    }
+
+    .mini-card h3 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+    }
+
+    .mini-card p,
+    .mini-card li {
+      color: var(--muted);
+      margin: 0;
       font-size: 0.95rem;
     }
 
-    .summary-box {
-      background: #f7f7f7;
-      border: 1px solid #e0e0e0;
-      padding: 14px 16px;
-      border-radius: 8px;
-      margin: 16px 0 20px;
+    .mini-card ul {
+      margin: 0;
+      padding-left: 18px;
     }
 
-    .summary-grid {
+    .section {
+      padding: 14px 0;
+    }
+
+    .section-card {
+      box-shadow: var(--shadow);
+      padding: 28px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: end;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 1.55rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section-note,
+    .muted,
+    .note {
+      color: var(--muted);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .grid-4 {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
+      gap: 14px;
+    }
+
+    .stat {
+      padding: 16px;
+      text-align: center;
+      background: #fcfcff;
+    }
+
+    .stat .num {
+      display: block;
+      font-size: 1.7rem;
+      line-height: 1.1;
+      color: var(--accent);
+      font-weight: 900;
+      margin-bottom: 6px;
+    }
+
+    .stat .label {
+      font-size: 0.92rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .list {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .list li + li { margin-top: 8px; }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+    }
+
+    .timeline-item {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px;
+      background: #fbfcff;
+    }
+
+    .timeline-year {
+      font-weight: 900;
+      color: var(--accent);
+      font-size: 0.92rem;
+      margin-bottom: 4px;
+    }
+
+    .timeline-title {
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .tools {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
       margin-top: 12px;
     }
 
-    .summary-item {
-      background: #fff;
-      border: 1px solid #e5e5e5;
-      border-radius: 8px;
-      padding: 12px;
-      text-align: center;
+    .search-input,
+    .select-input {
+      border: 1px solid var(--line);
+      background: white;
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 0.95rem;
+      min-width: 170px;
     }
 
-    .summary-item .num {
-      display: block;
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: #0b57d0;
-      line-height: 1.2;
+    .search-input {
+      flex: 1 1 260px;
     }
 
-    .summary-item .label {
-      display: block;
-      font-size: 0.92rem;
-      color: #666;
-      margin-top: 4px;
+    .patent-group {
+      margin-top: 26px;
     }
 
-    .patent-section {
-      margin-top: 28px;
+    .patent-group h3 {
+      margin: 0 0 12px;
+      font-size: 1.08rem;
     }
 
     .patent-list {
       display: grid;
-      gap: 16px;
+      gap: 14px;
     }
 
     .patent-card {
-      border: 1px solid #e4e4e4;
-      border-radius: 10px;
-      padding: 16px;
-      background: #fff;
+      padding: 18px;
     }
 
     .patent-title {
-      font-size: 1.08rem;
-      font-weight: 700;
-      margin-bottom: 8px;
+      font-weight: 800;
+      font-size: 1.03rem;
       line-height: 1.5;
+      margin-bottom: 8px;
     }
 
     .patent-authors {
-      color: #555;
+      color: var(--muted);
       font-size: 0.95rem;
       margin-bottom: 10px;
     }
 
     .patent-tags {
       display: flex;
-      flex-wrap: wrap;
       gap: 8px;
+      flex-wrap: wrap;
       margin-bottom: 12px;
     }
 
     .tag {
       display: inline-block;
-      padding: 4px 10px;
       border-radius: 999px;
-      font-size: 0.84rem;
-      font-weight: 600;
-      border: 1px solid #ddd;
-      background: #f9f9f9;
+      padding: 4px 10px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      border: 1px solid var(--line);
+      background: #f9fafb;
+      color: #374151;
     }
 
-    .tag.primary {
-      background: #eef4ff;
-      border-color: #cfe0ff;
-      color: #1248b3;
-    }
-
-    .tag.registered {
-      background: #eefbf1;
-      border-color: #cdeed4;
-      color: #1d6b32;
-    }
-
-    .tag.product {
-      background: #fff7ea;
-      border-color: #f1dfb8;
-      color: #9a6300;
-    }
+    .tag.primary { background: var(--primary); color: #1d4ed8; border-color: #bfdbfe; }
+    .tag.registered { background: var(--registered); color: #166534; border-color: #bbf7d0; }
+    .tag.product { background: var(--product); color: #92400e; border-color: #fde68a; }
 
     .patent-meta {
       display: grid;
-      grid-template-columns: 180px 1fr;
-      gap: 4px 16px;
-      margin-top: 8px;
-      font-size: 0.96rem;
+      grid-template-columns: 160px 1fr;
+      gap: 4px 14px;
+      margin: 0;
     }
 
     .patent-meta dt {
-      color: #666;
+      color: var(--muted);
+      font-size: 0.94rem;
     }
 
     .patent-meta dd {
       margin: 0;
+      font-size: 0.96rem;
     }
 
-    footer {
-      margin-top: 3em;
-      color: #777;
+    .media-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .media-card {
+      padding: 18px;
+    }
+
+    .media-title {
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .media-date {
+      color: var(--muted);
+      font-size: 0.94rem;
+      margin-bottom: 8px;
+    }
+
+    .media-links {
+      margin-top: 10px;
+      padding-left: 20px;
+    }
+
+    .footer {
+      padding: 28px 0 56px;
+      text-align: center;
+      color: var(--muted);
       font-size: 0.92rem;
     }
 
-    @media (max-width: 760px) {
-      .container {
-        padding: 28px 16px 56px;
-      }
-
-      .summary-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .patent-meta {
+    @media (max-width: 900px) {
+      .hero-card,
+      .grid-2,
+      .grid-4 {
         grid-template-columns: 1fr;
-        gap: 2px 0;
+      }
+
+      .header-inner {
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
 
-    @media (max-width: 480px) {
-      .summary-grid {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 640px) {
+      .container { width: min(var(--maxw), calc(100% - 20px)); }
+      .hero-card, .section-card { padding: 20px; }
+      .patent-meta { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Daisuke Hayashi | 林 大介</h1>
-      <p class="muted">Hitachi, Ltd. Central Research Laboratory</p>
-    </header>
+  <header class="header">
+    <div class="container header-inner">
+      <div class="brand">Daisuke Hayashi</div>
+      <nav class="nav">
+        <a href="#about">About</a>
+        <a href="#links">Links</a>
+        <a href="#patents">Patents</a>
+        <a href="#media">Media</a>
+      </nav>
+    </div>
+  </header>
 
-    <section>
-      <h2>Patents | 特許</h2>
-      <p class="note">
-        特許一覧は「主発明」「登録」「製品活用」で自動分類されます。各特許に URL を設定すると、公開ページから直接リンクできます。
-      </p>
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-card">
+          <div>
+            <div class="eyebrow">Researcher / Engineer</div>
+            <h1>Daisuke Hayashi</h1>
+            <div class="name-ja">林 大介</div>
+            <p class="subtitle">Hitachi, Ltd. Central Research Laboratory</p>
+            <p class="lead">
+              Computer vision, machine learning, and product-facing AI systems.
+              This page is a compact academic-style profile with external links,
+              media coverage, and a structured patent portfolio.
+            </p>
+            <div class="hero-links">
+              <a class="btn btn-primary" href="https://www.linkedin.com/in/daisuke-hayashi/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a class="btn" href="https://researchmap.jp/daisuke_hayashi" target="_blank" rel="noopener noreferrer">researchmap</a>
+              <a class="btn" href="https://scholar.google.com/citations?hl=ja&user=mHRLTWoAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+              <a class="btn" href="https://github.com/disk-hayashi" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+          </div>
 
-      <div class="summary-box">
-        <strong>Patent Summary | 特許概要</strong>
-        <div class="summary-grid">
-          <div class="summary-item">
-            <span class="num" id="count-total">0</span>
-            <span class="label">全特許</span>
-          </div>
-          <div class="summary-item">
-            <span class="num" id="count-primary">0</span>
-            <span class="label">主発明</span>
-          </div>
-          <div class="summary-item">
-            <span class="num" id="count-registered">0</span>
-            <span class="label">登録</span>
-          </div>
-          <div class="summary-item">
-            <span class="num" id="count-product">0</span>
-            <span class="label">製品活用</span>
-          </div>
+          <aside class="hero-side">
+            <div class="mini-card">
+              <h3>Basic Information | 基本情報</h3>
+              <p>林 大介 (Daisuke Hayashi)</p>
+              <p>株式会社日立製作所 中央研究所</p>
+            </div>
+            <div class="mini-card">
+              <h3>Site Highlights</h3>
+              <ul>
+                <li>研究者向けシンプル構成</li>
+                <li>特許を自動分類・自動ソート</li>
+                <li>URL付き特許カード表示</li>
+                <li>メディア報道を階層表示</li>
+              </ul>
+            </div>
+          </aside>
         </div>
-      </div>
-
-      <div class="patent-section">
-        <h3>主発明 | Primary Inventions</h3>
-        <div id="primary-list" class="patent-list"></div>
-      </div>
-
-      <div class="patent-section">
-        <h3>登録 | Registered Patents</h3>
-        <div id="registered-list" class="patent-list"></div>
-      </div>
-
-      <div class="patent-section">
-        <h3>製品活用 | Patents Used in Products</h3>
-        <div id="product-list" class="patent-list"></div>
-      </div>
-
-      <div class="patent-section">
-        <h3>その他 | Others</h3>
-        <div id="other-list" class="patent-list"></div>
       </div>
     </section>
 
-    <footer>
-      © 2026 Daisuke Hayashi
-    </footer>
-  </div>
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-card">
+          <div class="section-head">
+            <h2>About</h2>
+            <div class="section-note">Compact academic profile</div>
+          </div>
+          <p class="muted">
+            This site is designed as a clean research-profile page rather than a flashy portfolio.
+            It focuses on identity, external scholarly links, product and media impact, and a patent record
+            that can be maintained as your work grows.
+          </p>
+          <div style="height:16px"></div>
+          <div class="chips">
+            <span class="chip">Computer Vision</span>
+            <span class="chip">Machine Learning</span>
+            <span class="chip">Applied AI</span>
+            <span class="chip">Industrial Products</span>
+            <span class="chip">Patents</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="links" class="section">
+      <div class="container">
+        <div class="section-card">
+          <div class="section-head">
+            <h2>External Links | 外部リンク</h2>
+            <div class="section-note">Primary public profiles</div>
+          </div>
+          <ul class="list">
+            <li><a href="https://www.linkedin.com/in/daisuke-hayashi/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            <li><a href="https://researchmap.jp/daisuke_hayashi" target="_blank" rel="noopener noreferrer">researchmap</a></li>
+            <li><a href="https://scholar.google.com/citations?hl=ja&user=mHRLTWoAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a></li>
+            <li><a href="https://github.com/disk-hayashi" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="patents" class="section">
+      <div class="container">
+        <div class="section-card">
+          <div class="section-head">
+            <h2>Patents | 特許</h2>
+            <div class="section-note">Auto-sorted by year, auto-grouped by type</div>
+          </div>
+
+          <div class="grid-4">
+            <div class="stat"><span class="num" id="count-total">0</span><span class="label">全特許</span></div>
+            <div class="stat"><span class="num" id="count-primary">0</span><span class="label">主発明</span></div>
+            <div class="stat"><span class="num" id="count-registered">0</span><span class="label">登録</span></div>
+            <div class="stat"><span class="num" id="count-product">0</span><span class="label">製品活用</span></div>
+          </div>
+
+          <div class="tools">
+            <input id="patent-search" class="search-input" type="text" placeholder="特許タイトル・著者・番号で検索" />
+            <select id="country-filter" class="select-input">
+              <option value="">すべての出願国</option>
+              <option value="国内">国内</option>
+              <option value="PCT">PCT</option>
+              <option value="中国">中国</option>
+            </select>
+          </div>
+
+          <div class="patent-group">
+            <h3>主発明 | Primary Inventions</h3>
+            <div id="primary-list" class="patent-list"></div>
+          </div>
+
+          <div class="patent-group">
+            <h3>登録 | Registered Patents</h3>
+            <div id="registered-list" class="patent-list"></div>
+          </div>
+
+          <div class="patent-group">
+            <h3>製品活用 | Patents Used in Products</h3>
+            <div id="product-list" class="patent-list"></div>
+          </div>
+
+          <div class="patent-group">
+            <h3>その他 | Others</h3>
+            <div id="other-list" class="patent-list"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="media" class="section">
+      <div class="container">
+        <div class="section-card">
+          <div class="section-head">
+            <h2>Media Coverage | メディア報道</h2>
+            <div class="section-note">Selected public coverage and official pages</div>
+          </div>
+          <div id="media-list" class="media-list"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© 2026 Daisuke Hayashi</div>
+  </footer>
 
   <script>
     const patents = [
@@ -289,6 +624,7 @@
         registrationDate: "",
         country: "国内",
         url: "",
+        year: 2025,
         isPrimary: true,
         isRegistered: false,
         isProductUsed: false,
@@ -304,6 +640,7 @@
         registrationDate: "",
         country: "中国",
         url: "",
+        year: 2024,
         isPrimary: false,
         isRegistered: false,
         isProductUsed: false,
@@ -319,6 +656,7 @@
         registrationDate: "",
         country: "中国",
         url: "",
+        year: 2023,
         isPrimary: false,
         isRegistered: false,
         isProductUsed: false,
@@ -334,6 +672,7 @@
         registrationDate: "",
         country: "PCT",
         url: "",
+        year: 2023,
         isPrimary: false,
         isRegistered: false,
         isProductUsed: false,
@@ -349,6 +688,7 @@
         registrationDate: "",
         country: "国内",
         url: "",
+        year: 2023,
         isPrimary: true,
         isRegistered: false,
         isProductUsed: false,
@@ -364,6 +704,7 @@
         registrationDate: "",
         country: "国内",
         url: "",
+        year: 2023,
         isPrimary: false,
         isRegistered: false,
         isProductUsed: false,
@@ -379,6 +720,7 @@
         registrationDate: "",
         country: "国内",
         url: "",
+        year: 2023,
         isPrimary: true,
         isRegistered: false,
         isProductUsed: true,
@@ -394,6 +736,7 @@
         registrationDate: "",
         country: "国内",
         url: "",
+        year: 2023,
         isPrimary: true,
         isRegistered: false,
         isProductUsed: true,
@@ -409,6 +752,7 @@
         registrationDate: "",
         country: "国内",
         url: "",
+        year: 2022,
         isPrimary: false,
         isRegistered: false,
         isProductUsed: false,
@@ -424,6 +768,7 @@
         registrationDate: "",
         country: "国内",
         url: "",
+        year: 2022,
         isPrimary: true,
         isRegistered: false,
         isProductUsed: false,
@@ -439,6 +784,7 @@
         registrationDate: "",
         country: "PCT",
         url: "",
+        year: 2022,
         isPrimary: true,
         isRegistered: false,
         isProductUsed: false,
@@ -454,6 +800,7 @@
         registrationDate: "",
         country: "中国",
         url: "",
+        year: 2022,
         isPrimary: true,
         isRegistered: false,
         isProductUsed: false,
@@ -469,6 +816,7 @@
         registrationDate: "",
         country: "国内",
         url: "https://jglobal.jst.go.jp/detail?JGLOBAL_ID=202603018256104702",
+        year: 2021,
         isPrimary: true,
         isRegistered: true,
         isProductUsed: false,
@@ -484,6 +832,7 @@
         registrationDate: "",
         country: "国内",
         url: "",
+        year: 2021,
         isPrimary: true,
         isRegistered: false,
         isProductUsed: false,
@@ -499,9 +848,53 @@
         registrationDate: "",
         country: "国内",
         url: "",
+        year: 2021,
         isPrimary: true,
         isRegistered: true,
         isProductUsed: false,
+      }
+    ];
+
+    const mediaCoverage = [
+      {
+        title: "(2025/5/22) 日立HP | 安心して使える家事サポートアプリ「ハピネスアップ」",
+        date: "2025-05-22",
+        url: "https://kadenfan.hitachi.co.jp/connected/happinessup/feature_recipeplan/",
+        children: [
+          { title: "(2025/6/14) @DIME | 「今日は何を作る？」の悩みを解決！7日分のレシピをおまかせできる日立の神アプリ「ぱっとレシピけいかく」", url: "https://dime.jp/genre/1981852/" },
+          { title: "(2025/6/4) 家電Watch | 日立、冷蔵庫の中身から献立提案するアプリ", url: "https://kaden.watch.impress.co.jp/docs/news/2019567.html" },
+          { title: "(2025/5/28) 日立HP | 日立冷蔵庫コンシェルジュアプリ", url: "https://kadenfan.hitachi.co.jp/app/rei/series01/index.html" },
+          { title: "(2025/5/22) 日立ニュースリリース | 家事サポートアプリ「ハピネスアップ」に、悩みがちな日々の献立決めをサポートする新機能「ぱっとレシピけいかく」を追加", url: "https://www.hitachi.co.jp/New/cnews/month/2025/05/0522.html" }
+        ]
+      },
+      {
+        title: "(2024/8/30) 家電Watch | 日立の「冷蔵庫カメラ」本当に便利? 3カ月使ってわかった",
+        date: "2024-08-30",
+        url: "https://kaden.watch.impress.co.jp/docs/column_review/kdnreview/1615914.html",
+        children: [
+          { title: "(2025/5/29) 日立HP | R-GXCC67X：食材管理がらくに。[冷蔵庫カメラ]", url: "https://kadenfan.hitachi.co.jp/rei/lineup/rgxcc67x/feature07.html" },
+          { title: "(2025/1/17) 家電Watch | 日立、冷凍の霜を防いでおいしさ保つ大容量冷蔵庫", url: "https://kaden.watch.impress.co.jp/docs/news/1655037.html" },
+          { title: "(2025/1/16) 日立HP | R-HXCC54X：食材管理がらくに。[冷蔵庫カメラ]", url: "https://kadenfan.hitachi.co.jp/rei/lineup/rhxcc54x/feature07.html" },
+          { title: "(2025/1/16) 日立HP | R-HXCC62X：食材管理がらくに。[冷蔵庫カメラ]", url: "https://kadenfan.hitachi.co.jp/rei/lineup/rhxcc62x/feature07.html" },
+          { title: "(2025/1/16) 日立ニュースリリース | ｢らくうま！ひろ in 冷凍プラス｣採用の冷蔵庫｢まんなか冷凍 HXCC タイプ｣を発売", url: "https://www.hitachi.co.jp/New/cnews/month/2025/01/0116.pdf" },
+          { title: "(2024/11/14) 日立HP | R-GXCC67W：あれあったっけ？がスマホで確認できる。食材管理がらくに。[冷蔵庫カメラ]", url: "https://kadenfan.hitachi.co.jp/rei/lineup/rgxcc67w/feature07.html" },
+          { title: "(2024/6/4) 日立 くらしのラボ YouTube | 冷蔵庫カメラで食材管理がアップデート！買い忘れ、買いすぎ防止に役立ちます！(by くらしのラボ)", url: "https://corp.hitachi-gls.co.jp/_ct/17703307" },
+          { title: "(2024/4/21) 価格.com | 大きな冷凍室の使い勝手が抜群。カメラで冷凍室の食材管理が可能", url: "https://review.kakaku.com/review/K0001597591/ReviewCD=1836900/" },
+          { title: "(2024/4/15) 日立 Lumadaコラム YouTube | 第2回 令和時代の家電幸福論", url: "https://www.hitachi.co.jp/products/it/lumada/spcon/fieldtrip/02/index.html" },
+          { title: "(2024/3/28) 日立HP | R-HXCC62V：食材管理がらくに。[冷蔵庫カメラ]", url: "https://kadenfan.hitachi.co.jp/rei/lineup/rhxcc62v/feature07.html" },
+          { title: "(2024/3/28) 日立HP | R-HXC54CV：食材管理がらくに。[冷蔵庫カメラ]", url: "https://kadenfan.hitachi.co.jp/rei/lineup/rhxcc54v/feature07.html" },
+          { title: "(2024/3/28) 日立HP | R-KXCC57V：食材管理がらくに。[冷蔵庫カメラ]", url: "https://kadenfan.hitachi.co.jp/rei/lineup/rkxcc57v/feature07.html" },
+          { title: "(2024/3/28) 日立HP | R-GXCC67V：食材管理がらくに。[冷蔵庫カメラ]", url: "https://kadenfan.hitachi.co.jp/rei/lineup/rgxcc67v/feature07.html" },
+          { title: "(2024/3/16) モノ・マガジン2024年3月16日情報号 |【総力特集】大人がハマる小粋な植物とオツな野菜 植物道楽", url: "https://www.monoshop.biz/SHOP/mm0933.html" },
+          { title: "(2024/2/15) 家電Watch | 冷蔵庫は冷凍も野菜も「使いやすさ」と「鮮度」が決め手! 日立はムダ防ぎ食生活が豊かに", url: "https://kaden.watch.impress.co.jp/docs/topic/special/1565725.html" },
+          { title: "(2024/2/6) MONOCOTO | 「日立」カメラ搭載冷蔵庫がさらに進化！冷蔵室のほか冷凍室と野菜室も撮影できるようになった", url: "https://monocotolab.com/hitachi-mannakareitou-gxcctype-240121/" },
+          { title: "(2024/1/23) 電波新聞 | 日立GLSがカメラ付き冷蔵庫新型　冷凍・野菜室も高解像度で撮影　食材リスト自動登録", url: "https://dempa-digital.com/article/520198" },
+          { title: "(2024/1/22) マイナビニュース | 日立のカメラ付き冷蔵庫「GXCC」タイプ、野菜室・冷凍室も撮影可能に - 外出先で庫内を見て買いすぎ・買い忘れを防ぐ！", url: "https://news.mynavi.jp/article/20240122-hitachi-gls/" },
+          { title: "(2024/1/22) 日刊工業新聞 | 日立GLSが発売、カメラを搭載した最新冷蔵庫が実現する機能", url: "https://newswitch.jp/p/40163" },
+          { title: "(2024/1/19) 生活家電.com | 【冷蔵庫】日立、冷蔵室に加え、冷凍室下段・野菜室の中の食材もスマートフォンで確認できる「冷蔵庫カメラ」搭載。「まんなか冷凍 GXCCタイプ」を発売。", url: "https://www.seikatsukaden.com/?p=39062" },
+          { title: "(2024/1/19) 家電Watch | 冷凍室ひろびろ、日立の大容量冷蔵庫は整理しやすく鮮度を保つ", url: "https://kaden.watch.impress.co.jp/docs/news/1561932.html" },
+          { title: "(2024/1/18) 日立ニュースリリース | 「冷蔵庫カメラ」搭載の冷蔵庫「まんなか冷凍 GXCCタイプ」を発売", url: "https://www.hitachi.co.jp/New/cnews/month/2024/01/0118.pdf" }
+        ]
       }
     ];
 
@@ -510,7 +903,7 @@
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
+        .replace(/\"/g, "&quot;")
         .replace(/'/g, "&#39;");
     }
 
@@ -519,66 +912,100 @@
       return `<dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd>`;
     }
 
-    function renderPatentCard(patent) {
+    function patentCard(p) {
       const tags = [];
-      if (patent.isPrimary) {
-        tags.push('<span class="tag primary">主発明</span>');
-      }
-      if (patent.isRegistered) {
-        tags.push('<span class="tag registered">登録</span>');
-      }
-      if (patent.isProductUsed) {
-        tags.push('<span class="tag product">製品活用</span>');
-      }
+      if (p.isPrimary) tags.push('<span class="tag primary">主発明</span>');
+      if (p.isRegistered) tags.push('<span class="tag registered">登録</span>');
+      if (p.isProductUsed) tags.push('<span class="tag product">製品活用</span>');
+      if (!tags.length) tags.push('<span class="tag">分類なし</span>');
 
-      const titleHtml = patent.url
-        ? `<a href="${escapeHtml(patent.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(patent.title)}</a>`
-        : escapeHtml(patent.title);
+      const titleHtml = p.url
+        ? `<a href="${escapeHtml(p.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(p.title)}</a>`
+        : escapeHtml(p.title);
 
       return `
-        <div class="patent-card">
+        <article class="patent-card">
           <div class="patent-title">${titleHtml}</div>
-          <div class="patent-authors">${escapeHtml(patent.authors)}</div>
-          <div class="patent-tags">${tags.join("") || '<span class="tag">分類なし</span>'}</div>
+          <div class="patent-authors">${escapeHtml(p.authors)}</div>
+          <div class="patent-tags">${tags.join("")}</div>
           <dl class="patent-meta">
-            ${metaRow("出願番号", patent.filingNumber)}
-            ${metaRow("公開番号", patent.publicationNumber)}
-            ${metaRow("登録番号", patent.registrationNumber)}
-            ${metaRow("出願日", patent.filingDate)}
-            ${metaRow("公開日", patent.publicationDate)}
-            ${metaRow("登録日", patent.registrationDate)}
-            ${metaRow("出願国", patent.country)}
-            ${metaRow("リンクURL", patent.url)}
+            ${metaRow("年", p.year)}
+            ${metaRow("出願番号", p.filingNumber)}
+            ${metaRow("公開番号", p.publicationNumber)}
+            ${metaRow("登録番号", p.registrationNumber)}
+            ${metaRow("出願日", p.filingDate)}
+            ${metaRow("公開日", p.publicationDate)}
+            ${metaRow("登録日", p.registrationDate)}
+            ${metaRow("出願国", p.country)}
+            ${metaRow("リンクURL", p.url)}
           </dl>
-        </div>
+        </article>
       `;
     }
 
-    function renderList(elementId, items) {
-      const container = document.getElementById(elementId);
+    function renderPatentList(targetId, items) {
+      const target = document.getElementById(targetId);
       if (!items.length) {
-        container.innerHTML = '<p class="note">該当する特許はありません。</p>';
+        target.innerHTML = '<p class="note">該当する特許はありません。</p>';
         return;
       }
-      container.innerHTML = items.map(renderPatentCard).join("");
+      target.innerHTML = items.map(patentCard).join('');
     }
 
-    const primaryPatents = patents.filter(p => p.isPrimary);
-    const registeredPatents = patents.filter(p => p.isRegistered);
-    const productPatents = patents.filter(p => p.isProductUsed);
-    const otherPatents = patents.filter(
-      p => !p.isPrimary && !p.isRegistered && !p.isProductUsed
-    );
+    function renderPatents() {
+      const keyword = document.getElementById('patent-search').value.trim().toLowerCase();
+      const country = document.getElementById('country-filter').value;
 
-    document.getElementById("count-total").textContent = patents.length;
-    document.getElementById("count-primary").textContent = primaryPatents.length;
-    document.getElementById("count-registered").textContent = registeredPatents.length;
-    document.getElementById("count-product").textContent = productPatents.length;
+      const filtered = patents
+        .slice()
+        .sort((a, b) => (b.year || 0) - (a.year || 0))
+        .filter(p => {
+          const haystack = [p.title, p.authors, p.filingNumber, p.publicationNumber, p.registrationNumber]
+            .join(' ')
+            .toLowerCase();
+          const keywordOk = !keyword || haystack.includes(keyword);
+          const countryOk = !country || p.country === country;
+          return keywordOk && countryOk;
+        });
 
-    renderList("primary-list", primaryPatents);
-    renderList("registered-list", registeredPatents);
-    renderList("product-list", productPatents);
-    renderList("other-list", otherPatents);
+      const primary = filtered.filter(p => p.isPrimary);
+      const registered = filtered.filter(p => p.isRegistered);
+      const product = filtered.filter(p => p.isProductUsed);
+      const other = filtered.filter(p => !p.isPrimary && !p.isRegistered && !p.isProductUsed);
+
+      document.getElementById('count-total').textContent = patents.length;
+      document.getElementById('count-primary').textContent = patents.filter(p => p.isPrimary).length;
+      document.getElementById('count-registered').textContent = patents.filter(p => p.isRegistered).length;
+      document.getElementById('count-product').textContent = patents.filter(p => p.isProductUsed).length;
+
+      renderPatentList('primary-list', primary);
+      renderPatentList('registered-list', registered);
+      renderPatentList('product-list', product);
+      renderPatentList('other-list', other);
+    }
+
+    function renderMedia() {
+      const root = document.getElementById('media-list');
+      root.innerHTML = mediaCoverage.map(item => {
+        const children = (item.children || []).map(child => `
+          <li><a href="${escapeHtml(child.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(child.title)}</a></li>
+        `).join('');
+
+        return `
+          <article class="media-card">
+            <div class="media-title"><a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.title)}</a></div>
+            <div class="media-date">${escapeHtml(item.date)}</div>
+            ${children ? `<ul class="media-links">${children}</ul>` : ''}
+          </article>
+        `;
+      }).join('');
+    }
+
+    document.getElementById('patent-search').addEventListener('input', renderPatents);
+    document.getElementById('country-filter').addEventListener('change', renderPatents);
+
+    renderPatents();
+    renderMedia();
   </script>
 </body>
 </html>
