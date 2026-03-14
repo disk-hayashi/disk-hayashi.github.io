@@ -1160,7 +1160,8 @@
           <div class="patent-authors">${escapeHtml(p.authors)}</div>
           <div class="patent-tags">${tags.join("")}</div>
           <dl class="patent-meta">
-            ${metaRow("出願番号", p.filingNumber)}${metaRow("公開番号", p.publicationNumber)}
+            ${metaRow("出願番号", p.filingNumber)}
+            ${metaRow("公開番号", p.publicationNumber)}
             ${metaRow("登録番号", p.registrationNumber)}
             ${metaRow("出願日", p.filingDate)}
             ${metaRow("公開日", p.publicationDate)}
