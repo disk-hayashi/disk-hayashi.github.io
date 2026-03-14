@@ -19,7 +19,7 @@
       --product: #fef3c7;
       --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
       --radius: 18px;
-      --maxw: 1080px;
+      --maxw: 1100px;
     }
 
     * { box-sizing: border-box; }
@@ -170,7 +170,9 @@
     .section-card,
     .stat,
     .patent-card,
-    .media-card {
+    .media-card,
+    .pub-item,
+    .award-item {
       background: var(--card);
       border: 1px solid var(--line);
       border-radius: var(--radius);
@@ -220,6 +222,11 @@
       margin: 0;
       font-size: 1.55rem;
       letter-spacing: -0.02em;
+    }
+
+    h3.group-title {
+      margin: 0 0 12px;
+      font-size: 1.08rem;
     }
 
     .section-note,
@@ -332,31 +339,39 @@
       margin-top: 26px;
     }
 
-    .patent-group h3 {
-      margin: 0 0 12px;
-      font-size: 1.08rem;
-    }
-
-    .patent-list {
+    .patent-list,
+    .publication-list,
+    .award-list,
+    .media-list {
       display: grid;
       gap: 14px;
     }
 
-    .patent-card {
+    .patent-card,
+    .media-card,
+    .pub-item,
+    .award-item {
       padding: 18px;
     }
 
-    .patent-title {
+    .patent-title,
+    .pub-title,
+    .award-title,
+    .media-title {
       font-weight: 800;
       font-size: 1.03rem;
       line-height: 1.5;
       margin-bottom: 8px;
     }
 
-    .patent-authors {
+    .patent-authors,
+    .pub-authors,
+    .pub-meta,
+    .award-meta,
+    .media-date {
       color: var(--muted);
       font-size: 0.95rem;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .patent-tags {
@@ -398,26 +413,6 @@
       font-size: 0.96rem;
     }
 
-    .media-list {
-      display: grid;
-      gap: 14px;
-    }
-
-    .media-card {
-      padding: 18px;
-    }
-
-    .media-title {
-      font-weight: 800;
-      margin-bottom: 4px;
-    }
-
-    .media-date {
-      color: var(--muted);
-      font-size: 0.94rem;
-      margin-bottom: 8px;
-    }
-
     .media-links {
       margin-top: 10px;
       padding-left: 20px;
@@ -457,6 +452,8 @@
       <nav class="nav">
         <a href="#about">About</a>
         <a href="#links">Links</a>
+        <a href="#publications">Publications</a>
+        <a href="#awards">Awards</a>
         <a href="#patents">Patents</a>
         <a href="#media">Media</a>
       </nav>
@@ -474,8 +471,8 @@
             <p class="subtitle">Hitachi, Ltd. Central Research Laboratory</p>
             <p class="lead">
               Computer vision, machine learning, and product-facing AI systems.
-              This page is a compact academic-style profile with external links,
-              media coverage, and a structured patent portfolio.
+              This page is a compact academic-style profile with scholarly links,
+              publications, awards, media coverage, and a structured patent portfolio.
             </p>
             <div class="hero-links">
               <a class="btn btn-primary" href="https://www.linkedin.com/in/daisuke-hayashi/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
@@ -492,12 +489,13 @@
               <p>株式会社日立製作所 中央研究所</p>
             </div>
             <div class="mini-card">
-              <h3>Site Highlights</h3>
+              <h3>Research Keywords</h3>
               <ul>
-                <li>研究者向けシンプル構成</li>
-                <li>特許を自動分類・自動ソート</li>
-                <li>URL付き特許カード表示</li>
-                <li>メディア報道を階層表示</li>
+                <li>Computer Vision</li>
+                <li>Machine Learning</li>
+                <li>Medical Imaging</li>
+                <li>Handwriting Authentication</li>
+                <li>Applied AI Systems</li>
               </ul>
             </div>
           </aside>
@@ -513,16 +511,16 @@
             <div class="section-note">Compact academic profile</div>
           </div>
           <p class="muted">
-            This site is designed as a clean research-profile page rather than a flashy portfolio.
-            It focuses on identity, external scholarly links, product and media impact, and a patent record
-            that can be maintained as your work grows.
+            This site is designed as a clean research-profile page. It focuses on identity,
+            scholarly links, publications, awards, public product impact, and a patent record
+            that can be updated as your research and development activities grow.
           </p>
           <div style="height:16px"></div>
           <div class="chips">
             <span class="chip">Computer Vision</span>
             <span class="chip">Machine Learning</span>
-            <span class="chip">Applied AI</span>
-            <span class="chip">Industrial Products</span>
+            <span class="chip">Medical Imaging</span>
+            <span class="chip">Authentication</span>
             <span class="chip">Patents</span>
           </div>
         </div>
@@ -542,6 +540,40 @@
             <li><a href="https://scholar.google.com/citations?hl=ja&user=mHRLTWoAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a></li>
             <li><a href="https://github.com/disk-hayashi" target="_blank" rel="noopener noreferrer">GitHub</a></li>
           </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications" class="section">
+      <div class="container">
+        <div class="section-card">
+          <div class="section-head">
+            <h2>Publications | 論文実績</h2>
+            <div class="section-note">査読論文・国際会議・国内会議</div>
+          </div>
+
+          <h3 class="group-title">査読付き学術雑誌論文</h3>
+          <div id="journal-list" class="publication-list"></div>
+
+          <div style="height: 18px;"></div>
+          <h3 class="group-title">査読付き国際学会論文</h3>
+          <div id="international-list" class="publication-list"></div>
+
+          <div style="height: 18px;"></div>
+          <h3 class="group-title">国内会議</h3>
+          <div id="domestic-list" class="publication-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="awards" class="section">
+      <div class="container">
+        <div class="section-card">
+          <div class="section-head">
+            <h2>Awards | 受賞・表彰</h2>
+            <div class="section-note">Selected recognitions</div>
+          </div>
+          <div id="award-list" class="award-list"></div>
         </div>
       </div>
     </section>
@@ -572,22 +604,22 @@
           </div>
 
           <div class="patent-group">
-            <h3>主発明 | Primary Inventions</h3>
+            <h3 class="group-title">主発明 | Primary Inventions</h3>
             <div id="primary-list" class="patent-list"></div>
           </div>
 
           <div class="patent-group">
-            <h3>登録 | Registered Patents</h3>
+            <h3 class="group-title">登録 | Registered Patents</h3>
             <div id="registered-list" class="patent-list"></div>
           </div>
 
           <div class="patent-group">
-            <h3>製品活用 | Patents Used in Products</h3>
+            <h3 class="group-title">製品活用 | Patents Used in Products</h3>
             <div id="product-list" class="patent-list"></div>
           </div>
 
           <div class="patent-group">
-            <h3>その他 | Others</h3>
+            <h3 class="group-title">その他 | Others</h3>
             <div id="other-list" class="patent-list"></div>
           </div>
         </div>
@@ -612,6 +644,83 @@
   </footer>
 
   <script>
+    const publications = {
+      journals: [
+        {
+          title: "e-Testing におけるタブレット PC とオンライン筆記情報を用いた筆記認証法の提案",
+          authors: "林大介，赤倉貴子",
+          meta: "日本教育工学会論文誌, vol.42, no.Suppl., pp.101-104, Dec. 2018."
+        }
+      ],
+      international: [
+        {
+          title: "Hybrid handwriting authentication model for online testing using a Siamese neural network and MLP",
+          authors: "D. Hayashi, T. Kawamata, T. Kano, T. Akakura",
+          meta: "2020 IEEE 2nd Global Conference on Life Sciences and Technologies (LifeTech), pp.318-319, March 2020."
+        },
+        {
+          title: "Proposal for Writing Authentication Method Using Tablet PC and Online Information in e-Testing",
+          authors: "D. Hayashi and T. Akakura",
+          meta: "Human Interface and the Management of Information. Information in Applications and Services, vol.10905, no.LNCS, pp.253-265, June 2018."
+        }
+      ],
+      domestic: [
+        {
+          title: "3D-CNN を用いた脳 MRI 画像に基づく脳疾患分類",
+          authors: "林大介，長坂晃明，望月祐志，林賢之，上野雄文",
+          meta: "電子情報通信学会技術研究報告, vol.123, no.257, pp.15-20, Nov. 2023."
+        },
+        {
+          title: "CNN を用いた次世代 DNA シーケンサ向け塩基識別モデル",
+          authors: "林大介，横山皓，小原清弘",
+          meta: "電子情報通信学会技術研究報告, vol.120, no.220, pp.15-20, Oct. 2020."
+        },
+        {
+          title: "Siamese Network による筆記画像と動的情報を用いたハイブリッド認証モデル",
+          authors: "林大介，川又泰介，加納徹，赤倉貴子",
+          meta: "電子情報通信学会技術研究報告, vol.119, no.360, pp.67-74, Jan. 2020."
+        },
+        {
+          title: "Web-testing における MLP と SMOTE を用いた筆記認証モデル",
+          authors: "林大介，川又泰介，赤倉貴子",
+          meta: "電子情報通信学会技術研究報告, vol.119, no.328, pp.49-54, Dec. 2019."
+        },
+        {
+          title: "Web テスティングにおける機械学習を用いた筆記認証法の提案",
+          authors: "林大介，川又泰介，赤倉貴子",
+          meta: "電子情報通信学会総合大会講演論文集, no.2, p.52, March 2019."
+        },
+        {
+          title: "e-Testing における SVM を用いた逐次的筆記認証法",
+          authors: "林大介，赤倉貴子",
+          meta: "電子情報通信学会技術研究報告, vol.118, no.294, pp.43-46, Nov. 2018."
+        }
+      ]
+    };
+
+    const awards = [
+      {
+        title: "若手発明者トップ50",
+        meta: "株式会社日立製作所, Dec. 2024.",
+        description: "入社後5年以内における出願開発金額の累計金額上位50に選出。"
+      },
+      {
+        title: "令和5年度 MI 研究奨励賞",
+        meta: "電子情報通信学会 医用画像研究会(MI), June 2024.",
+        description: "研究発表の中で賞対象66件のうち3件が選出。"
+      },
+      {
+        title: "ET 研究奨励賞",
+        meta: "電子情報通信学会 教育工学研究会(ET), Nov. 2019.",
+        description: "研究発表が優秀と認められた。"
+      },
+      {
+        title: "卒業研究審査会 学科表彰",
+        meta: "東京理科大学, March 2018.",
+        description: "学部4年間の成績と卒業研究の内容を考慮し、学科全体2名に授与。"
+      }
+    ];
+
     const patents = [
       {
         title: "認識システム，認識装置，及び認識方法",
@@ -907,6 +1016,29 @@
         .replace(/'/g, "&#39;");
     }
 
+    function renderSimpleList(targetId, items, titleClass, extraFields = []) {
+      const root = document.getElementById(targetId);
+      root.innerHTML = items.map(item => `
+        <article class="pub-item">
+          <div class="${titleClass}">${escapeHtml(item.title)}</div>
+          <div class="pub-authors">${escapeHtml(item.authors || "")}</div>
+          <div class="pub-meta">${escapeHtml(item.meta || "")}</div>
+          ${item.description ? `<div class="muted">${escapeHtml(item.description)}</div>` : ""}
+        </article>
+      `).join('');
+    }
+
+    function renderAwards() {
+      const root = document.getElementById('award-list');
+      root.innerHTML = awards.map(item => `
+        <article class="award-item">
+          <div class="award-title">${escapeHtml(item.title)}</div>
+          <div class="award-meta">${escapeHtml(item.meta)}</div>
+          <div class="muted">${escapeHtml(item.description)}</div>
+        </article>
+      `).join('');
+    }
+
     function metaRow(label, value) {
       if (!value) return "";
       return `<dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd>`;
@@ -1004,6 +1136,10 @@
     document.getElementById('patent-search').addEventListener('input', renderPatents);
     document.getElementById('country-filter').addEventListener('change', renderPatents);
 
+    renderSimpleList('journal-list', publications.journals, 'pub-title');
+    renderSimpleList('international-list', publications.international, 'pub-title');
+    renderSimpleList('domestic-list', publications.domestic, 'pub-title');
+    renderAwards();
     renderPatents();
     renderMedia();
   </script>
