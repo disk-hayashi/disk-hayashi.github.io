@@ -957,7 +957,7 @@
         year: 2023,
         isPrimary: true,
         isRegistered: false,
-        isProductUsed: true,
+        isProductUsed: false,
       },
       {
         title: "分割装置及び貯蔵庫",
@@ -1170,7 +1170,7 @@
           <div class="patent-authors">${escapeHtml(p.authors)}</div>
           <div class="patent-tags">${tags.join("")}</div>
           <dl class="patent-meta">
-            ${metaRow("年", p.year)}
+            // ${metaRow("年", p.year)}
             ${metaRow("出願番号", p.filingNumber)}
             ${metaRow("公開番号", p.publicationNumber)}
             ${metaRow("登録番号", p.registrationNumber)}
@@ -1178,7 +1178,7 @@
             ${metaRow("公開日", p.publicationDate)}
             ${metaRow("登録日", p.registrationDate)}
             ${metaRow("出願国", p.country)}
-            ${metaRow("リンクURL", p.url)}
+            // ${metaRow("リンクURL", p.url)}
           </dl>
         </article>
       `;
