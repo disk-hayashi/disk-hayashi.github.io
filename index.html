@@ -3,37 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Daisuke Hayashi</title>
-  <meta name="description" content="Daisuke Hayashi - Researcher in computer vision, remote sensing, and object detection." />
+  <title>Daisuke Hayashi | 林 大介</title>
+  <meta
+    name="description"
+    content="Daisuke Hayashi (林 大介) - Researcher / Engineer in computer vision, machine learning, and applied AI systems."
+  />
   <style>
     :root {
-      --bg: #f7f8fb;
+      --bg: #f6f8fb;
       --card: #ffffff;
-      --text: #1f2937;
-      --muted: #6b7280;
-      --line: #e5e7eb;
-      --accent: #2563eb;
-      --accent-light: #dbeafe;
-      --maxw: 980px;
-      --shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
-      --radius: 16px;
+      --text: #172033;
+      --muted: #5f6b85;
+      --line: #e4e9f2;
+      --accent: #1f5eff;
+      --accent-2: #eaf0ff;
+      --maxw: 1080px;
+      --shadow: 0 10px 30px rgba(20, 30, 55, 0.08);
+      --radius: 18px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans JP",
-        "Hiragino Sans", "Yu Gothic UI", "Yu Gothic", Meiryo, sans-serif;
-      background: var(--bg);
+        "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
       color: var(--text);
-      line-height: 1.7;
+      background: linear-gradient(180deg, #f8faff 0%, #f6f8fb 100%);
+      line-height: 1.75;
     }
 
     a {
@@ -41,25 +40,23 @@
       text-decoration: none;
     }
 
-    a:hover {
-      text-decoration: underline;
-    }
+    a:hover { text-decoration: underline; }
 
     .container {
       width: min(var(--maxw), calc(100% - 32px));
       margin: 0 auto;
     }
 
-    .site-header {
+    .header {
       position: sticky;
       top: 0;
       z-index: 20;
-      background: rgba(247, 248, 251, 0.88);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(229, 231, 235, 0.9);
+      background: rgba(246, 248, 251, 0.86);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(228, 233, 242, 0.9);
     }
 
-    .site-header-inner {
+    .header-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -68,22 +65,21 @@
     }
 
     .brand {
-      font-weight: 700;
       font-size: 1.05rem;
+      font-weight: 800;
       letter-spacing: 0.02em;
-      color: var(--text);
     }
 
     .nav {
       display: flex;
+      gap: 16px;
       flex-wrap: wrap;
-      gap: 14px;
     }
 
     .nav a {
       color: var(--muted);
+      font-weight: 700;
       font-size: 0.95rem;
-      font-weight: 600;
     }
 
     .nav a:hover {
@@ -92,62 +88,81 @@
     }
 
     .hero {
-      padding: 56px 0 28px;
+      padding: 48px 0 24px;
     }
 
     .hero-card {
-      background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      box-shadow: var(--shadow);
-      padding: 40px 32px;
       display: grid;
-      grid-template-columns: 1.4fr 0.9fr;
-      gap: 28px;
-      align-items: center;
+      grid-template-columns: 1.45fr 0.95fr;
+      gap: 24px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      padding: 36px;
     }
 
-    .hero h1 {
-      margin: 0 0 10px;
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-    }
-
-    .hero .subtitle {
-      margin: 0 0 16px;
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: var(--accent-2);
       color: var(--accent);
-      font-weight: 700;
-      font-size: 1.05rem;
+      font-size: 0.84rem;
+      font-weight: 800;
+      letter-spacing: 0.03em;
     }
 
-    .hero .intro {
-      margin: 0 0 22px;
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(2.2rem, 4.4vw, 3.4rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    .name-ja {
+      color: var(--muted);
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: var(--accent);
+      font-size: 1.06rem;
+      font-weight: 800;
+      margin: 0 0 16px;
+    }
+
+    .lead {
+      margin: 0;
       color: var(--muted);
       font-size: 1rem;
     }
 
-    .hero-links {
+    .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 18px;
+      margin-top: 22px;
     }
 
     .btn {
       display: inline-block;
       padding: 11px 16px;
       border-radius: 999px;
-      font-weight: 700;
       border: 1px solid var(--line);
       background: #fff;
       color: var(--text);
-      transition: 0.15s ease;
+      font-weight: 800;
+      transition: transform .15s ease, box-shadow .15s ease;
     }
 
     .btn:hover {
       text-decoration: none;
       transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(31, 94, 255, 0.14);
     }
 
     .btn-primary {
@@ -157,25 +172,37 @@
     }
 
     .hero-side {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      padding: 20px;
+      display: grid;
+      gap: 14px;
+      align-content: start;
     }
 
-    .hero-side h3 {
-      margin: 0 0 12px;
+    .mini-card {
+      background: #fbfcff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .mini-card h3 {
+      margin: 0 0 10px;
       font-size: 1rem;
     }
 
-    .hero-side ul {
+    .mini-card p,
+    .mini-card li {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .mini-card ul {
       margin: 0;
       padding-left: 18px;
-      color: var(--muted);
     }
 
     .section {
-      padding: 18px 0;
+      padding: 16px 0;
     }
 
     .section-card {
@@ -186,36 +213,76 @@
       padding: 28px;
     }
 
-    .section h2 {
-      margin: 0 0 16px;
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    h2 {
+      margin: 0;
       font-size: 1.6rem;
       letter-spacing: -0.02em;
     }
 
-    .section p {
-      margin: 0;
+    .section-note {
+      color: var(--muted);
+      font-size: 0.95rem;
     }
 
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
+    .muted { color: var(--muted); }
 
     .chips {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 14px;
     }
 
     .chip {
       display: inline-block;
-      background: var(--accent-light);
-      color: #1d4ed8;
-      border-radius: 999px;
       padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--accent-2);
+      color: #2451cf;
+      font-weight: 800;
       font-size: 0.9rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .stat {
+      background: #fbfcff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .stat .num {
+      display: block;
+      font-size: 1.8rem;
+      line-height: 1.1;
+      font-weight: 900;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .stat .label {
+      color: var(--muted);
+      font-size: 0.92rem;
       font-weight: 700;
     }
 
@@ -224,132 +291,86 @@
       padding-left: 20px;
     }
 
-    .list li + li {
-      margin-top: 8px;
-    }
+    .list li + li { margin-top: 8px; }
 
-    .muted {
-      color: var(--muted);
-    }
-
-    .timeline {
-      display: grid;
-      gap: 16px;
-    }
-
-    .timeline-item {
-      padding: 16px 18px;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      background: #fcfcfd;
-    }
-
-    .timeline-item .year {
-      font-size: 0.9rem;
-      font-weight: 800;
-      color: var(--accent);
-      margin-bottom: 4px;
-    }
-
-    .timeline-item .title {
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .metrics {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-      margin-top: 16px;
-    }
-
-    .metric {
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 18px 14px;
-      text-align: center;
-      background: #fcfcff;
-    }
-
-    .metric .num {
-      display: block;
-      font-size: 1.7rem;
-      font-weight: 800;
-      line-height: 1.1;
-      color: var(--accent);
-      margin-bottom: 6px;
-    }
-
-    .metric .label {
-      color: var(--muted);
-      font-size: 0.92rem;
-      font-weight: 600;
-    }
-
-    .pub-item,
-    .patent-item,
-    .award-item,
-    .project-item {
+    .item {
       padding: 16px 0;
       border-top: 1px solid var(--line);
     }
 
-    .pub-item:first-child,
-    .patent-item:first-child,
-    .award-item:first-child,
-    .project-item:first-child {
+    .item:first-child {
       border-top: none;
       padding-top: 0;
     }
 
     .item-title {
-      font-weight: 700;
+      font-size: 1.03rem;
+      font-weight: 800;
       margin-bottom: 4px;
     }
 
     .item-meta {
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: 0.94rem;
+      margin-bottom: 6px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+    }
+
+    .timeline-item {
+      border: 1px solid var(--line);
+      background: #fbfcff;
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .timeline-year {
+      color: var(--accent);
+      font-weight: 900;
+      font-size: 0.92rem;
+      margin-bottom: 5px;
+    }
+
+    .timeline-title {
+      font-weight: 800;
       margin-bottom: 4px;
     }
 
-    .site-footer {
-      padding: 28px 0 52px;
+    .footer {
+      padding: 32px 0 56px;
+      text-align: center;
       color: var(--muted);
       font-size: 0.92rem;
-      text-align: center;
     }
 
-    @media (max-width: 860px) {
+    @media (max-width: 900px) {
       .hero-card,
       .grid-2,
-      .metrics {
+      .grid-3 {
         grid-template-columns: 1fr;
       }
 
-      .site-header-inner {
-        align-items: flex-start;
+      .header-inner {
         flex-direction: column;
-      }
-
-      .hero {
-        padding-top: 28px;
+        align-items: flex-start;
       }
     }
   </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container site-header-inner">
+  <header class="header">
+    <div class="container header-inner">
       <div class="brand">Daisuke Hayashi</div>
       <nav class="nav">
         <a href="#about">About</a>
         <a href="#research">Research</a>
-        <a href="#publications">Publications</a>
-        <a href="#patents">Patents</a>
+        <a href="#publications">Works</a>
         <a href="#awards">Awards</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Links</a>
+        <a href="#media">Media</a>
+        <a href="#links">Links</a>
       </nav>
     </div>
   </header>
@@ -359,30 +380,46 @@
       <div class="container">
         <div class="hero-card">
           <div>
+            <div class="eyebrow">Researcher / Engineer</div>
             <h1>Daisuke Hayashi</h1>
-            <p class="subtitle">Researcher / Engineer</p>
-            <p class="intro">
-              I work on computer vision, remote sensing, and object detection, with interests in
-              high-resolution image understanding, large-scale learning, and practical AI deployment.
+            <div class="name-ja">林 大介</div>
+            <p class="subtitle">Computer Vision · Machine Learning · Applied AI Systems</p>
+            <p class="lead">
+              I am a researcher and engineer working on computer vision, machine learning, and practical
+              AI deployment. My work spans visual recognition, industrial AI applications, and product-facing
+              systems that connect research with real-world impact.
             </p>
-            <div class="hero-links">
+
+            <div class="hero-actions">
               <a class="btn btn-primary" href="https://github.com/disk-hayashi" target="_blank" rel="noopener noreferrer">GitHub</a>
-              <a class="btn" href="#publications">Publications</a>
-              <a class="btn" href="#patents">Patents</a>
-              <a class="btn" href="#contact">Contact / Links</a>
+              <a class="btn" href="https://researchmap.jp/daisuke_hayashi" target="_blank" rel="noopener noreferrer">researchmap</a>
+              <a class="btn" href="https://scholar.google.com/citations?hl=ja&user=mHRLTWoAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+              <a class="btn" href="https://www.linkedin.com/in/daisuke-hayashi/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             </div>
           </div>
 
           <aside class="hero-side">
-            <h3>Research Keywords</h3>
-            <ul>
-              <li>Computer Vision</li>
-              <li>Remote Sensing</li>
-              <li>Object Detection</li>
-              <li>High-Resolution Imagery</li>
-              <li>Self-Supervised Learning</li>
-              <li>Applied AI Systems</li>
-            </ul>
+            <div class="mini-card">
+              <h3>Affiliation</h3>
+              <p>Hitachi, Ltd. Central Research Laboratory</p>
+            </div>
+            <div class="mini-card">
+              <h3>Keywords</h3>
+              <ul>
+                <li>Computer Vision</li>
+                <li>Machine Learning</li>
+                <li>Applied AI</li>
+                <li>Industrial Product Development</li>
+              </ul>
+            </div>
+            <div class="mini-card">
+              <h3>Highlights</h3>
+              <ul>
+                <li>Young Inventor Top 50</li>
+                <li>MI Research Encouragement Award</li>
+                <li>Media-covered product contributions</li>
+              </ul>
+            </div>
           </aside>
         </div>
       </div>
@@ -391,37 +428,31 @@
     <section id="about" class="section">
       <div class="container">
         <div class="section-card">
-          <h2>About</h2>
-          <p class="muted">
-            This page is my personal academic and technical profile. I am interested in bridging
-            fundamental machine learning research and practical system development, especially in
-            image understanding and remote sensing applications.
-          </p>
-
-          <div class="chips">
-            <span class="chip">Computer Vision</span>
-            <span class="chip">Remote Sensing</span>
-            <span class="chip">Object Detection</span>
-            <span class="chip">Foundation Models</span>
-            <span class="chip">Practical AI</span>
+          <div class="section-head">
+            <h2>About</h2>
+            <div class="section-note">Academic profile + technical portfolio</div>
           </div>
 
-          <div class="metrics">
-            <div class="metric">
-              <span class="num">21+</span>
-              <span class="label">Patent Applications</span>
+          <p class="muted">
+            My interests lie in the intersection of machine learning research and product development.
+            I work on methods and systems that make AI practical, reliable, and useful in real products,
+            especially where computer vision and intelligent user support are involved.
+          </p>
+
+          <div style="height:16px"></div>
+
+          <div class="grid-3">
+            <div class="stat">
+              <span class="num">2024</span>
+              <span class="label">Young Inventor Top 50</span>
             </div>
-            <div class="metric">
-              <span class="num">15+</span>
-              <span class="label">Primary Inventions</span>
+            <div class="stat">
+              <span class="num">2024</span>
+              <span class="label">MI Research Encouragement Award</span>
             </div>
-            <div class="metric">
-              <span class="num">3</span>
-              <span class="label">Registered Patents</span>
-            </div>
-            <div class="metric">
-              <span class="num">2</span>
-              <span class="label">Patents Used in Products</span>
+            <div class="stat">
+              <span class="num">2019</span>
+              <span class="label">ET Research Encouragement Award</span>
             </div>
           </div>
         </div>
@@ -431,22 +462,36 @@
     <section id="research" class="section">
       <div class="container">
         <div class="section-card">
-          <h2>Research Interests</h2>
+          <div class="section-head">
+            <h2>Research Interests</h2>
+            <div class="section-note">Based on researchmap keywords and profile links</div>
+          </div>
+
+          <div class="chips">
+            <span class="chip">Computer Vision</span>
+            <span class="chip">Machine Learning</span>
+            <span class="chip">Image Recognition</span>
+            <span class="chip">AI for Products</span>
+            <span class="chip">Practical Deployment</span>
+          </div>
+
+          <div style="height:18px"></div>
+
           <div class="grid-2">
             <div>
-              <ul class="list">
-                <li>Remote sensing object detection in high-resolution imagery</li>
-                <li>Multi-scale visual recognition and dense scene understanding</li>
-                <li>Self-supervised learning and representation learning</li>
-                <li>Efficient training and evaluation of large vision models</li>
+              <ul class="list muted">
+                <li>Computer vision and visual recognition</li>
+                <li>Machine learning for applied systems</li>
+                <li>Industrial AI and production-facing workflows</li>
+                <li>Bridging research prototypes and shipped products</li>
               </ul>
             </div>
             <div>
-              <ul class="list">
-                <li>Robust benchmarking on remote sensing datasets</li>
-                <li>Practical deployment of AI systems in industrial products</li>
-                <li>Data-centric AI and annotation / conversion pipelines</li>
-                <li>Integration of vision and language for real-world workflows</li>
+              <ul class="list muted">
+                <li>AI-assisted user support and recommendation systems</li>
+                <li>Image-based understanding in consumer products</li>
+                <li>Robust and practical model design</li>
+                <li>Technology transfer from research to deployment</li>
               </ul>
             </div>
           </div>
@@ -457,64 +502,52 @@
     <section id="publications" class="section">
       <div class="container">
         <div class="section-card">
-          <h2>Selected Publications</h2>
-
-          <div class="pub-item">
-            <div class="item-title">[Add your paper title here]</div>
-            <div class="item-meta">Authors, Conference / Journal, Year</div>
-            <div class="muted">Brief one-line summary of the contribution.</div>
+          <div class="section-head">
+            <h2>Selected Works</h2>
+            <div class="section-note">Visible from researchmap search results</div>
           </div>
 
-          <div class="pub-item">
-            <div class="item-title">[Add your paper title here]</div>
-            <div class="item-meta">Authors, Conference / Journal, Year</div>
-            <div class="muted">Brief one-line summary of the contribution.</div>
-          </div>
-
-          <div class="pub-item">
-            <div class="item-title">[Add your paper title here]</div>
-            <div class="item-meta">Authors, Conference / Journal, Year</div>
-            <div class="muted">Brief one-line summary of the contribution.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="patents" class="section">
-      <div class="container">
-        <div class="section-card">
-          <h2>Patents</h2>
-
-          <div class="patent-item">
-            <div class="item-title">Patent Portfolio Summary</div>
-            <div class="item-meta">21 patent applications in total</div>
+          <div class="item">
+            <div class="item-title">3D-CNNを用いた脳MRI画像に基づく脳疾患分類</div>
+            <div class="item-meta">Listed on researchmap profile</div>
             <div class="muted">
-              Includes inventions related to image recognition and natural language processing,
-              with multiple primary inventions and registered patents.
+              Representative work shown in the visible researchmap search snippet.
             </div>
           </div>
 
-          <div class="patent-item">
-            <div class="item-title">Image Recognition Patents</div>
-            <div class="item-meta">15 applications / 3 registrations</div>
+          <div class="item">
+            <div class="item-title">CNNを用いた次世代DNAシーケンサ向け塩基識別モデル</div>
+            <div class="item-meta">Listed on researchmap profile</div>
             <div class="muted">
-              Core contributions in applied computer vision and product-oriented AI technologies.
+              Example of machine-learning-based modeling work appearing in the researchmap snippet.
             </div>
           </div>
 
-          <div class="patent-item">
-            <div class="item-title">Natural Language Processing Patents</div>
-            <div class="item-meta">6 applications</div>
+          <div class="item">
+            <div class="item-title">Siamese Networkによる筆記画像と動的情報を用いた ...</div>
+            <div class="item-meta">Listed on researchmap profile</div>
             <div class="muted">
-              Related to applied language understanding and practical AI system development.
+              The visible snippet is truncated, but indicates work involving Siamese Networks and handwriting-related data.
             </div>
           </div>
 
-          <div class="patent-item">
-            <div class="item-title">Patents Used in Products</div>
-            <div class="item-meta">2 patents</div>
+          <div class="item">
+            <div class="item-title">Webテスティングにおける機械学習を用いた筆記認証法の提案</div>
+            <div class="item-meta">MISC, 2019-03-20, first author indicated on researchmap search result</div>
             <div class="muted">
-              Incorporated into commercialized AI-enabled products.
+              A researchmap MISC entry explicitly surfaced by web search.
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="item-title">Full publication list</div>
+            <div class="item-meta">
+              <a href="https://researchmap.jp/daisuke_hayashi" target="_blank" rel="noopener noreferrer">researchmap</a>
+              /
+              <a href="https://scholar.google.com/citations?hl=ja&user=mHRLTWoAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+            </div>
+            <div class="muted">
+              For the up-to-date and complete record, please see the external profile pages above.
             </div>
           </div>
         </div>
@@ -524,53 +557,67 @@
     <section id="awards" class="section">
       <div class="container">
         <div class="section-card">
-          <h2>Awards & Recognition</h2>
-
-          <div class="award-item">
-            <div class="item-title">MI Research Encouragement Award</div>
-            <div class="item-meta">2023</div>
-            <div class="muted">
-              Add the official Japanese/English title here if you want to show the exact award name.
-            </div>
+          <div class="section-head">
+            <h2>Awards & Recognition</h2>
+            <div class="section-note">Confirmed from researchmap search snippets</div>
           </div>
 
-          <div class="award-item">
-            <div class="item-title">Productization Contributions</div>
-            <div class="item-meta">AI-enabled products in production</div>
-            <div class="muted">
-              Contributions to practical AI product development and deployment.
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-year">2024-12</div>
+              <div class="timeline-title">若手発明者トップ50</div>
+              <div class="muted">Hitachi, Ltd.</div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-year">2024-06</div>
+              <div class="timeline-title">令和5年度 MI研究奨励賞</div>
+              <div class="muted">電子情報通信学会 医用画像研究会</div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-year">2019-11</div>
+              <div class="timeline-title">ET研究奨励賞</div>
+              <div class="muted">電子情報通信学会 ET</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="projects" class="section">
+    <section id="media" class="section">
       <div class="container">
         <div class="section-card">
-          <h2>Projects</h2>
+          <div class="section-head">
+            <h2>Media & Product Coverage</h2>
+            <div class="section-note">Selected entries from the GitHub media repository README</div>
+          </div>
 
-          <div class="project-item">
-            <div class="item-title">Remote Sensing Detection Research</div>
-            <div class="item-meta">Datasets, training pipelines, evaluation, and visualization</div>
+          <div class="item">
+            <div class="item-title">日立冷蔵庫コンシェルジュアプリ / ハピネスアップ / ぱっとレシピけいかく</div>
+            <div class="item-meta">2025</div>
             <div class="muted">
-              Research and engineering around remote sensing datasets, model training, and large-scale evaluation workflows.
+              Media and official pages indicate product-related work around recipe planning and household support features.
             </div>
           </div>
 
-          <div class="project-item">
-            <div class="item-title">AI System Development for Industrial Applications</div>
-            <div class="item-meta">Vision / language integration</div>
+          <div class="item">
+            <div class="item-title">冷蔵庫カメラ関連メディア掲載</div>
+            <div class="item-meta">2024–2025</div>
             <div class="muted">
-              Building practical AI systems that connect structured extraction, reasoning, and deployment workflows.
+              The README aggregates multiple articles and official pages about camera-equipped refrigerator features and food management support.
             </div>
           </div>
 
-          <div class="project-item">
-            <div class="item-title">Open Technical Work</div>
-            <div class="item-meta">GitHub repositories and code</div>
+          <div class="item">
+            <div class="item-title">Selected Links</div>
+            <div class="item-meta">Open in a new tab</div>
             <div class="muted">
-              Source code, experiments, and technical materials available via GitHub.
+              <a href="https://www.hitachi.co.jp/New/cnews/month/2025/05/0522.html" target="_blank" rel="noopener noreferrer">Hitachi News Release (2025/05/22)</a><br>
+              <a href="https://kaden.watch.impress.co.jp/docs/news/2019567.html" target="_blank" rel="noopener noreferrer">家電Watch (2025/06/04)</a><br>
+              <a href="https://kadenfan.hitachi.co.jp/app/rei/series01/index.html" target="_blank" rel="noopener noreferrer">Hitachi Refrigerator Concierge App</a><br>
+              <a href="https://kaden.watch.impress.co.jp/docs/column_review/kdnreview/1615914.html" target="_blank" rel="noopener noreferrer">家電Watch Review (2024/08/30)</a><br>
+              <a href="https://www.hitachi.co.jp/New/cnews/month/2024/01/0118.pdf" target="_blank" rel="noopener noreferrer">Hitachi News Release (2024/01/18)</a>
             </div>
           </div>
         </div>
@@ -580,48 +627,55 @@
     <section class="section">
       <div class="container">
         <div class="section-card">
-          <h2>Education / Career</h2>
+          <div class="section-head">
+            <h2>Career Snapshot</h2>
+            <div class="section-note">Simple version for a personal profile site</div>
+          </div>
+
           <div class="timeline">
             <div class="timeline-item">
-              <div class="year">[Year] - Present</div>
-              <div class="title">[Current Position / Affiliation]</div>
-              <div class="muted">Add your current affiliation and short description here.</div>
+              <div class="timeline-year">Current</div>
+              <div class="timeline-title">Researcher, Hitachi, Ltd. Central Research Laboratory</div>
+              <div class="muted">
+                Working on machine learning, computer vision, and applied AI systems.
+              </div>
             </div>
 
             <div class="timeline-item">
-              <div class="year">[Year] - [Year]</div>
-              <div class="title">[Previous Position / Degree]</div>
-              <div class="muted">Add your career or educational history here.</div>
-            </div>
-
-            <div class="timeline-item">
-              <div class="year">[Year]</div>
-              <div class="title">[Degree / Institution]</div>
-              <div class="muted">Add your degree information here.</div>
+              <div class="timeline-year">Focus</div>
+              <div class="timeline-title">Research to product</div>
+              <div class="muted">
+                Building and transferring AI technologies into practical products and user-facing systems.
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="contact" class="section">
+    <section id="links" class="section">
       <div class="container">
         <div class="section-card">
-          <h2>Links</h2>
+          <div class="section-head">
+            <h2>Links</h2>
+            <div class="section-note">Primary external profiles</div>
+          </div>
+
           <ul class="list">
             <li><a href="https://github.com/disk-hayashi" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-            <li><a href="https://disk-hayashi.github.io" target="_blank" rel="noopener noreferrer">GitHub Pages</a></li>
-            <li><a href="mailto:your-email@example.com">your-email@example.com</a> ← 必要なら自分のメールに置き換えてください</li>
-            <li><a href="#">CV PDF</a> ← CVをアップしたらリンク先を差し替えてください</li>
+            <li><a href="https://github.com/disk-hayashi/media" target="_blank" rel="noopener noreferrer">GitHub media repository</a></li>
+            <li><a href="https://researchmap.jp/daisuke_hayashi" target="_blank" rel="noopener noreferrer">researchmap</a></li>
+            <li><a href="https://scholar.google.com/citations?hl=ja&user=mHRLTWoAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a></li>
+            <li><a href="https://www.linkedin.com/in/daisuke-hayashi/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
           </ul>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
+  <footer class="footer">
     <div class="container">
-      © 2026 Daisuke Hayashi. All rights reserved.
+      © 2026 Daisuke Hayashi
     </div>
   </footer>
 </body>
