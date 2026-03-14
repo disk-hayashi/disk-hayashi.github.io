@@ -850,6 +850,7 @@
         url: "https://patents.google.com/patent/CN119027990A/en?oq=CN119027990",
         year: 2024,
         isPrimary: false,
+        isJoint: true,
         isRegistered: false,
         isProductUsed: false,
       },
@@ -866,6 +867,7 @@
         url: "https://www.j-platpat.inpit.go.jp/c1801/PU/JP-2025-098801/11/ja",
         year: 2023,
         isPrimary: true,
+        isJoint: false,
         isRegistered: false,
         isProductUsed: false,
       },
@@ -882,6 +884,7 @@
         url: "https://patents.google.com/patent/CN119678182A/en?oq=202380054498",
         year: 2023,
         isPrimary: false,
+        isJoint: true,
         isRegistered: false,
         isProductUsed: false,
       },
@@ -898,6 +901,7 @@
         url: "https://patents.google.com/patent/WO2024116537A1/ja?oq=JP2023%2f032987",
         year: 2023,
         isPrimary: false,
+        isJoint: true,
         isRegistered: false,
         isProductUsed: false,
       },
@@ -914,6 +918,7 @@
         url: "https://www.j-platpat.inpit.go.jp/c1801/PU/JP-2024-170218/11/ja",
         year: 2023,
         isPrimary: false,
+        isJoint: true,
         isRegistered: false,
         isProductUsed: false,
       },
@@ -930,6 +935,7 @@
         url: "https://www.j-platpat.inpit.go.jp/c1801/PU/JP-2024-163666/11/ja",
         year: 2023,
         isPrimary: false,
+        isJoint: true,
         isRegistered: false,
         isProductUsed: false,
       },
@@ -946,6 +952,7 @@
         url: "https://www.j-platpat.inpit.go.jp/c1801/PU/JP-2024-157387/11/ja",
         year: 2023,
         isPrimary: true,
+        isJoint: false,
         isRegistered: false,
         isProductUsed: false,
       },
@@ -962,6 +969,7 @@
         url: "https://www.j-platpat.inpit.go.jp/c1801/PU/JP-2024-077857/11/ja",
         year: 2022,
         isPrimary: false,
+        isJoint: true,
         isRegistered: false,
         isProductUsed: false,
       },
@@ -978,6 +986,7 @@
         url: "https://www.j-platpat.inpit.go.jp/c1801/PU/JP-2024-073155/11/ja",
         year: 2022,
         isPrimary: true,
+        isJoint: false,
         isRegistered: false,
         isProductUsed: true,
       },
@@ -994,6 +1003,7 @@
         url: "https://patents.google.com/patent/CN117716436A/en?oq=CN117716436",
         year: 2022,
         isPrimary: true,
+        isJoint: false,
         isRegistered: false,
         isProductUsed: false,
       },
@@ -1010,6 +1020,7 @@
         url: "https://patents.google.com/patent/WO2023062880A1/ja?oq=WO%2f2023%2f062880",
         year: 2022,
         isPrimary: true,
+        isJoint: false,
         isRegistered: false,
         isProductUsed: false,
       },
@@ -1026,6 +1037,7 @@
         url: "https://www.j-platpat.inpit.go.jp/c1801/PU/JP-7824765/15/ja",
         year: 2021,
         isPrimary: true,
+        isJoint: false,
         isRegistered: true,
         isProductUsed: false,
       },
@@ -1042,6 +1054,7 @@
         url: "https://www.j-platpat.inpit.go.jp/c1801/PU/JP-7758524/15/ja",
         year: 2021,
         isPrimary: true,
+        isJoint: false,
         isRegistered: true,
         isProductUsed: false,
       },
@@ -1058,6 +1071,7 @@
         url: "https://www.j-platpat.inpit.go.jp/c1801/PU/JP-7569748/15/ja",
         year: 2021,
         isPrimary: true,
+        isJoint: false,
         isRegistered: true,
         isProductUsed: false,
       }
@@ -1148,7 +1162,7 @@
       if (p.isPrimary) tags.push('<span class="tag primary">主発明</span>');
       if (p.isRegistered) tags.push('<span class="tag registered">登録</span>');
       if (p.isProductUsed) tags.push('<span class="tag product">製品活用</span>');
-      if (!tags.length) tags.push('<span class="tag">分類なし</span>');
+      if (p.isJoint) tags.push('<span class="tag joint">共同発明</span>');
 
       const titleHtml = p.url
         ? `<a href="${escapeHtml(p.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(p.title)}</a>`
@@ -1200,7 +1214,7 @@
       const primary = filtered.filter(p => p.isPrimary);
       const registered = filtered.filter(p => p.isRegistered);
       const product = filtered.filter(p => p.isProductUsed);
-      const other = filtered.filter(p => !p.isPrimary && !p.isRegistered && !p.isProductUsed);
+      const joint = filtered.filter(p => p.isJoint);
 
       document.getElementById('count-total').textContent = patents.length;
       document.getElementById('count-primary').textContent = patents.filter(p => p.isPrimary).length;
@@ -1210,7 +1224,7 @@
       renderPatentList('primary-list', primary);
       renderPatentList('registered-list', registered);
       renderPatentList('product-list', product);
-      renderPatentList('other-list', other);
+      renderPatentList('joint-list', joint);
     }
 
     function renderMedia() {
