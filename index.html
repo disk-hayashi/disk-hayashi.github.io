@@ -17,6 +17,7 @@
       --primary: #dbeafe;
       --registered: #dcfce7;
       --product: #fef3c7;
+      --joint: #f3e8ff;
       --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
       --radius: 18px;
       --maxw: 1100px;
@@ -24,6 +25,7 @@
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans JP",
@@ -37,7 +39,10 @@
       color: var(--accent);
       text-decoration: none;
     }
-    a:hover { text-decoration: underline; }
+
+    a:hover {
+      text-decoration: underline;
+    }
 
     .container {
       width: min(var(--maxw), calc(100% - 32px));
@@ -78,6 +83,7 @@
       font-size: 0.95rem;
       font-weight: 700;
     }
+
     .nav a:hover {
       color: var(--accent);
       text-decoration: none;
@@ -150,10 +156,12 @@
       color: var(--text);
       font-weight: 700;
     }
+
     .btn:hover {
       transform: translateY(-1px);
       text-decoration: none;
     }
+
     .btn-primary {
       background: var(--accent);
       color: white;
@@ -288,7 +296,10 @@
       margin: 0;
       padding-left: 20px;
     }
-    .list li + li { margin-top: 8px; }
+
+    .list li + li {
+      margin-top: 8px;
+    }
 
     .timeline {
       display: grid;
@@ -392,9 +403,29 @@
       color: #374151;
     }
 
-    .tag.primary { background: var(--primary); color: #1d4ed8; border-color: #bfdbfe; }
-    .tag.registered { background: var(--registered); color: #166534; border-color: #bbf7d0; }
-    .tag.product { background: var(--product); color: #92400e; border-color: #fde68a; }
+    .tag.primary {
+      background: var(--primary);
+      color: #1d4ed8;
+      border-color: #bfdbfe;
+    }
+
+    .tag.registered {
+      background: var(--registered);
+      color: #166534;
+      border-color: #bbf7d0;
+    }
+
+    .tag.product {
+      background: var(--product);
+      color: #92400e;
+      border-color: #fde68a;
+    }
+
+    .tag.joint {
+      background: var(--joint);
+      color: #7c3aed;
+      border-color: #ddd6fe;
+    }
 
     .patent-meta {
       display: grid;
@@ -439,9 +470,18 @@
     }
 
     @media (max-width: 640px) {
-      .container { width: min(var(--maxw), calc(100% - 20px)); }
-      .hero-card, .section-card { padding: 20px; }
-      .patent-meta { grid-template-columns: 1fr; }
+      .container {
+        width: min(var(--maxw), calc(100% - 20px));
+      }
+
+      .hero-card,
+      .section-card {
+        padding: 20px;
+      }
+
+      .patent-meta {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -525,6 +565,7 @@
             <div class="stat"><span class="num">2</span><span class="label">Major Product Lines</span></div>
           </div>
           <div style="height:16px"></div>
+        </div>
       </div>
     </section>
 
@@ -562,6 +603,22 @@
       </div>
     </section>
 
+    <section id="links" class="section">
+      <div class="container">
+        <div class="section-card">
+          <div class="section-head">
+            <h2>External Links</h2>
+          </div>
+          <ul class="list">
+            <li><a href="https://www.linkedin.com/in/daisuke-hayashi/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            <li><a href="https://researchmap.jp/daisuke_hayashi" target="_blank" rel="noopener noreferrer">researchmap</a></li>
+            <li><a href="https://scholar.google.com/citations?hl=ja&user=mHRLTWoAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a></li>
+            <li><a href="https://github.com/disk-hayashi" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
     <section id="publications" class="section">
       <div class="container">
         <div class="section-card">
@@ -573,11 +630,11 @@
           <h3 class="group-title">査読付き学術雑誌論文</h3>
           <div id="journal-list" class="publication-list"></div>
 
-          <div style="height: 18px;"></div>
+          <div style="height:18px"></div>
           <h3 class="group-title">査読付き国際学会論文</h3>
           <div id="international-list" class="publication-list"></div>
 
-          <div style="height: 18px;"></div>
+          <div style="height:18px"></div>
           <h3 class="group-title">国内会議</h3>
           <div id="domestic-list" class="publication-list"></div>
         </div>
@@ -649,7 +706,7 @@
         <div class="section-card">
           <div class="section-head">
             <h2>Patents | 特許</h2>
-            <div class="section-note">Auto-sorted by year, auto-grouped by type</div>
+            <div class="section-note">Auto-sorted by year, filtered by country, grouped into 主発明 / 共同発明</div>
           </div>
 
           <div class="grid-4">
@@ -665,7 +722,7 @@
               <option value="">すべての出願国</option>
               <option value="日本">日本</option>
               <option value="PCT">PCT</option>
-              <option value="China">China</option>
+              <option value="中国">中国</option>
             </select>
           </div>
 
@@ -676,7 +733,7 @@
 
           <div class="patent-group">
             <h3 class="group-title">共同発明 | Joint Inventions</h3>
-            <div id="other-list" class="patent-list"></div>
+            <div id="joint-list" class="patent-list"></div>
           </div>
         </div>
       </div>
@@ -751,8 +808,7 @@
         </div>
       </div>
     </section>
-
-</main>
+  </main>
 
   <footer class="footer">
     <div class="container">© 2026 Daisuke Hayashi</div>
@@ -852,7 +908,7 @@
         isPrimary: false,
         isJoint: true,
         isRegistered: false,
-        isProductUsed: false,
+        isProductUsed: false
       },
       {
         title: "画像補正装置、貯蔵庫および画像補正方法",
@@ -869,7 +925,7 @@
         isPrimary: true,
         isJoint: false,
         isRegistered: false,
-        isProductUsed: false,
+        isProductUsed: false
       },
       {
         title: "Sorting devices and storage",
@@ -880,13 +936,13 @@
         filingDate: "2023年9月11日",
         publicationDate: "2025年3月21日",
         registrationDate: "",
-        country: "China",
+        country: "中国",
         url: "https://patents.google.com/patent/CN119678182A/en?oq=202380054498",
         year: 2023,
         isPrimary: false,
         isJoint: true,
         isRegistered: false,
-        isProductUsed: false,
+        isProductUsed: false
       },
       {
         title: "分類装置及び貯蔵庫",
@@ -898,16 +954,16 @@
         publicationDate: "2024年6月6日",
         registrationDate: "",
         country: "PCT",
-        url: "https://patents.google.com/patent/WO2024116537A1/ja?oq=JP2023%2f032987",
+        url: "https://patents.google.com/patent/WO2024116537A1/ja?oq=JP2023%2F032987",
         year: 2023,
         isPrimary: false,
         isJoint: true,
         isRegistered: false,
-        isProductUsed: false,
+        isProductUsed: false
       },
       {
         title: "血管画像撮影装置および本人認証システム",
-        authors: "野々村 洋, 長坂 晃朗, 三浦 直人, 松田 友輔, 中﨑　渓一郎, 上田　達実, 林　大介",
+        authors: "野々村 洋, 長坂 晃朗, 三浦 直人, 松田 友輔, 中﨑 渓一郎, 上田 達実, 林 大介",
         filingNumber: "特願2023-087257",
         publicationNumber: "特開2024-170218",
         registrationNumber: "",
@@ -920,7 +976,7 @@
         isPrimary: false,
         isJoint: true,
         isRegistered: false,
-        isProductUsed: false,
+        isProductUsed: false
       },
       {
         title: "情報処理装置、情報処理方法及び収納システム",
@@ -937,7 +993,7 @@
         isPrimary: false,
         isJoint: true,
         isRegistered: false,
-        isProductUsed: false,
+        isProductUsed: false
       },
       {
         title: "画像判定装置、画像選定方法及び収納庫システム",
@@ -954,7 +1010,7 @@
         isPrimary: true,
         isJoint: false,
         isRegistered: false,
-        isProductUsed: false,
+        isProductUsed: false
       },
       {
         title: "分割装置及び貯蔵庫",
@@ -971,7 +1027,7 @@
         isPrimary: false,
         isJoint: true,
         isRegistered: false,
-        isProductUsed: false,
+        isProductUsed: false
       },
       {
         title: "学習データ選別装置、貯蔵庫及び学習データ選別方法",
@@ -988,7 +1044,7 @@
         isPrimary: true,
         isJoint: false,
         isRegistered: false,
-        isProductUsed: true,
+        isProductUsed: true
       },
       {
         title: "Area management device and program",
@@ -999,13 +1055,13 @@
         filingDate: "2022年6月21日",
         publicationDate: "2024年3月15日",
         registrationDate: "",
-        country: "China",
+        country: "中国",
         url: "https://patents.google.com/patent/CN117716436A/en?oq=CN117716436",
         year: 2022,
         isPrimary: true,
         isJoint: false,
         isRegistered: false,
-        isProductUsed: false,
+        isProductUsed: false
       },
       {
         title: "領域機器およびプログラム",
@@ -1017,18 +1073,18 @@
         publicationDate: "2023年4月20日",
         registrationDate: "",
         country: "PCT",
-        url: "https://patents.google.com/patent/WO2023062880A1/ja?oq=WO%2f2023%2f062880",
+        url: "https://patents.google.com/patent/WO2023062880A1/ja?oq=WO%2F2023%2F062880",
         year: 2022,
         isPrimary: true,
         isJoint: false,
         isRegistered: false,
-        isProductUsed: false,
+        isProductUsed: false
       },
       {
         title: "医療画像診断支援装置、医療画像診断支援方法及びプログラム",
         authors: "林 大介, 長坂 晃朗, 稲田 圭介, 望月 祐志, 森田 秀和",
         filingNumber: "特願2021-205803",
-        publicationNumber: "特快2023-091190",
+        publicationNumber: "特開2023-091190",
         registrationNumber: "特許7824765",
         filingDate: "2021年12月20日",
         publicationDate: "2023年6月30日",
@@ -1039,13 +1095,13 @@
         isPrimary: true,
         isJoint: false,
         isRegistered: true,
-        isProductUsed: false,
+        isProductUsed: false
       },
       {
         title: "領域管理機器およびプログラム",
         authors: "林 大介, 稲田 圭介, 森 泰久, 加藤 功記",
         filingNumber: "特願2021-16731",
-        publicationNumber: "特快2023-057695",
+        publicationNumber: "特開2023-057695",
         registrationNumber: "特許7758524",
         filingDate: "2021年10月14日",
         publicationDate: "2023年4月24日",
@@ -1056,7 +1112,7 @@
         isPrimary: true,
         isJoint: false,
         isRegistered: true,
-        isProductUsed: false,
+        isProductUsed: false
       },
       {
         title: "貯蔵庫",
@@ -1073,7 +1129,7 @@
         isPrimary: true,
         isJoint: false,
         isRegistered: true,
-        isProductUsed: false,
+        isProductUsed: false
       }
     ];
 
@@ -1125,12 +1181,14 @@
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
-        .replace(/\"/g, "&quot;")
+        .replace(/"/g, "&quot;")
         .replace(/'/g, "&#39;");
     }
 
-    function renderSimpleList(targetId, items, titleClass, extraFields = []) {
+    function renderSimpleList(targetId, items, titleClass) {
       const root = document.getElementById(targetId);
+      if (!root) return;
+
       root.innerHTML = items.map(item => `
         <article class="pub-item">
           <div class="${titleClass}">${escapeHtml(item.title)}</div>
@@ -1142,7 +1200,9 @@
     }
 
     function renderAwards() {
-      const root = document.getElementById('award-list');
+      const root = document.getElementById("award-list");
+      if (!root) return;
+
       root.innerHTML = awards.map(item => `
         <article class="award-item">
           <div class="award-title">${escapeHtml(item.title)}</div>
@@ -1163,6 +1223,7 @@
       if (p.isRegistered) tags.push('<span class="tag registered">登録</span>');
       if (p.isProductUsed) tags.push('<span class="tag product">製品活用</span>');
       if (p.isJoint) tags.push('<span class="tag joint">共同発明</span>');
+      if (!tags.length) tags.push('<span class="tag">未分類</span>');
 
       const titleHtml = p.url
         ? `<a href="${escapeHtml(p.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(p.title)}</a>`
@@ -1188,66 +1249,82 @@
 
     function renderPatentList(targetId, items) {
       const target = document.getElementById(targetId);
+      if (!target) return;
+
       if (!items.length) {
         target.innerHTML = '<p class="note">該当する特許はありません。</p>';
         return;
       }
-      target.innerHTML = items.map(patentCard).join('');
+
+      target.innerHTML = items.map(patentCard).join("");
     }
 
     function renderPatents() {
-      const keyword = document.getElementById('patent-search').value.trim().toLowerCase();
-      const country = document.getElementById('country-filter').value;
+      const keywordEl = document.getElementById("patent-search");
+      const countryEl = document.getElementById("country-filter");
+
+      const keyword = (keywordEl?.value || "").trim().toLowerCase();
+      const country = countryEl?.value || "";
 
       const filtered = patents
         .slice()
         .sort((a, b) => (b.year || 0) - (a.year || 0))
         .filter(p => {
-          const haystack = [p.title, p.authors, p.filingNumber, p.publicationNumber, p.registrationNumber]
-            .join(' ')
-            .toLowerCase();
+          const haystack = [
+            p.title,
+            p.authors,
+            p.filingNumber,
+            p.publicationNumber,
+            p.registrationNumber
+          ].join(" ").toLowerCase();
+
           const keywordOk = !keyword || haystack.includes(keyword);
           const countryOk = !country || p.country === country;
           return keywordOk && countryOk;
         });
 
       const primary = filtered.filter(p => p.isPrimary);
-      const registered = filtered.filter(p => p.isRegistered);
-      const product = filtered.filter(p => p.isProductUsed);
       const joint = filtered.filter(p => p.isJoint);
 
-      document.getElementById('count-total').textContent = patents.length;
-      document.getElementById('count-primary').textContent = patents.filter(p => p.isPrimary).length;
-      document.getElementById('count-registered').textContent = patents.filter(p => p.isRegistered).length;
-      document.getElementById('count-product').textContent = patents.filter(p => p.isProductUsed).length;
+      const totalEl = document.getElementById("count-total");
+      const primaryEl = document.getElementById("count-primary");
+      const registeredEl = document.getElementById("count-registered");
+      const productEl = document.getElementById("count-product");
 
-      renderPatentList('primary-list', primary);
-      renderPatentList('joint-list', joint);
+      if (totalEl) totalEl.textContent = String(patents.length);
+      if (primaryEl) primaryEl.textContent = String(patents.filter(p => p.isPrimary).length);
+      if (registeredEl) registeredEl.textContent = String(patents.filter(p => p.isRegistered).length);
+      if (productEl) productEl.textContent = String(patents.filter(p => p.isProductUsed).length);
+
+      renderPatentList("primary-list", primary);
+      renderPatentList("joint-list", joint);
     }
 
     function renderMedia() {
-      const root = document.getElementById('media-list');
+      const root = document.getElementById("media-list");
+      if (!root) return;
+
       root.innerHTML = mediaCoverage.map(item => {
         const children = (item.children || []).map(child => `
           <li><a href="${escapeHtml(child.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(child.title)}</a></li>
-        `).join('');
+        `).join("");
 
         return `
           <article class="media-card">
             <div class="media-title"><a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.title)}</a></div>
             <div class="media-date">${escapeHtml(item.date)}</div>
-            ${children ? `<ul class="media-links">${children}</ul>` : ''}
+            ${children ? `<ul class="media-links">${children}</ul>` : ""}
           </article>
         `;
-      }).join('');
+      }).join("");
     }
 
-    document.getElementById('patent-search').addEventListener('input', renderPatents);
-    document.getElementById('country-filter').addEventListener('change', renderPatents);
+    document.getElementById("patent-search")?.addEventListener("input", renderPatents);
+    document.getElementById("country-filter")?.addEventListener("change", renderPatents);
 
-    renderSimpleList('journal-list', publications.journals, 'pub-title');
-    renderSimpleList('international-list', publications.international, 'pub-title');
-    renderSimpleList('domestic-list', publications.domestic, 'pub-title');
+    renderSimpleList("journal-list", publications.journals, "pub-title");
+    renderSimpleList("international-list", publications.international, "pub-title");
+    renderSimpleList("domestic-list", publications.domestic, "pub-title");
     renderAwards();
     renderPatents();
     renderMedia();
