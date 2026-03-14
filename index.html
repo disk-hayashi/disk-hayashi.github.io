@@ -6,6 +6,129 @@
   <title>Daisuke Hayashi | 林 大介</title>
   <meta name="description" content="Daisuke Hayashi / 林 大介 の研究者プロフィールサイト" />
   <style>
+    .impact-chart {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+      align-items: end;
+      margin-top: 16px;
+      min-height: 180px;
+    }
+
+    .impact-bar-wrap {
+      text-align: center;
+    }
+
+    .impact-bar {
+      width: 100%;
+      border-radius: 10px 10px 0 0;
+      background: linear-gradient(180deg, #93c5fd 0%, #2563eb 100%);
+      min-height: 10px;
+    }
+
+    .impact-year {
+      margin-top: 8px;
+      font-size: 0.88rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .impact-value {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin-top: 6px;
+    }
+
+    .network-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .network-node {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+      background: #fbfcff;
+    }
+
+    .network-node h4 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+    }
+
+    .network-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .network-link {
+      display: inline-block;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .repo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .repo-card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      background: #fbfcff;
+    }
+
+    .repo-title {
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .repo-meta {
+      color: var(--muted);
+      font-size: 0.94rem;
+      margin-bottom: 8px;
+    }
+
+    .timeline-vertical {
+      display: grid;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .timeline-patent-item {
+      border-left: 4px solid var(--accent);
+      padding: 10px 0 10px 14px;
+      background: #fcfcff;
+      border-radius: 8px;
+    }
+
+    @media (max-width: 900px) {
+      .network-grid,
+      .repo-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .impact-chart {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .impact-chart {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
     :root {
       --bg: #f7f8fb;
       --card: #ffffff;
@@ -452,10 +575,16 @@
       <nav class="nav">
         <a href="#about">About</a>
         <a href="#highlights">Highlights</a>
-        <a href="#links">Links</a>
+        <a href="#impact">Impact</a>
+        <a href="#research-map">AI Map</a>
+        <a href="#projects">Projects</a>
         <a href="#publications">Publications</a>
+        <a href="#certifications">Certifications</a>
         <a href="#awards">Awards</a>
         <a href="#patents">Patents</a>
+        <a href="#patent-timeline">Patent Timeline</a>
+        <a href="#github-code">Code</a>
+        <a href="#slides">Slides</a>
         <a href="#timeline">Timeline</a>
         <a href="#media">Media</a>
       </nav>
@@ -655,6 +784,54 @@
       </div>
     </section>
 
+    <section id="certifications" class="section">
+      <div class="container">
+        <div class="section-card">
+          <div class="section-head">
+            <h2>Certifications | 資格</h2>
+            <div class="section-note">Professional certifications and exams</div>
+          </div>
+          <div class="publication-list">
+            <article class="pub-item">
+              <div class="pub-title">JDLA Deep Learning for ENGINEER (E資格)</div>
+              <div class="pub-meta">Japan Deep Learning Association</div>
+              <div class="muted">Issued: Feb 2026</div>
+            </article>
+
+            <article class="pub-item">
+              <div class="pub-title">Generative AI Passport</div>
+              <div class="pub-meta">GUGA</div>
+              <div class="muted">Issued: Nov 2025</div>
+            </article>
+
+            <article class="pub-item">
+              <div class="pub-title">AWS Certified Cloud Practitioner</div>
+              <div class="pub-meta">Amazon Web Services</div>
+              <div class="muted">Issued: May 2024</div>
+            </article>
+
+            <article class="pub-item">
+              <div class="pub-title">Japanese Association for Medical Artificial Intelligence Certificate</div>
+              <div class="pub-meta">JAMIA</div>
+              <div class="muted">Issued: Oct 2022</div>
+            </article>
+
+            <article class="pub-item">
+              <div class="pub-title">Google Data Analytics Professional Certificate</div>
+              <div class="pub-meta">Coursera / Google</div>
+              <div class="muted">Issued: Jan 2024</div>
+            </article>
+
+            <article class="pub-item">
+              <div class="pub-title">TOEIC Listening & Reading</div>
+              <div class="pub-meta">Score: 815</div>
+              <div class="muted">Aug 2021</div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="awards" class="section">
       <div class="container">
         <div class="section-card">
@@ -759,13 +936,200 @@
         </div>
       </div>
     </section>
-  </main>
+      <section id="impact" class="section">
+      <div class="container">
+        <div class="section-card">
+          <div class="section-head">
+            <h2>Research Impact | 研究インパクト</h2>
+            <div class="section-note">Google Scholar-ready metrics and citation trend</div>
+          </div>
+          <div class="grid-4">
+            <div class="stat"><span class="num" id="scholar-citations">—</span><span class="label">Citations</span></div>
+            <div class="stat"><span class="num" id="scholar-hindex">—</span><span class="label">h-index</span></div>
+            <div class="stat"><span class="num" id="scholar-i10">—</span><span class="label">i10-index</span></div>
+            <div class="stat"><span class="num">9</span><span class="label">Total Papers</span></div>
+          </div>
+          <div style="height:16px"></div>
+          <div class="section-head">
+            <h3 class="group-title">Citation Trend | 論文引用グラフ</h3>
+            <div class="section-note">Manual or automated Scholar updates</div>
+          </div>
+          <div id="impact-chart" class="impact-chart"></div>
+          <p class="note">Set the citation metrics and yearly citation data in the script block. If you later automate Scholar ingestion, this section will update without changing the layout.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="research-map" class="section">
+      <div class="container">
+        <div class="section-card">
+          <div class="section-head">
+            <h2>AI Research Map | 研究テーマ図</h2>
+            <div class="section-note">A compact network view of your technical domains</div>
+          </div>
+          <div class="network-grid" id="research-network"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section-card">
+          <div class="section-head">
+            <h2>Research Projects | 研究プロジェクト</h2>
+            <div class="section-note">Representative research themes and product-oriented work</div>
+          </div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-title">Refrigerator AI</div>
+              <div class="muted">Computer vision based food recognition, inventory management, AI-assisted meal planning, and public product functions integrated with Hitachi refrigerator systems.</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-title">Medical Image AI</div>
+              <div class="muted">Brain MRI classification, diagnostic support systems, and medical-image-related learning pipelines using deep learning.</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-title">Authentication AI</div>
+              <div class="muted">Handwriting authentication using Siamese neural networks and behavioral biometric signals for e-testing environments.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="github-code" class="section">
+      <div class="container">
+        <div class="section-card">
+          <div class="section-head">
+            <h2>GitHub Research Code | 研究コード</h2>
+            <div class="section-note">Repository cards that can be updated manually or from GitHub data</div>
+          </div>
+          <div class="repo-grid" id="repo-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="patent-timeline" class="section">
+      <div class="container">
+        <div class="section-card">
+          <div class="section-head">
+            <h2>Patent Timeline | 特許タイムライン</h2>
+            <div class="section-note">Chronological view of invention activity</div>
+          </div>
+          <div id="patent-timeline-list" class="timeline-vertical"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="slides" class="section">
+      <div class="container">
+        <div class="section-card">
+          <div class="section-head">
+            <h2>Talks & Slides | 講演・資料</h2>
+            <div class="section-note">Research presentations and public materials</div>
+          </div>
+          <div class="publication-list">
+            <article class="pub-item">
+              <div class="pub-title">Medical Imaging AI Research Presentation</div>
+              <div class="pub-meta">Conference / Technical Meeting</div>
+              <div class="muted"><a href="#">PDF Slides</a></div>
+            </article>
+            <article class="pub-item">
+              <div class="pub-title">Authentication AI and e‑Testing Systems</div>
+              <div class="pub-meta">Research Talk</div>
+              <div class="muted"><a href="#">Presentation Slides</a></div>
+            </article>
+            <article class="pub-item">
+              <div class="pub-title">Research Code and Experiments</div>
+              <div class="pub-meta">GitHub Repository</div>
+              <div class="muted"><a href="https://github.com/disk-hayashi" target="_blank">GitHub Research Code</a></div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+</main>
 
   <footer class="footer">
     <div class="container">© 2026 Daisuke Hayashi</div>
   </footer>
 
   <script>
+    const scholarMetrics = {
+      citations: "—",
+      hindex: "—",
+      i10index: "—",
+      yearlyCitations: [
+        { year: 2020, value: 0 },
+        { year: 2021, value: 0 },
+        { year: 2022, value: 0 },
+        { year: 2023, value: 0 },
+        { year: 2024, value: 0 },
+        { year: 2025, value: 0 }
+      ]
+    };
+
+    const researchNetwork = [
+      {
+        title: "Medical Imaging",
+        description: "MRI classification, diagnostic support, and medical AI pipelines.",
+        links: ["Brain MRI", "Diagnostic Support", "Deep Learning"]
+      },
+      {
+        title: "Authentication AI",
+        description: "Handwriting authentication and e-testing related machine learning methods.",
+        links: ["Siamese Networks", "Behavior Signals", "e-Testing"]
+      },
+      {
+        title: "Consumer Product AI",
+        description: "Food recognition, refrigerator AI, and user-facing support functions.",
+        links: ["Refrigerator AI", "Meal Planning", "Inventory"]
+      },
+      {
+        title: "Computer Vision",
+        description: "General visual recognition, applied image understanding, and product deployment.",
+        links: ["Recognition", "Detection", "Applied Vision"]
+      },
+      {
+        title: "Machine Learning",
+        description: "Core modeling approaches across classification, representation, and decision support.",
+        links: ["Classification", "ML Systems", "Optimization"]
+      },
+      {
+        title: "Industrial AI Systems",
+        description: "Bridging research prototypes with deployable product systems and patents.",
+        links: ["Patents", "Deployment", "Products"]
+      }
+    ];
+
+    const githubRepos = [
+      {
+        title: "disk-hayashi/media",
+        meta: "Media coverage archive",
+        description: "Public links and official coverage related to Hitachi AI-enabled products and technology visibility.",
+        url: "https://github.com/disk-hayashi/media"
+      },
+      {
+        title: "Research GitHub Profile",
+        meta: "Main GitHub account",
+        description: "Code, experiments, technical materials, and future research repositories.",
+        url: "https://github.com/disk-hayashi"
+      },
+      {
+        title: "Patent / Research Portfolio Base",
+        meta: "Profile site extension",
+        description: "This profile can be extended to link code for medical imaging, authentication, and product AI.",
+        url: "https://github.com/disk-hayashi"
+      },
+      {
+        title: "Future Research Repositories",
+        meta: "Placeholder block",
+        description: "Add your remote sensing, computer vision, or model training repositories here as they are published.",
+        url: "https://github.com/disk-hayashi"
+      }
+    ];
+
     const publications = {
       journals: [
         {
@@ -1138,11 +1502,17 @@
         .replace(/'/g, "&#39;");
     }
 
-    function renderSimpleList(targetId, items, titleClass, extraFields = []) {
+    function renderSimpleList(targetId, items, titleClass) {
       const root = document.getElementById(targetId);
       root.innerHTML = items.map(item => `
         <article class="pub-item">
           <div class="${titleClass}">${escapeHtml(item.title)}</div>
+          <div class="pub-authors">${escapeHtml(item.authors || "")}</div>
+          <div class="pub-meta">${escapeHtml(item.meta || "")}</div>
+          ${item.description ? `<div class="muted">${escapeHtml(item.description)}</div>` : ""}
+        </article>
+      `).join('');
+    }">${escapeHtml(item.title)}</div>
           <div class="pub-authors">${escapeHtml(item.authors || "")}</div>
           <div class="pub-meta">${escapeHtml(item.meta || "")}</div>
           ${item.description ? `<div class="muted">${escapeHtml(item.description)}</div>` : ""}
@@ -1155,6 +1525,66 @@
       root.innerHTML = awards.map(item => `
         <article class="award-item">
           <div class="award-title">${escapeHtml(item.title)}</div>
+          <div class="award-meta">${escapeHtml(item.meta)}</div>
+          <div class="muted">${escapeHtml(item.description)}</div>
+        </article>
+      `).join('');
+    }
+
+    function renderImpact() {
+      document.getElementById('scholar-citations').textContent = scholarMetrics.citations;
+      document.getElementById('scholar-hindex').textContent = scholarMetrics.hindex;
+      document.getElementById('scholar-i10').textContent = scholarMetrics.i10index;
+
+      const chart = document.getElementById('impact-chart');
+      const maxVal = Math.max(...scholarMetrics.yearlyCitations.map(d => d.value), 1);
+      chart.innerHTML = scholarMetrics.yearlyCitations.map(d => {
+        const height = Math.max(10, Math.round((d.value / maxVal) * 150));
+        return `
+          <div class="impact-bar-wrap">
+            <div class="impact-value">${escapeHtml(d.value)}</div>
+            <div class="impact-bar" style="height:${height}px"></div>
+            <div class="impact-year">${escapeHtml(d.year)}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderResearchNetwork() {
+      const root = document.getElementById('research-network');
+      root.innerHTML = researchNetwork.map(node => `
+        <article class="network-node">
+          <h4>${escapeHtml(node.title)}</h4>
+          <div class="muted">${escapeHtml(node.description)}</div>
+          <div class="network-links">
+            ${(node.links || []).map(link => `<span class="network-link">${escapeHtml(link)}</span>`).join('')}
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function renderGitHubRepos() {
+      const root = document.getElementById('repo-grid');
+      root.innerHTML = githubRepos.map(repo => `
+        <article class="repo-card">
+          <div class="repo-title"><a href="${escapeHtml(repo.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(repo.title)}</a></div>
+          <div class="repo-meta">${escapeHtml(repo.meta)}</div>
+          <div class="muted">${escapeHtml(repo.description)}</div>
+        </article>
+      `).join('');
+    }
+
+    function renderPatentTimeline() {
+      const root = document.getElementById('patent-timeline-list');
+      const items = patents.slice().sort((a, b) => (b.year || 0) - (a.year || 0));
+      root.innerHTML = items.map(p => `
+        <article class="timeline-patent-item">
+          <div class="timeline-year">${escapeHtml(p.year)}</div>
+          <div class="timeline-title">${p.url ? `<a href="${escapeHtml(p.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(p.title)}</a>` : escapeHtml(p.title)}</div>
+          <div class="muted">${escapeHtml(p.filingNumber || '')}${p.registrationNumber ? ' / ' + escapeHtml(p.registrationNumber) : ''}</div>
+        </article>
+      `).join('');
+    }</div>
           <div class="award-meta">${escapeHtml(item.meta)}</div>
           <div class="muted">${escapeHtml(item.description)}</div>
         </article>
@@ -1258,6 +1688,10 @@
     document.getElementById('patent-search').addEventListener('input', renderPatents);
     document.getElementById('country-filter').addEventListener('change', renderPatents);
 
+    renderImpact();
+    renderResearchNetwork();
+    renderGitHubRepos();
+    renderPatentTimeline();
     renderSimpleList('journal-list', publications.journals, 'pub-title');
     renderSimpleList('international-list', publications.international, 'pub-title');
     renderSimpleList('domestic-list', publications.domestic, 'pub-title');
