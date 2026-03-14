@@ -16,7 +16,7 @@
     }
 
     .container {
-      max-width: 900px;
+      max-width: 980px;
       margin: 0 auto;
       padding: 40px 20px 80px;
       background: #fff;
@@ -29,11 +29,18 @@
     }
 
     h2 {
-      font-size: 1.3rem;
+      font-size: 1.35rem;
       margin-top: 2.2em;
       margin-bottom: 0.8em;
       padding-bottom: 0.3em;
       border-bottom: 1px solid #ddd;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      margin-top: 1.8em;
+      margin-bottom: 0.8em;
+      color: #333;
     }
 
     p, li {
@@ -42,23 +49,6 @@
 
     ul {
       padding-left: 1.4em;
-    }
-
-    li {
-      margin-bottom: 0.5em;
-    }
-
-    .muted {
-      color: #666;
-    }
-
-    .section {
-      margin-top: 1.5em;
-    }
-
-    .nested {
-      margin-top: 0.4em;
-      margin-bottom: 0.8em;
     }
 
     a {
@@ -70,17 +60,131 @@
       text-decoration: underline;
     }
 
+    .muted {
+      color: #666;
+    }
+
     .note {
       color: #666;
       font-size: 0.95rem;
     }
 
-    .patent-box {
+    .summary-box {
       background: #f7f7f7;
       border: 1px solid #e0e0e0;
       padding: 14px 16px;
       border-radius: 8px;
+      margin: 16px 0 20px;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .summary-item {
+      background: #fff;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .summary-item .num {
+      display: block;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #0b57d0;
+      line-height: 1.2;
+    }
+
+    .summary-item .label {
+      display: block;
+      font-size: 0.92rem;
+      color: #666;
+      margin-top: 4px;
+    }
+
+    .patent-section {
+      margin-top: 28px;
+    }
+
+    .patent-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .patent-card {
+      border: 1px solid #e4e4e4;
+      border-radius: 10px;
+      padding: 16px;
+      background: #fff;
+    }
+
+    .patent-title {
+      font-size: 1.08rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .patent-authors {
+      color: #555;
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+
+    .patent-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
       margin-bottom: 12px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      border: 1px solid #ddd;
+      background: #f9f9f9;
+    }
+
+    .tag.primary {
+      background: #eef4ff;
+      border-color: #cfe0ff;
+      color: #1248b3;
+    }
+
+    .tag.registered {
+      background: #eefbf1;
+      border-color: #cdeed4;
+      color: #1d6b32;
+    }
+
+    .tag.product {
+      background: #fff7ea;
+      border-color: #f1dfb8;
+      color: #9a6300;
+    }
+
+    .patent-meta {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 4px 16px;
+      margin-top: 8px;
+      font-size: 0.96rem;
+    }
+
+    .patent-meta dt {
+      color: #666;
+    }
+
+    .patent-meta dd {
+      margin: 0;
     }
 
     footer {
@@ -89,17 +193,24 @@
       font-size: 0.92rem;
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 760px) {
       .container {
         padding: 28px 16px 56px;
       }
 
-      h1 {
-        font-size: 1.7rem;
+      .summary-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
 
-      h2 {
-        font-size: 1.15rem;
+      .patent-meta {
+        grid-template-columns: 1fr;
+        gap: 2px 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .summary-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -111,208 +222,363 @@
       <p class="muted">Hitachi, Ltd. Central Research Laboratory</p>
     </header>
 
-    <section class="section">
-      <h2>Basic Information | 基本情報</h2>
-      <ul>
-        <li>林 大介 (Daisuke Hayashi)</li>
-        <li>(株)日立製作所 中央研究所</li>
-      </ul>
-    </section>
-
-    <section class="section">
-      <h2>External Links | 外部リンク</h2>
-      <ul>
-        <li><a href="https://www.linkedin.com/in/daisuke-hayashi/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-        <li><a href="https://researchmap.jp/daisuke_hayashi" target="_blank" rel="noopener noreferrer">researchmap</a></li>
-        <li><a href="https://scholar.google.com/citations?hl=ja&user=mHRLTWoAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a></li>
-        <li><a href="https://github.com/disk-hayashi" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-      </ul>
-    </section>
-
-    <section class="section">
+    <section>
       <h2>Patents | 特許</h2>
       <p class="note">
-        ここに代表特許や特許実績を追記できます。まずは概要だけ載せて、あとで個別特許を追加する運用がおすすめです。
+        特許一覧は「主発明」「登録」「製品活用」で自動分類されます。各特許に URL を設定すると、公開ページから直接リンクできます。
       </p>
 
-      <div class="patent-box">
+      <div class="summary-box">
         <strong>Patent Summary | 特許概要</strong>
-        <ul class="nested">
-          <li>特許出願：21件</li>
-          <li>主発明：15件</li>
-          <li>登録特許：3件</li>
-          <li>製品活用特許：2件</li>
-        </ul>
+        <div class="summary-grid">
+          <div class="summary-item">
+            <span class="num" id="count-total">0</span>
+            <span class="label">全特許</span>
+          </div>
+          <div class="summary-item">
+            <span class="num" id="count-primary">0</span>
+            <span class="label">主発明</span>
+          </div>
+          <div class="summary-item">
+            <span class="num" id="count-registered">0</span>
+            <span class="label">登録</span>
+          </div>
+          <div class="summary-item">
+            <span class="num" id="count-product">0</span>
+            <span class="label">製品活用</span>
+          </div>
+        </div>
       </div>
 
-      <div class="patent-box">
-        <strong>Selected Patents | 代表特許</strong>
-        <ul class="nested">
-          <li>[特許タイトルをここに追加]</li>
-          <li>[特許タイトルをここに追加]</li>
-          <li>[特許タイトルをここに追加]</li>
-        </ul>
+      <div class="patent-section">
+        <h3>主発明 | Primary Inventions</h3>
+        <div id="primary-list" class="patent-list"></div>
       </div>
 
-      <p class="note">
-        個別に書く場合は「特許名 / 出願番号 / 登録番号 / 年 / 主発明かどうか / 製品使用有無」の形式にすると見やすいです。
-      </p>
-    </section>
+      <div class="patent-section">
+        <h3>登録 | Registered Patents</h3>
+        <div id="registered-list" class="patent-list"></div>
+      </div>
 
-    <section class="section">
-      <h2>Media Coverage | メディア報道</h2>
-      <ul>
-        <li>
-          <a href="https://kadenfan.hitachi.co.jp/connected/happinessup/feature_recipeplan/" target="_blank" rel="noopener noreferrer">
-            (2025/5/22) 日立HP | 安心して使える家事サポートアプリ「ハピネスアップ」
-          </a>
-          <ul class="nested">
-            <li>
-              <a href="https://dime.jp/genre/1981852/" target="_blank" rel="noopener noreferrer">
-                (2025/6/14) @DIME | 「今日は何を作る？」の悩みを解決！7日分のレシピをおまかせできる日立の神アプリ「ぱっとレシピけいかく」
-              </a>
-            </li>
-            <li>
-              <a href="https://kaden.watch.impress.co.jp/docs/news/2019567.html" target="_blank" rel="noopener noreferrer">
-                (2025/6/4) 家電Watch | 日立、冷蔵庫の中身から献立提案するアプリ
-              </a>
-            </li>
-            <li>
-              <a href="https://kadenfan.hitachi.co.jp/app/rei/series01/index.html" target="_blank" rel="noopener noreferrer">
-                (2025/5/28) 日立HP | 日立冷蔵庫コンシェルジュアプリ
-              </a>
-            </li>
-            <li>
-              <a href="https://www.hitachi.co.jp/New/cnews/month/2025/05/0522.html" target="_blank" rel="noopener noreferrer">
-                (2025/5/22) 日立ニュースリリース | 家事サポートアプリ「ハピネスアップ」に、悩みがちな日々の献立決めをサポートする新機能「ぱっとレシピけいかく」を追加
-              </a>
-            </li>
-          </ul>
-        </li>
+      <div class="patent-section">
+        <h3>製品活用 | Patents Used in Products</h3>
+        <div id="product-list" class="patent-list"></div>
+      </div>
 
-        <li>
-          <a href="https://kaden.watch.impress.co.jp/docs/column_review/kdnreview/1615914.html" target="_blank" rel="noopener noreferrer">
-            (2024/8/30) 家電Watch | 日立の「冷蔵庫カメラ」本当に便利? 3カ月使ってわかった
-          </a>
-          <ul class="nested">
-            <li>
-              <a href="https://kadenfan.hitachi.co.jp/rei/lineup/rgxcc67x/feature07.html" target="_blank" rel="noopener noreferrer">
-                (2025/5/29) 日立HP | R-GXCC67X：食材管理がらくに。[冷蔵庫カメラ]
-              </a>
-            </li>
-            <li>
-              <a href="https://kaden.watch.impress.co.jp/docs/news/1655037.html" target="_blank" rel="noopener noreferrer">
-                (2025/1/17) 家電Watch | 日立、冷凍の霜を防いでおいしさ保つ大容量冷蔵庫
-              </a>
-            </li>
-            <li>
-              <a href="https://kadenfan.hitachi.co.jp/rei/lineup/rhxcc54x/feature07.html" target="_blank" rel="noopener noreferrer">
-                (2025/1/16) 日立HP | R-HXCC54X：食材管理がらくに。[冷蔵庫カメラ]
-              </a>
-            </li>
-            <li>
-              <a href="https://kadenfan.hitachi.co.jp/rei/lineup/rhxcc62x/feature07.html" target="_blank" rel="noopener noreferrer">
-                (2025/1/16) 日立HP | R-HXCC62X：食材管理がらくに。[冷蔵庫カメラ]
-              </a>
-            </li>
-            <li>
-              <a href="https://www.hitachi.co.jp/New/cnews/month/2025/01/0116.pdf" target="_blank" rel="noopener noreferrer">
-                (2025/1/16) 日立ニュースリリース | ｢らくうま！ひろ in 冷凍プラス｣採用の冷蔵庫｢まんなか冷凍 HXCC タイプ｣を発売
-              </a>
-            </li>
-            <li>
-              <a href="https://kadenfan.hitachi.co.jp/rei/lineup/rgxcc67w/feature07.html" target="_blank" rel="noopener noreferrer">
-                (2024/11/14) 日立HP | R-GXCC67W：あれあったっけ？がスマホで確認できる。食材管理がらくに。[冷蔵庫カメラ]
-              </a>
-            </li>
-            <li>
-              <a href="https://corp.hitachi-gls.co.jp/_ct/17703307" target="_blank" rel="noopener noreferrer">
-                (2024/6/4) 日立 くらしのラボ YouTube | 冷蔵庫カメラで食材管理がアップデート！買い忘れ、買いすぎ防止に役立ちます！(by くらしのラボ)
-              </a>
-            </li>
-            <li>
-              <a href="https://review.kakaku.com/review/K0001597591/ReviewCD=1836900/" target="_blank" rel="noopener noreferrer">
-                (2024/4/21) 価格.com | 大きな冷凍室の使い勝手が抜群。カメラで冷凍室の食材管理が可能
-              </a>
-            </li>
-            <li>
-              <a href="https://www.hitachi.co.jp/products/it/lumada/spcon/fieldtrip/02/index.html" target="_blank" rel="noopener noreferrer">
-                (2024/4/15) 日立 Lumadaコラム YouTube | 第2回 令和時代の家電幸福論
-              </a>
-            </li>
-            <li>
-              <a href="https://kadenfan.hitachi.co.jp/rei/lineup/rhxcc62v/feature07.html" target="_blank" rel="noopener noreferrer">
-                (2024/3/28) 日立HP | R-HXCC62V：食材管理がらくに。[冷蔵庫カメラ]
-              </a>
-            </li>
-            <li>
-              <a href="https://kadenfan.hitachi.co.jp/rei/lineup/rhxcc54v/feature07.html" target="_blank" rel="noopener noreferrer">
-                (2024/3/28) 日立HP | R-HXC54CV：食材管理がらくに。[冷蔵庫カメラ]
-              </a>
-            </li>
-            <li>
-              <a href="https://kadenfan.hitachi.co.jp/rei/lineup/rkxcc57v/feature07.html" target="_blank" rel="noopener noreferrer">
-                (2024/3/28) 日立HP | R-KXCC57V：食材管理がらくに。[冷蔵庫カメラ]
-              </a>
-            </li>
-            <li>
-              <a href="https://kadenfan.hitachi.co.jp/rei/lineup/rgxcc67v/feature07.html" target="_blank" rel="noopener noreferrer">
-                (2024/3/28) 日立HP | R-GXCC67V：食材管理がらくに。[冷蔵庫カメラ]
-              </a>
-            </li>
-            <li>
-              <a href="https://www.monoshop.biz/SHOP/mm0933.html" target="_blank" rel="noopener noreferrer">
-                (2024/3/16) モノ・マガジン2024年3月16日情報号 |【総力特集】大人がハマる小粋な植物とオツな野菜 植物道楽
-              </a>
-            </li>
-            <li>
-              <a href="https://kaden.watch.impress.co.jp/docs/topic/special/1565725.html" target="_blank" rel="noopener noreferrer">
-                (2024/2/15) 家電Watch | 冷蔵庫は冷凍も野菜も「使いやすさ」と「鮮度」が決め手! 日立はムダ防ぎ食生活が豊かに
-              </a>
-            </li>
-            <li>
-              <a href="https://monocotolab.com/hitachi-mannakareitou-gxcctype-240121/" target="_blank" rel="noopener noreferrer">
-                (2024/2/6) MONOCOTO | 「日立」カメラ搭載冷蔵庫がさらに進化！冷蔵室のほか冷凍室と野菜室も撮影できるようになった
-              </a>
-            </li>
-            <li>
-              <a href="https://dempa-digital.com/article/520198" target="_blank" rel="noopener noreferrer">
-                (2024/1/23) 電波新聞 | 日立GLSがカメラ付き冷蔵庫新型　冷凍・野菜室も高解像度で撮影　食材リスト自動登録
-              </a>
-            </li>
-            <li>
-              <a href="https://news.mynavi.jp/article/20240122-hitachi-gls/" target="_blank" rel="noopener noreferrer">
-                (2024/1/22) マイナビニュース | 日立のカメラ付き冷蔵庫「GXCC」タイプ、野菜室・冷凍室も撮影可能に - 外出先で庫内を見て買いすぎ・買い忘れを防ぐ！
-              </a>
-            </li>
-            <li>
-              <a href="https://newswitch.jp/p/40163" target="_blank" rel="noopener noreferrer">
-                (2024/1/22) 日刊工業新聞 | 日立GLSが発売、カメラを搭載した最新冷蔵庫が実現する機能
-              </a>
-            </li>
-            <li>
-              <a href="https://www.seikatsukaden.com/?p=39062" target="_blank" rel="noopener noreferrer">
-                (2024/1/19) 生活家電.com | 【冷蔵庫】日立、冷蔵室に加え、冷凍室下段・野菜室の中の食材もスマートフォンで確認できる「冷蔵庫カメラ」搭載。「まんなか冷凍 GXCCタイプ」を発売。
-              </a>
-            </li>
-            <li>
-              <a href="https://kaden.watch.impress.co.jp/docs/news/1561932.html" target="_blank" rel="noopener noreferrer">
-                (2024/1/19) 家電Watch | 冷凍室ひろびろ、日立の大容量冷蔵庫は整理しやすく鮮度を保つ
-              </a>
-            </li>
-            <li>
-              <a href="https://www.hitachi.co.jp/New/cnews/month/2024/01/0118.pdf" target="_blank" rel="noopener noreferrer">
-                (2024/1/18) 日立ニュースリリース | 「冷蔵庫カメラ」搭載の冷蔵庫「まんなか冷凍 GXCCタイプ」を発売
-              </a>
-            </li>
-          </ul>
-        </li>
-      </ul>
+      <div class="patent-section">
+        <h3>その他 | Others</h3>
+        <div id="other-list" class="patent-list"></div>
+      </div>
     </section>
 
     <footer>
       © 2026 Daisuke Hayashi
     </footer>
   </div>
+
+  <script>
+    const patents = [
+      {
+        title: "認識システム，認識装置，及び認識方法",
+        authors: "林大介",
+        filingNumber: "特願 2025-080312",
+        publicationNumber: "",
+        registrationNumber: "",
+        filingDate: "2025年3月",
+        publicationDate: "",
+        registrationDate: "",
+        country: "国内",
+        url: "",
+        isPrimary: true,
+        isRegistered: false,
+        isProductUsed: false,
+      },
+      {
+        title: "Blood vessel image capturing device and personal authentication system",
+        authors: "Y. Nonomura, A. Nagasaka, N. Miura, Y. Matsuda, K. Nakazaki, U. Tezato, D. Hayashi",
+        filingNumber: "202410628627.5",
+        publicationNumber: "CN119027990",
+        registrationNumber: "",
+        filingDate: "2024年5月",
+        publicationDate: "",
+        registrationDate: "",
+        country: "中国",
+        url: "",
+        isPrimary: false,
+        isRegistered: false,
+        isProductUsed: false,
+      },
+      {
+        title: "Sorting device and storage",
+        authors: "H. Higuchi, D. Hayashi, K. Inata",
+        filingNumber: "202380054498.7",
+        publicationNumber: "CN119678182",
+        registrationNumber: "",
+        filingDate: "2023年9月",
+        publicationDate: "",
+        registrationDate: "",
+        country: "中国",
+        url: "",
+        isPrimary: false,
+        isRegistered: false,
+        isProductUsed: false,
+      },
+      {
+        title: "Sorting device and storage",
+        authors: "H. Higuchi, D. Hayashi, K. Inata",
+        filingNumber: "PCT/JP2023/032398",
+        publicationNumber: "WO2024116537",
+        registrationNumber: "",
+        filingDate: "2023年9月",
+        publicationDate: "",
+        registrationDate: "",
+        country: "PCT",
+        url: "",
+        isPrimary: false,
+        isRegistered: false,
+        isProductUsed: false,
+      },
+      {
+        title: "画像補正装置，貯蔵庫および画像補正方法",
+        authors: "林大介",
+        filingNumber: "特願 2023-215175",
+        publicationNumber: "特開 2025-098801",
+        registrationNumber: "",
+        filingDate: "2023年5月",
+        publicationDate: "",
+        registrationDate: "",
+        country: "国内",
+        url: "",
+        isPrimary: true,
+        isRegistered: false,
+        isProductUsed: false,
+      },
+      {
+        title: "血管画像撮影装置および本人認証システム",
+        authors: "野々村洋，長坂晃明，三浦広人，松田友輝，中﨑浩一郎，上田達矢，林大介",
+        filingNumber: "特願 2023-087257",
+        publicationNumber: "特開 2024-170218",
+        registrationNumber: "",
+        filingDate: "2023年5月",
+        publicationDate: "",
+        registrationDate: "",
+        country: "国内",
+        url: "",
+        isPrimary: false,
+        isRegistered: false,
+        isProductUsed: false,
+      },
+      {
+        title: "情報処理装置，情報処理方法及び収納システム",
+        authors: "林大介",
+        filingNumber: "特願 2023-079479",
+        publicationNumber: "特開 2024-163666",
+        registrationNumber: "",
+        filingDate: "2023年5月",
+        publicationDate: "",
+        registrationDate: "",
+        country: "国内",
+        url: "",
+        isPrimary: true,
+        isRegistered: false,
+        isProductUsed: true,
+      },
+      {
+        title: "画像判定装置，画像選定方法及び収納庫システム",
+        authors: "林大介",
+        filingNumber: "特願 2023-071723",
+        publicationNumber: "特開 2024-157387",
+        registrationNumber: "",
+        filingDate: "2023年4月",
+        publicationDate: "",
+        registrationDate: "",
+        country: "国内",
+        url: "",
+        isPrimary: true,
+        isRegistered: false,
+        isProductUsed: true,
+      },
+      {
+        title: "分割装置及び貯蔵庫",
+        authors: "須田康彦，林大介",
+        filingNumber: "特願 2022-190055",
+        publicationNumber: "特開 2024-077857",
+        registrationNumber: "",
+        filingDate: "2022年11月",
+        publicationDate: "",
+        registrationDate: "",
+        country: "国内",
+        url: "",
+        isPrimary: false,
+        isRegistered: false,
+        isProductUsed: false,
+      },
+      {
+        title: "学習データ選別装置，貯蔵庫及び学習データ選別方法",
+        authors: "林大介",
+        filingNumber: "特願 2022-184222",
+        publicationNumber: "特開 2024-073155",
+        registrationNumber: "",
+        filingDate: "2022年11月",
+        publicationDate: "",
+        registrationDate: "",
+        country: "国内",
+        url: "",
+        isPrimary: true,
+        isRegistered: false,
+        isProductUsed: false,
+      },
+      {
+        title: "Area management device and program",
+        authors: "D. Hayashi, K. Inata, Y. Mori, K. Kato",
+        filingNumber: "PCT/JP2022/044657",
+        publicationNumber: "WO/2023/062880",
+        registrationNumber: "",
+        filingDate: "2022年5月",
+        publicationDate: "",
+        registrationDate: "",
+        country: "PCT",
+        url: "",
+        isPrimary: true,
+        isRegistered: false,
+        isProductUsed: false,
+      },
+      {
+        title: "Area management device and program",
+        authors: "D. Hayashi, K. Inata, Y. Mori, K. Kato",
+        filingNumber: "202280049854.1",
+        publicationNumber: "CN117716436",
+        registrationNumber: "",
+        filingDate: "2022年5月",
+        publicationDate: "",
+        registrationDate: "",
+        country: "中国",
+        url: "",
+        isPrimary: true,
+        isRegistered: false,
+        isProductUsed: false,
+      },
+      {
+        title: "医療画像診断支援装置，医療画像診断支援方法及びプログラム",
+        authors: "林大介，長坂晃明，稲田圭介，望月祐志，森田秀和",
+        filingNumber: "特願 2021-205803",
+        publicationNumber: "特開 2023-091190",
+        registrationNumber: "特許 7824765",
+        filingDate: "2021年12月20日",
+        publicationDate: "2023年6月30日",
+        registrationDate: "",
+        country: "国内",
+        url: "https://jglobal.jst.go.jp/detail?JGLOBAL_ID=202603018256104702",
+        isPrimary: true,
+        isRegistered: true,
+        isProductUsed: false,
+      },
+      {
+        title: "領域管理機器およびプログラム",
+        authors: "林大介，稲田圭介，森泰久，加藤克之",
+        filingNumber: "特願 2021-16731",
+        publicationNumber: "特開 2023-057695",
+        registrationNumber: "",
+        filingDate: "2021年10月",
+        publicationDate: "",
+        registrationDate: "",
+        country: "国内",
+        url: "",
+        isPrimary: true,
+        isRegistered: false,
+        isProductUsed: false,
+      },
+      {
+        title: "貯蔵庫",
+        authors: "林大介，濵田広一，仁木亨，森泰久",
+        filingNumber: "特願 2021-080638",
+        publicationNumber: "特開 2022-174675",
+        registrationNumber: "特許 07569748",
+        filingDate: "2021年5月",
+        publicationDate: "",
+        registrationDate: "",
+        country: "国内",
+        url: "",
+        isPrimary: true,
+        isRegistered: true,
+        isProductUsed: false,
+      }
+    ];
+
+    function escapeHtml(str) {
+      return String(str || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function metaRow(label, value) {
+      if (!value) return "";
+      return `<dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd>`;
+    }
+
+    function renderPatentCard(patent) {
+      const tags = [];
+      if (patent.isPrimary) {
+        tags.push('<span class="tag primary">主発明</span>');
+      }
+      if (patent.isRegistered) {
+        tags.push('<span class="tag registered">登録</span>');
+      }
+      if (patent.isProductUsed) {
+        tags.push('<span class="tag product">製品活用</span>');
+      }
+
+      const titleHtml = patent.url
+        ? `<a href="${escapeHtml(patent.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(patent.title)}</a>`
+        : escapeHtml(patent.title);
+
+      return `
+        <div class="patent-card">
+          <div class="patent-title">${titleHtml}</div>
+          <div class="patent-authors">${escapeHtml(patent.authors)}</div>
+          <div class="patent-tags">${tags.join("") || '<span class="tag">分類なし</span>'}</div>
+          <dl class="patent-meta">
+            ${metaRow("出願番号", patent.filingNumber)}
+            ${metaRow("公開番号", patent.publicationNumber)}
+            ${metaRow("登録番号", patent.registrationNumber)}
+            ${metaRow("出願日", patent.filingDate)}
+            ${metaRow("公開日", patent.publicationDate)}
+            ${metaRow("登録日", patent.registrationDate)}
+            ${metaRow("出願国", patent.country)}
+            ${metaRow("リンクURL", patent.url)}
+          </dl>
+        </div>
+      `;
+    }
+
+    function renderList(elementId, items) {
+      const container = document.getElementById(elementId);
+      if (!items.length) {
+        container.innerHTML = '<p class="note">該当する特許はありません。</p>';
+        return;
+      }
+      container.innerHTML = items.map(renderPatentCard).join("");
+    }
+
+    const primaryPatents = patents.filter(p => p.isPrimary);
+    const registeredPatents = patents.filter(p => p.isRegistered);
+    const productPatents = patents.filter(p => p.isProductUsed);
+    const otherPatents = patents.filter(
+      p => !p.isPrimary && !p.isRegistered && !p.isProductUsed
+    );
+
+    document.getElementById("count-total").textContent = patents.length;
+    document.getElementById("count-primary").textContent = primaryPatents.length;
+    document.getElementById("count-registered").textContent = registeredPatents.length;
+    document.getElementById("count-product").textContent = productPatents.length;
+
+    renderList("primary-list", primaryPatents);
+    renderList("registered-list", registeredPatents);
+    renderList("product-list", productPatents);
+    renderList("other-list", otherPatents);
+  </script>
 </body>
 </html>
