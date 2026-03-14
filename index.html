@@ -663,9 +663,9 @@
             <input id="patent-search" class="search-input" type="text" placeholder="特許タイトル・著者・番号で検索" />
             <select id="country-filter" class="select-input">
               <option value="">すべての出願国</option>
-              <option value="国内">国内</option>
+              <option value="日本">日本</option>
               <option value="PCT">PCT</option>
-              <option value="中国">中国</option>
+              <option value="China">China</option>
             </select>
           </div>
 
@@ -675,17 +675,7 @@
           </div>
 
           <div class="patent-group">
-            <h3 class="group-title">登録 | Registered Patents</h3>
-            <div id="registered-list" class="patent-list"></div>
-          </div>
-
-          <div class="patent-group">
-            <h3 class="group-title">製品活用 | Patents Used in Products</h3>
-            <div id="product-list" class="patent-list"></div>
-          </div>
-
-          <div class="patent-group">
-            <h3 class="group-title">その他 | Others</h3>
+            <h3 class="group-title">共同発明 | Joint Inventions</h3>
             <div id="other-list" class="patent-list"></div>
           </div>
         </div>
@@ -1170,7 +1160,7 @@
           <div class="patent-authors">${escapeHtml(p.authors)}</div>
           <div class="patent-tags">${tags.join("")}</div>
           <dl class="patent-meta">
-            ${metaRow("出願番号", p.filingNumber)}
+            ${metaRow("出願番号", p.filingNumber (p.filingDate))}
             ${metaRow("公開番号", p.publicationNumber)}
             ${metaRow("登録番号", p.registrationNumber)}
             ${metaRow("出願日", p.filingDate)}
