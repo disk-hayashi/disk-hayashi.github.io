@@ -209,7 +209,8 @@
     .society-item,
     .impact-card,
     .product-hero-card,
-    .cert-card {
+    .cert-card,
+    .selected-card {
       background: var(--card);
       border: 1px solid var(--line);
       border-radius: var(--radius);
@@ -322,15 +323,19 @@
     }
 
     .product-hero-links {
-      font-size: 0.8rem;
-      color: var(--muted);
-      line-height: 1.55;
-      display: grid;
-      gap: 2px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
     }
 
     .product-hero-links a {
+      font-size: 0.78rem;
       font-weight: 700;
+      padding: 4px 8px;
+      background: #f1f5f9;
+      border-radius: 8px;
+      white-space: nowrap;
     }
 
     .stat {
@@ -403,9 +408,16 @@
 
     .publication-list,
     .award-list,
-    .impact-list {
+    .impact-list,
+    .selected-grid {
       display: grid;
       gap: 8px;
+    }
+
+    .publication-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
     }
 
     .patent-grid {
@@ -426,17 +438,23 @@
       gap: 10px;
     }
 
+    .selected-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
     .patent-card,
     .pub-item,
     .award-item,
     .society-item,
-    .cert-card {
+    .cert-card,
+    .selected-card {
       padding: 10px 12px;
     }
 
     .patent-title,
     .pub-title,
-    .award-title {
+    .award-title,
+    .selected-title {
       font-weight: 800;
       font-size: 0.9rem;
       line-height: 1.35;
@@ -446,7 +464,8 @@
     .patent-authors,
     .pub-authors,
     .pub-meta,
-    .award-meta {
+    .award-meta,
+    .selected-meta {
       color: var(--muted);
       font-size: 0.79rem;
       margin-bottom: 3px;
@@ -469,7 +488,8 @@
 
     .patent-tags,
     .pub-tags,
-    .impact-tags {
+    .impact-tags,
+    .selected-tags {
       display: flex;
       gap: 6px;
       flex-wrap: wrap;
@@ -569,23 +589,6 @@
       margin-bottom: 6px;
     }
 
-    .impact-sublist {
-      display: grid;
-      gap: 6px;
-      margin-top: 8px;
-    }
-
-    .impact-subitem {
-      border-top: 1px dashed var(--line);
-      padding-top: 6px;
-      font-size: 0.82rem;
-      color: var(--muted);
-    }
-
-    .impact-subitem a {
-      font-weight: 700;
-    }
-
     .award-list.compact {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 8px;
@@ -631,6 +634,10 @@
       color: var(--muted);
     }
 
+    .selected-card {
+      background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+    }
+
     .footer {
       padding: 18px 0 34px;
       text-align: center;
@@ -654,7 +661,9 @@
       .product-hero-grid,
       .patent-grid,
       .society-grid,
-      .cert-grid {
+      .cert-grid,
+      .publication-grid-2,
+      .selected-grid {
         grid-template-columns: 1fr;
       }
 
@@ -684,12 +693,13 @@
       <nav class="nav">
         <a href="#highlights"><span data-lang="ja">ハイライト</span><span data-lang="en">Highlights</span></a>
         <a href="#top-products"><span data-lang="ja">製品化</span><span data-lang="en">Commercialization</span></a>
-        <a href="#about"><span data-lang="ja">概要</span><span data-lang="en">About</span></a>
-        <a href="#career"><span data-lang="ja">職歴</span><span data-lang="en">Career</span></a>
-        <a href="#awards"><span data-lang="ja">受賞</span><span data-lang="en">Awards</span></a>
+        <a href="#selected-patents"><span data-lang="ja">代表特許</span><span data-lang="en">Selected Patents</span></a>
         <a href="#patents"><span data-lang="ja">特許</span><span data-lang="en">Patents</span></a>
         <a href="#research-impact"><span data-lang="ja">研究業績</span><span data-lang="en">Research Impact</span></a>
         <a href="#publications"><span data-lang="ja">発表文献</span><span data-lang="en">Publications</span></a>
+        <a href="#awards"><span data-lang="ja">受賞</span><span data-lang="en">Awards</span></a>
+        <a href="#about"><span data-lang="ja">概要</span><span data-lang="en">About</span></a>
+        <a href="#career"><span data-lang="ja">職歴</span><span data-lang="en">Career</span></a>
         <a href="#certifications"><span data-lang="ja">資格</span><span data-lang="en">Certifications</span></a>
         <a href="#societies"><span data-lang="ja">所属学会</span><span data-lang="en">Societies</span></a>
         <div class="lang-switch">
@@ -758,43 +768,13 @@
       </div>
     </section>
 
-    <section id="about" class="section">
+    <section id="selected-patents" class="section">
       <div class="container">
         <div class="section-card">
           <div class="section-head">
-            <h2><span data-lang="ja">研究キーワード</span><span data-lang="en">Research Keywords</span></h2>
+            <h2><span data-lang="ja">代表特許</span><span data-lang="en">Selected Patents</span></h2>
           </div>
-          <div class="chips" id="keyword-list"></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="career" class="section">
-      <div class="container">
-        <div class="section-card">
-          <div class="section-head">
-            <h2><span data-lang="ja">職歴</span><span data-lang="en">Career</span></h2>
-          </div>
-          <div class="timeline">
-            <div class="timeline-item">
-              <div class="timeline-year">2020.04–Present</div>
-              <div class="timeline-title">
-                <span data-lang="ja">株式会社日立製作所 中央研究所</span>
-                <span data-lang="en">Central Research Laboratory, Hitachi, Ltd.</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="awards" class="section">
-      <div class="container">
-        <div class="section-card">
-          <div class="section-head">
-            <h2><span data-lang="ja">受賞・表彰</span><span data-lang="en">Awards</span></h2>
-          </div>
-          <div id="award-list" class="award-list compact"></div>
+          <div id="selected-patents-list" class="selected-grid"></div>
         </div>
       </div>
     </section>
@@ -853,15 +833,56 @@
           </div>
 
           <h3 class="group-title"><span data-lang="ja">ジャーナル論文</span><span data-lang="en">Journal Articles</span></h3>
-          <div id="journal-list" class="publication-list"></div>
+          <div id="journal-list" class="publication-grid-2"></div>
 
           <div style="height:8px"></div>
           <h3 class="group-title"><span data-lang="ja">国際会議論文</span><span data-lang="en">International Conference Papers</span></h3>
-          <div id="international-list" class="publication-list"></div>
+          <div id="international-list" class="publication-grid-2"></div>
 
           <div style="height:8px"></div>
           <h3 class="group-title"><span data-lang="ja">国内会議</span><span data-lang="en">Domestic Conferences</span></h3>
           <div id="domestic-list" class="patent-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="awards" class="section">
+      <div class="container">
+        <div class="section-card">
+          <div class="section-head">
+            <h2><span data-lang="ja">受賞・表彰</span><span data-lang="en">Awards</span></h2>
+          </div>
+          <div id="award-list" class="award-list compact"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-card">
+          <div class="section-head">
+            <h2><span data-lang="ja">研究キーワード</span><span data-lang="en">Research Keywords</span></h2>
+          </div>
+          <div class="chips" id="keyword-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="career" class="section">
+      <div class="container">
+        <div class="section-card">
+          <div class="section-head">
+            <h2><span data-lang="ja">職歴</span><span data-lang="en">Career</span></h2>
+          </div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-year">2020.04–Present</div>
+              <div class="timeline-title">
+                <span data-lang="ja">株式会社日立製作所 中央研究所</span>
+                <span data-lang="en">Central Research Laboratory, Hitachi, Ltd.</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -912,9 +933,13 @@
       return `<span class="tag ${type}">${escapeHtml(text)}</span>`;
     }
 
+    function isJapanesePatentNumber(value) {
+      return /^特願|^特開|^特許/.test(String(value || ""));
+    }
+
     function patentNumberToEnglish(value) {
       if (!value) return "-";
-      if (/^P/i.test(value)) return value;
+      if (!isJapanesePatentNumber(value)) return value;
       return "P" + String(value).replace(/[^\dA-Za-z]/g, "");
     }
 
@@ -1395,75 +1420,77 @@
     const researchImpactProjects = [
       {
         jaTitle: "医療AI",
-        enTitle: "Medical AI",
+        enTitle: "Medical Imaging AI",
         periodJa: "2020年10月–2022年9月",
         periodEn: "Oct. 2020 – Sept. 2022",
         jaDescription: "脳MRI画像から統合失調症・アルツハイマー型認知症・健常者を96.5%の高精度で多疾患分類する技術を開発",
         enDescription: "Developed a high-accuracy multi-disease classification method that distinguishes schizophrenia, Alzheimer’s disease, and healthy controls from brain MRI images with 96.5% accuracy.",
-        events: [
-          {
-            type: "award",
-            jaLabel: "受賞",
-            enLabel: "Award"
-          },
-          {
-            type: "publication",
-            jaLabel: "国内会議発表",
-            enLabel: "Domestic Conference Presentation"
-          }
+        labels: [
+          { type: "award", ja: "受賞", en: "Award" },
+          { type: "reviewed", ja: "国内会議発表", en: "Domestic Conference Presentation" }
         ]
       }
     ];
 
     const topProductCards = [
       {
-        jaTitle: "食材自動リスト化・レシピ提案（冷蔵室・冷凍室・野菜室）",
-        enTitle: "Commercialization 1: Automatic Food Listing & Recipe Recommendation",
+        jaTitle: "食材自動リスト化・レシピ提案",
+        enTitle: "Automatic Food Listing & Recipe Recommendation",
         jaDate: "2025年5月",
         enDate: "May 2025",
         jaDesc: "食材検知AIを活用した冷蔵室・冷凍室・野菜室における冷蔵庫カメラ画像からの「食材自動リスト化・レシピ提案」サービス",
-        enDesc: "As theme leader, realized automatic food listing and recipe recommendation using refrigerator, freezer, and vegetable-compartment camera images.",
+        enDesc: "A service for automatic food listing and recipe recommendation from refrigerator, freezer, and vegetable-compartment camera images using food detection AI.",
+        leader: true,
+        productPatent: true,
         links: {
           ja: [
             { title: "日立製品ページ", url: "https://kadenfan.hitachi.co.jp/rei/lineup/rgxcc67x/feature07.html" },
             { title: "ハピネスアップ", url: "https://kadenfan.hitachi.co.jp/connected/happinessup/feature_recipeplan/" },
-            { title: "家電Watch", url: "https://kaden.watch.impress.co.jp/docs/column_review/kdnreview/1615914.html" },
-            { title: "日立冷蔵庫コンシェルジュアプリ", url: "https://kadenfan.hitachi.co.jp/app/rei/series01/" },
-            { title: "ニュースリリース", url: "https://www.hitachi.co.jp/New/cnews/month/2024/01/0118.pdf" }
+            { title: "家電Watch", url: "https://kaden.watch.impress.co.jp/docs/news/2019567.html" },
+            { title: "冷蔵庫コンシェルジュアプリ", url: "https://kadenfan.hitachi.co.jp/app/rei/series01/" },
+            { title: "ニュースリリース", url: "https://www.hitachi.co.jp/New/cnews/month/2025/05/0522.html" }
           ],
           en: [
             { title: "Hitachi Product Page", url: "https://kadenfan.hitachi.co.jp/rei/lineup/rgxcc67x/feature07.html" },
             { title: "Happiness Up", url: "https://kadenfan.hitachi.co.jp/connected/happinessup/feature_recipeplan/" },
-            { title: "Kaden Watch", url: "https://kaden.watch.impress.co.jp/docs/column_review/kdnreview/1615914.html" },
+            { title: "Kaden Watch", url: "https://kaden.watch.impress.co.jp/docs/news/2019567.html" },
             { title: "Refrigerator Concierge App", url: "https://kadenfan.hitachi.co.jp/app/rei/series01/" },
-            { title: "News Release", url: "https://www.hitachi.co.jp/New/cnews/month/2024/01/0118.pdf" }
+            { title: "Press Release", url: "https://www.hitachi.co.jp/New/cnews/month/2025/05/0522.html" }
           ]
         }
       },
       {
-        jaTitle: "食材自動リスト化（冷蔵室）",
-        enTitle: "Commercialization 2: Automatic Food Listing",
+        jaTitle: "食材自動リスト化",
+        enTitle: "Automatic Food Listing",
         jaDate: "2024年3月",
         enDate: "Mar. 2024",
         jaDesc: "食材検知AIを活用した冷蔵室における冷蔵庫カメラ画像からの「食材自動リスト化」サービス",
-        enDesc: "As theme leader, commercialized an automatic food-listing service using refrigerator-compartment camera images.",
-          links: {
+        enDesc: "A service for automatic food listing from refrigerator-compartment camera images using food detection AI.",
+        leader: true,
+        productPatent: true,
+        links: {
           ja: [
             { title: "家電Watch", url: "https://kaden.watch.impress.co.jp/docs/column_review/kdnreview/1615914.html" },
             { title: "くらしのラボ", url: "https://corp.hitachi-gls.co.jp/_ct/17703307" },
             { title: "Lumada", url: "https://www.hitachi.co.jp/products/it/lumada/spcon/fieldtrip/02/index.html" },
             { title: "MONOCOTO", url: "https://monocotolab.com/hitachi-mannakareitou-gxcctype-240121/" },
-            { title: "News Release", url: "https://www.hitachi.co.jp/New/cnews/month/2024/01/0118.pdf" }
+            { title: "ニュースリリース", url: "https://www.hitachi.co.jp/New/cnews/month/2024/01/0118.pdf" }
           ],
           en: [
             { title: "Kaden Watch", url: "https://kaden.watch.impress.co.jp/docs/column_review/kdnreview/1615914.html" },
             { title: "Lifestyle Lab", url: "https://corp.hitachi-gls.co.jp/_ct/17703307" },
             { title: "Lumada", url: "https://www.hitachi.co.jp/products/it/lumada/spcon/fieldtrip/02/index.html" },
             { title: "MONOCOTO", url: "https://monocotolab.com/hitachi-mannakareitou-gxcctype-240121/" },
-            { title: "News Release", url: "https://www.hitachi.co.jp/New/cnews/month/2024/01/0118.pdf" }
+            { title: "Press Release", url: "https://www.hitachi.co.jp/New/cnews/month/2024/01/0118.pdf" }
           ]
         }
       }
+    ];
+
+    const selectedPatentTitles = [
+      "学習データ選別装置、貯蔵庫及び学習データ選別方法",
+      "医療画像診断支援装置、医療画像診断支援方法及びプログラム",
+      "画像判定装置、画像選定方法及び収納庫システム"
     ];
 
     function renderKeywords() {
@@ -1476,16 +1503,44 @@
       const root = document.getElementById("top-product-cards");
       root.innerHTML = topProductCards.map(card => {
         const links = currentLang() === "ja" ? card.links.ja : card.links.en;
+        const tags = [];
+        if (card.leader) tags.push(makeTag("primary", "テーマリーダ", "Theme Leader"));
+        if (card.productPatent) tags.push(makeTag("product", "製品活用特許", "Patent Used in Product"));
+
         return `
           <article class="product-hero-card">
             <div class="product-hero-top">
               <h3 class="product-hero-title">${escapeHtml(currentLang() === "ja" ? card.jaTitle : card.enTitle)}</h3>
               <div class="product-hero-date">${escapeHtml(currentLang() === "ja" ? card.jaDate : card.enDate)}</div>
             </div>
+            ${tags.length ? `<div class="patent-tags">${tags.join("")}</div>` : ""}
             <div class="product-hero-desc">${escapeHtml(currentLang() === "ja" ? card.jaDesc : card.enDesc)}</div>
             <div class="product-hero-links">
               ${links.map(link => `<a href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(link.title)}</a>`).join("")}
             </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function renderSelectedPatents() {
+      const root = document.getElementById("selected-patents-list");
+      const items = patents.filter(p => selectedPatentTitles.includes(p.jaTitle));
+      root.innerHTML = items.map(p => {
+        const title = currentLang() === "ja" ? p.jaTitle : p.enTitle;
+        const filingNo = currentLang() === "ja" ? p.filingNumber : patentNumberToEnglish(p.filingNumber);
+        const tags = [];
+        if (p.isPrimary) tags.push(makeTag("primary", "主発明", "Primary"));
+        if (p.isRegistered) tags.push(makeTag("registered", "登録特許", "Registered Patent"));
+        if (p.isProductUsed) tags.push(makeTag("product", "製品活用特許", "Patent Used in Product"));
+
+        return `
+          <article class="selected-card">
+            <div class="selected-title">
+              <a href="${escapeHtml(p.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(title)}</a>
+            </div>
+            ${tags.length ? `<div class="selected-tags">${tags.join("")}</div>` : ""}
+            <div class="selected-meta">${escapeHtml(filingNo)}</div>
           </article>
         `;
       }).join("");
@@ -1663,26 +1718,13 @@
       renderPatentList("all-patent-list", filtered);
     }
 
-    function renderImpactList(targetId, items) {
-      const root = document.getElementById(targetId);
-      root.innerHTML = items.map(project => {
+    function renderResearchImpact() {
+      const root = document.getElementById("research-impact-list");
+      root.innerHTML = researchImpactProjects.map(project => {
         const title = currentLang() === "ja" ? project.jaTitle : project.enTitle;
         const period = currentLang() === "ja" ? project.periodJa : project.periodEn;
         const desc = currentLang() === "ja" ? project.jaDescription : project.enDescription;
-
-        const eventsHtml = project.events.map(event => {
-          let tagClass = "product";
-          if (event.type === "award") tagClass = "award";
-          if (event.type === "publication") tagClass = "reviewed";
-
-          const eventLabel = currentLang() === "ja" ? event.jaLabel : event.enLabel;
-
-          return `
-            <div class="impact-subitem">
-              <div class="impact-tags">${makeTag(tagClass, eventLabel, eventLabel)}</div>
-            </div>
-          `;
-        }).join("");
+        const labels = (project.labels || []).map(label => makeTag(label.type, label.ja, label.en)).join("");
 
         return `
           <article class="impact-card">
@@ -1690,8 +1732,8 @@
               <h3 class="impact-card-title">${escapeHtml(title)}</h3>
               <div class="impact-card-period">${escapeHtml(period)}</div>
             </div>
+            ${labels ? `<div class="impact-tags">${labels}</div>` : ""}
             <div class="impact-card-desc">${escapeHtml(desc)}</div>
-            <div class="impact-sublist">${eventsHtml}</div>
           </article>
         `;
       }).join("");
@@ -1724,6 +1766,7 @@
 
       renderKeywords();
       renderTopProductCards();
+      renderSelectedPatents();
       renderSocieties();
       renderSimpleList("journal-list", publications.journals);
       renderSimpleList("international-list", publications.international);
@@ -1731,7 +1774,7 @@
       renderAwards();
       renderCertifications();
       renderPatents();
-      renderImpactList("research-impact-list", researchImpactProjects);
+      renderResearchImpact();
     }
 
     document.getElementById("patent-search")?.addEventListener("input", renderPatents);
@@ -1743,6 +1786,7 @@
 
     renderKeywords();
     renderTopProductCards();
+    renderSelectedPatents();
     renderSocieties();
     renderSimpleList("journal-list", publications.journals);
     renderSimpleList("international-list", publications.international);
@@ -1751,7 +1795,7 @@
     renderCertifications();
     renderHighlights();
     renderPatents();
-    renderImpactList("research-impact-list", researchImpactProjects);
+    renderResearchImpact();
     setLanguage("ja");
   </script>
 </body>
