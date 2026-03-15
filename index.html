@@ -439,11 +439,6 @@
       gap: 10px;
     }
 
-    .network-grid {
-      grid-template-columns: 1.1fr 0.9fr;
-      align-items: start;
-    }
-
     .patent-card,
     .pub-item,
     .award-item,
@@ -635,41 +630,16 @@
       color: var(--muted);
     }
 
-    .network-card {
-      background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
-    }
-
-    .network-svg {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .network-legend {
-      display: grid;
-      gap: 8px;
-    }
-
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.82rem;
-      color: var(--muted);
-    }
-
-    .legend-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      flex: 0 0 auto;
-    }
-
     .footer {
       padding: 18px 0 34px;
       text-align: center;
       color: var(--muted);
       font-size: 0.82rem;
+    }
+
+    .name-strong {
+      font-weight: 900;
+      color: var(--text);
     }
 
     [data-lang] { display: none; }
@@ -689,8 +659,7 @@
       .patent-grid,
       .society-grid,
       .cert-grid,
-      .publication-grid-2,
-      .network-grid {
+      .publication-grid-2 {
         grid-template-columns: 1fr;
       }
 
@@ -748,7 +717,7 @@
               コンピュータビジョン・機械学習を専門とし、食材AIや医療AIの研究開発と社会実装（製品化）を推進
             </p>
             <p class="lead" data-lang-block="en">
-              Specializing in computer vision and machine learning, I promote R&D and social implementation (commercialization) in food AI and medical AI.
+              Specializing in computer vision and machine learning, I promote R&amp;D and social implementation (commercialization) in food AI and medical AI.
             </p>
 
             <div class="hero-meta">
@@ -965,6 +934,25 @@
       return "P" + String(value).replace(/[^\dA-Za-z]/g, "");
     }
 
+    function highlightMyName(authors) {
+      if (!authors) return "";
+      let html = escapeHtml(authors);
+
+      const patterns = [
+        /Daisuke Hayashi/g,
+        /D\. Hayashi/g,
+        /林 大介/g,
+        /林\u3000大介/g,
+        /林大介/g
+      ];
+
+      patterns.forEach((pattern) => {
+        html = html.replace(pattern, (m) => `<span class="name-strong">${m}</span>`);
+      });
+
+      return html;
+    }
+
     const societies = [
       {
         jaTitle: "日本メディカルAI学会",
@@ -1085,7 +1073,7 @@
         { title: "Google Data Analytics Professional Certificate", meta: "Jan. 2024" },
         { title: "Japanese Association for Medical Artificial Intelligence Certificate", meta: "Oct. 2022" },
         { title: "TOEIC Listening & Reading 815", meta: "Aug. 2021" }
-      ]
+      }
     };
 
     const awards = [
@@ -1179,7 +1167,7 @@
       {
         jaTitle: "分類装置及び貯蔵庫",
         enTitle: "Classification Device and Storage Cabinet",
-        authorsJa: "樋口 晴彦, <b>林 大介</b>, 稲田 圭介",
+        authorsJa: "樋口 晴彦, 林 大介, 稲田 圭介",
         authorsEn: "Haruhiko Higuchi, Daisuke Hayashi, Keisuke Inata",
         filingNumber: "PCT/JP2023/032987",
         publicationNumber: "WO2024116537A1",
@@ -1548,8 +1536,8 @@ Presented the work at the IEICE Medical Imaging Research Meeting (MI) and receiv
         return `
           <article class="pub-item">
             <div class="pub-title">${titleHtml}</div>
-            <div class="pub-authors">${escapeHtml(item.authors || "")}</div>
-            ${labels ? `<div class="pub-tags">${labels.join ? labels.join("") : labels}</div>` : ""}
+            <div class="pub-authors">${highlightMyName(item.authors || "")}</div>
+            ${labels ? `<div class="pub-tags">${labels}</div>` : ""}
             <div class="pub-meta">${escapeHtml(meta || "")}</div>
           </article>
         `;
@@ -1575,7 +1563,7 @@ Presented the work at the IEICE Medical Imaging Research Meeting (MI) and receiv
         return `
           <article class="pub-item">
             <div class="pub-title">${titleHtml}</div>
-            <div class="pub-authors">${escapeHtml(item.authors || "")}</div>
+            <div class="pub-authors">${highlightMyName(item.authors || "")}</div>
             ${labels ? `<div class="pub-tags">${labels}</div>` : ""}
             <div class="pub-meta">${escapeHtml(meta || "")}</div>
           </article>
@@ -1635,7 +1623,7 @@ Presented the work at the IEICE Medical Imaging Research Meeting (MI) and receiv
       return `
         <article class="patent-card">
           <div class="patent-title">${titleHtml}</div>
-          <div class="patent-authors">${escapeHtml(authors)}</div>
+          <div class="patent-authors">${highlightMyName(authors)}</div>
           ${tags.length ? `<div class="patent-tags">${tags.join("")}</div>` : ""}
           <div class="patent-meta-block">
             <div><strong>${filedLabel}</strong> ${escapeHtml(filingNo)}${filingDate ? ` (${escapeHtml(filingDate)})` : ""}</div>
@@ -1730,81 +1718,6 @@ Presented the work at the IEICE Medical Imaging Research Meeting (MI) and receiv
       document.getElementById("stat-papers").textContent = String(totalPapers);
     }
 
-    function renderPatentNetwork() {
-      const svg = document.getElementById("patent-network-svg");
-      if (!svg) return;
-
-      const foodNodes = patents.filter(p =>
-        /貯蔵庫|収納|画像判定|画像補正|学習データ選別|分割装置|分類装置|領域管理|領域機器|貯蔵庫/.test(p.jaTitle)
-      );
-
-      const medicalNodes = patents.filter(p =>
-        /医療画像|血管画像/.test(p.jaTitle)
-      );
-
-      const internationalNodes = patents.filter(p =>
-        p.country === "PCT" || p.country === "中国"
-      );
-
-      const nodes = [
-        { id: "food", labelJa: "食材AI", labelEn: "Food AI", x: 250, y: 220, r: 34, color: "#2563eb", fixed: true },
-        { id: "medical", labelJa: "医療AI", labelEn: "Medical AI", x: 520, y: 150, r: 30, color: "#f59e0b", fixed: true },
-        { id: "global", labelJa: "海外展開", labelEn: "Global / PCT", x: 520, y: 320, r: 28, color: "#10b981", fixed: true }
-      ];
-
-      const links = [];
-
-      function pushPatentNode(list, centerId, startAngle, radiusBase, limit = 5) {
-        list.slice(0, limit).forEach((p, i) => {
-          const angle = startAngle + (i * 0.9);
-          const cx = centerId === "food" ? 250 : centerId === "medical" ? 520 : 520;
-          const cy = centerId === "food" ? 220 : centerId === "medical" ? 150 : 320;
-          const rr = radiusBase + (i % 2) * 18;
-          const x = cx + Math.cos(angle) * rr;
-          const y = cy + Math.sin(angle) * rr;
-          const id = "p" + i + centerId + p.filingDateISO;
-          nodes.push({
-            id,
-            labelJa: p.jaTitle.length > 11 ? p.jaTitle.slice(0, 11) + "…" : p.jaTitle,
-            labelEn: p.enTitle.length > 18 ? p.enTitle.slice(0, 18) + "…" : p.enTitle,
-            x, y,
-            r: p.isRegistered ? 15 : p.isProductUsed ? 14 : 12,
-            color: centerId === "food" ? "#60a5fa" : centerId === "medical" ? "#fbbf24" : "#6ee7b7",
-            patent: p
-          });
-          links.push({ source: centerId, target: id });
-        });
-      }
-
-      pushPatentNode(foodNodes, "food", -1.9, 110, 6);
-      pushPatentNode(medicalNodes, "medical", -1.2, 95, 4);
-      pushPatentNode(internationalNodes, "global", -1.4, 95, 5);
-
-      const lookup = Object.fromEntries(nodes.map(n => [n.id, n]));
-      const labelLang = currentLang() === "ja" ? "labelJa" : "labelEn";
-
-      svg.innerHTML = `
-        <defs>
-          <filter id="nodeShadow" x="-50%" y="-50%" width="200%" height="200%">
-            <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="rgba(15,23,42,0.18)" />
-          </filter>
-        </defs>
-        ${links.map(l => {
-          const s = lookup[l.source];
-          const t = lookup[l.target];
-          return `<line x1="${s.x}" y1="${s.y}" x2="${t.x}" y2="${t.y}" stroke="#cbd5e1" stroke-width="1.5" />`;
-        }).join("")}
-        ${nodes.map(n => `
-          <g>
-            <circle cx="${n.x}" cy="${n.y}" r="${n.r}" fill="${n.color}" filter="url(#nodeShadow)" />
-            <text x="${n.x}" y="${n.y + (n.fixed ? 4 : 3)}" text-anchor="middle" font-size="${n.fixed ? 13 : 10}" font-weight="800" fill="${n.fixed ? '#ffffff' : '#0f172a'}">
-              ${escapeHtml(n[labelLang])}
-            </text>
-          </g>
-        `).join("")}
-      `;
-    }
-
     function setLanguage(lang) {
       document.documentElement.setAttribute("lang-mode", lang);
       document.getElementById("lang-ja").classList.toggle("active", lang === "ja");
@@ -1819,7 +1732,6 @@ Presented the work at the IEICE Medical Imaging Research Meeting (MI) and receiv
       renderCertifications();
       renderPatents();
       renderResearchImpact();
-      renderPatentNetwork();
     }
 
     document.getElementById("patent-search")?.addEventListener("input", renderPatents);
@@ -1839,7 +1751,6 @@ Presented the work at the IEICE Medical Imaging Research Meeting (MI) and receiv
     renderHighlights();
     renderPatents();
     renderResearchImpact();
-    renderPatentNetwork();
     setLanguage("ja");
   </script>
 </body>
