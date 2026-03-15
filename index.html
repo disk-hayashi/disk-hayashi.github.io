@@ -201,7 +201,6 @@
       align-content: start;
     }
 
-    .mini-card,
     .section-card,
     .stat,
     .patent-card,
@@ -209,26 +208,11 @@
     .award-item,
     .society-item,
     .impact-card,
-    .product-hero-card {
+    .product-hero-card,
+    .cert-card {
       background: var(--card);
       border: 1px solid var(--line);
       border-radius: var(--radius);
-    }
-
-    .mini-card {
-      padding: 14px;
-      background: var(--card-soft);
-    }
-
-    .mini-card h3 {
-      margin: 0 0 8px;
-      font-size: 0.92rem;
-    }
-
-    .mini-card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.84rem;
     }
 
     .section {
@@ -283,12 +267,6 @@
       font-weight: 900;
     }
 
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
     .grid-4 {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -310,8 +288,7 @@
     .product-hero-card {
       padding: 16px;
       box-shadow: var(--shadow-soft);
-      background:
-        linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
       border: 1px solid rgba(37, 99, 235, 0.12);
     }
 
@@ -380,9 +357,7 @@
       gap: 8px;
     }
 
-    .timeline-item,
-    .society-item,
-    .impact-card {
+    .timeline-item {
       border: 1px solid var(--line);
       border-radius: 14px;
       padding: 12px 13px;
@@ -424,18 +399,36 @@
       flex: 1 1 220px;
     }
 
-    .patent-list,
     .publication-list,
     .award-list,
-    .society-list,
     .impact-list {
       display: grid;
       gap: 8px;
     }
 
+    .patent-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .society-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
     .patent-card,
     .pub-item,
-    .award-item {
+    .award-item,
+    .society-item,
+    .cert-card {
       padding: 10px 12px;
     }
 
@@ -539,23 +532,6 @@
       font-weight: 800;
     }
 
-    .compact-cert-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-    }
-
-    .cert-chip {
-      display: inline-block;
-      padding: 6px 9px;
-      border-radius: 999px;
-      background: var(--card-soft);
-      border: 1px solid var(--line);
-      font-size: 0.77rem;
-      color: var(--text);
-      font-weight: 800;
-    }
-
     .impact-card {
       padding: 14px;
     }
@@ -630,6 +606,27 @@
       line-height: 1.35;
     }
 
+    .society-item {
+      background: var(--card-soft);
+    }
+
+    .cert-card {
+      background: var(--card-soft);
+      min-height: 100%;
+    }
+
+    .cert-title {
+      font-size: 0.86rem;
+      font-weight: 800;
+      line-height: 1.35;
+      margin-bottom: 4px;
+    }
+
+    .cert-meta {
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+
     .footer {
       padding: 18px 0 34px;
       text-align: center;
@@ -647,11 +644,13 @@
 
     @media (max-width: 900px) {
       .hero-card,
-      .grid-2,
       .grid-4,
       .grid-6,
       .award-list.compact,
-      .product-hero-grid {
+      .product-hero-grid,
+      .patent-grid,
+      .society-grid,
+      .cert-grid {
         grid-template-columns: 1fr;
       }
 
@@ -707,10 +706,10 @@
             <div class="name-ja" data-lang-block="ja">林 大介</div>
             <p class="subtitle">Hitachi, Ltd. Central Research Laboratory</p>
             <p class="lead" data-lang-block="ja">
-              コンピュータビジョン、自然言語処理、機械学習を専門とし、食材AIおよび医療AIの研究開発と社会実装に取り組んでいます。特許創出から製品化までをつなぐ実装力を強みとしています。
+              コンピュータビジョン、自然言語処理、機械学習を専門とし、食材AIおよび医療AIの研究開発に従事。食材AIでは研究成果を製品化につなげ、2件の社会実装を実現。
             </p>
             <p class="lead" data-lang-block="en">
-              I specialize in computer vision, natural language processing, and machine learning, with a focus on food AI and medical AI. My work is characterized by a strong ability to connect invention, productization, and real-world deployment.
+              I specialize in computer vision, natural language processing, and machine learning, with a focus on food AI and medical AI. In food AI, I translated research outcomes into two commercialized services.
             </p>
             <div class="hero-links">
               <a class="btn btn-primary" href="https://www.linkedin.com/in/daisuke-hayashi/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
@@ -719,13 +718,8 @@
           </div>
 
           <aside class="hero-side">
-            <div class="mini-card" style="text-align:center">
+            <div style="text-align:center">
               <img src="profile.jpg" alt="Daisuke Hayashi" style="width:156px;height:156px;object-fit:cover;border-radius:50%;border:3px solid rgba(29,78,216,0.10);" />
-            </div>
-            <div class="mini-card">
-              <h3><span data-lang="ja">Profile</span><span data-lang="en">Profile</span></h3>
-              <p data-lang-block="ja">株式会社日立製作所 中央研究所</p>
-              <p data-lang-block="en">Central Research Laboratory, Hitachi, Ltd.</p>
             </div>
           </aside>
         </div>
@@ -785,12 +779,6 @@
                 <span data-lang="ja">株式会社日立製作所 中央研究所</span>
                 <span data-lang="en">Central Research Laboratory, Hitachi, Ltd.</span>
               </div>
-              <div class="muted" data-lang-block="ja">
-                コンピュータビジョン、自然言語処理、機械学習の研究者として、食材AI・医療AIの研究開発に従事。
-              </div>
-              <div class="muted" data-lang-block="en">
-                Working as a researcher in computer vision, natural language processing, and machine learning, focusing on food AI and medical AI.
-              </div>
             </div>
           </div>
         </div>
@@ -838,7 +826,7 @@
             </select>
           </div>
 
-          <div id="all-patent-list" class="patent-list"></div>
+          <div id="all-patent-list" class="patent-grid"></div>
         </div>
       </div>
     </section>
@@ -881,7 +869,7 @@
 
           <div style="height:8px"></div>
           <h3 class="group-title"><span data-lang="ja">国内会議</span><span data-lang="en">Domestic Conferences</span></h3>
-          <div id="domestic-list" class="publication-list"></div>
+          <div id="domestic-list" class="patent-grid"></div>
         </div>
       </div>
     </section>
@@ -892,7 +880,7 @@
           <div class="section-head">
             <h2><span data-lang="ja">資格</span><span data-lang="en">Certifications</span></h2>
           </div>
-          <div class="compact-cert-list" id="cert-list"></div>
+          <div id="cert-list" class="cert-grid"></div>
         </div>
       </div>
     </section>
@@ -903,7 +891,7 @@
           <div class="section-head">
             <h2><span data-lang="ja">所属学会</span><span data-lang="en">Academic Societies</span></h2>
           </div>
-          <div id="society-list" class="society-list"></div>
+          <div id="society-list" class="society-grid"></div>
         </div>
       </div>
     </section>
@@ -914,6 +902,15 @@
   </footer>
 
   <script>
+    function escapeHtml(str) {
+      return String(str || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
     const keywordSets = {
       ja: [
         "コンピュータビジョン",
@@ -921,8 +918,6 @@
         "機械学習",
         "食材AI",
         "医療AI",
-        "画像認識",
-        "知財・特許",
         "製品化"
       ],
       en: [
@@ -931,9 +926,7 @@
         "Machine Learning",
         "Food AI",
         "Medical AI",
-        "Image Recognition",
-        "Patents",
-        "Productization"
+        "Commercialization"
       ]
     };
 
@@ -941,12 +934,14 @@
       {
         jaTitle: "日本メディカルAI学会",
         enTitle: "Japanese Association for Medical Artificial Intelligence",
-        period: "2022.10–Present"
+        periodJa: "2022.10–現在",
+        periodEn: "Oct. 2022–Present"
       },
       {
         jaTitle: "電子情報通信学会",
         enTitle: "IEICE",
-        period: "2018.02–Present"
+        periodJa: "2018.02–現在",
+        periodEn: "Feb. 2018–Present"
       }
     ];
 
@@ -1040,43 +1035,45 @@
       ]
     };
 
-    const certifications = [
-      "JDLA Deep Learning for ENGINEER (E資格) / 2026.02",
-      "Generative AI Passport / 2025.11",
-      "AWS Certified Cloud Practitioner / 2024.05",
-      "Google Data Analytics Professional Certificate / 2024.01",
-      "JAMIA Certificate / 2022.10",
-      "TOEIC L&R 815 / 2021.08"
-    ];
+    const certifications = {
+      ja: [
+        { title: "JDLA Deep Learning for ENGINEER", meta: "2026年2月" },
+        { title: "生成AIパスポート", meta: "2025年11月" },
+        { title: "AWS認定クラウドプラクティショナー", meta: "2024年5月" },
+        { title: "Google Data Analytics Professional Certificate", meta: "2024年1月" },
+        { title: "日本メディカルAI学会 認定資格", meta: "2022年10月" },
+        { title: "TOEIC Listening & Reading 815", meta: "2021年8月" }
+      ],
+      en: [
+        { title: "JDLA Deep Learning for ENGINEER", meta: "Feb. 2026" },
+        { title: "Generative AI Passport", meta: "Nov. 2025" },
+        { title: "AWS Certified Cloud Practitioner", meta: "May 2024" },
+        { title: "Google Data Analytics Professional Certificate", meta: "Jan. 2024" },
+        { title: "JAMIA Certificate", meta: "Oct. 2022" },
+        { title: "TOEIC Listening & Reading 815", meta: "Aug. 2021" }
+      ]
+    };
 
     const awards = [
       {
         jaTitle: "若手発明者トップ50",
         enTitle: "Top 50 Young Inventors",
-        jaMeta: "2024年12月",
-        enMeta: "Dec. 2024"
+        jaMeta: "2024年12月 日立製作所",
+        enMeta: "Dec. 2024, Hitachi, Ltd."
       },
       {
         jaTitle: "令和5年度MI研究奨励賞",
         enTitle: "FY2023 MI Research Encouragement Award",
-        jaMeta: "2024年6月",
-        enMeta: "June 2024",
+        jaMeta: "2024年6月 電子情報通信学会 MI研究会",
+        enMeta: "June 2024, IEICE MI Research Meeting",
         jaDescription: "研究発表の中で賞対象66件のうち3件が選出：日立初",
         enDescription: "Selected as one of 3 awardees out of 66 presentations; the first case for Hitachi"
       },
       {
         jaTitle: "ET研究奨励賞",
         enTitle: "ET Research Encouragement Award",
-        jaMeta: "2019年11月",
-        enMeta: "Nov. 2019",
-        jaDescription: "発表が優秀と認められた",
-        enDescription: "Recognized for an outstanding presentation"
-      },
-      {
-        jaTitle: "学科表彰",
-        enTitle: "Department Award",
-        jaMeta: "2018年3月",
-        enMeta: "March 2018"
+        jaMeta: "2019年11月 電子情報通信学会 ET研究会",
+        enMeta: "Nov. 2019, IEICE ET Research Meeting"
       }
     ];
 
@@ -1428,9 +1425,8 @@
             titleEn: "Related official and media coverage",
             links: [
               { title: "Hitachi Feature Page", url: "https://kadenfan.hitachi.co.jp/connected/happinessup/feature_recipeplan/" },
-              { title: "Hitachi News Release", url: "https://www.hitachi.co.jp/New/cnews/month/2025/05/0522.html" },
-              { title: "Kaden Watch", url: "https://kaden.watch.impress.co.jp/docs/news/2019567.html" },
-              { title: "@DIME", url: "https://dime.jp/genre/1981852/" }
+              { title: "News Release", url: "https://www.hitachi.co.jp/New/cnews/month/2025/05/0522.html" },
+              { title: "Kaden Watch", url: "https://kaden.watch.impress.co.jp/docs/news/2019567.html" }
             ]
           }
         ]
@@ -1450,19 +1446,19 @@
             type: "award",
             jaLabel: "受賞",
             enLabel: "Award",
-            periodJa: "2024年6月",
-            periodEn: "June 2024",
-            titleJa: "令和5年度MI研究奨励賞（対象66件中3件が選出、日立初）",
-            titleEn: "FY2023 MI Research Encouragement Award (3 selected out of 66 presentations; first for Hitachi)"
+            periodJa: "",
+            periodEn: "",
+            titleJa: "",
+            titleEn: ""
           },
           {
             type: "publication",
             jaLabel: "国内会議発表",
             enLabel: "Conference Presentation",
-            periodJa: "2023年11月",
-            periodEn: "Nov. 2023",
-            titleJa: "「3D-CNNを用いた脳MRI画像に基づく脳疾患分類」を発表",
-            titleEn: "Presented “Brain Disease Classification Based on MRI Images Using 3D-CNN”"
+            periodJa: "",
+            periodEn: "",
+            titleJa: "",
+            titleEn: ""
           }
         ]
       }
@@ -1501,22 +1497,19 @@
       return document.documentElement.getAttribute("lang-mode") || "ja";
     }
 
-    function renderKeywords() {
-      const root = document.getElementById("keyword-list");
-      if (!root) return;
-      const items = currentLang() === "ja" ? keywordSets.ja : keywordSets.en;
-      root.innerHTML = items.map(item => `<span class="chip">${escapeHtml(item)}</span>`).join("");
-    }
-
     function makeTag(type, ja, en) {
       const text = currentLang() === "ja" ? ja : en;
       return `<span class="tag ${type}">${escapeHtml(text)}</span>`;
     }
 
+    function renderKeywords() {
+      const root = document.getElementById("keyword-list");
+      const items = currentLang() === "ja" ? keywordSets.ja : keywordSets.en;
+      root.innerHTML = items.map(item => `<span class="chip">${escapeHtml(item)}</span>`).join("");
+    }
+
     function renderTopProductCards() {
       const root = document.getElementById("top-product-cards");
-      if (!root) return;
-
       root.innerHTML = topProductCards.map(card => `
         <article class="product-hero-card">
           <div class="product-hero-top">
@@ -1533,20 +1526,16 @@
 
     function renderSocieties() {
       const root = document.getElementById("society-list");
-      if (!root) return;
-
       root.innerHTML = societies.map(item => `
         <article class="society-item">
           <div class="timeline-title">${escapeHtml(currentLang() === "ja" ? item.jaTitle : item.enTitle)}</div>
-          <div class="muted">${escapeHtml(item.period)}</div>
+          <div class="muted">${escapeHtml(currentLang() === "ja" ? item.periodJa : item.periodEn)}</div>
         </article>
       `).join("");
     }
 
     function renderSimpleList(targetId, items) {
       const root = document.getElementById(targetId);
-      if (!root) return;
-
       root.innerHTML = items.map(item => {
         const title = currentLang() === "ja" ? item.jaTitle : item.enTitle;
         const meta = currentLang() === "ja" ? item.jaMeta : item.enMeta;
@@ -1574,22 +1563,22 @@
 
     function renderCertifications() {
       const root = document.getElementById("cert-list");
-      if (!root) return;
-
-      root.innerHTML = certifications.map(cert => `
-        <span class="cert-chip">${escapeHtml(cert)}</span>
+      const items = currentLang() === "ja" ? certifications.ja : certifications.en;
+      root.innerHTML = items.map(item => `
+        <article class="cert-card">
+          <div class="cert-title">${escapeHtml(item.title)}</div>
+          <div class="cert-meta">${escapeHtml(item.meta)}</div>
+        </article>
       `).join("");
     }
 
     function renderAwards() {
       const root = document.getElementById("award-list");
-      if (!root) return;
-
       root.innerHTML = awards.map(item => `
         <article class="award-item compact">
           <div class="award-title">${escapeHtml(currentLang() === "ja" ? item.jaTitle : item.enTitle)}</div>
-          <div class="award-meta">${escapeHtml(currentLang() === "ja" ? item.jaMeta : item.enMeta)}</div>
           ${item.jaDescription || item.enDescription ? `<div class="muted">${escapeHtml(currentLang() === "ja" ? (item.jaDescription || "") : (item.enDescription || ""))}</div>` : ""}
+          <div class="award-meta">${escapeHtml(currentLang() === "ja" ? item.jaMeta : item.enMeta)}</div>
         </article>
       `).join("");
     }
@@ -1631,13 +1620,10 @@
 
     function renderPatentList(targetId, items) {
       const target = document.getElementById(targetId);
-      if (!target) return;
-
       if (!items.length) {
         target.innerHTML = `<p class="note">${escapeHtml(currentLang() === "ja" ? "該当する特許はありません。" : "No patents matched the current filter.")}</p>`;
         return;
       }
-
       target.innerHTML = items.map(patentCard).join("");
     }
 
@@ -1676,8 +1662,6 @@
 
     function renderImpactList(targetId, items) {
       const root = document.getElementById(targetId);
-      if (!root) return;
-
       root.innerHTML = items.map(project => {
         const title = currentLang() === "ja" ? project.jaTitle : project.enTitle;
         const period = currentLang() === "ja" ? project.periodJa : project.periodEn;
@@ -1700,8 +1684,8 @@
           return `
             <div class="impact-subitem">
               <div class="impact-tags">${makeTag(tagClass, eventLabel, eventLabel)}</div>
-              <div><strong>${escapeHtml(eventTitle)}</strong></div>
-              <div class="muted">${escapeHtml(eventPeriod || "")}</div>
+              ${eventTitle ? `<div><strong>${escapeHtml(eventTitle)}</strong></div>` : ""}
+              ${eventPeriod ? `<div class="muted">${escapeHtml(eventPeriod)}</div>` : ""}
               ${linksHtml}
             </div>
           `;
@@ -1754,6 +1738,7 @@
       renderSimpleList("international-list", publications.international);
       renderSimpleList("domestic-list", publications.domestic);
       renderAwards();
+      renderCertifications();
       renderPatents();
       renderImpactList("commercialization-list", commercializationProjects);
       renderImpactList("research-impact-list", researchImpactProjects);
@@ -1772,8 +1757,8 @@
     renderSimpleList("journal-list", publications.journals);
     renderSimpleList("international-list", publications.international);
     renderSimpleList("domestic-list", publications.domestic);
-    renderCertifications();
     renderAwards();
+    renderCertifications();
     renderHighlights();
     renderPatents();
     renderImpactList("commercialization-list", commercializationProjects);
