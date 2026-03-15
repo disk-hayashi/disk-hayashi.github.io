@@ -324,7 +324,9 @@
     .product-hero-links {
       font-size: 0.8rem;
       color: var(--muted);
-      line-height: 1.45;
+      line-height: 1.55;
+      display: grid;
+      gap: 2px;
     }
 
     .product-hero-links a {
@@ -521,13 +523,15 @@
       border-color: #ddd6fe;
     }
 
-    .patent-meta-inline {
+    .patent-meta-block {
       font-size: 0.80rem;
-      line-height: 1.4;
+      line-height: 1.45;
       color: var(--muted);
+      display: grid;
+      gap: 2px;
     }
 
-    .patent-meta-inline strong {
+    .patent-meta-block strong {
       color: var(--text);
       font-weight: 800;
     }
@@ -678,14 +682,13 @@
     <div class="container header-inner">
       <div class="brand">Daisuke Hayashi</div>
       <nav class="nav">
-        <a href="#about"><span data-lang="ja">概要</span><span data-lang="en">About</span></a>
         <a href="#highlights"><span data-lang="ja">ハイライト</span><span data-lang="en">Highlights</span></a>
-        <a href="#top-products"><span data-lang="ja">製品化2件</span><span data-lang="en">2 Commercializations</span></a>
+        <a href="#top-products"><span data-lang="ja">製品化</span><span data-lang="en">Commercialization</span></a>
+        <a href="#about"><span data-lang="ja">概要</span><span data-lang="en">About</span></a>
         <a href="#career"><span data-lang="ja">職歴</span><span data-lang="en">Career</span></a>
         <a href="#awards"><span data-lang="ja">受賞</span><span data-lang="en">Awards</span></a>
         <a href="#patents"><span data-lang="ja">特許</span><span data-lang="en">Patents</span></a>
-        <a href="#commercialization"><span data-lang="ja">製品化</span><span data-lang="en">Commercialization</span></a>
-        <a href="#research-impact"><span data-lang="ja">研究実績</span><span data-lang="en">Research Impact</span></a>
+        <a href="#research-impact"><span data-lang="ja">研究業績</span><span data-lang="en">Research Impact</span></a>
         <a href="#publications"><span data-lang="ja">発表文献</span><span data-lang="en">Publications</span></a>
         <a href="#certifications"><span data-lang="ja">資格</span><span data-lang="en">Certifications</span></a>
         <a href="#societies"><span data-lang="ja">所属学会</span><span data-lang="en">Societies</span></a>
@@ -706,10 +709,10 @@
             <div class="name-ja" data-lang-block="ja">林 大介</div>
             <p class="subtitle">Hitachi, Ltd. Central Research Laboratory</p>
             <p class="lead" data-lang-block="ja">
-              コンピュータビジョン、自然言語処理、機械学習を専門とし、食材AIおよび医療AIの研究開発に従事。食材AIでは研究成果を製品化につなげ、2件の社会実装を実現。
+              コンピュータビジョン・機械学習を専門とし、食材AIや医療AIの研究開発と社会実装（製品化）を推進
             </p>
             <p class="lead" data-lang-block="en">
-              I specialize in computer vision, natural language processing, and machine learning, with a focus on food AI and medical AI. In food AI, I translated research outcomes into two commercialized services.
+              Specializing in computer vision and machine learning, I promote R&D and social implementation (commercialization) in food AI and medical AI.
             </p>
             <div class="hero-links">
               <a class="btn btn-primary" href="https://www.linkedin.com/in/daisuke-hayashi/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
@@ -722,28 +725,6 @@
               <img src="profile.jpg" alt="Daisuke Hayashi" style="width:156px;height:156px;object-fit:cover;border-radius:50%;border:3px solid rgba(29,78,216,0.10);" />
             </div>
           </aside>
-        </div>
-      </div>
-    </section>
-
-    <section id="top-products" class="section">
-      <div class="container">
-        <div class="section-card">
-          <div class="section-head">
-            <h2><span data-lang="ja">製品化2件</span><span data-lang="en">Two Commercialized Services</span></h2>
-          </div>
-          <div id="top-product-cards" class="product-hero-grid"></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="section">
-      <div class="container">
-        <div class="section-card">
-          <div class="section-head">
-            <h2><span data-lang="ja">研究キーワード</span><span data-lang="en">Research Keywords</span></h2>
-          </div>
-          <div class="chips" id="keyword-list"></div>
         </div>
       </div>
     </section>
@@ -762,6 +743,28 @@
             <div class="stat"><span class="num" id="stat-productized">0</span><span class="label"><span data-lang="ja">製品化件数</span><span data-lang="en">Commercialized Cases</span></span></div>
             <div class="stat"><span class="num" id="stat-papers">0</span><span class="label"><span data-lang="ja">発表文献</span><span data-lang="en">Publications</span></span></div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="top-products" class="section">
+      <div class="container">
+        <div class="section-card">
+          <div class="section-head">
+            <h2><span data-lang="ja">製品化</span><span data-lang="en">Commercialization</span></h2>
+          </div>
+          <div id="top-product-cards" class="product-hero-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-card">
+          <div class="section-head">
+            <h2><span data-lang="ja">研究キーワード</span><span data-lang="en">Research Keywords</span></h2>
+          </div>
+          <div class="chips" id="keyword-list"></div>
         </div>
       </div>
     </section>
@@ -831,22 +834,11 @@
       </div>
     </section>
 
-    <section id="commercialization" class="section">
-      <div class="container">
-        <div class="section-card">
-          <div class="section-head">
-            <h2><span data-lang="ja">製品化</span><span data-lang="en">Commercialization</span></h2>
-          </div>
-          <div id="commercialization-list" class="impact-list"></div>
-        </div>
-      </div>
-    </section>
-
     <section id="research-impact" class="section">
       <div class="container">
         <div class="section-card">
           <div class="section-head">
-            <h2><span data-lang="ja">研究実績</span><span data-lang="en">Research Impact</span></h2>
+            <h2><span data-lang="ja">研究業績</span><span data-lang="en">Research Impact</span></h2>
           </div>
           <div id="research-impact-list" class="impact-list"></div>
         </div>
@@ -911,11 +903,25 @@
         .replace(/'/g, "&#39;");
     }
 
+    function currentLang() {
+      return document.documentElement.getAttribute("lang-mode") || "ja";
+    }
+
+    function makeTag(type, ja, en) {
+      const text = currentLang() === "ja" ? ja : en;
+      return `<span class="tag ${type}">${escapeHtml(text)}</span>`;
+    }
+
+    function patentNumberToEnglish(value) {
+      if (!value) return "-";
+      if (/^P/i.test(value)) return value;
+      return "P" + String(value).replace(/[^\dA-Za-z]/g, "");
+    }
+
     const keywordSets = {
       ja: [
         "コンピュータビジョン",
         "自然言語処理",
-        "機械学習",
         "食材AI",
         "医療AI",
         "製品化"
@@ -923,7 +929,6 @@
       en: [
         "Computer Vision",
         "Natural Language Processing",
-        "Machine Learning",
         "Food AI",
         "Medical AI",
         "Commercialization"
@@ -949,11 +954,12 @@
       journals: [
         {
           jaTitle: "e-TestingにおけるタブレットPCとオンライン筆記情報を用いた筆記認証法の提案",
-          enTitle: "Proposal of a Writing Authentication Method Using Tablet PCs and Online Handwriting Information in e-Testing",
+          enTitle: "Proposal for Writing Authentication Method Using Tablet PCs and Online Handwritten Information in e-Testing",
           authors: "Daisuke Hayashi, Takako Akakura",
           jaMeta: "日本教育工学会論文誌, vol.42, no.Suppl., pp.101-104, Dec. 2018.",
           enMeta: "Japanese Journal of Educational Technology, vol.42, Suppl., pp.101-104, Dec. 2018.",
-          url: "https://www.jstage.jst.go.jp/article/jjet/42/Suppl./42_S42051/_pdf/-char/ja",
+          jaUrl: "https://www.jstage.jst.go.jp/article/jjet/42/Suppl./42_S42051/_pdf/-char/ja",
+          enUrl: "https://www.jstage.jst.go.jp/article/jjet/42/Suppl./42_S42051/_article/-char/en",
           labels: ["first", "reviewed"]
         }
       ],
@@ -964,7 +970,8 @@
           authors: "Daisuke Hayashi, Taisuke Kawamata, Toru Kano, Takako Akakura",
           jaMeta: "2020 IEEE 2nd Global Conference on Life Sciences and Technologies (LifeTech), pp.318-319, March 2020.",
           enMeta: "2020 IEEE 2nd Global Conference on Life Sciences and Technologies (LifeTech), pp.318-319, March 2020.",
-          url: "https://doi.org/10.1109/lifetech48969.2020.1570618991",
+          jaUrl: "https://doi.org/10.1109/lifetech48969.2020.1570618991",
+          enUrl: "https://doi.org/10.1109/lifetech48969.2020.1570618991",
           labels: ["first", "reviewed"]
         },
         {
@@ -973,7 +980,8 @@
           authors: "Daisuke Hayashi, Takako Akakura",
           jaMeta: "Human Interface and the Management of Information. Information in Applications and Services, vol.10905, LNCS, pp.253-265, June 2018.",
           enMeta: "Human Interface and the Management of Information. Information in Applications and Services, vol.10905, LNCS, pp.253-265, June 2018.",
-          url: "https://doi.org/10.1007/978-3-319-92046-7_23",
+          jaUrl: "https://doi.org/10.1007/978-3-319-92046-7_23",
+          enUrl: "https://doi.org/10.1007/978-3-319-92046-7_23",
           labels: ["first", "reviewed"]
         }
       ],
@@ -984,7 +992,8 @@
           authors: "Daisuke Hayashi, Akiaki Nagasaka, Yuji Mochizuki, Takayuki Hayashi, Yubun Ueno",
           jaMeta: "電子情報通信学会技術研究報告, vol.123, no.257, pp.15-20, Nov. 2023.",
           enMeta: "IEICE Technical Report, vol.123, no.257, pp.15-20, Nov. 2023.",
-          url: "https://ken.ieice.org/ken/paper/20231114FCYH/",
+          jaUrl: "https://ken.ieice.org/ken/paper/20231114FCYH/",
+          enUrl: "https://ken.ieice.org/ken/paper/20231114FCYH/",
           labels: ["first", "award"]
         },
         {
@@ -993,7 +1002,8 @@
           authors: "Daisuke Hayashi, Toru Yokoyama, Kiyohiro Ohara",
           jaMeta: "電子情報通信学会技術研究報告, vol.120, no.220, pp.15-20, Oct. 2020.",
           enMeta: "IEICE Technical Report, vol.120, no.220, pp.15-20, Oct. 2020.",
-          url: "https://www.ieice.org/ken/paper/20200110K1UU/",
+          jaUrl: "https://www.ieice.org/ken/paper/20200110K1UU/",
+          enUrl: "https://www.ieice.org/ken/paper/20200110K1UU/",
           labels: ["first"]
         },
         {
@@ -1002,7 +1012,8 @@
           authors: "Daisuke Hayashi, Taisuke Kawamata, Toru Kano, Takako Akakura",
           jaMeta: "電子情報通信学会技術研究報告, vol.119, no.360, pp.67-74, Jan. 2020.",
           enMeta: "IEICE Technical Report, vol.119, no.360, pp.67-74, Jan. 2020.",
-          url: "https://ken.ieice.org/ken/paper/20200118E1dS/",
+          jaUrl: "https://ken.ieice.org/ken/paper/20200118E1dS/",
+          enUrl: "https://ken.ieice.org/ken/paper/20200118E1dS/",
           labels: ["first"]
         },
         {
@@ -1011,16 +1022,8 @@
           authors: "Daisuke Hayashi, Taisuke Kawamata, Takako Akakura",
           jaMeta: "電子情報通信学会技術研究報告, vol.119, no.328, pp.49-54, Dec. 2019.",
           enMeta: "IEICE Technical Report, vol.119, no.328, pp.49-54, Dec. 2019.",
-          url: "https://www.ieice.org/ken/paper/20191206n1Tf/",
-          labels: ["first"]
-        },
-        {
-          jaTitle: "Webテスティングにおける機械学習を用いた筆記認証法の提案",
-          enTitle: "Proposal of a Handwriting Authentication Method Using Machine Learning for Web Testing",
-          authors: "Daisuke Hayashi, Taisuke Kawamata, Takako Akakura",
-          jaMeta: "電子情報通信学会総合大会講演論文集, no.2, p.52, March 2019.",
-          enMeta: "IEICE General Conference Proceedings, no.2, p.52, March 2019.",
-          url: "https://www.ieice-taikai.jp/2019general/jpn/webpro/_html/iss.html#d_12_16",
+          jaUrl: "https://www.ieice.org/ken/paper/20191206n1Tf/",
+          enUrl: "https://www.ieice.org/ken/paper/20191206n1Tf/",
           labels: ["first"]
         },
         {
@@ -1029,7 +1032,8 @@
           authors: "Daisuke Hayashi, Takako Akakura",
           jaMeta: "電子情報通信学会技術研究報告, vol.118, no.294, pp.43-46, Nov. 2018.",
           enMeta: "IEICE Technical Report, vol.118, no.294, pp.43-46, Nov. 2018.",
-          url: "https://www.ieice.org/ken/paper/20181110a1Hv/",
+          jaUrl: "https://www.ieice.org/ken/paper/20181110a1Hv/",
+          enUrl: "https://www.ieice.org/ken/paper/20181110a1Hv/",
           labels: ["first", "award"]
         }
       ]
@@ -1039,9 +1043,9 @@
       ja: [
         { title: "JDLA Deep Learning for ENGINEER", meta: "2026年2月" },
         { title: "生成AIパスポート", meta: "2025年11月" },
-        { title: "AWS認定クラウドプラクティショナー", meta: "2024年5月" },
+        { title: "AWS Certified Cloud Practitioner", meta: "2024年5月" },
         { title: "Google Data Analytics Professional Certificate", meta: "2024年1月" },
-        { title: "日本メディカルAI学会 認定資格", meta: "2022年10月" },
+        { title: "日本メディカルAI学会公認資格", meta: "2022年10月" },
         { title: "TOEIC Listening & Reading 815", meta: "2021年8月" }
       ],
       en: [
@@ -1049,7 +1053,7 @@
         { title: "Generative AI Passport", meta: "Nov. 2025" },
         { title: "AWS Certified Cloud Practitioner", meta: "May 2024" },
         { title: "Google Data Analytics Professional Certificate", meta: "Jan. 2024" },
-        { title: "JAMIA Certificate", meta: "Oct. 2022" },
+        { title: "Japanese Association for Medical Artificial Intelligence Certificate", meta: "Oct. 2022" },
         { title: "TOEIC Listening & Reading 815", meta: "Aug. 2021" }
       ]
     };
@@ -1388,77 +1392,24 @@
       }
     ];
 
-    const commercializationProjects = [
-      {
-        jaTitle: "食材AI",
-        enTitle: "Food AI",
-        periodJa: "2024年3月 / 2025年5月",
-        periodEn: "Mar. 2024 / May 2025",
-        jaDescription: "食材検知AIを活用し、冷蔵庫カメラ画像から食材自動リスト化とレシピ提案を行うサービスを2件製品化。",
-        enDescription: "Commercialized two services using food-detection AI for automatic food listing and recipe recommendation from refrigerator camera images.",
-        events: [
-          {
-            type: "product",
-            jaLabel: "製品化",
-            enLabel: "Commercialization",
-            periodJa: "2025年5月",
-            periodEn: "May 2025",
-            titleJa: "冷蔵室・冷凍室・野菜室における冷蔵庫カメラ画像からの「食材自動リスト化・レシピ提案」サービス",
-            titleEn: "Service for automatic food listing and recipe recommendation using refrigerator, freezer, and vegetable-compartment camera images"
-          },
-          {
-            type: "product",
-            jaLabel: "製品化",
-            enLabel: "Commercialization",
-            periodJa: "2024年3月",
-            periodEn: "Mar. 2024",
-            titleJa: "冷蔵室における冷蔵庫カメラ画像からの「食材自動リスト化」サービス",
-            titleEn: "Service for automatic food listing using refrigerator-compartment camera images"
-          },
-          {
-            type: "media",
-            jaLabel: "メディア報道",
-            enLabel: "Media Coverage",
-            periodJa: "2024年1月–2025年6月",
-            periodEn: "Jan. 2024 – June 2025",
-            titleJa: "関連メディア・公式掲載",
-            titleEn: "Related official and media coverage",
-            links: [
-              { title: "Hitachi Feature Page", url: "https://kadenfan.hitachi.co.jp/connected/happinessup/feature_recipeplan/" },
-              { title: "News Release", url: "https://www.hitachi.co.jp/New/cnews/month/2025/05/0522.html" },
-              { title: "Kaden Watch", url: "https://kaden.watch.impress.co.jp/docs/news/2019567.html" }
-            ]
-          }
-        ]
-      }
-    ];
-
     const researchImpactProjects = [
       {
         jaTitle: "医療AI",
         enTitle: "Medical AI",
         periodJa: "2020年10月–2022年9月",
         periodEn: "Oct. 2020 – Sept. 2022",
-        jaDescription: "脳MRI画像から統合失調症・アルツハイマー型認知症・健常者を96.5%の高精度で多疾患分類する技術を開発。",
+        jaDescription: "脳MRI画像から統合失調症・アルツハイマー型認知症・健常者を96.5%の高精度で多疾患分類する技術を開発",
         enDescription: "Developed a high-accuracy multi-disease classification method that distinguishes schizophrenia, Alzheimer’s disease, and healthy controls from brain MRI images with 96.5% accuracy.",
         events: [
           {
             type: "award",
             jaLabel: "受賞",
-            enLabel: "Award",
-            periodJa: "",
-            periodEn: "",
-            titleJa: "",
-            titleEn: ""
+            enLabel: "Award"
           },
           {
             type: "publication",
             jaLabel: "国内会議発表",
-            enLabel: "Conference Presentation",
-            periodJa: "",
-            periodEn: "",
-            titleJa: "",
-            titleEn: ""
+            enLabel: "Domestic Conference Presentation"
           }
         ]
       }
@@ -1470,37 +1421,46 @@
         enTitle: "Commercialization 1: Automatic Food Listing & Recipe Recommendation",
         jaDate: "2025年5月",
         enDate: "May 2025",
-        jaDesc: "冷蔵室・冷凍室・野菜室の冷蔵庫カメラ画像を用いて、食材自動リスト化とレシピ提案を実現。",
-        enDesc: "Implemented automatic food listing and recipe recommendation using refrigerator, freezer, and vegetable-compartment camera images.",
-        links: [
-          { title: "Hitachi Feature Page", url: "https://kadenfan.hitachi.co.jp/connected/happinessup/feature_recipeplan/" },
-          { title: "News Release", url: "https://www.hitachi.co.jp/New/cnews/month/2025/05/0522.html" },
-          { title: "Kaden Watch", url: "https://kaden.watch.impress.co.jp/docs/news/2019567.html" }
-        ]
+        jaDesc: "テーマリーダとして、冷蔵室・冷凍室・野菜室の冷蔵庫カメラ画像を用いた食材自動リスト化とレシピ提案を実現。",
+        enDesc: "As theme leader, realized automatic food listing and recipe recommendation using refrigerator, freezer, and vegetable-compartment camera images.",
+        links: {
+          ja: [
+            { title: "日立HP", url: "https://kadenfan.hitachi.co.jp/connected/happinessup/feature_recipeplan/" },
+            { title: "ニュースリリース", url: "https://www.hitachi.co.jp/New/cnews/month/2025/05/0522.html" },
+            { title: "家電Watch", url: "https://kaden.watch.impress.co.jp/docs/news/2019567.html" }
+          ],
+          en: [
+            { title: "Hitachi Website", url: "https://kadenfan.hitachi.co.jp/connected/happinessup/feature_recipeplan/" },
+            { title: "Press Release", url: "https://www.hitachi.co.jp/New/cnews/month/2025/05/0522.html" },
+            { title: "Kaden Watch", url: "https://kaden.watch.impress.co.jp/docs/news/2019567.html" }
+          ]
+        }
       },
       {
         jaTitle: "製品化② 食材自動リスト化",
         enTitle: "Commercialization 2: Automatic Food Listing",
         jaDate: "2024年3月",
         enDate: "Mar. 2024",
-        jaDesc: "冷蔵室の冷蔵庫カメラ画像を用いた食材自動リスト化サービスを製品化。",
-        enDesc: "Commercialized an automatic food-listing service using refrigerator-compartment camera images.",
-        links: [
-          { title: "Kaden Watch", url: "https://kaden.watch.impress.co.jp/docs/column_review/kdnreview/1615914.html" },
-          { title: "Hitachi Product Page", url: "https://kadenfan.hitachi.co.jp/rei/lineup/rgxcc67x/feature07.html" },
-          { title: "News Release", url: "https://www.hitachi.co.jp/New/cnews/month/2024/01/0118.pdf" }
-        ]
+        jaDesc: "テーマリーダとして、冷蔵室の冷蔵庫カメラ画像を用いた食材自動リスト化サービスを製品化。",
+        enDesc: "As theme leader, commercialized an automatic food-listing service using refrigerator-compartment camera images.",
+        links: {
+          ja: [
+            { title: "日立製品ページ", url: "https://kadenfan.hitachi.co.jp/rei/lineup/rgxcc67x/feature07.html" },
+            { title: "ハピネスアップ", url: "https://kadenfan.hitachi.co.jp/connected/happinessup/feature_recipeplan/" },
+            { title: "家電Watch", url: "https://kaden.watch.impress.co.jp/docs/column_review/kdnreview/1615914.html" },
+            { title: "日立冷蔵庫コンシェルジュアプリ", url: "https://kadenfan.hitachi.co.jp/app/rei/series01/" },
+            { title: "ニュースリリース", url: "https://www.hitachi.co.jp/New/cnews/month/2024/01/0118.pdf" }
+          ],
+          en: [
+            { title: "Hitachi Product Page", url: "https://kadenfan.hitachi.co.jp/rei/lineup/rgxcc67x/feature07.html" },
+            { title: "Happiness Up", url: "https://kadenfan.hitachi.co.jp/connected/happinessup/feature_recipeplan/" },
+            { title: "Kaden Watch", url: "https://kaden.watch.impress.co.jp/docs/column_review/kdnreview/1615914.html" },
+            { title: "Refrigerator Concierge App", url: "https://kadenfan.hitachi.co.jp/app/rei/series01/" },
+            { title: "Press Release", url: "https://www.hitachi.co.jp/New/cnews/month/2024/01/0118.pdf" }
+          ]
+        }
       }
     ];
-
-    function currentLang() {
-      return document.documentElement.getAttribute("lang-mode") || "ja";
-    }
-
-    function makeTag(type, ja, en) {
-      const text = currentLang() === "ja" ? ja : en;
-      return `<span class="tag ${type}">${escapeHtml(text)}</span>`;
-    }
 
     function renderKeywords() {
       const root = document.getElementById("keyword-list");
@@ -1510,18 +1470,21 @@
 
     function renderTopProductCards() {
       const root = document.getElementById("top-product-cards");
-      root.innerHTML = topProductCards.map(card => `
-        <article class="product-hero-card">
-          <div class="product-hero-top">
-            <h3 class="product-hero-title">${escapeHtml(currentLang() === "ja" ? card.jaTitle : card.enTitle)}</h3>
-            <div class="product-hero-date">${escapeHtml(currentLang() === "ja" ? card.jaDate : card.enDate)}</div>
-          </div>
-          <div class="product-hero-desc">${escapeHtml(currentLang() === "ja" ? card.jaDesc : card.enDesc)}</div>
-          <div class="product-hero-links">
-            ${card.links.map(link => `<a href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(link.title)}</a>`).join(" / ")}
-          </div>
-        </article>
-      `).join("");
+      root.innerHTML = topProductCards.map(card => {
+        const links = currentLang() === "ja" ? card.links.ja : card.links.en;
+        return `
+          <article class="product-hero-card">
+            <div class="product-hero-top">
+              <h3 class="product-hero-title">${escapeHtml(currentLang() === "ja" ? card.jaTitle : card.enTitle)}</h3>
+              <div class="product-hero-date">${escapeHtml(currentLang() === "ja" ? card.jaDate : card.enDate)}</div>
+            </div>
+            <div class="product-hero-desc">${escapeHtml(currentLang() === "ja" ? card.jaDesc : card.enDesc)}</div>
+            <div class="product-hero-links">
+              ${links.map(link => `<a href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(link.title)}</a>`).join("")}
+            </div>
+          </article>
+        `;
+      }).join("");
     }
 
     function renderSocieties() {
@@ -1539,14 +1502,42 @@
       root.innerHTML = items.map(item => {
         const title = currentLang() === "ja" ? item.jaTitle : item.enTitle;
         const meta = currentLang() === "ja" ? item.jaMeta : item.enMeta;
-        const titleHtml = item.url
-          ? `<a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(title)}</a>`
+        const url = currentLang() === "ja" ? item.jaUrl : item.enUrl;
+        const titleHtml = url
+          ? `<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(title)}</a>`
           : escapeHtml(title);
 
         const labels = (item.labels || []).map(label => {
           if (label === "award") return makeTag("award", "受賞", "Award");
           if (label === "first") return makeTag("author", "筆頭著者", "First Author");
           if (label === "reviewed") return makeTag("reviewed", "査読有", "Peer-Reviewed");
+          return "";
+        }).join("");
+
+        return `
+          <article class="pub-item">
+            <div class="pub-title">${titleHtml}</div>
+            <div class="pub-authors">${escapeHtml(item.authors || "")}</div>
+            ${labels ? `<div class="pub-tags">${labels}</div>` : ""}
+            <div class="pub-meta">${escapeHtml(meta || "")}</div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function renderDomesticList() {
+      const root = document.getElementById("domestic-list");
+      root.innerHTML = publications.domestic.map(item => {
+        const title = currentLang() === "ja" ? item.jaTitle : item.enTitle;
+        const meta = currentLang() === "ja" ? item.jaMeta : item.enMeta;
+        const url = currentLang() === "ja" ? item.jaUrl : item.enUrl;
+        const titleHtml = url
+          ? `<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(title)}</a>`
+          : escapeHtml(title);
+
+        const labels = (item.labels || []).map(label => {
+          if (label === "award") return makeTag("award", "受賞", "Award");
+          if (label === "first") return makeTag("author", "筆頭著者", "First Author");
           return "";
         }).join("");
 
@@ -1596,6 +1587,12 @@
       const regDate = currentLang() === "ja" ? p.registrationDate : p.registrationDateEn;
       const country = currentLang() === "ja" ? p.country : p.countryEn;
 
+      const filingNo = currentLang() === "ja" ? p.filingNumber : patentNumberToEnglish(p.filingNumber);
+      const pubNo = currentLang() === "ja" ? (p.publicationNumber || "-") : patentNumberToEnglish(p.publicationNumber || "-");
+      const regNo = currentLang() === "ja"
+        ? (p.registrationNumber || "-")
+        : (p.registrationNumber ? patentNumberToEnglish(p.registrationNumber) : "-");
+
       const titleHtml = p.url
         ? `<a href="${escapeHtml(p.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(title)}</a>`
         : escapeHtml(title);
@@ -1605,15 +1602,17 @@
       const regLabel = currentLang() === "ja" ? "登録番号" : "Registration";
       const countryLabel = currentLang() === "ja" ? "出願国" : "Country";
 
-      const line1 = `<strong>${filedLabel}</strong> ${escapeHtml(p.filingNumber)}${filingDate ? ` (${escapeHtml(filingDate)})` : ""}　<strong>${pubLabel}</strong> ${escapeHtml(p.publicationNumber || "-")}${pubDate ? ` (${escapeHtml(pubDate)})` : ""}`;
-      const line2 = `<strong>${regLabel}</strong> ${escapeHtml(p.registrationNumber || "-")}${regDate ? ` (${escapeHtml(regDate)})` : ""}　<strong>${countryLabel}</strong> ${escapeHtml(country)}`;
-
       return `
         <article class="patent-card">
           <div class="patent-title">${titleHtml}</div>
           <div class="patent-authors">${escapeHtml(authors)}</div>
           ${tags.length ? `<div class="patent-tags">${tags.join("")}</div>` : ""}
-          <div class="patent-meta-inline">${line1}<br>${line2}</div>
+          <div class="patent-meta-block">
+            <div><strong>${filedLabel}</strong> ${escapeHtml(filingNo)}${filingDate ? ` (${escapeHtml(filingDate)})` : ""}</div>
+            <div><strong>${pubLabel}</strong> ${escapeHtml(pubNo)}${pubDate ? ` (${escapeHtml(pubDate)})` : ""}</div>
+            <div><strong>${regLabel}</strong> ${escapeHtml(regNo)}${regDate ? ` (${escapeHtml(regDate)})` : ""}</div>
+            <div><strong>${countryLabel}</strong> ${escapeHtml(country)}</div>
+          </div>
         </article>
       `;
     }
@@ -1671,22 +1670,12 @@
           let tagClass = "product";
           if (event.type === "award") tagClass = "award";
           if (event.type === "publication") tagClass = "reviewed";
-          if (event.type === "media") tagClass = "primary";
 
           const eventLabel = currentLang() === "ja" ? event.jaLabel : event.enLabel;
-          const eventTitle = currentLang() === "ja" ? event.titleJa : event.titleEn;
-          const eventPeriod = currentLang() === "ja" ? event.periodJa : event.periodEn;
-
-          const linksHtml = (event.links || []).length
-            ? `<div class="impact-subitem">${event.links.map(link => `<a href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(link.title)}</a>`).join(" / ")}</div>`
-            : "";
 
           return `
             <div class="impact-subitem">
               <div class="impact-tags">${makeTag(tagClass, eventLabel, eventLabel)}</div>
-              ${eventTitle ? `<div><strong>${escapeHtml(eventTitle)}</strong></div>` : ""}
-              ${eventPeriod ? `<div class="muted">${escapeHtml(eventPeriod)}</div>` : ""}
-              ${linksHtml}
             </div>
           `;
         }).join("");
@@ -1714,9 +1703,7 @@
       const totalPrimary = patents.filter(p => p.isPrimary).length;
       const totalRegistered = patents.filter(p => p.isRegistered).length;
       const totalProductPatent = patents.filter(p => p.isProductUsed).length;
-      const totalProductized = commercializationProjects.reduce((sum, project) => {
-        return sum + project.events.filter(event => event.type === "product").length;
-      }, 0);
+      const totalProductized = topProductCards.length;
 
       document.getElementById("stat-patents").textContent = String(totalPatents);
       document.getElementById("stat-primary").textContent = String(totalPrimary);
@@ -1736,11 +1723,10 @@
       renderSocieties();
       renderSimpleList("journal-list", publications.journals);
       renderSimpleList("international-list", publications.international);
-      renderSimpleList("domestic-list", publications.domestic);
+      renderDomesticList();
       renderAwards();
       renderCertifications();
       renderPatents();
-      renderImpactList("commercialization-list", commercializationProjects);
       renderImpactList("research-impact-list", researchImpactProjects);
     }
 
@@ -1756,12 +1742,11 @@
     renderSocieties();
     renderSimpleList("journal-list", publications.journals);
     renderSimpleList("international-list", publications.international);
-    renderSimpleList("domestic-list", publications.domestic);
+    renderDomesticList();
     renderAwards();
     renderCertifications();
     renderHighlights();
     renderPatents();
-    renderImpactList("commercialization-list", commercializationProjects);
     renderImpactList("research-impact-list", researchImpactProjects);
     setLanguage("ja");
   </script>
