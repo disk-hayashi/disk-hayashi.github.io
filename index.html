@@ -165,6 +165,14 @@
       font-size: 0.92rem;
     }
 
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+      margin-bottom: 4px;
+    }
+
     .hero-links {
       display: flex;
       flex-wrap: wrap;
@@ -210,7 +218,7 @@
     .impact-card,
     .product-hero-card,
     .cert-card,
-    .selected-card {
+    .network-card {
       background: var(--card);
       border: 1px solid var(--line);
       border-radius: var(--radius);
@@ -250,12 +258,6 @@
     .note {
       color: var(--muted);
       font-size: 0.82rem;
-    }
-
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
     }
 
     .chip {
@@ -406,16 +408,15 @@
       flex: 1 1 220px;
     }
 
-    .publication-list,
+    .publication-grid-2,
     .award-list,
     .impact-list,
-    .selected-grid {
+    .network-grid {
       display: grid;
       gap: 8px;
     }
 
     .publication-grid-2 {
-      display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 10px;
     }
@@ -438,8 +439,9 @@
       gap: 10px;
     }
 
-    .selected-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+    .network-grid {
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: start;
     }
 
     .patent-card,
@@ -447,14 +449,13 @@
     .award-item,
     .society-item,
     .cert-card,
-    .selected-card {
+    .network-card {
       padding: 10px 12px;
     }
 
     .patent-title,
     .pub-title,
-    .award-title,
-    .selected-title {
+    .award-title {
       font-weight: 800;
       font-size: 0.9rem;
       line-height: 1.35;
@@ -464,8 +465,7 @@
     .patent-authors,
     .pub-authors,
     .pub-meta,
-    .award-meta,
-    .selected-meta {
+    .award-meta {
       color: var(--muted);
       font-size: 0.79rem;
       margin-bottom: 3px;
@@ -489,7 +489,7 @@
     .patent-tags,
     .pub-tags,
     .impact-tags,
-    .selected-tags {
+    .network-tags {
       display: flex;
       gap: 6px;
       flex-wrap: wrap;
@@ -586,7 +586,8 @@
     .impact-card-desc {
       color: #334155;
       font-size: 0.84rem;
-      margin-bottom: 6px;
+      margin-bottom: 0;
+      white-space: pre-line;
     }
 
     .award-list.compact {
@@ -634,8 +635,34 @@
       color: var(--muted);
     }
 
-    .selected-card {
+    .network-card {
       background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+    }
+
+    .network-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .network-legend {
+      display: grid;
+      gap: 8px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex: 0 0 auto;
     }
 
     .footer {
@@ -663,7 +690,7 @@
       .society-grid,
       .cert-grid,
       .publication-grid-2,
-      .selected-grid {
+      .network-grid {
         grid-template-columns: 1fr;
       }
 
@@ -693,12 +720,11 @@
       <nav class="nav">
         <a href="#highlights"><span data-lang="ja">ハイライト</span><span data-lang="en">Highlights</span></a>
         <a href="#top-products"><span data-lang="ja">製品化</span><span data-lang="en">Commercialization</span></a>
-        <a href="#selected-patents"><span data-lang="ja">代表特許</span><span data-lang="en">Selected Patents</span></a>
         <a href="#patents"><span data-lang="ja">特許</span><span data-lang="en">Patents</span></a>
+        <a href="#patent-network"><span data-lang="ja">特許ネットワーク</span><span data-lang="en">Patent Network</span></a>
         <a href="#research-impact"><span data-lang="ja">研究業績</span><span data-lang="en">Research Impact</span></a>
         <a href="#publications"><span data-lang="ja">発表文献</span><span data-lang="en">Publications</span></a>
         <a href="#awards"><span data-lang="ja">受賞</span><span data-lang="en">Awards</span></a>
-        <a href="#about"><span data-lang="ja">概要</span><span data-lang="en">About</span></a>
         <a href="#career"><span data-lang="ja">職歴</span><span data-lang="en">Career</span></a>
         <a href="#certifications"><span data-lang="ja">資格</span><span data-lang="en">Certifications</span></a>
         <a href="#societies"><span data-lang="ja">所属学会</span><span data-lang="en">Societies</span></a>
@@ -718,12 +744,31 @@
             <h1>Daisuke Hayashi</h1>
             <div class="name-ja" data-lang-block="ja">林 大介</div>
             <p class="subtitle">Hitachi, Ltd. Central Research Laboratory</p>
+
             <p class="lead" data-lang-block="ja">
               コンピュータビジョン・機械学習を専門とし、食材AIや医療AIの研究開発と社会実装（製品化）を推進
             </p>
             <p class="lead" data-lang-block="en">
               Specializing in computer vision and machine learning, I promote R&D and social implementation (commercialization) in food AI and medical AI.
             </p>
+
+            <div class="hero-meta">
+              <span class="chip" data-lang="ja">コンピュータビジョン</span>
+              <span class="chip" data-lang="en">Computer Vision</span>
+
+              <span class="chip" data-lang="ja">自然言語処理</span>
+              <span class="chip" data-lang="en">Natural Language Processing</span>
+
+              <span class="chip" data-lang="ja">食材AI</span>
+              <span class="chip" data-lang="en">Food AI</span>
+
+              <span class="chip" data-lang="ja">医療AI</span>
+              <span class="chip" data-lang="en">Medical AI</span>
+
+              <span class="chip" data-lang="ja">製品化</span>
+              <span class="chip" data-lang="en">Commercialization</span>
+            </div>
+
             <div class="hero-links">
               <a class="btn btn-primary" href="https://www.linkedin.com/in/daisuke-hayashi/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
               <a class="btn" href="https://scholar.google.com/citations?hl=ja&user=mHRLTWoAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a>
@@ -768,17 +813,6 @@
       </div>
     </section>
 
-    <section id="selected-patents" class="section">
-      <div class="container">
-        <div class="section-card">
-          <div class="section-head">
-            <h2><span data-lang="ja">代表特許</span><span data-lang="en">Selected Patents</span></h2>
-          </div>
-          <div id="selected-patents-list" class="selected-grid"></div>
-        </div>
-      </div>
-    </section>
-
     <section id="patents" class="section">
       <div class="container">
         <div class="section-card">
@@ -810,6 +844,56 @@
           </div>
 
           <div id="all-patent-list" class="patent-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="patent-network" class="section">
+      <div class="container">
+        <div class="section-card">
+          <div class="section-head">
+            <h2><span data-lang="ja">特許ネットワーク図</span><span data-lang="en">Patent Network</span></h2>
+          </div>
+          <div class="network-grid">
+            <div class="network-card">
+              <svg id="patent-network-svg" class="network-svg" viewBox="0 0 760 460" aria-label="Patent Network Diagram"></svg>
+            </div>
+            <div class="network-card">
+              <div class="network-tags">
+                <span class="tag primary" data-lang="ja">主発明クラスタ</span>
+                <span class="tag primary" data-lang="en">Primary-invention cluster</span>
+                <span class="tag product" data-lang="ja">製品化関連</span>
+                <span class="tag product" data-lang="en">Commercialization-related</span>
+                <span class="tag registered" data-lang="ja">登録済み</span>
+                <span class="tag registered" data-lang="en">Registered</span>
+              </div>
+
+              <div class="network-legend">
+                <div class="legend-item">
+                  <span class="legend-dot" style="background:#2563eb"></span>
+                  <span data-lang="ja">食材AI・冷蔵庫関連特許群</span>
+                  <span data-lang="en">Food AI / refrigerator-related patents</span>
+                </div>
+                <div class="legend-item">
+                  <span class="legend-dot" style="background:#f59e0b"></span>
+                  <span data-lang="ja">医療AI関連特許群</span>
+                  <span data-lang="en">Medical AI patents</span>
+                </div>
+                <div class="legend-item">
+                  <span class="legend-dot" style="background:#10b981"></span>
+                  <span data-lang="ja">PCT・海外展開関連</span>
+                  <span data-lang="en">PCT / international expansion</span>
+                </div>
+              </div>
+
+              <p class="muted" style="margin-top:12px;" data-lang-block="ja">
+                研究テーマごとの近接性が分かるように、食材AI、医療AI、海外展開の3クラスタで可視化しています。中心に近いほど関連特許数が多く、ラベル付きノードは代表的な特許です。
+              </p>
+              <p class="muted" style="margin-top:12px;" data-lang-block="en">
+                The network is visualized in three clusters: Food AI, Medical AI, and international expansion. Nodes closer to the center indicate stronger linkage, and labeled nodes represent notable patents.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -853,17 +937,6 @@
             <h2><span data-lang="ja">受賞・表彰</span><span data-lang="en">Awards</span></h2>
           </div>
           <div id="award-list" class="award-list compact"></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="section">
-      <div class="container">
-        <div class="section-card">
-          <div class="section-head">
-            <h2><span data-lang="ja">研究キーワード</span><span data-lang="en">Research Keywords</span></h2>
-          </div>
-          <div class="chips" id="keyword-list"></div>
         </div>
       </div>
     </section>
@@ -942,23 +1015,6 @@
       if (!isJapanesePatentNumber(value)) return value;
       return "P" + String(value).replace(/[^\dA-Za-z]/g, "");
     }
-
-    const keywordSets = {
-      ja: [
-        "コンピュータビジョン",
-        "自然言語処理",
-        "食材AI",
-        "医療AI",
-        "製品化"
-      ],
-      en: [
-        "Computer Vision",
-        "Natural Language Processing",
-        "Food AI",
-        "Medical AI",
-        "Commercialization"
-      ]
-    };
 
     const societies = [
       {
@@ -1094,9 +1150,7 @@
         jaTitle: "令和5年度MI研究奨励賞",
         enTitle: "FY2023 MI Research Encouragement Award",
         jaMeta: "2024年6月 電子情報通信学会 MI研究会",
-        enMeta: "June 2024, IEICE MI Research Meeting",
-        jaDescription: "賞対象66件のうち3件が選出、日立として初受賞",
-        enDescription: "Selected as one of 3 awardees out of 66 presentations; the first case for Hitachi"
+        enMeta: "June 2024, IEICE MI Research Meeting"
       },
       {
         jaTitle: "ET研究奨励賞",
@@ -1423,8 +1477,12 @@
         enTitle: "Medical Imaging AI",
         periodJa: "2020年10月–2022年9月",
         periodEn: "Oct. 2020 – Sept. 2022",
-        jaDescription: "脳MRI画像から統合失調症・アルツハイマー型認知症・健常者を96.5%の高精度で多疾患分類する技術を開発",
-        enDescription: "Developed a high-accuracy multi-disease classification method that distinguishes schizophrenia, Alzheimer’s disease, and healthy controls from brain MRI images with 96.5% accuracy.",
+        jaDescription:
+`3D-CNNを用いて脳MRI画像から統合失調症・アルツハイマー型認知症・健常者を96.5%の高精度で多疾患分類する技術を開発
+電子情報通信学会 医用画像研究会(MI)で発表し、令和5年度MI研究奨励賞（賞対象66件中3件が選出、日立初）を受賞`,
+        enDescription:
+`Developed a 3D-CNN-based method for multi-disease classification from brain MRI images, distinguishing schizophrenia, Alzheimer’s disease, and healthy controls with 96.5% accuracy.
+Presented the work at the IEICE Medical Imaging Research Meeting (MI) and received the FY2023 MI Research Encouragement Award, with 3 presentations selected out of 66 and being the first case for Hitachi.`,
         labels: [
           { type: "award", ja: "受賞", en: "Award" },
           { type: "reviewed", ja: "国内会議発表", en: "Domestic Conference Presentation" }
@@ -1487,18 +1545,6 @@
       }
     ];
 
-    const selectedPatentTitles = [
-      "学習データ選別装置、貯蔵庫及び学習データ選別方法",
-      "医療画像診断支援装置、医療画像診断支援方法及びプログラム",
-      "画像判定装置、画像選定方法及び収納庫システム"
-    ];
-
-    function renderKeywords() {
-      const root = document.getElementById("keyword-list");
-      const items = currentLang() === "ja" ? keywordSets.ja : keywordSets.en;
-      root.innerHTML = items.map(item => `<span class="chip">${escapeHtml(item)}</span>`).join("");
-    }
-
     function renderTopProductCards() {
       const root = document.getElementById("top-product-cards");
       root.innerHTML = topProductCards.map(card => {
@@ -1518,29 +1564,6 @@
             <div class="product-hero-links">
               ${links.map(link => `<a href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(link.title)}</a>`).join("")}
             </div>
-          </article>
-        `;
-      }).join("");
-    }
-
-    function renderSelectedPatents() {
-      const root = document.getElementById("selected-patents-list");
-      const items = patents.filter(p => selectedPatentTitles.includes(p.jaTitle));
-      root.innerHTML = items.map(p => {
-        const title = currentLang() === "ja" ? p.jaTitle : p.enTitle;
-        const filingNo = currentLang() === "ja" ? p.filingNumber : patentNumberToEnglish(p.filingNumber);
-        const tags = [];
-        if (p.isPrimary) tags.push(makeTag("primary", "主発明", "Primary"));
-        if (p.isRegistered) tags.push(makeTag("registered", "登録特許", "Registered Patent"));
-        if (p.isProductUsed) tags.push(makeTag("product", "製品活用特許", "Patent Used in Product"));
-
-        return `
-          <article class="selected-card">
-            <div class="selected-title">
-              <a href="${escapeHtml(p.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(title)}</a>
-            </div>
-            ${tags.length ? `<div class="selected-tags">${tags.join("")}</div>` : ""}
-            <div class="selected-meta">${escapeHtml(filingNo)}</div>
           </article>
         `;
       }).join("");
@@ -1577,7 +1600,7 @@
           <article class="pub-item">
             <div class="pub-title">${titleHtml}</div>
             <div class="pub-authors">${escapeHtml(item.authors || "")}</div>
-            ${labels ? `<div class="pub-tags">${labels}</div>` : ""}
+            ${labels ? `<div class="pub-tags">${labels.join ? labels.join("") : labels}</div>` : ""}
             <div class="pub-meta">${escapeHtml(meta || "")}</div>
           </article>
         `;
@@ -1627,7 +1650,6 @@
       root.innerHTML = awards.map(item => `
         <article class="award-item compact">
           <div class="award-title">${escapeHtml(currentLang() === "ja" ? item.jaTitle : item.enTitle)}</div>
-          ${item.jaDescription || item.enDescription ? `<div class="muted">${escapeHtml(currentLang() === "ja" ? (item.jaDescription || "") : (item.enDescription || ""))}</div>` : ""}
           <div class="award-meta">${escapeHtml(currentLang() === "ja" ? item.jaMeta : item.enMeta)}</div>
         </article>
       `).join("");
@@ -1759,14 +1781,87 @@
       document.getElementById("stat-papers").textContent = String(totalPapers);
     }
 
+    function renderPatentNetwork() {
+      const svg = document.getElementById("patent-network-svg");
+      if (!svg) return;
+
+      const foodNodes = patents.filter(p =>
+        /貯蔵庫|収納|画像判定|画像補正|学習データ選別|分割装置|分類装置|領域管理|領域機器|貯蔵庫/.test(p.jaTitle)
+      );
+
+      const medicalNodes = patents.filter(p =>
+        /医療画像|血管画像/.test(p.jaTitle)
+      );
+
+      const internationalNodes = patents.filter(p =>
+        p.country === "PCT" || p.country === "中国"
+      );
+
+      const nodes = [
+        { id: "food", labelJa: "食材AI", labelEn: "Food AI", x: 250, y: 220, r: 34, color: "#2563eb", fixed: true },
+        { id: "medical", labelJa: "医療AI", labelEn: "Medical AI", x: 520, y: 150, r: 30, color: "#f59e0b", fixed: true },
+        { id: "global", labelJa: "海外展開", labelEn: "Global / PCT", x: 520, y: 320, r: 28, color: "#10b981", fixed: true }
+      ];
+
+      const links = [];
+
+      function pushPatentNode(list, centerId, startAngle, radiusBase, limit = 5) {
+        list.slice(0, limit).forEach((p, i) => {
+          const angle = startAngle + (i * 0.9);
+          const cx = centerId === "food" ? 250 : centerId === "medical" ? 520 : 520;
+          const cy = centerId === "food" ? 220 : centerId === "medical" ? 150 : 320;
+          const rr = radiusBase + (i % 2) * 18;
+          const x = cx + Math.cos(angle) * rr;
+          const y = cy + Math.sin(angle) * rr;
+          const id = "p" + i + centerId + p.filingDateISO;
+          nodes.push({
+            id,
+            labelJa: p.jaTitle.length > 11 ? p.jaTitle.slice(0, 11) + "…" : p.jaTitle,
+            labelEn: p.enTitle.length > 18 ? p.enTitle.slice(0, 18) + "…" : p.enTitle,
+            x, y,
+            r: p.isRegistered ? 15 : p.isProductUsed ? 14 : 12,
+            color: centerId === "food" ? "#60a5fa" : centerId === "medical" ? "#fbbf24" : "#6ee7b7",
+            patent: p
+          });
+          links.push({ source: centerId, target: id });
+        });
+      }
+
+      pushPatentNode(foodNodes, "food", -1.9, 110, 6);
+      pushPatentNode(medicalNodes, "medical", -1.2, 95, 4);
+      pushPatentNode(internationalNodes, "global", -1.4, 95, 5);
+
+      const lookup = Object.fromEntries(nodes.map(n => [n.id, n]));
+      const labelLang = currentLang() === "ja" ? "labelJa" : "labelEn";
+
+      svg.innerHTML = `
+        <defs>
+          <filter id="nodeShadow" x="-50%" y="-50%" width="200%" height="200%">
+            <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="rgba(15,23,42,0.18)" />
+          </filter>
+        </defs>
+        ${links.map(l => {
+          const s = lookup[l.source];
+          const t = lookup[l.target];
+          return `<line x1="${s.x}" y1="${s.y}" x2="${t.x}" y2="${t.y}" stroke="#cbd5e1" stroke-width="1.5" />`;
+        }).join("")}
+        ${nodes.map(n => `
+          <g>
+            <circle cx="${n.x}" cy="${n.y}" r="${n.r}" fill="${n.color}" filter="url(#nodeShadow)" />
+            <text x="${n.x}" y="${n.y + (n.fixed ? 4 : 3)}" text-anchor="middle" font-size="${n.fixed ? 13 : 10}" font-weight="800" fill="${n.fixed ? '#ffffff' : '#0f172a'}">
+              ${escapeHtml(n[labelLang])}
+            </text>
+          </g>
+        `).join("")}
+      `;
+    }
+
     function setLanguage(lang) {
       document.documentElement.setAttribute("lang-mode", lang);
       document.getElementById("lang-ja").classList.toggle("active", lang === "ja");
       document.getElementById("lang-en").classList.toggle("active", lang === "en");
 
-      renderKeywords();
       renderTopProductCards();
-      renderSelectedPatents();
       renderSocieties();
       renderSimpleList("journal-list", publications.journals);
       renderSimpleList("international-list", publications.international);
@@ -1775,6 +1870,7 @@
       renderCertifications();
       renderPatents();
       renderResearchImpact();
+      renderPatentNetwork();
     }
 
     document.getElementById("patent-search")?.addEventListener("input", renderPatents);
@@ -1784,9 +1880,7 @@
     document.getElementById("lang-ja")?.addEventListener("click", () => setLanguage("ja"));
     document.getElementById("lang-en")?.addEventListener("click", () => setLanguage("en"));
 
-    renderKeywords();
     renderTopProductCards();
-    renderSelectedPatents();
     renderSocieties();
     renderSimpleList("journal-list", publications.journals);
     renderSimpleList("international-list", publications.international);
@@ -1796,6 +1890,7 @@
     renderHighlights();
     renderPatents();
     renderResearchImpact();
+    renderPatentNetwork();
     setLanguage("ja");
   </script>
 </body>
