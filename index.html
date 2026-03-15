@@ -208,7 +208,8 @@
     .pub-item,
     .award-item,
     .society-item,
-    .impact-card {
+    .impact-card,
+    .product-hero-card {
       background: var(--card);
       border: 1px solid var(--line);
       border-radius: var(--radius);
@@ -298,6 +299,59 @@
       display: grid;
       grid-template-columns: repeat(6, 1fr);
       gap: 10px;
+    }
+
+    .product-hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .product-hero-card {
+      padding: 16px;
+      box-shadow: var(--shadow-soft);
+      background:
+        linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+      border: 1px solid rgba(37, 99, 235, 0.12);
+    }
+
+    .product-hero-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .product-hero-title {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 900;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+    }
+
+    .product-hero-date {
+      font-size: 0.78rem;
+      font-weight: 900;
+      color: var(--accent-2);
+      white-space: nowrap;
+    }
+
+    .product-hero-desc {
+      font-size: 0.84rem;
+      color: #334155;
+      margin-bottom: 8px;
+    }
+
+    .product-hero-links {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .product-hero-links a {
+      font-weight: 700;
     }
 
     .stat {
@@ -596,7 +650,8 @@
       .grid-2,
       .grid-4,
       .grid-6,
-      .award-list.compact {
+      .award-list.compact,
+      .product-hero-grid {
         grid-template-columns: 1fr;
       }
 
@@ -612,7 +667,8 @@
       }
 
       .hero-card,
-      .section-card {
+      .section-card,
+      .product-hero-card {
         padding: 14px;
       }
     }
@@ -625,6 +681,7 @@
       <nav class="nav">
         <a href="#about"><span data-lang="ja">概要</span><span data-lang="en">About</span></a>
         <a href="#highlights"><span data-lang="ja">ハイライト</span><span data-lang="en">Highlights</span></a>
+        <a href="#top-products"><span data-lang="ja">製品化2件</span><span data-lang="en">2 Commercializations</span></a>
         <a href="#career"><span data-lang="ja">職歴</span><span data-lang="en">Career</span></a>
         <a href="#awards"><span data-lang="ja">受賞</span><span data-lang="en">Awards</span></a>
         <a href="#patents"><span data-lang="ja">特許</span><span data-lang="en">Patents</span></a>
@@ -671,6 +728,17 @@
               <p data-lang-block="en">Central Research Laboratory, Hitachi, Ltd.</p>
             </div>
           </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="top-products" class="section">
+      <div class="container">
+        <div class="section-card">
+          <div class="section-head">
+            <h2><span data-lang="ja">製品化2件</span><span data-lang="en">Two Commercialized Services</span></h2>
+          </div>
+          <div id="top-product-cards" class="product-hero-grid"></div>
         </div>
       </div>
     </section>
@@ -994,7 +1062,7 @@
         jaMeta: "2024年6月",
         enMeta: "June 2024",
         jaDescription: "研究発表の中で賞対象66件のうち3件が選出：日立初",
-        enDescription: "Selected as one of 3 awardees from 66 presentations; the first case for Hitachi"
+        enDescription: "Selected as one of 3 awardees out of 66 presentations; the first case for Hitachi"
       },
       {
         jaTitle: "ET研究奨励賞",
@@ -1002,7 +1070,7 @@
         jaMeta: "2019年11月",
         enMeta: "Nov. 2019",
         jaDescription: "発表が優秀と認められた",
-        enDescription: "Awarded in recognition of an outstanding presentation"
+        enDescription: "Recognized for an outstanding presentation"
       },
       {
         jaTitle: "学科表彰",
@@ -1400,22 +1468,37 @@
       }
     ];
 
-    function escapeHtml(str) {
-      return String(str || "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#39;");
-    }
+    const topProductCards = [
+      {
+        jaTitle: "製品化① 食材自動リスト化・レシピ提案",
+        enTitle: "Commercialization 1: Automatic Food Listing & Recipe Recommendation",
+        jaDate: "2025年5月",
+        enDate: "May 2025",
+        jaDesc: "冷蔵室・冷凍室・野菜室の冷蔵庫カメラ画像を用いて、食材自動リスト化とレシピ提案を実現。",
+        enDesc: "Implemented automatic food listing and recipe recommendation using refrigerator, freezer, and vegetable-compartment camera images.",
+        links: [
+          { title: "Hitachi Feature Page", url: "https://kadenfan.hitachi.co.jp/connected/happinessup/feature_recipeplan/" },
+          { title: "News Release", url: "https://www.hitachi.co.jp/New/cnews/month/2025/05/0522.html" },
+          { title: "Kaden Watch", url: "https://kaden.watch.impress.co.jp/docs/news/2019567.html" }
+        ]
+      },
+      {
+        jaTitle: "製品化② 食材自動リスト化",
+        enTitle: "Commercialization 2: Automatic Food Listing",
+        jaDate: "2024年3月",
+        enDate: "Mar. 2024",
+        jaDesc: "冷蔵室の冷蔵庫カメラ画像を用いた食材自動リスト化サービスを製品化。",
+        enDesc: "Commercialized an automatic food-listing service using refrigerator-compartment camera images.",
+        links: [
+          { title: "Kaden Watch", url: "https://kaden.watch.impress.co.jp/docs/column_review/kdnreview/1615914.html" },
+          { title: "Hitachi Product Page", url: "https://kadenfan.hitachi.co.jp/rei/lineup/rgxcc67x/feature07.html" },
+          { title: "News Release", url: "https://www.hitachi.co.jp/New/cnews/month/2024/01/0118.pdf" }
+        ]
+      }
+    ];
 
     function currentLang() {
       return document.documentElement.getAttribute("lang-mode") || "ja";
-    }
-
-    function makeTag(type, ja, en) {
-      const text = currentLang() === "ja" ? ja : en;
-      return `<span class="tag ${type}">${escapeHtml(text)}</span>`;
     }
 
     function renderKeywords() {
@@ -1423,6 +1506,29 @@
       if (!root) return;
       const items = currentLang() === "ja" ? keywordSets.ja : keywordSets.en;
       root.innerHTML = items.map(item => `<span class="chip">${escapeHtml(item)}</span>`).join("");
+    }
+
+    function makeTag(type, ja, en) {
+      const text = currentLang() === "ja" ? ja : en;
+      return `<span class="tag ${type}">${escapeHtml(text)}</span>`;
+    }
+
+    function renderTopProductCards() {
+      const root = document.getElementById("top-product-cards");
+      if (!root) return;
+
+      root.innerHTML = topProductCards.map(card => `
+        <article class="product-hero-card">
+          <div class="product-hero-top">
+            <h3 class="product-hero-title">${escapeHtml(currentLang() === "ja" ? card.jaTitle : card.enTitle)}</h3>
+            <div class="product-hero-date">${escapeHtml(currentLang() === "ja" ? card.jaDate : card.enDate)}</div>
+          </div>
+          <div class="product-hero-desc">${escapeHtml(currentLang() === "ja" ? card.jaDesc : card.enDesc)}</div>
+          <div class="product-hero-links">
+            ${card.links.map(link => `<a href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(link.title)}</a>`).join(" / ")}
+          </div>
+        </article>
+      `).join("");
     }
 
     function renderSocieties() {
@@ -1642,6 +1748,7 @@
       document.getElementById("lang-en").classList.toggle("active", lang === "en");
 
       renderKeywords();
+      renderTopProductCards();
       renderSocieties();
       renderSimpleList("journal-list", publications.journals);
       renderSimpleList("international-list", publications.international);
@@ -1660,6 +1767,7 @@
     document.getElementById("lang-en")?.addEventListener("click", () => setLanguage("en"));
 
     renderKeywords();
+    renderTopProductCards();
     renderSocieties();
     renderSimpleList("journal-list", publications.journals);
     renderSimpleList("international-list", publications.international);
