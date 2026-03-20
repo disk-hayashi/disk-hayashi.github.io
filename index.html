@@ -276,9 +276,9 @@
       gap: 10px;
     }
 
-    .grid-6 {
+    .grid-7 {
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
+      grid-template-columns: repeat(7, 1fr);
       gap: 10px;
     }
 
@@ -653,7 +653,7 @@
     @media (max-width: 900px) {
       .hero-card,
       .grid-4,
-      .grid-6,
+      .grid-7,
       .award-list.compact,
       .product-hero-grid,
       .patent-grid,
@@ -758,13 +758,14 @@
           <div class="section-head">
             <h2><span data-lang="ja">ハイライト</span><span data-lang="en">Highlights</span></h2>
           </div>
-          <div class="grid-6">
+          <div class="grid-7">
             <div class="stat"><span class="num" id="stat-patents">0</span><span class="label"><span data-lang="ja">特許出願</span><span data-lang="en">Patent Applications</span></span></div>
             <div class="stat"><span class="num" id="stat-primary">0</span><span class="label"><span data-lang="ja">主発明</span><span data-lang="en">Primary Inventions</span></span></div>
             <div class="stat"><span class="num" id="stat-registered">0</span><span class="label"><span data-lang="ja">登録特許</span><span data-lang="en">Registered Patents</span></span></div>
             <div class="stat"><span class="num" id="stat-product-patent">0</span><span class="label"><span data-lang="ja">製品活用特許</span><span data-lang="en">Patents Used in Products</span></span></div>
             <div class="stat"><span class="num" id="stat-productized">0</span><span class="label"><span data-lang="ja">製品化件数</span><span data-lang="en">Commercialized Cases</span></span></div>
             <div class="stat"><span class="num" id="stat-papers">0</span><span class="label"><span data-lang="ja">発表文献</span><span data-lang="en">Publications</span></span></div>
+            <div class="stat"><span class="num" id="stat-awards">0</span><span class="label"><span data-lang="ja">受賞件数</span><span data-lang="en">Awards</span></span></div>
           </div>
         </div>
       </div>
@@ -1709,6 +1710,7 @@ Presented the work at the IEICE Medical Imaging Research Meeting (MI) and receiv
       const totalRegistered = patents.filter(p => p.isRegistered).length;
       const totalProductPatent = patents.filter(p => p.isProductUsed).length;
       const totalProductized = topProductCards.length;
+      const totalAwards = awards.length; // 受賞・表彰の章から自動抽出
 
       document.getElementById("stat-patents").textContent = String(totalPatents);
       document.getElementById("stat-primary").textContent = String(totalPrimary);
@@ -1716,6 +1718,7 @@ Presented the work at the IEICE Medical Imaging Research Meeting (MI) and receiv
       document.getElementById("stat-product-patent").textContent = String(totalProductPatent);
       document.getElementById("stat-productized").textContent = String(totalProductized);
       document.getElementById("stat-papers").textContent = String(totalPapers);
+      document.getElementById("stat-awards").textContent = String(totalAwards);
     }
 
     function setLanguage(lang) {
@@ -1732,6 +1735,7 @@ Presented the work at the IEICE Medical Imaging Research Meeting (MI) and receiv
       renderCertifications();
       renderPatents();
       renderResearchImpact();
+      renderHighlights();
     }
 
     document.getElementById("patent-search")?.addEventListener("input", renderPatents);
