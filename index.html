@@ -278,7 +278,7 @@
 
     .grid-7 {
       display: grid;
-      grid-template-columns: repeat(7, 1fr);
+      grid-template-columns: repeat(6, 1fr);
       gap: 10px;
     }
 
@@ -341,24 +341,21 @@
     }
 
     .stat {
-      padding: 12px 8px;
+      padding: 14px 10px;
       text-align: center;
       background: var(--card-soft);
-    }
-
-    .stat .num {
-      display: block;
-      font-size: 1.3rem;
-      line-height: 1.05;
-      color: var(--accent-2);
-      font-weight: 900;
-      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 86px;
     }
 
     .stat .label {
-      font-size: 0.72rem;
+      font-size: 0.82rem;
       color: var(--muted);
-      font-weight: 800;
+      font-weight: 900;
+      line-height: 1.45;
+      white-space: pre-line;
     }
 
     .timeline {
@@ -604,11 +601,6 @@
       font-size: 0.76rem;
     }
 
-    .award-item.compact .muted {
-      font-size: 0.76rem;
-      line-height: 1.35;
-    }
-
     .society-item {
       background: var(--card-soft);
     }
@@ -697,8 +689,8 @@
         <a href="#certifications"><span data-lang="ja">資格</span><span data-lang="en">Certifications</span></a>
         <a href="#societies"><span data-lang="ja">所属学会</span><span data-lang="en">Societies</span></a>
         <div class="lang-switch">
-          <button class="lang-btn active" id="lang-ja">JP</button>
-          <button class="lang-btn" id="lang-en">EN</button>
+          <button class="lang-btn active" id="lang-ja" type="button">JP</button>
+          <button class="lang-btn" id="lang-en" type="button">EN</button>
         </div>
       </nav>
     </div>
@@ -759,13 +751,12 @@
             <h2><span data-lang="ja">ハイライト</span><span data-lang="en">Highlights</span></h2>
           </div>
           <div class="grid-7">
-            <div class="stat"><span class="num" id="stat-productized">0</span><span class="label"><span data-lang="ja">製品化実績</span><span data-lang="en">Commercialized Cases</span></span></div>
-            <div class="stat"><span class="num" id="stat-awards">0</span><span class="label"><span data-lang="ja">受賞・表彰</span><span data-lang="en">Awards</span></span></div>
-            <div class="stat"><span class="num" id="stat-papers">0</span><span class="label"><span data-lang="ja">論文発表</span><span data-lang="en">Publications</span></span></div>
-            <div class="stat"><span class="num" id="stat-registered">0</span><span class="label"><span data-lang="ja">登録特許</span><span data-lang="en">Registered Patents</span></span></div>
-            <div class="stat"><span class="num" id="stat-product-patent">0</span><span class="label"><span data-lang="ja">製品採用特許</span><span data-lang="en">Patents Used in Products</span></span></div>
-            <div class="stat"><span class="num" id="stat-patents">0</span><span class="label"><span data-lang="ja">特許出願</span><span data-lang="en">Patent Applications</span></span></div>
-            <div class="stat"><span class="num" id="stat-primary">0</span><span class="label"><span data-lang="ja">主発明</span><span data-lang="en">Primary Inventions</span></span></div>
+            <div class="stat"><span class="label" id="stat-productized-label">製品化実績 0件</span></div>
+            <div class="stat"><span class="label" id="stat-awards-label">受賞・表彰 0件</span></div>
+            <div class="stat"><span class="label" id="stat-papers-label">論文発表 0件</span></div>
+            <div class="stat"><span class="label" id="stat-registered-label">登録特許 0件</span></div>
+            <div class="stat"><span class="label" id="stat-product-patent-label">製品採用特許 0件</span></div>
+            <div class="stat"><span class="label" id="stat-patents-label">特許出願 0件<br>(主発明 0件)</span></div>
           </div>
         </div>
       </div>
@@ -790,10 +781,18 @@
           </div>
 
           <div class="grid-4">
-            <div class="stat"><span class="num" id="count-total">0</span><span class="label"><span data-lang="ja">特許出願</span><span data-lang="en">Patent Applications</span></span></div>
-            <div class="stat"><span class="num" id="count-primary">0</span><span class="label"><span data-lang="ja">主発明</span><span data-lang="en">Primary</span></span></div>
-            <div class="stat"><span class="num" id="count-registered">0</span><span class="label"><span data-lang="ja">登録特許</span><span data-lang="en">Registered</span></span></div>
-            <div class="stat"><span class="num" id="count-product">0</span><span class="label"><span data-lang="ja">製品採用特許</span><span data-lang="en">Product-used</span></span></div>
+            <div class="stat">
+              <span class="label" id="count-total-label">特許出願 0件<br>(主発明 0件)</span>
+            </div>
+            <div class="stat">
+              <span class="label" id="count-registered-label">登録特許 0件</span>
+            </div>
+            <div class="stat">
+              <span class="label" id="count-product-label">製品採用特許 0件</span>
+            </div>
+            <div class="stat">
+              <span class="label" id="count-country-label">日本出願 0件</span>
+            </div>
           </div>
 
           <div class="tools">
@@ -938,7 +937,6 @@
     function highlightMyName(authors) {
       if (!authors) return "";
       let html = escapeHtml(authors);
-
       const patterns = [
         /Daisuke Hayashi/g,
         /D\. Hayashi/g,
@@ -946,11 +944,9 @@
         /林\u3000大介/g,
         /林大介/g
       ];
-
       patterns.forEach((pattern) => {
         html = html.replace(pattern, (m) => `<span class="name-strong">${m}</span>`);
       });
-
       return html;
     }
 
@@ -1620,6 +1616,9 @@ Presented the work at the IEICE Medical Imaging Research Meeting (MI) and receiv
       const pubLabel = currentLang() === "ja" ? "公開番号" : "Publication";
       const regLabel = currentLang() === "ja" ? "登録番号" : "Registration";
       const countryLabel = currentLang() === "ja" ? "出願国" : "Country";
+      const filedDateLabel = currentLang() === "ja" ? "出願日" : "Filing Date";
+      const pubDateLabel = currentLang() === "ja" ? "公開日" : "Publication Date";
+      const regDateLabel = currentLang() === "ja" ? "登録日" : "Registration Date";
 
       return `
         <article class="patent-card">
@@ -1627,64 +1626,65 @@ Presented the work at the IEICE Medical Imaging Research Meeting (MI) and receiv
           <div class="patent-authors">${highlightMyName(authors)}</div>
           ${tags.length ? `<div class="patent-tags">${tags.join("")}</div>` : ""}
           <div class="patent-meta-block">
-            <div><strong>${filedLabel}</strong> ${escapeHtml(filingNo)}${filingDate ? ` (${escapeHtml(filingDate)})` : ""}</div>
-            <div><strong>${pubLabel}</strong> ${escapeHtml(pubNo)}${pubDate ? ` (${escapeHtml(pubDate)})` : ""}</div>
-            <div><strong>${regLabel}</strong> ${escapeHtml(regNo)}${regDate ? ` (${escapeHtml(regDate)})` : ""}</div>
-            <div><strong>${countryLabel}</strong> ${escapeHtml(country)}</div>
+            <div><strong>${countryLabel}:</strong> ${escapeHtml(country)}</div>
+            <div><strong>${filedLabel}:</strong> ${escapeHtml(filingNo || "-")}</div>
+            <div><strong>${pubLabel}:</strong> ${escapeHtml(pubNo || "-")}</div>
+            <div><strong>${regLabel}:</strong> ${escapeHtml(regNo || "-")}</div>
+            <div><strong>${filedDateLabel}:</strong> ${escapeHtml(filingDate || "-")}</div>
+            <div><strong>${pubDateLabel}:</strong> ${escapeHtml(pubDate || "-")}</div>
+            <div><strong>${regDateLabel}:</strong> ${escapeHtml(regDate || "-")}</div>
           </div>
         </article>
       `;
     }
 
-    function renderPatentList(targetId, items) {
-      const target = document.getElementById(targetId);
-      if (!items.length) {
-        target.innerHTML = `<p class="note">${escapeHtml(currentLang() === "ja" ? "該当する特許はありません。" : "No patents matched the current filter.")}</p>`;
-        return;
-      }
-      target.innerHTML = items.map(patentCard).join("");
-    }
-
     function renderPatents() {
-      const keyword = (document.getElementById("patent-search")?.value || "").trim().toLowerCase();
-      const country = document.getElementById("country-filter")?.value || "";
-      const type = document.getElementById("type-filter")?.value || "";
+      const searchText = (document.getElementById("patent-search").value || "").toLowerCase().trim();
+      const countryValue = document.getElementById("country-filter").value;
+      const typeValue = document.getElementById("type-filter").value;
 
-      const filtered = patents
-        .slice()
-        .sort((a, b) => b.filingDateISO.localeCompare(a.filingDateISO))
-        .filter(p => {
-          const haystack = [
-            p.jaTitle, p.enTitle, p.authorsJa, p.authorsEn,
-            p.filingNumber, p.publicationNumber, p.registrationNumber
-          ].join(" ").toLowerCase();
+      const filtered = patents.filter((p) => {
+        const textBlob = [
+          p.jaTitle, p.enTitle, p.authorsJa, p.authorsEn,
+          p.filingNumber, p.publicationNumber, p.registrationNumber,
+          p.country, p.countryEn
+        ].join(" ").toLowerCase();
 
-          const keywordOk = !keyword || haystack.includes(keyword);
-          const countryOk = !country || p.country === country;
+        const matchesSearch = !searchText || textBlob.includes(searchText);
+        const matchesCountry = !countryValue || p.country === countryValue;
+        const matchesType =
+          !typeValue ||
+          (typeValue === "primary" && p.isPrimary) ||
+          (typeValue === "registered" && p.isRegistered) ||
+          (typeValue === "product" && p.isProductUsed);
 
-          let typeOk = true;
-          if (type === "primary") typeOk = !!p.isPrimary;
-          if (type === "registered") typeOk = !!p.isRegistered;
-          if (type === "product") typeOk = !!p.isProductUsed;
+        return matchesSearch && matchesCountry && matchesType;
+      });
 
-          return keywordOk && countryOk && typeOk;
-        });
+      const root = document.getElementById("all-patent-list");
+      root.innerHTML = filtered
+        .sort((a, b) => String(b.filingDateISO).localeCompare(String(a.filingDateISO)))
+        .map(patentCard)
+        .join("");
 
-      document.getElementById("count-total").textContent = String(patents.length);
-      document.getElementById("count-primary").textContent = String(patents.filter(p => p.isPrimary).length);
-      document.getElementById("count-registered").textContent = String(patents.filter(p => p.isRegistered).length);
-      document.getElementById("count-product").textContent = String(patents.filter(p => p.isProductUsed).length);
-
-      renderPatentList("all-patent-list", filtered);
+      if (!filtered.length) {
+        root.innerHTML = `
+          <article class="patent-card">
+            <div class="muted">${currentLang() === "ja" ? "該当する特許がありません。" : "No patents found."}</div>
+          </article>
+        `;
+      }
     }
 
     function renderResearchImpact() {
       const root = document.getElementById("research-impact-list");
-      root.innerHTML = researchImpactProjects.map(project => {
-        const title = currentLang() === "ja" ? project.jaTitle : project.enTitle;
-        const period = currentLang() === "ja" ? project.periodJa : project.periodEn;
-        const desc = currentLang() === "ja" ? project.jaDescription : project.enDescription;
-        const labels = (project.labels || []).map(label => makeTag(label.type, label.ja, label.en)).join("");
+      root.innerHTML = researchImpactProjects.map(item => {
+        const title = currentLang() === "ja" ? item.jaTitle : item.enTitle;
+        const period = currentLang() === "ja" ? item.periodJa : item.periodEn;
+        const desc = currentLang() === "ja" ? item.jaDescription : item.enDescription;
+        const tags = (item.labels || []).map(label =>
+          makeTag(label.type, label.ja, label.en)
+        ).join("");
 
         return `
           <article class="impact-card">
@@ -1692,70 +1692,78 @@ Presented the work at the IEICE Medical Imaging Research Meeting (MI) and receiv
               <h3 class="impact-card-title">${escapeHtml(title)}</h3>
               <div class="impact-card-period">${escapeHtml(period)}</div>
             </div>
-            ${labels ? `<div class="impact-tags">${labels}</div>` : ""}
-            <div class="impact-card-desc">${escapeHtml(desc)}</div>
+            ${tags ? `<div class="impact-tags">${tags}</div>` : ""}
+            <p class="impact-card-desc">${escapeHtml(desc)}</p>
           </article>
         `;
       }).join("");
     }
 
-    function renderHighlights() {
-      const totalPapers =
+    function updateStats() {
+      const productCount = topProductCards.length;
+      const awardCount = awards.length;
+      const paperCount =
         publications.journals.length +
         publications.international.length +
         publications.domestic.length;
+      const patentCount = patents.length;
+      const primaryCount = patents.filter(p => p.isPrimary).length;
+      const registeredCount = patents.filter(p => p.isRegistered).length;
+      const productPatentCount = patents.filter(p => p.isProductUsed).length;
+      const japanPatentCount = patents.filter(p => p.country === "日本").length;
 
-      const totalPatents = patents.length;
-      const totalPrimary = patents.filter(p => p.isPrimary).length;
-      const totalRegistered = patents.filter(p => p.isRegistered).length;
-      const totalProductPatent = patents.filter(p => p.isProductUsed).length;
-      const totalProductized = topProductCards.length;
-      const totalAwards = awards.length; // 受賞・表彰の章から自動抽出
+      const ja = currentLang() === "ja";
 
-      document.getElementById("stat-patents").textContent = String(totalPatents);
-      document.getElementById("stat-primary").textContent = String(totalPrimary);
-      document.getElementById("stat-registered").textContent = String(totalRegistered);
-      document.getElementById("stat-product-patent").textContent = String(totalProductPatent);
-      document.getElementById("stat-productized").textContent = String(totalProductized);
-      document.getElementById("stat-papers").textContent = String(totalPapers);
-      document.getElementById("stat-awards").textContent = String(totalAwards);
+      document.getElementById("stat-productized-label").innerHTML =
+        ja ? `製品化実績 ${productCount}件` : `Commercialized Cases ${productCount}`;
+      document.getElementById("stat-awards-label").innerHTML =
+        ja ? `受賞・表彰 ${awardCount}件` : `Awards ${awardCount}`;
+      document.getElementById("stat-papers-label").innerHTML =
+        ja ? `論文発表 ${paperCount}件` : `Publications ${paperCount}`;
+      document.getElementById("stat-registered-label").innerHTML =
+        ja ? `登録特許 ${registeredCount}件` : `Registered Patents ${registeredCount}`;
+      document.getElementById("stat-product-patent-label").innerHTML =
+        ja ? `製品採用特許 ${productPatentCount}件` : `Patents Used in Products ${productPatentCount}`;
+      document.getElementById("stat-patents-label").innerHTML =
+        ja ? `特許出願 ${patentCount}件<br>(主発明 ${primaryCount}件)` : `Patent Applications ${patentCount}<br>(Primary Inventions ${primaryCount})`;
+
+      document.getElementById("count-total-label").innerHTML =
+        ja ? `特許出願 ${patentCount}件<br>(主発明 ${primaryCount}件)` : `Patent Applications ${patentCount}<br>(Primary Inventions ${primaryCount})`;
+      document.getElementById("count-registered-label").innerHTML =
+        ja ? `登録特許 ${registeredCount}件` : `Registered Patents ${registeredCount}`;
+      document.getElementById("count-product-label").innerHTML =
+        ja ? `製品採用特許 ${productPatentCount}件` : `Patents Used in Products ${productPatentCount}`;
+      document.getElementById("count-country-label").innerHTML =
+        ja ? `日本出願 ${japanPatentCount}件` : `Japan Filings ${japanPatentCount}`;
     }
 
-    function setLanguage(lang) {
-      document.documentElement.setAttribute("lang-mode", lang);
-      document.getElementById("lang-ja").classList.toggle("active", lang === "ja");
-      document.getElementById("lang-en").classList.toggle("active", lang === "en");
-
+    function renderAll() {
       renderTopProductCards();
       renderSocieties();
       renderSimpleList("journal-list", publications.journals);
       renderSimpleList("international-list", publications.international);
       renderDomesticList();
-      renderAwards();
       renderCertifications();
+      renderAwards();
       renderPatents();
       renderResearchImpact();
-      renderHighlights();
+      updateStats();
     }
 
-    document.getElementById("patent-search")?.addEventListener("input", renderPatents);
-    document.getElementById("country-filter")?.addEventListener("change", renderPatents);
-    document.getElementById("type-filter")?.addEventListener("change", renderPatents);
+    function setLang(lang) {
+      document.documentElement.setAttribute("lang-mode", lang);
+      document.getElementById("lang-ja").classList.toggle("active", lang === "ja");
+      document.getElementById("lang-en").classList.toggle("active", lang === "en");
+      renderAll();
+    }
 
-    document.getElementById("lang-ja")?.addEventListener("click", () => setLanguage("ja"));
-    document.getElementById("lang-en")?.addEventListener("click", () => setLanguage("en"));
+    document.getElementById("lang-ja").addEventListener("click", () => setLang("ja"));
+    document.getElementById("lang-en").addEventListener("click", () => setLang("en"));
+    document.getElementById("patent-search").addEventListener("input", renderPatents);
+    document.getElementById("country-filter").addEventListener("change", renderPatents);
+    document.getElementById("type-filter").addEventListener("change", renderPatents);
 
-    renderTopProductCards();
-    renderSocieties();
-    renderSimpleList("journal-list", publications.journals);
-    renderSimpleList("international-list", publications.international);
-    renderDomesticList();
-    renderAwards();
-    renderCertifications();
-    renderHighlights();
-    renderPatents();
-    renderResearchImpact();
-    setLanguage("ja");
+    renderAll();
   </script>
 </body>
 </html>
