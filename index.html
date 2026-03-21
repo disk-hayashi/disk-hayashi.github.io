@@ -8,7 +8,6 @@
   <style>
     :root {
       --bg: #f3f7fc;
-      --bg-2: #eef4fb;
       --card: #ffffff;
       --card-soft: #f8fbff;
       --text: #0f172a;
@@ -16,37 +15,11 @@
       --line: #dbe5f0;
       --accent: #2563eb;
       --accent-2: #1d4ed8;
-      --accent-3: #0f4ccf;
       --accent-soft: rgba(37, 99, 235, 0.10);
-      --accent-soft-2: rgba(29, 78, 216, 0.07);
+      --accent-soft-2: rgba(37, 99, 235, 0.06);
 
-      --gold-bg: linear-gradient(135deg, #fff6db 0%, #ffefb0 100%);
-      --gold-border: #f4d35e;
-      --gold-text: #7a5400;
-
-      --blue-bg: linear-gradient(135deg, #eaf2ff 0%, #dbeafe 100%);
-      --blue-border: #93c5fd;
-      --blue-text: #1d4ed8;
-
-      --green-bg: linear-gradient(135deg, #ecfdf3 0%, #dcfce7 100%);
-      --green-border: #86efac;
-      --green-text: #166534;
-
-      --rose-bg: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
-      --rose-border: #fda4af;
-      --rose-text: #be123c;
-
-      --violet-bg: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
-      --violet-border: #c4b5fd;
-      --violet-text: #6d28d9;
-
-      --teal-bg: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%);
-      --teal-border: #67e8f9;
-      --teal-text: #0f766e;
-
-      --amber-bg: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
-      --amber-border: #fdba74;
-      --amber-text: #9a3412;
+      --highlight-bg: linear-gradient(135deg, #eef4ff 0%, #dbeafe 100%);
+      --highlight-border: #93c5fd;
 
       --patent: #dbeafe;
       --registered: #dcfce7;
@@ -99,9 +72,9 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(243, 247, 252, 0.86);
+      background: rgba(243, 247, 252, 0.88);
       backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(219, 229, 240, 0.9);
+      border-bottom: 1px solid rgba(219, 229, 240, 0.92);
     }
 
     .header-inner {
@@ -109,11 +82,11 @@
       justify-content: space-between;
       align-items: center;
       gap: 12px;
-      padding: 10px 0;
+      padding: 9px 0;
     }
 
     .brand {
-      font-size: 1rem;
+      font-size: 0.98rem;
       font-weight: 900;
       letter-spacing: 0.02em;
       color: var(--text);
@@ -171,13 +144,13 @@
 
     .hero-card {
       display: grid;
-      grid-template-columns: 1.45fr 0.72fr;
-      gap: 20px;
+      grid-template-columns: 1.35fr 0.72fr;
+      gap: 18px;
       background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
       border: 1px solid var(--line);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow);
-      padding: 28px;
+      padding: 26px;
       position: relative;
       overflow: hidden;
     }
@@ -191,6 +164,23 @@
       border-radius: 50%;
       background: radial-gradient(circle, rgba(37,99,235,0.09) 0%, rgba(37,99,235,0.02) 52%, transparent 72%);
       pointer-events: none;
+    }
+
+    .hero-main {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .hero-left {
+      min-width: 0;
+    }
+
+    .hero-right {
+      width: 176px;
+      display: flex;
+      justify-content: center;
     }
 
     h1 {
@@ -233,7 +223,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 18px;
+      margin-top: 16px;
     }
 
     .btn {
@@ -261,32 +251,14 @@
       box-shadow: 0 10px 22px rgba(37, 99, 235, 0.25);
     }
 
-    .hero-side {
-      display: grid;
-      gap: 12px;
-      align-content: start;
-      justify-items: center;
-    }
-
     .hero-side-card {
       width: 100%;
       background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
       border: 1px solid rgba(37, 99, 235, 0.12);
       border-radius: 22px;
-      padding: 16px;
+      padding: 14px;
       box-shadow: var(--shadow-soft);
       text-align: center;
-    }
-
-    .hero-side-badge {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      color: var(--accent-2);
-      font-size: 0.76rem;
-      font-weight: 900;
     }
 
     .section-card,
@@ -368,7 +340,7 @@
 
     .highlight-grid {
       display: grid;
-      grid-template-columns: repeat(7, 1fr);
+      grid-template-columns: repeat(6, 1fr);
       gap: 10px;
     }
 
@@ -455,6 +427,8 @@
       box-shadow: 0 6px 16px rgba(15, 23, 42, 0.04);
       position: relative;
       overflow: hidden;
+      background: var(--highlight-bg);
+      border-color: var(--highlight-border);
     }
 
     .stat-tile::before {
@@ -465,6 +439,7 @@
       bottom: 0;
       width: 5px;
       border-radius: 999px;
+      background: #2563eb;
       opacity: 0.95;
     }
 
@@ -474,56 +449,8 @@
       line-height: 1.32;
       letter-spacing: 0.01em;
       white-space: pre-line;
+      color: #111827;
     }
-
-    .stat-tile.rank-1 {
-      background: var(--gold-bg);
-      border-color: var(--gold-border);
-    }
-    .stat-tile.rank-1::before { background: #eab308; }
-    .stat-tile.rank-1 .stat-label { color: var(--gold-text); }
-
-    .stat-tile.rank-2 {
-      background: var(--blue-bg);
-      border-color: var(--blue-border);
-    }
-    .stat-tile.rank-2::before { background: #2563eb; }
-    .stat-tile.rank-2 .stat-label { color: var(--blue-text); }
-
-    .stat-tile.rank-3 {
-      background: var(--green-bg);
-      border-color: var(--green-border);
-    }
-    .stat-tile.rank-3::before { background: #16a34a; }
-    .stat-tile.rank-3 .stat-label { color: var(--green-text); }
-
-    .stat-tile.rank-4 {
-      background: var(--rose-bg);
-      border-color: var(--rose-border);
-    }
-    .stat-tile.rank-4::before { background: #e11d48; }
-    .stat-tile.rank-4 .stat-label { color: var(--rose-text); }
-
-    .stat-tile.rank-5 {
-      background: var(--violet-bg);
-      border-color: var(--violet-border);
-    }
-    .stat-tile.rank-5::before { background: #7c3aed; }
-    .stat-tile.rank-5 .stat-label { color: var(--violet-text); }
-
-    .stat-tile.rank-6 {
-      background: var(--teal-bg);
-      border-color: var(--teal-border);
-    }
-    .stat-tile.rank-6::before { background: #0891b2; }
-    .stat-tile.rank-6 .stat-label { color: var(--teal-text); }
-
-    .stat-tile.rank-7 {
-      background: var(--amber-bg);
-      border-color: var(--amber-border);
-    }
-    .stat-tile.rank-7::before { background: #ea580c; }
-    .stat-tile.rank-7 .stat-label { color: var(--amber-text); }
 
     .timeline {
       display: grid;
@@ -607,6 +534,11 @@
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 10px;
+    }
+
+    .award-list.compact {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
     }
 
     .patent-card,
@@ -706,17 +638,27 @@
       border-color: #ddd6fe;
     }
 
-    .patent-meta-block {
-      font-size: 0.80rem;
-      line-height: 1.46;
-      color: var(--muted);
+    .patent-meta-grid {
       display: grid;
-      gap: 2px;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 16px;
+      margin-top: 4px;
+      font-size: 0.80rem;
+      color: var(--muted);
     }
 
-    .patent-meta-block strong {
+    .patent-meta-item {
+      min-width: 0;
+    }
+
+    .patent-meta-item.full {
+      grid-column: 1 / -1;
+    }
+
+    .patent-meta-item strong {
       color: var(--text);
       font-weight: 850;
+      margin-right: 6px;
     }
 
     .impact-card {
@@ -754,11 +696,6 @@
       font-size: 0.84rem;
       margin-bottom: 0;
       white-space: pre-line;
-    }
-
-    .award-list.compact {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px;
     }
 
     .award-item.compact .award-title {
@@ -808,8 +745,9 @@
     html[lang-mode="en"] [data-lang="en"] { display: inline; }
     html[lang-mode="en"] [data-lang-block="en"] { display: block; }
 
-    @media (max-width: 980px) {
+    @media (max-width: 1040px) {
       .hero-card,
+      .hero-main,
       .highlight-grid,
       .award-list.compact,
       .product-hero-grid,
@@ -820,13 +758,22 @@
         grid-template-columns: 1fr;
       }
 
+      .hero-right {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
       .header-inner {
         flex-direction: column;
         align-items: flex-start;
       }
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 700px) {
+      .patent-meta-grid {
+        grid-template-columns: 1fr;
+      }
+
       .container {
         width: min(var(--maxw), calc(100% - 16px));
       }
@@ -869,48 +816,48 @@
     <section class="hero">
       <div class="container">
         <div class="hero-card">
-          <div>
-            <h1>Daisuke Hayashi</h1>
-            <div class="name-ja" data-lang-block="ja">林 大介</div>
-            <p class="subtitle">Hitachi, Ltd. Central Research Laboratory</p>
+          <div class="hero-main">
+            <div class="hero-left">
+              <h1>Daisuke Hayashi</h1>
+              <div class="name-ja" data-lang-block="ja">林 大介</div>
+              <p class="subtitle">Hitachi, Ltd. Central Research Laboratory</p>
 
-            <p class="lead" data-lang-block="ja">
-              コンピュータビジョン・機械学習を専門とし、食材AIや医療AIの研究開発と社会実装（製品化）を推進
-            </p>
-            <p class="lead" data-lang-block="en">
-              Specializing in computer vision and machine learning, I promote R&amp;D and social implementation (commercialization) in food AI and medical AI.
-            </p>
+              <p class="lead" data-lang-block="ja">
+                コンピュータビジョン・機械学習を専門とし、食材AI・医療AIを中心に研究開発から社会実装までを一貫して推進。製品化、特許創出、論文発表を通じて、産業応用と研究成果の両立に取り組んでいます。
+              </p>
+              <p class="lead" data-lang-block="en">
+                Specializing in computer vision and machine learning, I lead end-to-end work from research and development to real-world deployment, with a focus on food AI and medical AI. My work integrates productization, patent generation, and academic publications to bridge industrial impact and research excellence.
+              </p>
 
-            <div class="hero-meta">
-              <span class="chip" data-lang="ja">コンピュータビジョン</span>
-              <span class="chip" data-lang="en">Computer Vision</span>
+              <div class="hero-meta">
+                <span class="chip" data-lang="ja">コンピュータビジョン</span>
+                <span class="chip" data-lang="en">Computer Vision</span>
 
-              <span class="chip" data-lang="ja">自然言語処理</span>
-              <span class="chip" data-lang="en">Natural Language Processing</span>
+                <span class="chip" data-lang="ja">機械学習</span>
+                <span class="chip" data-lang="en">Machine Learning</span>
 
-              <span class="chip" data-lang="ja">食材AI</span>
-              <span class="chip" data-lang="en">Food AI</span>
+                <span class="chip" data-lang="ja">食材AI</span>
+                <span class="chip" data-lang="en">Food AI</span>
 
-              <span class="chip" data-lang="ja">医療AI</span>
-              <span class="chip" data-lang="en">Medical AI</span>
+                <span class="chip" data-lang="ja">医療AI</span>
+                <span class="chip" data-lang="en">Medical AI</span>
 
-              <span class="chip" data-lang="ja">製品化</span>
-              <span data-lang="en" class="chip">Commercialization</span>
+                <span class="chip" data-lang="ja">社会実装</span>
+                <span class="chip" data-lang="en">Deployment</span>
+              </div>
+
+              <div class="hero-links">
+                <a class="btn btn-primary" href="https://www.linkedin.com/in/daisuke-hayashi/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a class="btn" href="https://scholar.google.com/citations?hl=ja&user=mHRLTWoAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+              </div>
             </div>
 
-            <div class="hero-links">
-              <a class="btn btn-primary" href="https://www.linkedin.com/in/daisuke-hayashi/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-              <a class="btn" href="https://scholar.google.com/citations?hl=ja&user=mHRLTWoAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+            <div class="hero-right">
+              <div class="hero-side-card">
+                <img src="profile.jpg" alt="Daisuke Hayashi" style="width:158px;height:158px;object-fit:cover;border-radius:50%;border:4px solid rgba(29,78,216,0.10);" />
+              </div>
             </div>
           </div>
-
-          <aside class="hero-side">
-            <div class="hero-side-card">
-              <img src="profile.jpg" alt="Daisuke Hayashi" style="width:158px;height:158px;object-fit:cover;border-radius:50%;border:4px solid rgba(29,78,216,0.10);" />
-              <div class="hero-side-badge" data-lang="ja">研究開発 × 製品化 × 特許</div>
-              <div class="hero-side-badge" data-lang="en">Research × Productization × Patents</div>
-            </div>
-          </aside>
         </div>
       </div>
     </section>
@@ -922,22 +869,13 @@
             <h2><span data-lang="ja">ハイライト</span><span data-lang="en">Highlights</span></h2>
           </div>
 
-          <!-- 並び順最適化:
-               1. 製品化実績
-               2. 受賞・表彰
-               3. 特許出願(主発明)
-               4. 登録特許
-               5. 論文発表
-               6. 製品採用特許
-               7. 主発明は統合済み -->
           <div class="highlight-grid">
-            <div class="stat-tile rank-1"><span class="stat-label" id="stat-productized-label">製品化実績 0件</span></div>
-            <div class="stat-tile rank-2"><span class="stat-label" id="stat-awards-label">受賞・表彰 0件</span></div>
-            <div class="stat-tile rank-3"><span class="stat-label" id="stat-patents-label">特許出願 0件<br>(主発明 0件)</span></div>
-            <div class="stat-tile rank-4"><span class="stat-label" id="stat-registered-label">登録特許 0件</span></div>
-            <div class="stat-tile rank-5"><span class="stat-label" id="stat-papers-label">論文発表 0件</span></div>
-            <div class="stat-tile rank-6"><span class="stat-label" id="stat-product-patent-label">製品採用特許 0件</span></div>
-            <div class="stat-tile rank-7"><span class="stat-label" id="stat-first-author-label">筆頭著者 0件</span></div>
+            <div class="stat-tile"><span class="stat-label" id="stat-productized-label">製品化実績 0件</span></div>
+            <div class="stat-tile"><span class="stat-label" id="stat-awards-label">受賞・表彰 0件</span></div>
+            <div class="stat-tile"><span class="stat-label" id="stat-papers-label">論文発表 0件</span></div>
+            <div class="stat-tile"><span class="stat-label" id="stat-registered-label">登録特許 0件</span></div>
+            <div class="stat-tile"><span class="stat-label" id="stat-product-patent-label">製品採用特許 0件</span></div>
+            <div class="stat-tile"><span class="stat-label" id="stat-patents-label">特許出願 0件<br>(主発明 0件)</span></div>
           </div>
         </div>
       </div>
@@ -960,8 +898,6 @@
           <div class="section-head">
             <h2><span data-lang="ja">特許</span><span data-lang="en">Patents</span></h2>
           </div>
-
-          <!-- ハイライトと重複するため上部サマリーラベルは削除 -->
 
           <div class="tools">
             <input id="patent-search" class="search-input" type="text" placeholder="Search patents / 特許検索" />
@@ -1040,6 +976,8 @@
                 <span data-lang="ja">株式会社日立製作所 中央研究所</span>
                 <span data-lang="en">Central Research Laboratory, Hitachi, Ltd.</span>
               </div>
+              <div class="muted" data-lang-block="ja">コンピュータビジョン・機械学習を軸に、食材AI・医療AIの研究開発および社会実装に従事</div>
+              <div class="muted" data-lang-block="en">Engaged in research, development, and deployment of food AI and medical AI based on computer vision and machine learning.</div>
             </div>
           </div>
         </div>
@@ -1580,11 +1518,11 @@
         periodJa: "2020年10月–2022年9月",
         periodEn: "Oct. 2020 – Sept. 2022",
         jaDescription:
-`3D-CNNを用いて脳MRI画像から統合失調症・アルツハイマー型認知症・健常者を96.5%の高精度で多疾患分類する技術を開発
-電子情報通信学会 医用画像研究会(MI)で発表し、令和5年度MI研究奨励賞（賞対象66件中3件が選出、日立初）を受賞`,
+`3D-CNNを用いて脳MRI画像から統合失調症・アルツハイマー型認知症・健常者を96.5%の高精度で多疾患分類する技術を開発。
+電子情報通信学会 医用画像研究会(MI)で発表し、令和5年度MI研究奨励賞を受賞。研究成果を学術発表と知財創出の両面で展開。`,
         enDescription:
 `Developed a 3D-CNN-based method for multi-disease classification from brain MRI images, distinguishing schizophrenia, Alzheimer’s disease, and healthy controls with 96.5% accuracy.
-Presented the work at the IEICE Medical Imaging Research Meeting (MI) and received the FY2023 MI Research Encouragement Award, with 3 presentations selected out of 66 and being the first case for Hitachi.`,
+The work was presented at the IEICE Medical Imaging Research Meeting (MI) and received the FY2023 MI Research Encouragement Award, demonstrating both academic impact and intellectual property potential.`,
         labels: [
           { type: "award", ja: "受賞", en: "Award" },
           { type: "reviewed", ja: "国内会議発表", en: "Domestic Conference Presentation" }
@@ -1598,8 +1536,8 @@ Presented the work at the IEICE Medical Imaging Research Meeting (MI) and receiv
         enTitle: "Automatic Food Listing & Recipe Recommendation",
         jaDate: "2025年5月",
         enDate: "May 2025",
-        jaDesc: "食材検知AIを活用した冷蔵室・冷凍室・野菜室における冷蔵庫カメラ画像からの「食材自動リスト化・レシピ提案」サービス",
-        enDesc: "A service for automatic food listing and recipe recommendation from refrigerator, freezer, and vegetable-compartment camera images using food detection AI.",
+        jaDesc: "食材検知AIを活用し、冷蔵室・冷凍室・野菜室のカメラ画像から食材を自動認識。買い物・献立・調理導線までつなぐレシピ提案機能として製品化。",
+        enDesc: "Commercialized a food detection AI system that automatically recognizes ingredients from refrigerator, freezer, and vegetable-compartment camera images and connects them to recipe recommendations for everyday meal planning.",
         leader: true,
         productPatent: true,
         links: {
@@ -1624,8 +1562,8 @@ Presented the work at the IEICE Medical Imaging Research Meeting (MI) and receiv
         enTitle: "Automatic Food Listing",
         jaDate: "2024年3月",
         enDate: "Mar. 2024",
-        jaDesc: "食材検知AIを活用した冷蔵室における冷蔵庫カメラ画像からの「食材自動リスト化」サービス",
-        enDesc: "A service for automatic food listing from refrigerator-compartment camera images using food detection AI.",
+        jaDesc: "冷蔵室カメラ画像から食材を自動認識し、ユーザーの在庫把握を支援する機能として製品化。研究成果を実サービスへ橋渡しした初期実装。",
+        enDesc: "Commercialized an automatic food listing function that recognizes ingredients from refrigerator-compartment camera images, serving as an early deployment that translated research成果 into a user-facing service.",
         leader: true,
         productPatent: true,
         links: {
@@ -1793,14 +1731,14 @@ Presented the work at the IEICE Medical Imaging Research Meeting (MI) and receiv
           <div class="patent-title">${titleHtml}</div>
           <div class="patent-authors">${highlightMyName(authors)}</div>
           ${tags.length ? `<div class="patent-tags">${tags.join("")}</div>` : ""}
-          <div class="patent-meta-block">
-            <div><strong>${countryLabel}:</strong> ${escapeHtml(country)}</div>
-            <div><strong>${filedLabel}:</strong> ${escapeHtml(filingNo || "-")}</div>
-            <div><strong>${pubLabel}:</strong> ${escapeHtml(pubNo || "-")}</div>
-            <div><strong>${regLabel}:</strong> ${escapeHtml(regNo || "-")}</div>
-            <div><strong>${filedDateLabel}:</strong> ${escapeHtml(filingDate || "-")}</div>
-            <div><strong>${pubDateLabel}:</strong> ${escapeHtml(pubDate || "-")}</div>
-            <div><strong>${regDateLabel}:</strong> ${escapeHtml(regDate || "-")}</div>
+          <div class="patent-meta-grid">
+            <div class="patent-meta-item"><strong>${filedLabel}:</strong>${escapeHtml(filingNo || "-")}</div>
+            <div class="patent-meta-item"><strong>${filedDateLabel}:</strong>${escapeHtml(filingDate || "-")}</div>
+            <div class="patent-meta-item"><strong>${pubLabel}:</strong>${escapeHtml(pubNo || "-")}</div>
+            <div class="patent-meta-item"><strong>${pubDateLabel}:</strong>${escapeHtml(pubDate || "-")}</div>
+            <div class="patent-meta-item"><strong>${regLabel}:</strong>${escapeHtml(regNo || "-")}</div>
+            <div class="patent-meta-item"><strong>${regDateLabel}:</strong>${escapeHtml(regDate || "-")}</div>
+            <div class="patent-meta-item full"><strong>${countryLabel}:</strong>${escapeHtml(country)}</div>
           </div>
         </article>
       `;
@@ -1867,15 +1805,6 @@ Presented the work at the IEICE Medical Imaging Research Meeting (MI) and receiv
       }).join("");
     }
 
-    function countFirstAuthorPapers() {
-      const allPubs = [
-        ...publications.journals,
-        ...publications.international,
-        ...publications.domestic
-      ];
-      return allPubs.filter(item => Array.isArray(item.labels) && item.labels.includes("first")).length;
-    }
-
     function updateStats() {
       const productCount = topProductCards.length;
       const awardCount = awards.length;
@@ -1887,7 +1816,6 @@ Presented the work at the IEICE Medical Imaging Research Meeting (MI) and receiv
       const primaryCount = patents.filter(p => p.isPrimary).length;
       const registeredCount = patents.filter(p => p.isRegistered).length;
       const productPatentCount = patents.filter(p => p.isProductUsed).length;
-      const firstAuthorCount = countFirstAuthorPapers();
       const ja = currentLang() === "ja";
 
       document.getElementById("stat-productized-label").innerHTML =
@@ -1896,20 +1824,17 @@ Presented the work at the IEICE Medical Imaging Research Meeting (MI) and receiv
       document.getElementById("stat-awards-label").innerHTML =
         ja ? `受賞・表彰 ${awardCount}件` : `Awards ${awardCount}`;
 
-      document.getElementById("stat-patents-label").innerHTML =
-        ja ? `特許出願 ${patentCount}件<br>(主発明 ${primaryCount}件)` : `Patent Applications ${patentCount}<br>(Primary Inventions ${primaryCount})`;
+      document.getElementById("stat-papers-label").innerHTML =
+        ja ? `論文発表 ${paperCount}件` : `Publications ${paperCount}`;
 
       document.getElementById("stat-registered-label").innerHTML =
         ja ? `登録特許 ${registeredCount}件` : `Registered Patents ${registeredCount}`;
 
-      document.getElementById("stat-papers-label").innerHTML =
-        ja ? `論文発表 ${paperCount}件` : `Publications ${paperCount}`;
-
       document.getElementById("stat-product-patent-label").innerHTML =
         ja ? `製品採用特許 ${productPatentCount}件` : `Patents Used in Products ${productPatentCount}`;
 
-      document.getElementById("stat-first-author-label").innerHTML =
-        ja ? `筆頭著者 ${firstAuthorCount}件` : `First Author ${firstAuthorCount}`;
+      document.getElementById("stat-patents-label").innerHTML =
+        ja ? `特許出願 ${patentCount}件<br>(主発明 ${primaryCount}件)` : `Patent Applications ${patentCount}<br>(Primary Inventions ${primaryCount})`;
     }
 
     function renderAll() {
