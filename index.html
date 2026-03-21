@@ -688,10 +688,10 @@
       <div class="brand">Daisuke Hayashi</div>
       <nav class="nav">
         <a href="#highlights"><span data-lang="ja">ハイライト</span><span data-lang="en">Highlights</span></a>
-        <a href="#top-products"><span data-lang="ja">製品化</span><span data-lang="en">Commercialization</span></a>
+        <a href="#top-products"><span data-lang="ja">製品化実績</span><span data-lang="en">Commercialization</span></a>
         <a href="#patents"><span data-lang="ja">特許</span><span data-lang="en">Patents</span></a>
         <a href="#research-impact"><span data-lang="ja">研究業績</span><span data-lang="en">Research Impact</span></a>
-        <a href="#publications"><span data-lang="ja">発表文献</span><span data-lang="en">Publications</span></a>
+        <a href="#publications"><span data-lang="ja">論文発表</span><span data-lang="en">Publications</span></a>
         <a href="#awards"><span data-lang="ja">受賞</span><span data-lang="en">Awards</span></a>
         <a href="#career"><span data-lang="ja">職歴</span><span data-lang="en">Career</span></a>
         <a href="#certifications"><span data-lang="ja">資格</span><span data-lang="en">Certifications</span></a>
@@ -759,13 +759,13 @@
             <h2><span data-lang="ja">ハイライト</span><span data-lang="en">Highlights</span></h2>
           </div>
           <div class="grid-7">
-            <div class="stat"><span class="num" id="stat-productized">0</span><span class="label"><span data-lang="ja">製品化</span><span data-lang="en">Commercialized Cases</span></span></div>
-            <div class="stat"><span class="num" id="stat-awards">0</span><span class="label"><span data-lang="ja">受賞</span><span data-lang="en">Awards</span></span></div>
+            <div class="stat"><span class="num" id="stat-productized">0</span><span class="label"><span data-lang="ja">製品化実績</span><span data-lang="en">Commercialized Cases</span></span></div>
+            <div class="stat"><span class="num" id="stat-awards">0</span><span class="label"><span data-lang="ja">受賞・表彰</span><span data-lang="en">Awards</span></span></div>
+            <div class="stat"><span class="num" id="stat-papers">0</span><span class="label"><span data-lang="ja">論文発表</span><span data-lang="en">Publications</span></span></div>
+            <div class="stat"><span class="num" id="stat-registered">0</span><span class="label"><span data-lang="ja">登録特許</span><span data-lang="en">Registered Patents</span></span></div>
+            <div class="stat"><span class="num" id="stat-product-patent">0</span><span class="label"><span data-lang="ja">製品採用特許</span><span data-lang="en">Patents Used in Products</span></span></div>
             <div class="stat"><span class="num" id="stat-patents">0</span><span class="label"><span data-lang="ja">特許出願</span><span data-lang="en">Patent Applications</span></span></div>
             <div class="stat"><span class="num" id="stat-primary">0</span><span class="label"><span data-lang="ja">主発明</span><span data-lang="en">Primary Inventions</span></span></div>
-            <div class="stat"><span class="num" id="stat-registered">0</span><span class="label"><span data-lang="ja">登録特許</span><span data-lang="en">Registered Patents</span></span></div>
-            <div class="stat"><span class="num" id="stat-product-patent">0</span><span class="label"><span data-lang="ja">製品活用特許</span><span data-lang="en">Patents Used in Products</span></span></div>
-            <div class="stat"><span class="num" id="stat-papers">0</span><span class="label"><span data-lang="ja">発表文献</span><span data-lang="en">Publications</span></span></div>
           </div>
         </div>
       </div>
@@ -793,7 +793,7 @@
             <div class="stat"><span class="num" id="count-total">0</span><span class="label"><span data-lang="ja">特許出願</span><span data-lang="en">Patent Applications</span></span></div>
             <div class="stat"><span class="num" id="count-primary">0</span><span class="label"><span data-lang="ja">主発明</span><span data-lang="en">Primary</span></span></div>
             <div class="stat"><span class="num" id="count-registered">0</span><span class="label"><span data-lang="ja">登録特許</span><span data-lang="en">Registered</span></span></div>
-            <div class="stat"><span class="num" id="count-product">0</span><span class="label"><span data-lang="ja">製品活用特許</span><span data-lang="en">Product-used</span></span></div>
+            <div class="stat"><span class="num" id="count-product">0</span><span class="label"><span data-lang="ja">製品採用特許</span><span data-lang="en">Product-used</span></span></div>
           </div>
 
           <div class="tools">
@@ -808,7 +808,7 @@
               <option value="">All tags / すべての属性</option>
               <option value="primary">Primary / 主発明</option>
               <option value="registered">Registered / 登録特許</option>
-              <option value="product">Used in Product / 製品活用特許</option>
+              <option value="product">Used in Product / 製品採用特許</option>
             </select>
           </div>
 
@@ -832,7 +832,7 @@
       <div class="container">
         <div class="section-card">
           <div class="section-head">
-            <h2><span data-lang="ja">発表文献</span><span data-lang="en">Publications</span></h2>
+            <h2><span data-lang="ja">論文発表</span><span data-lang="en">Publications</span></h2>
           </div>
 
           <h3 class="group-title"><span data-lang="ja">ジャーナル論文</span><span data-lang="en">Journal Articles</span></h3>
@@ -1489,7 +1489,7 @@ Presented the work at the IEICE Medical Imaging Research Meeting (MI) and receiv
         const links = currentLang() === "ja" ? card.links.ja : card.links.en;
         const tags = [];
         if (card.leader) tags.push(makeTag("primary", "テーマリーダ", "Theme Leader"));
-        if (card.productPatent) tags.push(makeTag("product", "製品活用特許", "Patent Used in Product"));
+        if (card.productPatent) tags.push(makeTag("product", "製品採用特許", "Patent Used in Product"));
 
         return `
           <article class="product-hero-card">
@@ -1597,7 +1597,7 @@ Presented the work at the IEICE Medical Imaging Research Meeting (MI) and receiv
       const tags = [];
       if (p.isPrimary) tags.push(makeTag("primary", "主発明", "Primary"));
       if (p.isRegistered) tags.push(makeTag("registered", "登録特許", "Registered Patent"));
-      if (p.isProductUsed) tags.push(makeTag("product", "製品活用特許", "Patent Used in Product"));
+      if (p.isProductUsed) tags.push(makeTag("product", "製品採用特許", "Patent Used in Product"));
 
       const title = currentLang() === "ja" ? p.jaTitle : p.enTitle;
       const authors = currentLang() === "ja" ? p.authorsJa : p.authorsEn;
