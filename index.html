@@ -17,9 +17,6 @@
       --accent-2: #1d4ed8;
       --accent-soft: rgba(37, 99, 235, 0.10);
 
-      --highlight-bg: linear-gradient(135deg, #eef4ff 0%, #dbeafe 100%);
-      --highlight-border: #93c5fd;
-
       --patent: #dbeafe;
       --registered: #dcfce7;
       --product: #fef3c7;
@@ -421,8 +418,9 @@
       box-shadow: 0 6px 16px rgba(15, 23, 42, 0.04);
       position: relative;
       overflow: hidden;
-      background: var(--highlight-bg);
-      border-color: var(--highlight-border);
+      border-width: 1px;
+      border-style: solid;
+      border-radius: var(--radius);
     }
 
     .stat-tile::before {
@@ -433,7 +431,6 @@
       bottom: 0;
       width: 5px;
       border-radius: 999px;
-      background: #2563eb;
       opacity: 0.95;
     }
 
@@ -443,7 +440,50 @@
       line-height: 1.32;
       letter-spacing: 0.01em;
       white-space: pre-line;
-      color: var(--accent);
+    }
+
+    .stat-blue {
+      background: linear-gradient(135deg, #eef4ff 0%, #dbeafe 100%);
+      border-color: #93c5fd;
+    }
+    .stat-blue::before {
+      background: #2563eb;
+    }
+    .stat-blue .stat-label {
+      color: #2563eb;
+    }
+
+    .stat-red {
+      background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
+      border-color: #fda4af;
+    }
+    .stat-red::before {
+      background: #e11d48;
+    }
+    .stat-red .stat-label {
+      color: #e11d48;
+    }
+
+    .stat-purple {
+      background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+      border-color: #c4b5fd;
+    }
+    .stat-purple::before {
+      background: #7c3aed;
+    }
+    .stat-purple .stat-label {
+      color: #7c3aed;
+    }
+
+    .stat-green {
+      background: linear-gradient(135deg, #ecfdf3 0%, #dcfce7 100%);
+      border-color: #86efac;
+    }
+    .stat-green::before {
+      background: #16a34a;
+    }
+    .stat-green .stat-label {
+      color: #16a34a;
     }
 
     .timeline {
@@ -864,12 +904,24 @@
           </div>
 
           <div class="highlight-grid">
-            <div class="stat-tile"><span class="stat-label" id="stat-productized-label">製品化実績 0件</span></div>
-            <div class="stat-tile"><span class="stat-label" id="stat-awards-label">受賞・表彰 0件</span></div>
-            <div class="stat-tile"><span class="stat-label" id="stat-papers-label">論文発表 0件</span></div>
-            <div class="stat-tile"><span class="stat-label" id="stat-registered-label">登録特許 0件</span></div>
-            <div class="stat-tile"><span class="stat-label" id="stat-product-patent-label">製品採用特許 0件</span></div>
-            <div class="stat-tile"><span class="stat-label" id="stat-patents-label">特許出願 0件<br>(主発明 0件)</span></div>
+            <div class="stat-tile stat-blue">
+              <span class="stat-label" id="stat-productized-label">製品化実績 0件</span>
+            </div>
+            <div class="stat-tile stat-red">
+              <span class="stat-label" id="stat-awards-label">受賞・表彰 0件</span>
+            </div>
+            <div class="stat-tile stat-purple">
+              <span class="stat-label" id="stat-papers-label">論文発表 0件</span>
+            </div>
+            <div class="stat-tile stat-green">
+              <span class="stat-label" id="stat-registered-label">登録特許 0件</span>
+            </div>
+            <div class="stat-tile stat-green">
+              <span class="stat-label" id="stat-product-patent-label">製品採用特許 0件</span>
+            </div>
+            <div class="stat-tile stat-green">
+              <span class="stat-label" id="stat-patents-label">特許出願 0件<br>(主発明 0件)</span>
+            </div>
           </div>
         </div>
       </div>
@@ -1528,8 +1580,8 @@ Presented the work at the IEICE Medical Imaging Research Meeting (MI) and receiv
         enTitle: "Automatic Food Listing & Recipe Recommendation",
         jaDate: "2025年5月",
         enDate: "May 2025",
-        jaDesc: "食材検知AIを活用し、冷蔵室・冷凍室・野菜室のカメラ画像から食材を自動検知。買い物・献立・調理導線までつなぐレシピ提案機能も含めて製品化。",
-        enDesc: "Commercialized a food detection AI system that automatically recognizes ingredients from refrigerator, freezer, and vegetable-compartment camera images and connects them to recipe recommendations for everyday meal planning.",
+        jaDesc: "食材検知AIを活用した冷蔵室・冷凍室・野菜室における冷蔵庫カメラ画像からの「食材自動リスト化・レシピ提案」サービス",
+        enDesc: "A service for automatic food listing and recipe recommendation from refrigerator, freezer, and vegetable-compartment camera images using food detection AI.",
         leader: true,
         productPatent: true,
         links: {
@@ -1554,8 +1606,8 @@ Presented the work at the IEICE Medical Imaging Research Meeting (MI) and receiv
         enTitle: "Automatic Food Listing",
         jaDate: "2024年3月",
         enDate: "Mar. 2024",
-        jaDesc: "冷蔵室カメラ画像から食材を自動検知し、ユーザーの在庫把握を支援する機能として製品化。研究成果を実サービスへ橋渡しした初期実装。",
-        enDesc: "Commercialized an automatic food listing function that recognizes ingredients from refrigerator-compartment camera images, serving as an early deployment that translated research into a user-facing service.",
+        jaDesc: "食材検知AIを活用した冷蔵室における冷蔵庫カメラ画像からの「食材自動リスト化」サービス",
+        enDesc: "A service for automatic food listing from refrigerator-compartment camera images using food detection AI.",
         leader: true,
         productPatent: true,
         links: {
