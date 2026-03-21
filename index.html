@@ -16,7 +16,6 @@
       --accent: #2563eb;
       --accent-2: #1d4ed8;
       --accent-soft: rgba(37, 99, 235, 0.10);
-      --accent-soft-2: rgba(37, 99, 235, 0.06);
 
       --highlight-bg: linear-gradient(135deg, #eef4ff 0%, #dbeafe 100%);
       --highlight-border: #93c5fd;
@@ -144,13 +143,14 @@
 
     .hero-card {
       display: grid;
-      grid-template-columns: 1.35fr 0.72fr;
-      gap: 18px;
+      grid-template-columns: 1.4fr 0.72fr;
+      gap: 24px;
+      align-items: center;
       background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
       border: 1px solid var(--line);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow);
-      padding: 26px;
+      padding: 26px 28px;
       position: relative;
       overflow: hidden;
     }
@@ -166,21 +166,15 @@
       pointer-events: none;
     }
 
-    .hero-main {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 18px;
-      align-items: start;
-    }
-
     .hero-left {
       min-width: 0;
+      max-width: 760px;
     }
 
     .hero-right {
-      width: 176px;
       display: flex;
       justify-content: center;
+      align-items: center;
     }
 
     h1 {
@@ -208,7 +202,7 @@
       margin: 0;
       color: #334155;
       font-size: 0.95rem;
-      max-width: 760px;
+      max-width: 720px;
     }
 
     .hero-meta {
@@ -252,7 +246,7 @@
     }
 
     .hero-side-card {
-      width: 100%;
+      width: 178px;
       background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
       border: 1px solid rgba(37, 99, 235, 0.12);
       border-radius: 22px;
@@ -449,7 +443,7 @@
       line-height: 1.32;
       letter-spacing: 0.01em;
       white-space: pre-line;
-      color: #111827;
+      color: var(--accent);
     }
 
     .timeline {
@@ -747,7 +741,6 @@
 
     @media (max-width: 1040px) {
       .hero-card,
-      .hero-main,
       .highlight-grid,
       .award-list.compact,
       .product-hero-grid,
@@ -758,8 +751,11 @@
         grid-template-columns: 1fr;
       }
 
+      .hero-card {
+        gap: 18px;
+      }
+
       .hero-right {
-        width: 100%;
         justify-content: flex-start;
       }
 
@@ -796,7 +792,7 @@
       <div class="brand">Daisuke Hayashi</div>
       <nav class="nav">
         <a href="#highlights"><span data-lang="ja">ハイライト</span><span data-lang="en">Highlights</span></a>
-        <a href="#top-products"><span data-lang="ja">製品化実績</span><span data-lang="en">Commercialization</span></a>
+        <a href="#top-products"><span data-lang="ja">製品化</span><span data-lang="en">Commercialization</span></a>
         <a href="#patents"><span data-lang="ja">特許</span><span data-lang="en">Patents</span></a>
         <a href="#research-impact"><span data-lang="ja">研究業績</span><span data-lang="en">Research Impact</span></a>
         <a href="#publications"><span data-lang="ja">論文発表</span><span data-lang="en">Publications</span></a>
@@ -816,46 +812,44 @@
     <section class="hero">
       <div class="container">
         <div class="hero-card">
-          <div class="hero-main">
-            <div class="hero-left">
-              <h1>Daisuke Hayashi</h1>
-              <div class="name-ja" data-lang-block="ja">林 大介</div>
-              <p class="subtitle">Hitachi, Ltd. Central Research Laboratory</p>
+          <div class="hero-left">
+            <h1>Daisuke Hayashi</h1>
+            <div class="name-ja" data-lang-block="ja">林 大介</div>
+            <p class="subtitle">Hitachi, Ltd. Central Research Laboratory</p>
 
-              <p class="lead" data-lang-block="ja">
-                コンピュータビジョン・機械学習を専門とし、食材AI・医療AIを中心に研究開発から社会実装までを一貫して推進。製品化、特許創出、論文発表を通じて、産業応用と研究成果の両立に取り組んでいます。
-              </p>
-              <p class="lead" data-lang-block="en">
-                Specializing in computer vision and machine learning, I lead end-to-end work from research and development to real-world deployment, with a focus on food AI and medical AI. My work integrates productization, patent generation, and academic publications to bridge industrial impact and research excellence.
-              </p>
+            <p class="lead" data-lang-block="ja">
+              コンピュータビジョン・機械学習を専門とし、食材AIや医療AIを中心に研究開発および社会実装（製品化）を推進
+            </p>
+            <p class="lead" data-lang-block="en">
+              Specializing in computer vision and machine learning, I promote R&amp;D and social implementation (commercialization) in food AI and medical AI.
+            </p>
 
-              <div class="hero-meta">
-                <span class="chip" data-lang="ja">コンピュータビジョン</span>
-                <span class="chip" data-lang="en">Computer Vision</span>
+            <div class="hero-meta">
+              <span class="chip" data-lang="ja">コンピュータビジョン</span>
+              <span class="chip" data-lang="en">Computer Vision</span>
 
-                <span class="chip" data-lang="ja">機械学習</span>
-                <span class="chip" data-lang="en">Machine Learning</span>
+              <span class="chip" data-lang="ja">機械学習</span>
+              <span class="chip" data-lang="en">Machine Learning</span>
 
-                <span class="chip" data-lang="ja">食材AI</span>
-                <span class="chip" data-lang="en">Food AI</span>
+              <span class="chip" data-lang="ja">食材AI</span>
+              <span class="chip" data-lang="en">Food AI</span>
 
-                <span class="chip" data-lang="ja">医療AI</span>
-                <span class="chip" data-lang="en">Medical AI</span>
+              <span class="chip" data-lang="ja">医療AI</span>
+              <span class="chip" data-lang="en">Medical AI</span>
 
-                <span class="chip" data-lang="ja">社会実装</span>
-                <span class="chip" data-lang="en">Deployment</span>
-              </div>
-
-              <div class="hero-links">
-                <a class="btn btn-primary" href="https://www.linkedin.com/in/daisuke-hayashi/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                <a class="btn" href="https://scholar.google.com/citations?hl=ja&user=mHRLTWoAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a>
-              </div>
+              <span class="chip" data-lang="ja">社会実装</span>
+              <span class="chip" data-lang="en">Deployment</span>
             </div>
 
-            <div class="hero-right">
-              <div class="hero-side-card">
-                <img src="profile.jpg" alt="Daisuke Hayashi" style="width:158px;height:158px;object-fit:cover;border-radius:50%;border:4px solid rgba(29,78,216,0.10);" />
-              </div>
+            <div class="hero-links">
+              <a class="btn btn-primary" href="https://www.linkedin.com/in/daisuke-hayashi/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a class="btn" href="https://scholar.google.com/citations?hl=ja&user=mHRLTWoAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+            </div>
+          </div>
+
+          <div class="hero-right">
+            <div class="hero-side-card">
+              <img src="profile.jpg" alt="Daisuke Hayashi" style="width:158px;height:158px;object-fit:cover;border-radius:50%;border:4px solid rgba(29,78,216,0.10);" />
             </div>
           </div>
         </div>
@@ -885,7 +879,7 @@
       <div class="container">
         <div class="section-card">
           <div class="section-head">
-            <h2><span data-lang="ja">製品化実績</span><span data-lang="en">Commercialization</span></h2>
+            <h2><span data-lang="ja">製品化</span><span data-lang="en">Commercialization</span></h2>
           </div>
           <div id="top-product-cards" class="product-hero-grid"></div>
         </div>
@@ -976,8 +970,6 @@
                 <span data-lang="ja">株式会社日立製作所 中央研究所</span>
                 <span data-lang="en">Central Research Laboratory, Hitachi, Ltd.</span>
               </div>
-              <div class="muted" data-lang-block="ja">コンピュータビジョン・機械学習を軸に、食材AI・医療AIの研究開発および社会実装に従事</div>
-              <div class="muted" data-lang-block="en">Engaged in research, development, and deployment of food AI and medical AI based on computer vision and machine learning.</div>
             </div>
           </div>
         </div>
@@ -1518,11 +1510,11 @@
         periodJa: "2020年10月–2022年9月",
         periodEn: "Oct. 2020 – Sept. 2022",
         jaDescription:
-`3D-CNNを用いて脳MRI画像から統合失調症・アルツハイマー型認知症・健常者を96.5%の高精度で多疾患分類する技術を開発。
-電子情報通信学会 医用画像研究会(MI)で発表し、令和5年度MI研究奨励賞を受賞。研究成果を学術発表と知財創出の両面で展開。`,
+`3D-CNNを用いて脳MRI画像から統合失調症・アルツハイマー型認知症・健常者を96.5%の高精度で多疾患分類する技術を開発
+電子情報通信学会 医用画像研究会(MI)で発表し、令和5年度MI研究奨励賞（賞対象66件中3件が選出、日立初）を受賞`,
         enDescription:
 `Developed a 3D-CNN-based method for multi-disease classification from brain MRI images, distinguishing schizophrenia, Alzheimer’s disease, and healthy controls with 96.5% accuracy.
-The work was presented at the IEICE Medical Imaging Research Meeting (MI) and received the FY2023 MI Research Encouragement Award, demonstrating both academic impact and intellectual property potential.`,
+Presented the work at the IEICE Medical Imaging Research Meeting (MI) and received the FY2023 MI Research Encouragement Award, with 3 presentations selected out of 66 and being the first case for Hitachi.`,
         labels: [
           { type: "award", ja: "受賞", en: "Award" },
           { type: "reviewed", ja: "国内会議発表", en: "Domestic Conference Presentation" }
@@ -1536,8 +1528,8 @@ The work was presented at the IEICE Medical Imaging Research Meeting (MI) and re
         enTitle: "Automatic Food Listing & Recipe Recommendation",
         jaDate: "2025年5月",
         enDate: "May 2025",
-        jaDesc: "食材検知AIを活用し、冷蔵室・冷凍室・野菜室のカメラ画像から食材を自動認識。買い物・献立・調理導線までつなぐレシピ提案機能として製品化。",
-        enDesc: "Commercialized a food detection AI system that automatically recognizes ingredients from refrigerator, freezer, and vegetable-compartment camera images and connects them to recipe recommendations for everyday meal planning.",
+        jaDesc: "食材検知AIを活用した冷蔵室・冷凍室・野菜室における冷蔵庫カメラ画像からの「食材自動リスト化・レシピ提案」サービス",
+        enDesc: "A service for automatic food listing and recipe recommendation from refrigerator, freezer, and vegetable-compartment camera images using food detection AI.",
         leader: true,
         productPatent: true,
         links: {
@@ -1562,8 +1554,8 @@ The work was presented at the IEICE Medical Imaging Research Meeting (MI) and re
         enTitle: "Automatic Food Listing",
         jaDate: "2024年3月",
         enDate: "Mar. 2024",
-        jaDesc: "冷蔵室カメラ画像から食材を自動認識し、ユーザーの在庫把握を支援する機能として製品化。研究成果を実サービスへ橋渡しした初期実装。",
-        enDesc: "Commercialized an automatic food listing function that recognizes ingredients from refrigerator-compartment camera images, serving as an early deployment that translated research成果 into a user-facing service.",
+        jaDesc: "食材検知AIを活用した冷蔵室における冷蔵庫カメラ画像からの「食材自動リスト化」サービス",
+        enDesc: "A service for automatic food listing from refrigerator-compartment camera images using food detection AI.",
         leader: true,
         productPatent: true,
         links: {
@@ -1798,7 +1790,7 @@ The work was presented at the IEICE Medical Imaging Research Meeting (MI) and re
               <h3 class="impact-card-title">${escapeHtml(title)}</h3>
               <div class="impact-card-period">${escapeHtml(period)}</div>
             </div>
-            ${tags ? `<div class="impact-tags">${tags}</div>` : ""}
+            ${tags ? `<div class="impact-tags">${tags.join("")}</div>` : ""}
             <p class="impact-card-desc">${escapeHtml(desc)}</p>
           </article>
         `;
