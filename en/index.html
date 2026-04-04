@@ -342,7 +342,8 @@
     }
 
     .product-hero-card {
-      padding: 16px;
+      position: relative;
+      padding: 44px 16px 16px;
       box-shadow: var(--shadow-card);
       background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
       border: 1px solid rgba(37, 99, 235, 0.12);
@@ -799,8 +800,11 @@
     }
 
     .product-feature-badge {
+      position: absolute;
+      top: 14px;
+      left: 16px;
       display: inline-block;
-      margin-bottom: 8px;
+      margin-bottom: 0;
       padding: 4px 8px;
       border-radius: 999px;
       font-size: 0.70rem;
@@ -1713,6 +1717,7 @@ Presented the work at the IEICE Medical Imaging Research Meeting (MI) and receiv
         jaDesc: "食材検知AIを活用し、冷蔵室・冷凍室・野菜室のカメラ画像から食材を自動検知。買い物・献立・調理導線までつなぐレシピ提案機能も含めて製品化。",
         enDesc: "Commercialized a food detection AI system that automatically recognizes ingredients from refrigerator, freezer, and vegetable-compartment camera images and connects them to recipe recommendations for everyday meal planning.",
         leader: true,
+        featured: true,
         productPatent: true,
         links: {
           ja: [
