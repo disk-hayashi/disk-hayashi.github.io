@@ -491,6 +491,40 @@
       gap: 8px;
     }
 
+    .internship-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .internship-item {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 10px 12px;
+      background: #fbfdff;
+    }
+
+    .internship-item .timeline-year {
+      font-size: 0.75rem;
+      margin-bottom: 3px;
+      color: var(--muted);
+    }
+
+    .internship-item .timeline-title {
+      font-size: 0.80rem;
+      font-weight: 650;
+      line-height: 1.35;
+      color: #334155;
+      margin-bottom: 0;
+    }
+
+    .internship-note {
+      font-size: 0.70em;
+      font-weight: 600;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
     .timeline-item {
       border: 1px solid var(--line);
       border-radius: 16px;
@@ -787,7 +821,8 @@
       .patent-grid,
       .society-grid,
       .cert-grid,
-      .publication-grid-2 {
+      .publication-grid-2,
+      .internship-grid {
         grid-template-columns: 1fr;
       }
 
@@ -841,7 +876,7 @@
         <a href="#certifications"><span data-lang="ja">資格</span><span data-lang="en">Certifications</span></a>
         <a href="#societies"><span data-lang="ja">所属学会</span><span data-lang="en">Societies</span></a>
         <div class="lang-switch">
-          <a class="lang-btn" id="lang-ja-link" href="/ja/">JP</a>
+          <a class="lang-btn" id="lang-ja-link" href="/ja/">JA</a>
           <a class="lang-btn" id="lang-en-link" href="/en/">EN</a>
         </div>
       </nav>
@@ -858,7 +893,7 @@
             <p class="subtitle" data-lang-block="ja">株式会社日立製作所 中央研究所</p>
             <p class="subtitle" data-lang-block="en">Central Research Laboratory, Hitachi, Ltd.</p>
             <p class="muted" style="margin:0 0 12px;font-size:0.92rem;" data-lang-block="ja">京都大学大学院 人間・環境学研究科 数理・情報科学講座 博士後期課程（2026.04–Present）</p>
-            <p class="muted" style="margin:0 0 12px;font-size:0.92rem;" data-lang-block="en">Doctoral Program, Mathematical and Information Science, Graduate School of Human and Environmental Studies, Kyoto University (2026.04–Present</p>
+            <p class="muted" style="margin:0 0 12px;font-size:0.92rem;" data-lang-block="en">Doctoral Program, Mathematical and Information Science, Graduate School of Human and Environmental Studies, Kyoto University (2026.04–Present)</p>
 
             <p class="lead" data-lang-block="ja">
               コンピュータビジョン・機械学習を専門とし、食材AIや医療AIを中心に研究開発および社会実装（製品化）を推進
@@ -882,9 +917,6 @@
 
               <span class="chip" data-lang="ja">社会実装</span>
               <span class="chip" data-lang="en">Deployment</span>
-
-              <span class="chip" data-lang="ja">京都大学 博士後期課程</span>
-              <span class="chip" data-lang="en">Kyoto University Doctoral Program</span>
             </div>
 
             <div class="hero-links">
@@ -1046,27 +1078,27 @@
           </div>
 
           <div style="height:12px"></div>
-          <h3 class="group-title"><span data-lang="ja">主なインターンシップ</span><span data-lang="en">Selected Internships</span></h3>
-          <div class="timeline">
-            <div class="timeline-item">
+          <h3 class="group-title"><span data-lang="ja">インターンシップ参加歴</span><span data-lang="en">Internships</span></h3>
+          <div class="internship-grid">
+            <div class="internship-item">
               <div class="timeline-year">2019.02</div>
               <div class="timeline-title">
-                <span data-lang="ja">株式会社三菱UFJ銀行（インターンシップ）</span>
-                <span data-lang="en">Mitsubishi UFJ Bank, Ltd. (Internship)</span>
+                <span data-lang="ja">株式会社三菱UFJ銀行 クオンツ<span class="internship-note">（インターンシップ）</span></span>
+                <span data-lang="en">Mitsubishi UFJ Bank, Ltd. Quant <span class="internship-note">(Internship)</span></span>
               </div>
             </div>
-            <div class="timeline-item">
+            <div class="internship-item">
               <div class="timeline-year">2018.08–2018.09</div>
               <div class="timeline-title">
-                <span data-lang="ja">株式会社日立製作所 日立研究所（インターンシップ）</span>
-                <span data-lang="en">Hitachi Research Laboratory, Hitachi, Ltd. (Internship)</span>
+                <span data-lang="ja">株式会社日立製作所 日立研究所<span class="internship-note">（インターンシップ）</span></span>
+                <span data-lang="en">Hitachi Research Laboratory, Hitachi, Ltd. <span class="internship-note">(Internship)</span></span>
               </div>
             </div>
-            <div class="timeline-item">
+            <div class="internship-item">
               <div class="timeline-year">2018.08</div>
               <div class="timeline-title">
-                <span data-lang="ja">モルガン・スタンレー（インターンシップ）</span>
-                <span data-lang="en">Morgan Stanley (Internship)</span>
+                <span data-lang="ja">モルガン・スタンレー 情報技術<span class="internship-note">（インターンシップ）</span></span>
+                <span data-lang="en">Morgan Stanley Information Technology <span class="internship-note">(Internship)</span></span>
               </div>
             </div>
           </div>
