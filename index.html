@@ -1,15 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Daisuke Hayashi</title>
+  <meta charset="UTF-8">
+  <title>Daisuke Hayashi | 林大介</title>
+
+  <!-- SEO -->
+  <meta name="description" content="林大介の研究者プロフィール。コンピュータビジョン・機械学習を専門とし、研究開発から製品化、特許創出まで一貫して推進。日立製作所中央研究所、京都大学博士後期課程。">
+
+  <!-- OGP -->
+  <meta property="og:title" content="Daisuke Hayashi | 林大介">
+  <meta property="og:description" content="Researcher in Computer Vision and Machine Learning">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://disk-hayashi.github.io/">
+
+  <!-- canonical -->
+  <link rel="canonical" href="https://disk-hayashi.github.io/">
+
+  <!-- hreflang -->
+  <link rel="alternate" hreflang="ja" href="https://disk-hayashi.github.io/ja/">
+  <link rel="alternate" hreflang="en" href="https://disk-hayashi.github.io/en/">
+
   <script>
-    const userLang = (navigator.language || '').toLowerCase();
-    const target = userLang.startsWith('ja') ? './ja/' : './en/';
-    window.location.replace(target);
+    const lang = navigator.language || navigator.userLanguage;
+    if (lang.startsWith('ja')) {
+      location.href = "/ja/";
+    } else {
+      location.href = "/en/";
+    }
   </script>
-  <meta http-equiv="refresh" content="0; url=./ja/" />
 </head>
-<body></body>
+<body>
+  Redirecting...
+</body>
 </html>
