@@ -233,6 +233,54 @@
       font-weight: 900;
     }
 
+    .brand-stack {
+      display: grid;
+      gap: 8px;
+      margin: 0 0 14px;
+    }
+
+    .brand-line {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 0;
+      margin: 0;
+    }
+
+    .brand-main {
+      color: var(--accent);
+      font-size: 1rem;
+      font-weight: 900;
+      line-height: 1.35;
+    }
+
+    .brand-sub {
+      color: var(--muted);
+      font-size: 0.84rem;
+      font-weight: 700;
+      line-height: 1.35;
+      white-space: nowrap;
+    }
+
+    .timeline-affiliation {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .timeline-affiliation-main {
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    .timeline-affiliation-sub {
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
     .lead {
       margin: 0;
       color: #334155;
@@ -1107,10 +1155,24 @@
           <div class="hero-left">
             <h1>Daisuke Hayashi</h1>
             <div class="name-ja" data-lang-block="ja">林 大介</div>
-            <p class="subtitle" data-lang-block="ja">株式会社日立製作所 中央研究所</p>
-            <p class="subtitle" data-lang-block="en">Central Research Laboratory, Hitachi, Ltd.</p>
-            <p class="muted" style="margin:0 0 12px;font-size:0.92rem;" data-lang-block="ja">京都大学大学院 人間・環境学研究科 数理・情報科学講座 博士後期課程（2026.04–Present）</p>
-            <p class="muted" style="margin:0 0 12px;font-size:0.92rem;" data-lang-block="en">Ph.D. program, Mathematical and Information Science, Graduate School of Human and Environmental Studies, Kyoto University (2026.04–Present)</p>
+            <div class="brand-stack">
+              <div class="brand-line" data-lang-block="ja">
+                <span class="brand-main">株式会社日立製作所 中央研究所</span>
+                <span class="brand-sub">2020.04-Present</span>
+              </div>
+              <div class="brand-line" data-lang-block="ja">
+                <span class="brand-main">京都大学 博士後期課程（数理・情報科学）</span>
+                <span class="brand-sub">2026.04–Present</span>
+              </div>
+              <div class="brand-line" data-lang-block="en">
+                <span class="brand-main">Central Research Laboratory, Hitachi, Ltd.</span>
+                <span class="brand-sub">2020.04-Present</span>
+              </div>
+              <div class="brand-line" data-lang-block="en">
+                <span class="brand-main">Ph.D. Student, Kyoto University (Mathematical &amp; Information Science)</span>
+                <span class="brand-sub">2026.04–Present</span>
+              </div>
+            </div>
 
             <p class="lead" data-lang-block="ja">
               Computer Vision・NLP・機械学習を専門とし、研究開発から製品化、特許創出まで一貫して推進
@@ -1276,20 +1338,18 @@
           <div class="timeline">
             <div class="timeline-item">
               <div class="timeline-year">2026.04–Present</div>
-              <div class="timeline-title">
-                <span data-lang="ja">京都大学大学院 人間・環境学研究科 数理・情報科学講座 博士後期課程</span>
-                <span data-lang="en">Ph.D. program, Mathematical and Information Science, Graduate School of Human and Environmental Studies, Kyoto University</span>
-              </div>
-              <div class="muted">
-                <span data-lang="ja">社会人博士として在籍</span>
-                <span data-lang="en">Enrolled as a working professional Ph.D. student</span>
+              <div class="timeline-title timeline-affiliation">
+                <span class="timeline-affiliation-main" data-lang="ja">京都大学 博士後期課程（数理・情報科学）</span>
+                <span class="timeline-affiliation-main" data-lang="en">Ph.D. Student, Kyoto University (Mathematical &amp; Information Science)</span>
+                <span class="timeline-affiliation-sub" data-lang="ja">社会人博士</span>
+                <span class="timeline-affiliation-sub" data-lang="en">Working Professional Program</span>
               </div>
             </div>
             <div class="timeline-item">
               <div class="timeline-year">2020.04–Present</div>
-              <div class="timeline-title">
-                <span data-lang="ja">株式会社日立製作所 中央研究所</span>
-                <span data-lang="en">Central Research Laboratory, Hitachi, Ltd.</span>
+              <div class="timeline-title timeline-affiliation">
+                <span class="timeline-affiliation-main" data-lang="ja">株式会社日立製作所 中央研究所</span>
+                <span class="timeline-affiliation-main" data-lang="en">Central Research Laboratory, Hitachi, Ltd.</span>
               </div>
             </div>
           </div>
