@@ -11,7 +11,6 @@
   <link rel="alternate" hreflang="x-default" href="https://disk-hayashi.github.io/">
   <!-- OGP -->
   <meta property="og:title" content="Daisuke Hayashi">
-  <meta property="og:url" content="https://disk-hayashi.github.io/ja/">
   <meta property="og:description" content="Computer Vision・NLP・機械学習研究者">
   <style>
     :root {
@@ -2178,18 +2177,14 @@ Presented the work at the IEICE Medical Imaging Research Meeting (MI) and receiv
     }
 
     function setupLanguageLinks() {
-      const currentPath = window.location.pathname;
-      const basePath = currentPath.replace(/\/(ja|en)\/?.*$/, "");
-      const jaHref = `${basePath}/ja/`;
-      const enHref = basePath ? `${basePath}/` : "/";
       const jaLink = document.getElementById("lang-ja-link");
       const enLink = document.getElementById("lang-en-link");
       if (jaLink) {
-        jaLink.setAttribute("href", jaHref);
+        jaLink.setAttribute("href", "/ja/");
         jaLink.classList.toggle("active", currentLang() === "ja");
       }
       if (enLink) {
-        enLink.setAttribute("href", enHref);
+        enLink.setAttribute("href", "/");
         enLink.classList.toggle("active", currentLang() === "en");
       }
     }
