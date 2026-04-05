@@ -3,13 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>林大介 | 研究者プロフィール</title>
+  <title>Daisuke Hayashi</title>
   <meta name="description" content="林大介の研究者プロフィール。Computer Vision・NLP・機械学習を専門とし、研究開発から製品化、特許創出まで一貫して推進。日立製作所中央研究所、京都大学博士後期課程。">
   <link rel="canonical" href="https://disk-hayashi.github.io/ja/">
   <link rel="alternate" hreflang="ja" href="https://disk-hayashi.github.io/ja/">
-  <link rel="alternate" hreflang="en" href="https://disk-hayashi.github.io/en/">
+  <link rel="alternate" hreflang="en" href="https://disk-hayashi.github.io/">
+  <link rel="alternate" hreflang="x-default" href="https://disk-hayashi.github.io/">
   <!-- OGP -->
-  <meta property="og:title" content="林大介 | 研究者プロフィール">
+  <meta property="og:title" content="Daisuke Hayashi">
+  <meta property="og:url" content="https://disk-hayashi.github.io/ja/">
   <meta property="og:description" content="Computer Vision・NLP・機械学習研究者">
   <style>
     :root {
@@ -1063,7 +1065,7 @@
         <a href="#societies" class="mobile-secondary"><span data-lang="ja">所属学会</span><span data-lang="en">Societies</span></a>
         <div class="lang-switch">
           <a class="lang-btn" id="lang-ja-link" href="/ja/">JA</a>
-          <a class="lang-btn" id="lang-en-link" href="/en/">EN</a>
+          <a class="lang-btn" id="lang-en-link" href="/">EN</a>
         </div>
       </nav>
     </div>
@@ -2179,7 +2181,7 @@ Presented the work at the IEICE Medical Imaging Research Meeting (MI) and receiv
       const currentPath = window.location.pathname;
       const basePath = currentPath.replace(/\/(ja|en)\/?.*$/, "");
       const jaHref = `${basePath}/ja/`;
-      const enHref = `${basePath}/en/`;
+      const enHref = basePath ? `${basePath}/` : "/";
       const jaLink = document.getElementById("lang-ja-link");
       const enLink = document.getElementById("lang-en-link");
       if (jaLink) {
