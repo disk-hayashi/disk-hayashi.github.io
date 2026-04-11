@@ -290,35 +290,26 @@ function escapeHtml(str) {
       const internationalCount = document.querySelectorAll("#international-list .pub-item").length;
       const domesticCount = document.querySelectorAll("#domestic-list .pub-item").length;
       const patentCount = patents.length;
-      const primaryCount = patents.filter(p => p.isPrimary).length;
       const registeredCount = patents.filter(p => p.isRegistered).length;
       const productPatentCount = patents.filter(p => p.isProductUsed).length;
+      const paperCount = journalCount + internationalCount;
       const ja = currentLang() === "ja";
 
-      document.getElementById("stat-productized-label").innerHTML =
-        ja ? `製品化実績 ${productCount}件` : `Commercialized Cases ${productCount}`;
+      const setText = (id, value) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = String(value);
+      };
 
-      document.getElementById("stat-awards-label").innerHTML =
-        ja ? `受賞・表彰 ${awardCount}件` : `Awards ${awardCount}`;
+      setText("stat-productized-number", ja ? `${productCount}件` : productCount);
+      setText("stat-awards-number", ja ? `${awardCount}件` : awardCount);
+      setText("stat-patents-number", ja ? `${patentCount}件` : patentCount);
+      setText("stat-registered-number", ja ? `${registeredCount}件` : registeredCount);
+      setText("stat-product-patent-number", ja ? `${productPatentCount}件` : productPatentCount);
+      setText("stat-paper-number", ja ? `${paperCount}件` : paperCount);
 
-      document.getElementById("stat-journal-label").innerHTML =
-        ja ? `ジャーナル論文 ${journalCount}件` : `Journal Papers ${journalCount}`;
-      document.getElementById("journal-count-note").textContent =
-        ja ? `(${journalCount}件)` : `(${journalCount})`;
-
-      document.getElementById("stat-international-label").innerHTML =
-        ja ? `国際会議論文 ${internationalCount}件` : `International Conference Papers ${internationalCount}`;
-      document.getElementById("international-count-note").textContent =
-        ja ? `(${internationalCount}件)` : `(${internationalCount})`;
-
-      document.getElementById("domestic-count-note").textContent =
-        ja ? `(${domesticCount}件)` : `(${domesticCount})`;
-
-      document.getElementById("stat-registered-product-label").innerHTML =
-        ja ? `登録特許 ${registeredCount}件<br>製品採用特許 ${productPatentCount}件` : `Registered Patents ${registeredCount}<br>Patents Used in Products ${productPatentCount}`;
-
-      document.getElementById("stat-patents-label").innerHTML =
-        ja ? `特許出願 ${patentCount}件<br>(主発明 ${primaryCount}件)` : `Patent Applications ${patentCount}<br>(Primary Inventions ${primaryCount})`;
+      document.getElementById("journal-count-note").textContent = ja ? `(${journalCount}件)` : `(${journalCount})`;
+      document.getElementById("international-count-note").textContent = ja ? `(${internationalCount}件)` : `(${internationalCount})`;
+      document.getElementById("domestic-count-note").textContent = ja ? `(${domesticCount}件)` : `(${domesticCount})`;
     }
 
     function renderAll() {

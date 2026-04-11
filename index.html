@@ -47,13 +47,13 @@
     "Computer Vision",
     "Natural Language Processing",
     "Machine Learning",
-    "Food AI",
-    "Medical AI"
+    "Research and Development",
+    "Commercialization",
+    "Patent Creation"
   ],
   "sameAs": [
     "https://www.linkedin.com/in/daisuke-hayashi/",
     "https://scholar.google.com/citations?hl=ja&user=mHRLTWoAAAAJ",
-    "https://researchmap.jp/daisuke_hayashi",
     "https://github.com/disk-hayashi"
   ]
 }
@@ -356,6 +356,27 @@
     .timeline-item { box-shadow: 0 10px 24px rgba(15,23,42,0.04); }
     footer { padding-top: 28px; }
 
+
+    .hero-actions { margin-top: 4px; }
+    .hero-links { display:flex; flex-wrap:wrap; gap: 10px; }
+    .hero-side-card { max-width: 310px; }
+    .hero-side-panel { margin-top: 0; padding-top: 0; border-top: 0; }
+    .hero-side-panel-title { margin-bottom: 12px; }
+    .hero-side-list { gap: 10px; }
+    .hero-side-list span { background: #f8fbff; color: var(--text); border-color: rgba(219,229,240,0.9); font-weight: 800; }
+    .section-head-wide { display:block; }
+    .highlight-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .stat-tile {
+      min-height: 118px; align-items: center; justify-content: flex-start; padding: 18px 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(248,251,255,0.98) 100%);
+    }
+    .stat-stack { display:flex; flex-direction:column; gap: 6px; }
+    .stat-number { color: var(--accent-2); font-size: 1.62rem; line-height: 1; font-weight: 900; letter-spacing: -0.04em; }
+    .stat-label { color: var(--text); font-size: 0.96rem; font-weight: 800; line-height: 1.4; }
+    .product-hero-top { display:grid; grid-template-columns: 1fr auto; align-items:start; column-gap: 16px; row-gap: 6px; }
+    .product-hero-title { line-height: 1.35; }
+    .product-hero-date { white-space: nowrap; text-align: right; padding-top: 2px; }
+
     @media (max-width: 980px) {
       .hero-card { grid-template-columns: 1fr; padding: 28px 24px; }
       .hero-right { order: -1; }
@@ -451,55 +472,18 @@
           </div>
 
           <p class="lead" data-lang-block="ja">
-            Computer Vision・NLP・機械学習を専門に、食材AI・医療AIを中心として、研究開発から製品化・特許創出まで一貫して推進。
+            Computer Vision・NLP・機械学習を専門に、研究開発から製品化・特許創出まで一貫して推進。
           </p>
           <p class="lead" data-lang-block="en">
-            Specializing in computer vision, NLP, and machine learning, I lead end-to-end research, commercialization, and patent creation with a focus on food AI and medical AI.
+            Specializing in computer vision, NLP, and machine learning, I consistently drive work from R&D to commercialization and patent creation.
           </p>
 
-          <div class="hero-summary">
-            <div class="hero-summary-item">
-              <span class="hero-summary-num">2</span>
-              <span class="hero-summary-text" data-lang="ja">製品化実績</span>
-              <span class="hero-summary-text" data-lang="en">Commercialized Products</span>
-            </div>
-            <div class="hero-summary-item">
-              <span class="hero-summary-num">20+</span>
-              <span class="hero-summary-text" data-lang="ja">特許出願</span>
-              <span class="hero-summary-text" data-lang="en">Patent Applications</span>
-            </div>
-            <div class="hero-summary-item">
-              <span class="hero-summary-num">3</span>
-              <span class="hero-summary-text" data-lang="ja">受賞・表彰</span>
-              <span class="hero-summary-text" data-lang="en">Awards</span>
-            </div>
-          </div>
-
-          <div class="hero-meta">
-            <span class="chip" data-lang="ja">Computer Vision</span>
-            <span class="chip" data-lang="en">Computer Vision</span>
-            <span class="chip" data-lang="ja">NLP</span>
-            <span class="chip" data-lang="en">NLP</span>
-            <span class="chip" data-lang="ja">機械学習</span>
-            <span class="chip" data-lang="en">Machine Learning</span>
-            <span class="chip" data-lang="ja">食材AI</span>
-            <span class="chip" data-lang="en">Food AI</span>
-            <span class="chip" data-lang="ja">医療AI</span>
-            <span class="chip" data-lang="en">Medical AI</span>
-            <span class="chip" data-lang="ja">製品化</span>
-            <span class="chip" data-lang="en">Commercialization</span>
-            <span class="chip" data-lang="ja">特許創出</span>
-            <span class="chip" data-lang="en">Patent Creation</span>
-          </div>
 
           <div class="hero-actions">
             <div class="hero-links">
               <a class="btn btn-primary" href="https://www.linkedin.com/in/daisuke-hayashi/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
               <a class="btn" href="https://scholar.google.com/citations?hl=ja&user=mHRLTWoAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a>
-              <a class="btn" href="https://researchmap.jp/daisuke_hayashi" target="_blank" rel="noopener noreferrer">researchmap</a>
-            </div>
-            <div class="hero-note" data-lang-block="ja">産業実装と学術研究の両輪で成果を積み上げる研究者プロフィール</div>
-            <div class="hero-note" data-lang-block="en">A researcher profile shaped by both industrial implementation and academic output.</div>
+                          </div>
           </div>
         </div>
 
@@ -508,43 +492,24 @@
             <div class="hero-photo-wrap">
               <img src="/profile.jpg" alt="Daisuke Hayashi" loading="eager" decoding="async" class="hero-photo" />
             </div>
-            <div class="hero-side-kicker" data-lang-block="ja">研究開発から製品化・特許創出まで、一気通貫で価値をつなぐ。</div>
-            <div class="hero-side-kicker" data-lang-block="en">Connecting research, commercialization, and patents in one consistent pipeline.</div>
 
             <div class="hero-side-panel">
               <div class="hero-side-panel-title" data-lang-block="ja">Focus Areas</div>
               <div class="hero-side-panel-title" data-lang-block="en">Focus Areas</div>
               <div class="hero-side-list">
-                <span>Food AI</span>
-                <span>Medical AI</span>
+                <span>Computer Vision</span>
+                <span>NLP</span>
+                <span data-lang="ja">機械学習</span>
+                <span data-lang="en">Machine Learning</span>
                 <span data-lang="ja">研究開発</span>
                 <span data-lang="en">R&amp;D</span>
                 <span data-lang="ja">製品化</span>
                 <span data-lang="en">Commercialization</span>
+                <span data-lang="ja">特許創出</span>
+                <span data-lang="en">Patent Creation</span>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div class="hero-trustband">
-        <div class="trust-item">
-          <div class="trust-kicker" data-lang-block="ja">Industrial Impact</div>
-          <div class="trust-kicker" data-lang-block="en">Industrial Impact</div>
-          <div class="trust-text" data-lang-block="ja">食材AI・医療AIで研究開発から実装まで推進</div>
-          <div class="trust-text" data-lang-block="en">Driving end-to-end R&amp;D and implementation in food AI and medical AI.</div>
-        </div>
-        <div class="trust-item">
-          <div class="trust-kicker" data-lang-block="ja">Academic Trajectory</div>
-          <div class="trust-kicker" data-lang-block="en">Academic Trajectory</div>
-          <div class="trust-text" data-lang-block="ja">京都大学博士課程で研究を発展</div>
-          <div class="trust-text" data-lang-block="en">Expanding research through a Ph.D. program at Kyoto University.</div>
-        </div>
-        <div class="trust-item">
-          <div class="trust-kicker" data-lang-block="ja">Intellectual Property</div>
-          <div class="trust-kicker" data-lang-block="en">Intellectual Property</div>
-          <div class="trust-text" data-lang-block="ja">特許創出と製品採用を両立</div>
-          <div class="trust-text" data-lang-block="en">Combining patent creation with real product adoption.</div>
         </div>
       </div>
     </div>
@@ -558,17 +523,15 @@
             <div class="section-kicker"><span data-lang="ja">Overview</span><span data-lang="en">Overview</span></div>
             <h2><span data-lang="ja">ハイライト</span><span data-lang="en">Highlights</span></h2>
           </div>
-          <p class="section-intro" data-lang-block="ja">研究開発・事業化・知財・学術の4軸で、現在の実績を一目で把握できる構成です。</p>
-          <p class="section-intro" data-lang-block="en">A quick view of the current profile across R&amp;D, commercialization, intellectual property, and academic output.</p>
         </div>
 
         <div class="highlight-grid">
-          <div class="stat-tile stat-blue"><span class="stat-label" id="stat-productized-label">製品化実績 0件</span></div>
-          <div class="stat-tile stat-red"><span class="stat-label" id="stat-awards-label">受賞・表彰 0件</span></div>
-          <div class="stat-tile stat-green"><span class="stat-label" id="stat-patents-label">特許出願 0件<br>(主発明 0件)</span></div>
-          <div class="stat-tile stat-green"><span class="stat-label" id="stat-registered-product-label">登録特許 0件<br>製品採用特許 0件</span></div>
-          <div class="stat-tile stat-purple"><span class="stat-label" id="stat-journal-label">ジャーナル論文 0件</span></div>
-          <div class="stat-tile stat-purple"><span class="stat-label" id="stat-international-label">国際会議論文 0件</span></div>
+          <div class="stat-tile"><div class="stat-stack"><span class="stat-number" id="stat-productized-number">0</span><span class="stat-label" id="stat-productized-label"><span data-lang="ja">製品化</span><span data-lang="en">Commercialization</span></span></div></div>
+          <div class="stat-tile"><div class="stat-stack"><span class="stat-number" id="stat-awards-number">0</span><span class="stat-label" id="stat-awards-label"><span data-lang="ja">受賞・表彰</span><span data-lang="en">Awards</span></span></div></div>
+          <div class="stat-tile"><div class="stat-stack"><span class="stat-number" id="stat-patents-number">0</span><span class="stat-label" id="stat-patents-label"><span data-lang="ja">特許出願</span><span data-lang="en">Patent Applications</span></span></div></div>
+          <div class="stat-tile"><div class="stat-stack"><span class="stat-number" id="stat-registered-number">0</span><span class="stat-label" id="stat-registered-label"><span data-lang="ja">登録特許</span><span data-lang="en">Registered Patents</span></span></div></div>
+          <div class="stat-tile"><div class="stat-stack"><span class="stat-number" id="stat-product-patent-number">0</span><span class="stat-label" id="stat-product-patent-label"><span data-lang="ja">製品採用特許</span><span data-lang="en">Patents Used in Products</span></span></div></div>
+          <div class="stat-tile"><div class="stat-stack"><span class="stat-number" id="stat-paper-number">0</span><span class="stat-label" id="stat-paper-label"><span data-lang="ja">論文</span><span data-lang="en">Papers</span></span></div></div>
         </div>
       </div>
     </div>
@@ -582,8 +545,6 @@
             <div class="section-kicker"><span data-lang="ja">Featured Work</span><span data-lang="en">Featured Work</span></div>
             <h2><span data-lang="ja">製品化</span><span data-lang="en">Commercialization</span></h2>
           </div>
-          <p class="section-intro" data-lang-block="ja">社会実装につながった代表成果を掲載しています。研究テーマがどのようにユーザー価値へ接続したかを示します。</p>
-          <p class="section-intro" data-lang-block="en">Featured outcomes that reached real-world implementation, showing how research themes were translated into user value.</p>
         </div>
         <div id="top-product-cards" class="product-hero-grid"></div>
       </div>
@@ -598,8 +559,6 @@
             <div class="section-kicker"><span data-lang="ja">Intellectual Property</span><span data-lang="en">Intellectual Property</span></div>
             <h2><span data-lang="ja">特許</span><span data-lang="en">Patents</span></h2>
           </div>
-          <p class="section-intro" data-lang-block="ja">主発明・登録・製品採用を含む知財実績を一覧化しています。</p>
-          <p class="section-intro" data-lang-block="en">A structured view of patent activities including primary inventions, registrations, and patents used in products.</p>
         </div>
 
         <div class="tools">
@@ -631,8 +590,6 @@
             <div class="section-kicker"><span data-lang="ja">Research Themes</span><span data-lang="en">Research Themes</span></div>
             <h2><span data-lang="ja">研究業績</span><span data-lang="en">Research Impact</span></h2>
           </div>
-          <p class="section-intro" data-lang-block="ja">主要研究テーマごとに、目的・成果・応用先が伝わるよう整理しています。</p>
-          <p class="section-intro" data-lang-block="en">Key research themes are presented so that objectives, outcomes, and application directions are immediately understandable.</p>
         </div>
         <div id="research-impact-list" class="impact-list"></div>
       </div>
@@ -647,8 +604,6 @@
             <div class="section-kicker"><span data-lang="ja">Publications</span><span data-lang="en">Publications</span></div>
             <h2><span data-lang="ja">論文発表</span><span data-lang="en">Publications</span></h2>
           </div>
-          <p class="section-intro" data-lang-block="ja">ジャーナル・国際会議・国内会議を分けて整理し、研究発信の全体像を見やすくしています。</p>
-          <p class="section-intro" data-lang-block="en">Journal papers, international conferences, and domestic conferences are separated for a clearer view of research dissemination.</p>
         </div>
 
         <h3 class="group-title"><span data-lang="ja">ジャーナル論文</span><span data-lang="en">Journal Papers</span><span class="count-note" id="journal-count-note"></span></h3>
@@ -673,8 +628,6 @@
             <div class="section-kicker"><span data-lang="ja">Recognition</span><span data-lang="en">Recognition</span></div>
             <h2><span data-lang="ja">受賞・表彰</span><span data-lang="en">Awards</span></h2>
           </div>
-          <p class="section-intro" data-lang-block="ja">研究内容そのものだけでなく、その価値が評価された実績をまとめています。</p>
-          <p class="section-intro" data-lang-block="en">Recognition that highlights how the research has been evaluated beyond the work itself.</p>
         </div>
         <div id="award-list" class="award-list compact"></div>
       </div>
@@ -689,8 +642,6 @@
             <div class="section-kicker"><span data-lang="ja">Background</span><span data-lang="en">Background</span></div>
             <h2><span data-lang="ja">職歴・学歴</span><span data-lang="en">Career &amp; Education</span></h2>
           </div>
-          <p class="section-intro" data-lang-block="ja">産業界での研究開発と博士課程での研究を並行して進める現在の基盤です。</p>
-          <p class="section-intro" data-lang-block="en">The foundation that combines industrial R&amp;D with doctoral research in parallel.</p>
         </div>
         <div class="timeline">
           <div class="timeline-item">
@@ -712,27 +663,13 @@
         </div>
 
         <div style="height:12px"></div>
-        <h3 class="group-title"><span data-lang="ja">インターンシップ歴</span><span data-lang="en">Internship Experience</span></h3>
+        <h3 class="group-title"><span data-lang="ja">主要インターンシップ</span><span data-lang="en">Selected Internships</span></h3>
         <div class="internship-grid">
           <div class="internship-item">
             <div class="timeline-year">2018.08</div>
             <div class="timeline-title">
               <span data-lang="ja">モルガン・スタンレー 情報技術<span class="internship-note">（インターンシップ）</span></span>
               <span data-lang="en">Morgan Stanley Information Technology <span class="internship-note">(Internship)</span></span>
-            </div>
-          </div>
-          <div class="internship-item">
-            <div class="timeline-year">2018.08–2018.09</div>
-            <div class="timeline-title">
-              <span data-lang="ja">株式会社日立製作所 日立研究所<span class="internship-note">（インターンシップ）</span></span>
-              <span data-lang="en">Hitachi Research Laboratory, Hitachi, Ltd. <span class="internship-note">(Internship)</span></span>
-            </div>
-          </div>
-          <div class="internship-item">
-            <div class="timeline-year">2018.08–2018.09</div>
-            <div class="timeline-title">
-              <span data-lang="ja">国立研究開発法人 産業技術総合研究所<span class="internship-note">（インターンシップ）</span></span>
-              <span data-lang="en">National Institute of Advanced Industrial Science and Technology <span class="internship-note">(Internship)</span></span>
             </div>
           </div>
         </div>
@@ -748,8 +685,6 @@
             <div class="section-kicker"><span data-lang="ja">Credentials</span><span data-lang="en">Credentials</span></div>
             <h2><span data-lang="ja">資格</span><span data-lang="en">Certifications</span></h2>
           </div>
-          <p class="section-intro" data-lang-block="ja">専門性を補強する資格・認証を掲載しています。</p>
-          <p class="section-intro" data-lang-block="en">Certifications and verified credentials that support professional expertise.</p>
         </div>
         <div id="cert-list" class="cert-grid"></div>
       </div>
@@ -764,8 +699,6 @@
             <div class="section-kicker"><span data-lang="ja">Professional Community</span><span data-lang="en">Professional Community</span></div>
             <h2><span data-lang="ja">所属学会</span><span data-lang="en">Societies</span></h2>
           </div>
-          <p class="section-intro" data-lang-block="ja">研究コミュニティとの接点を示す所属情報です。</p>
-          <p class="section-intro" data-lang-block="en">Affiliations that indicate engagement with the research community.</p>
         </div>
         <div id="society-list" class="society-list"></div>
       </div>

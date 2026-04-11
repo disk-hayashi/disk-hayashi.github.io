@@ -56,13 +56,13 @@ function buildJsonLd(page) {
       'Computer Vision',
       'Natural Language Processing',
       'Machine Learning',
-      'Food AI',
-      'Medical AI'
+      'Research and Development',
+      'Commercialization',
+      'Patent Creation'
     ],
     sameAs: [
       'https://www.linkedin.com/in/daisuke-hayashi/',
       'https://scholar.google.com/citations?hl=ja&user=mHRLTWoAAAAJ',
-      'https://researchmap.jp/daisuke_hayashi',
       'https://github.com/disk-hayashi'
     ]
   };
