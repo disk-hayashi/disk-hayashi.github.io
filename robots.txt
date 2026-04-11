@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://disk-hayashi.github.io/sitemap.xml
