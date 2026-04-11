@@ -29,7 +29,7 @@ module.exports = {
   siteData: {
   "societies": [
     {
-      "jaTitle": "日本メディカルAI学会あ",
+      "jaTitle": "日本メディカルAI学会",
       "enTitle": "Japanese Association for Medical Artificial Intelligence",
       "periodJa": "2022.10–現在",
       "periodEn": "Oct. 2022–Present"
