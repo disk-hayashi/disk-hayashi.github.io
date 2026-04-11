@@ -7,6 +7,7 @@
       "jaDesc": "食材検知AIを開発し、冷蔵室・冷凍室・野菜室のカメラ画像から食材を自動検知。買い物・献立・調理導線までつなぐレシピ提案機能も含めて製品化。",
       "enDesc": "Commercialized a food detection AI system that automatically recognizes ingredients from refrigerator, freezer, and vegetable-compartment camera images and connects them to recipe recommendations for everyday meal planning.",
       "leader": true,
+      "featured": true,
       "productPatent": true,
       "links": {
         "ja": [
