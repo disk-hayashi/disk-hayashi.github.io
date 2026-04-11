@@ -1,6 +1,6 @@
 module.exports = [
     {
-      "jaTitle": "若手発明者トップ50",
+      "jaTitle": "若手発明者トップ50aaa",
       "enTitle": "Top 50 Young Inventors",
       "jaMeta": "2024年12月 日立製作所",
       "enMeta": "Dec. 2024, Hitachi, Ltd."
