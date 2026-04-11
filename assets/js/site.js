@@ -7,9 +7,10 @@ function escapeHtml(str) {
         .replace(/'/g, "&#39;");
     }
 
-    function currentLang() {
-      return document.documentElement.getAttribute("lang-mode") || "{{LANG_MODE}}";
-    }
+      function currentLang() {
+        return document.documentElement.getAttribute("lang-mode") || window.__LANG_MODE__ || "en";
+      }
+      const siteData = window.__SITE_DATA__ || {};
 
     function makeTag(type, ja, en) {
       const text = currentLang() === "ja" ? ja : en;
