@@ -1,1 +1,0 @@
-# disk-hayashi.github.io
