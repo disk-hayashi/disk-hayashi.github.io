@@ -124,36 +124,6 @@
     </div>
   </section>
 
-  <section id="patents" class="section">
-    <div class="container">
-      <div class="section-card">
-        <div class="section-head section-head-wide">
-          <div>
-            <div class="section-kicker"><span data-lang="ja">Intellectual Property</span><span data-lang="en">Intellectual Property</span></div>
-            <h2><span data-lang="ja">特許</span><span data-lang="en">Patents</span></h2>
-          </div>
-        </div>
-
-        <div class="tools">
-          <input id="patent-search" class="search-input" type="text" placeholder="Search patents / 特許検索" />
-          <select id="country-filter" class="select-input">
-            <option value="">All countries / すべての出願国</option>
-            <option value="日本">Japan / 日本</option>
-            <option value="PCT">PCT</option>
-            <option value="中国">China / 中国</option>
-          </select>
-          <select id="type-filter" class="select-input">
-            <option value="">All tags / すべての属性</option>
-            <option value="primary">Primary / 主発明</option>
-            <option value="registered">Registered / 登録特許</option>
-            <option value="product">Used in Product / 製品採用特許</option>
-          </select>
-        </div>
-
-        <div id="all-patent-list" class="patent-grid"></div>
-      </div>
-    </div>
-  </section>
 
   <section id="research-impact" class="section">
     <div class="container">
@@ -189,6 +159,37 @@
         <div style="height:8px"></div>
         <h3 class="group-title"><span data-lang="ja">国内会議</span><span data-lang="en">Domestic Conferences</span><span class="count-note" id="domestic-count-note"></span></h3>
         <div id="domestic-list" class="patent-grid"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="patents" class="section">
+    <div class="container">
+      <div class="section-card">
+        <div class="section-head section-head-wide">
+          <div>
+            <div class="section-kicker"><span data-lang="ja">Intellectual Property</span><span data-lang="en">Intellectual Property</span></div>
+            <h2><span data-lang="ja">特許</span><span data-lang="en">Patents</span></h2>
+          </div>
+        </div>
+
+        <div class="tools">
+          <input id="patent-search" class="search-input" type="text" placeholder="Search patents / 特許検索" />
+          <select id="country-filter" class="select-input">
+            <option value="">All countries / すべての出願国</option>
+            <option value="日本">Japan / 日本</option>
+            <option value="PCT">PCT</option>
+            <option value="中国">China / 中国</option>
+          </select>
+          <select id="type-filter" class="select-input">
+            <option value="">All tags / すべての属性</option>
+            <option value="primary">Primary / 主発明</option>
+            <option value="registered">Registered / 登録特許</option>
+            <option value="product">Used in Product / 製品採用特許</option>
+          </select>
+        </div>
+
+        <div id="all-patent-list" class="patent-grid"></div>
       </div>
     </div>
   </section>
