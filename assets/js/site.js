@@ -60,14 +60,8 @@ function escapeHtml(str) {
         const tags = [];
         if (card.leader) tags.push(makeTag("primary", "テーマリーダ", "Theme Leader"));
         if (card.productPatent) tags.push(makeTag("product", "製品採用特許", "Patent Used in Product"));
-
-        const featuredBadge = card.featured
-          ? `<div class="product-feature-badge">${currentLang() === "ja" ? "代表成果" : "Featured"}</div>`
-          : ``;
-
         return `
           <article class="product-hero-card">
-            <div class="product-hero-header">${featuredBadge}</div>
             <div class="product-hero-top">
               <h3 class="product-hero-title">${escapeHtml(currentLang() === "ja" ? card.jaTitle : card.enTitle)}</h3>
               <div class="product-hero-date">${escapeHtml(currentLang() === "ja" ? card.jaDate : card.enDate)}</div>
