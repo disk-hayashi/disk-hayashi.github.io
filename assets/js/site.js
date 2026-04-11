@@ -8,7 +8,7 @@ function escapeHtml(str) {
     }
 
     function currentLang() {
-      return document.documentElement.getAttribute("lang-mode") || window.__LANG_MODE__ || "en";
+      return document.documentElement.getAttribute("data-lang-mode") || document.documentElement.getAttribute("lang-mode") || window.__LANG_MODE__ || "en";
     }
 
     function makeTag(type, ja, en) {
@@ -347,9 +347,13 @@ function escapeHtml(str) {
       }
     }
 
-    document.getElementById("patent-search").addEventListener("input", renderPatents);
-    document.getElementById("country-filter").addEventListener("change", renderPatents);
-    document.getElementById("type-filter").addEventListener("change", renderPatents);
+    const patentSearch = document.getElementById("patent-search");
+    const countryFilter = document.getElementById("country-filter");
+    const typeFilter = document.getElementById("type-filter");
+
+    if (patentSearch) patentSearch.addEventListener("input", renderPatents);
+    if (countryFilter) countryFilter.addEventListener("change", renderPatents);
+    if (typeFilter) typeFilter.addEventListener("change", renderPatents);
 
     setupLanguageLinks();
     renderAll();

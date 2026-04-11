@@ -30,14 +30,41 @@ function buildJsonLd(page) {
     url: page.canonical,
     image: `${config.site.baseUrl}/profile.jpg`,
     jobTitle: page.langMode === 'ja' ? '研究者' : 'Researcher',
+    description: page.description,
     worksFor: {
       '@type': 'Organization',
-      name: 'Hitachi, Ltd.'
+      name: 'Hitachi, Ltd.',
+      url: 'https://www.hitachi.co.jp/'
     },
+    affiliation: [
+      {
+        '@type': 'Organization',
+        name: 'Hitachi, Ltd.',
+        url: 'https://www.hitachi.co.jp/'
+      },
+      {
+        '@type': 'CollegeOrUniversity',
+        name: 'Kyoto University',
+        url: 'https://www.kyoto-u.ac.jp/'
+      }
+    ],
     alumniOf: {
       '@type': 'CollegeOrUniversity',
-      name: 'Kyoto University'
-    }
+      name: 'Tokyo University of Agriculture and Technology'
+    },
+    knowsAbout: [
+      'Computer Vision',
+      'Natural Language Processing',
+      'Machine Learning',
+      'Food AI',
+      'Medical AI'
+    ],
+    sameAs: [
+      'https://www.linkedin.com/in/daisuke-hayashi/',
+      'https://scholar.google.com/citations?hl=ja&user=mHRLTWoAAAAJ',
+      'https://researchmap.jp/daisuke_hayashi',
+      'https://github.com/disk-hayashi'
+    ]
   };
 }
 
@@ -57,6 +84,8 @@ function buildHeadMeta(page) {
     EN_URL: escapeHtmlAttr(config.site.enUrl),
     OG_TITLE: escapeHtmlAttr(page.ogTitle),
     OG_DESCRIPTION: escapeHtmlAttr(page.ogDescription),
+    OG_LOCALE: escapeHtmlAttr(page.ogLocale),
+    OG_LOCALE_ALTERNATE: escapeHtmlAttr(page.ogLocaleAlternate),
     JSON_LD: jsonForScript(buildJsonLd(page))
   });
 }

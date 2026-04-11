@@ -15,7 +15,9 @@ module.exports = {
       description: "Daisuke Hayashi is a Computer Vision and Machine Learning researcher at Hitachi and Kyoto University, working on Food AI and Medical AI with patented and commercialized technologies.",
       canonical: "https://disk-hayashi.github.io/",
       ogTitle: "Daisuke Hayashi",
-      ogDescription: "Computer Vision, NLP and Machine Learning Researcher"
+      ogDescription: "Computer Vision, NLP and Machine Learning Researcher",
+      ogLocale: "en_US",
+      ogLocaleAlternate: "ja_JP"
     },
     ja: {
       htmlLang: "ja",
@@ -24,7 +26,9 @@ module.exports = {
       description: "林大介の研究者プロフィール。日立製作所・京都大学にてコンピュータビジョン・機械学習・NLPの研究開発と製品化を推進。特許・論文・受賞実績あり。",
       canonical: "https://disk-hayashi.github.io/ja/",
       ogTitle: "Daisuke Hayashi",
-      ogDescription: "Computer Vision・NLP・機械学習研究者"
+      ogDescription: "Computer Vision・NLP・機械学習研究者",
+      ogLocale: "ja_JP",
+      ogLocaleAlternate: "en_US"
     }
   },
 
