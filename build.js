@@ -48,8 +48,8 @@ function applyReplacements(template, replacements) {
 }
 
 function buildHeadMeta(page) {
-  const partial = readText('partials/head.meta.html');
-  return applyReplacements(partial, {
+  const headTemplate = readText(path.join('partials', 'head.meta.html'));
+  return applyReplacements(headTemplate, {
     TITLE: escapeHtmlAttr(page.title),
     DESCRIPTION: escapeHtmlAttr(page.description),
     CANONICAL: escapeHtmlAttr(page.canonical),
@@ -64,13 +64,11 @@ function buildHeadMeta(page) {
 function buildPage(lang) {
   const template = readText('template.html');
   const page = config.pages[lang];
-
   const replacements = {
     HTML_LANG: escapeHtmlAttr(page.htmlLang),
     LANG_MODE: escapeHtmlAttr(page.langMode),
     HEAD_META: buildHeadMeta(page),
-    HERO: readText('partials/hero.html'),
-    SECTIONS_SHELL: readText('partials/sections.shell.html'),
+    BODY_SHELL: readText(path.join('partials', 'body.shell.html')),
     SITE_DATA: jsonForScript(config.siteData)
   };
 
