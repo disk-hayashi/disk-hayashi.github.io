@@ -1,7 +1,0 @@
-{
-  "name": "daisuke-hayashi-profile-site",
-  "private": true,
-  "scripts": {
-    "build": "node build.js"
-  }
-}
