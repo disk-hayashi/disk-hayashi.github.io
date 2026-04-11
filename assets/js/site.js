@@ -63,11 +63,11 @@ function escapeHtml(str) {
 
         const featuredBadge = card.featured
           ? `<div class="product-feature-badge">${currentLang() === "ja" ? "代表成果" : "Featured"}</div>`
-          : `<div class="product-feature-badge product-feature-badge-placeholder" aria-hidden="true"></div>`;
+          : ``;
 
         return `
           <article class="product-hero-card">
-            ${featuredBadge}
+            <div class="product-hero-header">${featuredBadge}</div>
             <div class="product-hero-top">
               <h3 class="product-hero-title">${escapeHtml(currentLang() === "ja" ? card.jaTitle : card.enTitle)}</h3>
               <div class="product-hero-date">${escapeHtml(currentLang() === "ja" ? card.jaDate : card.enDate)}</div>

@@ -8,9 +8,9 @@
     <nav class="nav">
       <a href="#highlights"><span data-lang="ja">ハイライト</span><span data-lang="en">Highlights</span></a>
       <a href="#top-products"><span data-lang="ja">製品化</span><span data-lang="en">Commercialization</span></a>
+      <a href="#patents"><span data-lang="ja">特許</span><span data-lang="en">Patents</span></a>
       <a href="#research-impact"><span data-lang="ja">研究業績</span><span data-lang="en">Research Impact</span></a>
       <a href="#publications"><span data-lang="ja">論文発表</span><span data-lang="en">Publications</span></a>
-      <a href="#patents"><span data-lang="ja">特許</span><span data-lang="en">Patents</span></a>
       <a href="#awards"><span data-lang="ja">受賞</span><span data-lang="en">Awards</span></a>
       <a href="#career"><span data-lang="ja">職歴・学歴</span><span data-lang="en">Career &amp; Education</span></a>
       <a href="#certifications" class="mobile-secondary"><span data-lang="ja">資格</span><span data-lang="en">Certifications</span></a>
@@ -28,7 +28,7 @@
     <div class="container">
       <div class="hero-card">
         <div class="hero-left">
-          <div class="hero-eyebrow"><span data-lang="ja">Top Researcher Profile</span><span data-lang="en">Top Researcher Profile</span></div>
+          <div class="hero-eyebrow"><span data-lang="ja">Research Profile</span><span data-lang="en">Research Profile</span></div>
           <h1>Daisuke Hayashi</h1>
           <div class="name-ja" data-lang-block="ja">林 大介</div>
 
@@ -80,22 +80,8 @@
             <div class="hero-side-panel">
               <div class="hero-side-panel-title" data-lang-block="ja">FOCUS AREAS</div>
               <div class="hero-side-panel-title" data-lang-block="en">FOCUS AREAS</div>
-              <div class="hero-side-chip-list" data-lang-block="ja">
-                <span class="focus-chip">Computer Vision</span>
-                <span class="focus-chip">NLP</span>
-                <span class="focus-chip">機械学習</span>
-                <span class="focus-chip">製品化</span>
-                <span class="focus-chip">特許創出</span>
-                <span class="focus-chip">研究開発</span>
-              </div>
-              <div class="hero-side-chip-list" data-lang-block="en">
-                <span class="focus-chip">Computer Vision</span>
-                <span class="focus-chip">NLP</span>
-                <span class="focus-chip">Machine Learning</span>
-                <span class="focus-chip">Commercialization</span>
-                <span class="focus-chip">Patent Creation</span>
-                <span class="focus-chip">R&amp;D</span>
-              </div>
+              <div class="hero-side-list" data-lang-block="ja">Computer Vision, NLP, 機械学習, 製品化, 特許創出, 研究開発</div>
+              <div class="hero-side-list" data-lang-block="en">Computer Vision, NLP, Machine Learning, Commercialization, Patent Creation, R&amp;D</div>
             </div>
           </div>
         </div>
@@ -139,6 +125,37 @@
     </div>
   </section>
 
+  <section id="patents" class="section">
+    <div class="container">
+      <div class="section-card">
+        <div class="section-head section-head-wide">
+          <div>
+            <div class="section-kicker"><span data-lang="ja">Intellectual Property</span><span data-lang="en">Intellectual Property</span></div>
+            <h2><span data-lang="ja">特許</span><span data-lang="en">Patents</span></h2>
+          </div>
+        </div>
+
+        <div class="tools">
+          <input id="patent-search" class="search-input" type="text" placeholder="Search patents / 特許検索" />
+          <select id="country-filter" class="select-input">
+            <option value="">All countries / すべての出願国</option>
+            <option value="日本">Japan / 日本</option>
+            <option value="PCT">PCT</option>
+            <option value="中国">China / 中国</option>
+          </select>
+          <select id="type-filter" class="select-input">
+            <option value="">All tags / すべての属性</option>
+            <option value="primary">Primary / 主発明</option>
+            <option value="registered">Registered / 登録特許</option>
+            <option value="product">Used in Product / 製品採用特許</option>
+          </select>
+        </div>
+
+        <div id="all-patent-list" class="patent-grid"></div>
+      </div>
+    </div>
+  </section>
+
   <section id="research-impact" class="section">
     <div class="container">
       <div class="section-card">
@@ -173,37 +190,6 @@
         <div style="height:8px"></div>
         <h3 class="group-title"><span data-lang="ja">国内会議</span><span data-lang="en">Domestic Conferences</span><span class="count-note" id="domestic-count-note"></span></h3>
         <div id="domestic-list" class="patent-grid"></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="patents" class="section">
-    <div class="container">
-      <div class="section-card">
-        <div class="section-head section-head-wide">
-          <div>
-            <div class="section-kicker"><span data-lang="ja">Intellectual Property</span><span data-lang="en">Intellectual Property</span></div>
-            <h2><span data-lang="ja">特許</span><span data-lang="en">Patents</span></h2>
-          </div>
-        </div>
-
-        <div class="tools">
-          <input id="patent-search" class="search-input" type="text" placeholder="Search patents / 特許検索" />
-          <select id="country-filter" class="select-input">
-            <option value="">All countries / すべての出願国</option>
-            <option value="日本">Japan / 日本</option>
-            <option value="PCT">PCT</option>
-            <option value="中国">China / 中国</option>
-          </select>
-          <select id="type-filter" class="select-input">
-            <option value="">All tags / すべての属性</option>
-            <option value="primary">Primary / 主発明</option>
-            <option value="registered">Registered / 登録特許</option>
-            <option value="product">Used in Product / 製品採用特許</option>
-          </select>
-        </div>
-
-        <div id="all-patent-list" class="patent-grid"></div>
       </div>
     </div>
   </section>
@@ -257,7 +243,7 @@
             <div class="timeline-year">2018.08</div>
             <div class="timeline-title">
               <span data-lang="ja">モルガン・スタンレー 情報技術部門</span>
-              <span data-lang="en">Morgan Stanley Information Technology Division</span>
+              <span data-lang="en">Morgan Stanley Information Technology <span class="internship-note">(Internship)</span></span>
             </div>
           </div>
         </div>
