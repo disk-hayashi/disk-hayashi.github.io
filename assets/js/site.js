@@ -7,10 +7,9 @@ function escapeHtml(str) {
         .replace(/'/g, "&#39;");
     }
 
-      function currentLang() {
-        return document.documentElement.getAttribute("lang-mode") || window.__LANG_MODE__ || "en";
-      }
-      const siteData = window.__SITE_DATA__ || {};
+    function currentLang() {
+      return document.documentElement.getAttribute("lang-mode") || window.__LANG_MODE__ || "en";
+    }
 
     function makeTag(type, ja, en) {
       const text = currentLang() === "ja" ? ja : en;
@@ -43,7 +42,7 @@ function escapeHtml(str) {
       return html;
     }
 
-    const siteData = {{SITE_DATA}};
+    const siteData = window.__SITE_DATA__ || {};
     const {
       societies,
       publications,
