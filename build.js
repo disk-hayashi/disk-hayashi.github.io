@@ -2,6 +2,10 @@ const fs = require('fs');
 const path = require('path');
 const config = require('./site.config.js');
 
+function readText(relativePath) {
+  return fs.readFileSync(path.join(__dirname, relativePath), 'utf-8');
+}
+
 function escapeHtmlAttr(value = '') {
   return String(value)
     .replace(/&/g, '&amp;')
@@ -25,9 +29,7 @@ function buildJsonLd(page) {
     alternateName: '林大介',
     url: page.canonical,
     image: `${config.site.baseUrl}/profile.jpg`,
-    jobTitle: page.langMode === 'ja'
-      ? '研究者'
-      : 'Researcher',
+    jobTitle: page.langMode === 'ja' ? '研究者' : 'Researcher',
     worksFor: {
       '@type': 'Organization',
       name: 'Hitachi, Ltd.'
@@ -45,12 +47,9 @@ function applyReplacements(template, replacements) {
   }, template);
 }
 
-function buildPage(lang) {
-  const template = fs.readFileSync(path.join(__dirname, 'template.html'), 'utf-8');
-  const page = config.pages[lang];
-  const replacements = {
-    HTML_LANG: escapeHtmlAttr(page.htmlLang),
-    LANG_MODE: escapeHtmlAttr(page.langMode),
+function buildHeadMeta(page) {
+  const partial = readText('partials/head.meta.html');
+  return applyReplacements(partial, {
     TITLE: escapeHtmlAttr(page.title),
     DESCRIPTION: escapeHtmlAttr(page.description),
     CANONICAL: escapeHtmlAttr(page.canonical),
@@ -58,7 +57,20 @@ function buildPage(lang) {
     EN_URL: escapeHtmlAttr(config.site.enUrl),
     OG_TITLE: escapeHtmlAttr(page.ogTitle),
     OG_DESCRIPTION: escapeHtmlAttr(page.ogDescription),
-    JSON_LD: jsonForScript(buildJsonLd(page)),
+    JSON_LD: jsonForScript(buildJsonLd(page))
+  });
+}
+
+function buildPage(lang) {
+  const template = readText('template.html');
+  const page = config.pages[lang];
+
+  const replacements = {
+    HTML_LANG: escapeHtmlAttr(page.htmlLang),
+    LANG_MODE: escapeHtmlAttr(page.langMode),
+    HEAD_META: buildHeadMeta(page),
+    HERO: readText('partials/hero.html'),
+    SECTIONS_SHELL: readText('partials/sections.shell.html'),
     SITE_DATA: jsonForScript(config.siteData)
   };
 

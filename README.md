@@ -31,3 +31,15 @@ Put these files in the root of your repository:
 - Japanese page: `/ja/`
 - `robots.txt` points to `/sitemap.xml`
 - `sitemap.xml` includes both EN and JA URLs
+
+
+## Refactor-ready files included
+- `build.js` now reads `partials/head.meta.html` and `partials/body.shell.html`
+- `template.html` is reduced to a thin wrapper
+- `assets/js/site.js` contains the former inline rendering script
+
+### Build
+```bash
+npm install
+npm run build
+```

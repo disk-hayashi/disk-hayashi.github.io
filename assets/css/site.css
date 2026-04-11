@@ -1,0 +1,165 @@
+:root {
+  --bg: #f3f7fc;
+  --card: #ffffff;
+  --card-soft: #f8fbff;
+  --text: #0f172a;
+  --muted: #64748b;
+  --line: #dbe5f0;
+  --accent: #2563eb;
+  --accent-2: #1d4ed8;
+  --accent-soft: rgba(37, 99, 235, 0.10);
+  --shadow: 0 18px 42px rgba(15, 23, 42, 0.08);
+  --radius: 22px;
+  --radius-lg: 28px;
+  --maxw: 1140px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans JP",
+    "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+  line-height: 1.5;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top right, rgba(37, 99, 235, 0.08), transparent 24%),
+    radial-gradient(circle at top left, rgba(59, 130, 246, 0.05), transparent 22%),
+    linear-gradient(180deg, #f8fbff 0%, #f3f7fc 100%);
+  font-size: 14px;
+  letter-spacing: 0.01em;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  width: min(var(--maxw), calc(100% - 24px));
+  margin: 0 auto;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(243, 247, 252, 0.88);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(219, 229, 240, 0.92);
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 0;
+}
+
+.hero {
+  padding: 22px 0 10px;
+}
+
+.hero-card,
+.section-card,
+.stat-card,
+.patent-card,
+.pub-item,
+.award-item,
+.cert-card,
+.impact-card,
+.society-item {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.hero-card {
+  display: grid;
+  grid-template-columns: 1.4fr 0.72fr;
+  gap: 24px;
+  align-items: center;
+  padding: 26px 28px;
+}
+
+.profile-image {
+  width: min(100%, 280px);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 24px;
+}
+
+.section {
+  padding: 12px 0;
+}
+
+.section-card {
+  padding: 22px;
+}
+
+.section-title {
+  margin: 0 0 16px;
+  font-size: 1.4rem;
+  font-weight: 900;
+}
+
+.stats-grid,
+.product-hero-grid,
+.patent-grid,
+.publication-grid-2,
+.cert-grid,
+.society-grid,
+.impact-list {
+  display: grid;
+  gap: 16px;
+}
+
+.stats-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.product-hero-grid,
+.patent-grid,
+.cert-grid,
+.society-grid,
+.impact-list {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.publication-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.toolbar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.search-input,
+.select-input {
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+}
+
+@media (max-width: 900px) {
+  .hero-card,
+  .stats-grid,
+  .product-hero-grid,
+  .patent-grid,
+  .publication-grid-2,
+  .cert-grid,
+  .society-grid,
+  .impact-list {
+    grid-template-columns: 1fr;
+  }
+}
