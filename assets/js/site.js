@@ -61,7 +61,9 @@ function escapeHtml(str) {
         if (card.leader) tags.push(makeTag("primary", "テーマリーダ", "Theme Leader"));
         if (card.productPatent) tags.push(makeTag("product", "製品採用特許", "Patent Used in Product"));
 
-        const featuredBadge = card.featured ? `<div class="product-feature-badge">${currentLang() === "ja" ? "代表成果" : "Featured"}</div>` : "";
+        const featuredBadge = card.featured
+          ? `<div class="product-feature-badge">${currentLang() === "ja" ? "代表成果" : "Featured"}</div>`
+          : `<div class="product-feature-badge product-feature-badge-placeholder" aria-hidden="true"></div>`;
 
         return `
           <article class="product-hero-card">
@@ -299,13 +301,25 @@ function escapeHtml(str) {
         const el = document.getElementById(id);
         if (el) el.textContent = String(value);
       };
+      const setSuffix = (id, value) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = value;
+      };
 
-      setText("stat-productized-number", ja ? `${productCount}件` : productCount);
-      setText("stat-awards-number", ja ? `${awardCount}件` : awardCount);
-      setText("stat-patents-number", ja ? `${patentCount}件` : patentCount);
-      setText("stat-registered-number", ja ? `${registeredCount}件` : registeredCount);
-      setText("stat-product-patent-number", ja ? `${productPatentCount}件` : productPatentCount);
-      setText("stat-paper-number", ja ? `${paperCount}件` : paperCount);
+      setText("stat-productized-number", productCount);
+      setText("stat-awards-number", awardCount);
+      setText("stat-patents-number", patentCount);
+      setText("stat-registered-number", registeredCount);
+      setText("stat-product-patent-number", productPatentCount);
+      setText("stat-paper-number", paperCount);
+
+      const suffix = ja ? "件" : "";
+      setSuffix("stat-productized-suffix", suffix);
+      setSuffix("stat-awards-suffix", suffix);
+      setSuffix("stat-patents-suffix", suffix);
+      setSuffix("stat-registered-suffix", suffix);
+      setSuffix("stat-product-patent-suffix", suffix);
+      setSuffix("stat-paper-suffix", suffix);
 
       document.getElementById("journal-count-note").textContent = ja ? `(${journalCount}件)` : `(${journalCount})`;
       document.getElementById("international-count-note").textContent = ja ? `(${internationalCount}件)` : `(${internationalCount})`;
