@@ -12,7 +12,7 @@
     "ja";
 
   const pageGroups = {
-    overview: ["researcher profile", "overview"],
+    overview: ["overview"],
     projects: ["featured work", "research themes"],
     publications: ["publications"],
     patents: ["intellectual property"],
@@ -58,8 +58,13 @@
   }
 
   function sectionKeyText(section) {
-    const heading = section.querySelector(".eyebrow, .section-kicker, h1, h2");
-    return normalize(heading ? heading.textContent : section.textContent);
+    const eyebrow = section.querySelector(".eyebrow, .section-kicker");
+    if (eyebrow) return normalize(eyebrow.textContent);
+  
+    const heading = section.querySelector(":scope > h1, :scope > h2, :scope > h3");
+    if (heading) return normalize(heading.textContent);
+  
+    return "";
   }
 
   function isHeroSection(section) {
@@ -75,11 +80,13 @@
   }
 
   function shouldShow(section) {
-    if (pageType === "overview" && isHeroSection(section)) return true;
-
+    if (pageType === "overview") {
+      return isHeroSection(section) || sectionKeyText(section).includes("overview");
+    }
+  
     const keyText = sectionKeyText(section);
-    const targets = pageGroups[pageType] || pageGroups.overview;
-
+    const targets = pageGroups[pageType] || [];
+  
     return targets.some((target) => keyText.includes(normalize(target)));
   }
 
