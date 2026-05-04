@@ -144,8 +144,7 @@ function injectPageSplit(html) {
 <script src="/assets/js/page-split.js"></script>`;
 }
 
-function buildHead(pageKey, lang) {
-  const page = pages[pageKey];
+function buildHead(page, lang) {
   const canonical = `${BASE_URL}${page.path[lang]}`;
 
   const jsonLd = {
@@ -157,26 +156,20 @@ function buildHead(pageKey, lang) {
     image: `${BASE_URL}/assets/images/profile.jpg`,
     jobTitle: "AI Researcher",
     affiliation: [
-      {
-        "@type": "Organization",
-        name: "Hitachi, Ltd.",
-      },
-      {
-        "@type": "CollegeOrUniversity",
-        name: "Kyoto University",
-      },
+      { "@type": "Organization", name: "Hitachi, Ltd." },
+      { "@type": "CollegeOrUniversity", name: "Kyoto University" }
     ],
   };
 
   return read("partials/head.meta.html")
     .replaceAll("{{TITLE}}", esc(page.title[lang]))
-    .replaceAll("{{DESCRIPTION}}", esc(page.description[lang]))
+    .replaceAll("{{DESCRIPTION}}", esc(page.desc[lang]))
     .replaceAll("{{CANONICAL}}", canonical)
     .replaceAll("{{CANONICAL_URL}}", canonical)
     .replaceAll("{{JA_URL}}", `${BASE_URL}${page.path.ja}`)
     .replaceAll("{{EN_URL}}", `${BASE_URL}${page.path.en}`)
     .replaceAll("{{OG_TITLE}}", esc(page.title[lang]))
-    .replaceAll("{{OG_DESCRIPTION}}", esc(page.description[lang]))
+    .replaceAll("{{OG_DESCRIPTION}}", esc(page.desc[lang]))
     .replaceAll("{{OG_LOCALE}}", lang === "ja" ? "ja_JP" : "en_US")
     .replaceAll("{{OG_LOCALE_ALTERNATE}}", lang === "ja" ? "en_US" : "ja_JP")
     .replaceAll("{{JSON_LD}}", safeJson(jsonLd))
@@ -184,31 +177,29 @@ function buildHead(pageKey, lang) {
     .replaceAll("https://disk-hayashi.github.io/profile.jpg", `${BASE_URL}/assets/images/profile.jpg`);
 }
 
-function render(pageKey, lang) {
+function render(page, lang) {
   let html = read("template.html");
   const bodyShell = read("partials/body.shell.html")
     .replaceAll("/profile.jpg", "/assets/images/profile.jpg");
+
   const BUILD_VERSION = new Date().toISOString().replace(/[-:T.Z]/g, "").slice(0, 14);
 
   html = html
-    .replaceAll("{{HEAD_META}}", buildHead(pageKey, lang))
+    .replaceAll("{{HEAD_META}}", buildHead(page, lang))
     .replaceAll("{{BODY_SHELL}}", bodyShell)
     .replaceAll("{{BODY}}", bodyShell)
     .replaceAll("{{HTML_LANG}}", lang)
     .replaceAll("{{LANG}}", lang)
     .replaceAll("{{LANG_MODE}}", lang)
-    .replaceAll("{{PAGE_TYPE}}", pageKey)
+    .replaceAll("{{PAGE_TYPE}}", page.key)
     .replaceAll("{{SITE_DATA}}", safeJson(siteData))
     .replaceAll("{{BUILD_VERSION}}", BUILD_VERSION)
     .replaceAll("{{SITE_DATA_JSON}}", safeJson(siteData));
-  
 
   html = html.replace(
     /<body([^>]*)>/i,
-    `<body$1 data-lang-mode="${lang}" data-page-type="${pageKey}">`
+    `<body$1 data-lang-mode="${lang}" data-page-type="${page.key}">`
   );
-
-  html = injectPageSplit(html);
 
   return html;
 }
@@ -238,18 +229,10 @@ Sitemap: ${BASE_URL}/sitemap.xml
 `;
 }
 
-function buildRobots() {
-  return `User-agent: *
-Allow: /
-
-Sitemap: ${BASE_URL}/sitemap.xml
-`;
-}
-
-for (const pageKey of Object.keys(pages)) {
+for (const page of pages) {
   for (const lang of ["en", "ja"]) {
-    const outputPath = outputPathFromUrlPath(pages[pageKey].path[lang]);
-    write(outputPath, render(pageKey, lang));
+    const outputPath = outputPathFromUrlPath(page.path[lang]);
+    write(outputPath, render(page, lang));
     console.log(`Generated: ${outputPath}`);
   }
 }
