@@ -291,13 +291,15 @@
         margin-top: 20px;
       }
       @media (max-width: 720px) {
-        header .brand-subtitle,
-        header .brand-sub,
-        header .site-subtitle,
-        header .tagline,
-        header small,
-        header > div > div:nth-child(2) {
-          display: none !important;
+        .hero {
+          display: flex !important;
+          flex-direction: column !important;
+        }
+        .hero > div:first-child {
+          order: 1 !important;
+        }
+        .hero > div:last-child {
+          order: 2 !important;
         }
       }
     `;
