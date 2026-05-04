@@ -212,15 +212,17 @@
     const header = document.querySelector("header");
     if (!header) return;
   
+    const patterns = [
+      "COMPUTER VISION / NLP / 機械学習",
+      "COMPUTER VISION / NLP / Machine Learning",
+    ];
+  
     Array.from(header.querySelectorAll("*")).forEach((el) => {
-      const text = (el.textContent || "").trim();
+      if (el.closest("nav")) return;
   
-      const isLeaf = el.children.length === 0;
-      const isSubtitle =
-        text === "COMPUTER VISION / NLP / 機械学習" ||
-        text === "COMPUTER VISION / NLP / Machine Learning";
+      const text = (el.textContent || "").replace(/\s+/g, " ").trim();
   
-      if (isLeaf && isSubtitle && !el.closest("nav")) {
+      if (patterns.includes(text)) {
         el.style.display = "none";
       }
     });
@@ -321,6 +323,11 @@
         nav {
           gap: 10px !important;
         }
+      }
+      header [class*="subtitle"],
+      header [class*="tagline"],
+      header [class*="sub"] {
+        display: none !important;
       }
     `;
     document.head.appendChild(style);
