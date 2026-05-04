@@ -172,6 +172,7 @@ function render(pageKey, lang) {
   html = html
     .replaceAll("{{HEAD_META}}", buildHead(pageKey, lang))
     .replaceAll("{{BODY_SHELL}}", read("partials/body.shell.html"))
+    .replaceAll("{{BODY}}", bodyShell)
     .replaceAll("{{HTML_LANG}}", lang)
     .replaceAll("{{LANG_MODE}}", lang)
     .replaceAll("{{PAGE_TYPE}}", pageKey)
