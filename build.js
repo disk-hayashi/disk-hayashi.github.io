@@ -124,6 +124,21 @@ function outputPathFromUrlPath(urlPath) {
   return path.join(urlPath.replace(/^\//, ""), "index.html");
 }
 
+function injectPageSplit(html) {
+  if (html.includes("/assets/js/page-split.js")) return html;
+
+  if (html.includes("</body>")) {
+    return html.replace(
+      "</body>",
+      `  <script src="/assets/js/page-split.js"></script>
+</body>`
+    );
+  }
+
+  return `${html}
+<script src="/assets/js/page-split.js"></script>`;
+}
+
 function buildHead(pageKey, lang) {
   const page = pages[pageKey];
   const canonical = `${BASE_URL}${page.path[lang]}`;
