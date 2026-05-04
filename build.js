@@ -127,64 +127,56 @@ function outputPathFromUrlPath(urlPath) {
 function buildHead(pageKey, lang) {
   const page = pages[pageKey];
   const canonical = `${BASE_URL}${page.path[lang]}`;
-  const jaUrl = `${BASE_URL}${page.path.ja}`;
-  const enUrl = `${BASE_URL}${page.path.en}`;
 
-  return `<!doctype html>
-<html lang="${lang}" lang-mode="${lang}" data-lang-mode="${lang}" data-page-type="${pageKey}">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>${esc(page.title[lang])}</title>
-  <meta name="description" content="${esc(page.description[lang])}">
-  <link rel="canonical" href="${canonical}">
-  <link rel="alternate" hreflang="ja" href="${jaUrl}">
-  <link rel="alternate" hreflang="en" href="${enUrl}">
-  <link rel="alternate" hreflang="x-default" href="${enUrl}">
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: lang === "ja" ? "林 大介" : "Daisuke Hayashi",
+    alternateName: lang === "ja" ? "Daisuke Hayashi" : "林 大介",
+    url: canonical,
+    image: `${BASE_URL}/assets/images/profile.jpg`,
+    jobTitle: "AI Researcher",
+    affiliation: [
+      {
+        "@type": "Organization",
+        name: "Hitachi, Ltd.",
+      },
+      {
+        "@type": "CollegeOrUniversity",
+        name: "Kyoto University",
+      },
+    ],
+  };
 
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="${esc(page.title[lang])}">
-  <meta property="og:description" content="${esc(page.description[lang])}">
-  <meta property="og:url" content="${canonical}">
-  <meta property="og:image" content="${BASE_URL}/profile.jpg">
-
-  <script>
-    window.__PAGE_TYPE__ = ${safeJson(pageKey)};
-    window.__LANG_MODE__ = ${safeJson(lang)};
-    window.__SITE_DATA__ = ${safeJson(siteData)};
-  </script>
-</head>`;
-}
-
-function injectPageSplit(html) {
-  if (html.includes("/assets/js/page-split.js")) return html;
-
-  return html.replace(
-    "</body>",
-    `  <script src="/assets/js/page-split.js"></script>
-</body>`
-  );
+  return read("partials/head.meta.html")
+    .replaceAll("{{TITLE}}", esc(page.title[lang]))
+    .replaceAll("{{DESCRIPTION}}", esc(page.description[lang]))
+    .replaceAll("{{CANONICAL}}", canonical)
+    .replaceAll("{{CANONICAL_URL}}", canonical)
+    .replaceAll("{{JA_URL}}", `${BASE_URL}${page.path.ja}`)
+    .replaceAll("{{EN_URL}}", `${BASE_URL}${page.path.en}`)
+    .replaceAll("{{OG_TITLE}}", esc(page.title[lang]))
+    .replaceAll("{{OG_DESCRIPTION}}", esc(page.description[lang]))
+    .replaceAll("{{OG_LOCALE}}", lang === "ja" ? "ja_JP" : "en_US")
+    .replaceAll("{{OG_LOCALE_ALTERNATE}}", lang === "ja" ? "en_US" : "ja_JP")
+    .replaceAll("{{JSON_LD}}", safeJson(jsonLd))
+    .replaceAll("/profile.jpg", "/assets/images/profile.jpg")
+    .replaceAll("https://disk-hayashi.github.io/profile.jpg", `${BASE_URL}/assets/images/profile.jpg`);
 }
 
 function render(pageKey, lang) {
   let html = read("template.html");
-  const bodyShell = read("partials/body.shell.html");
+  const bodyShell = read("partials/body.shell.html")
+    .replaceAll("/profile.jpg", "/assets/images/profile.jpg");
 
   html = html
     .replaceAll("{{HEAD_META}}", buildHead(pageKey, lang))
     .replaceAll("{{BODY_SHELL}}", bodyShell)
     .replaceAll("{{BODY}}", bodyShell)
-
     .replaceAll("{{HTML_LANG}}", lang)
+    .replaceAll("{{LANG}}", lang)
     .replaceAll("{{LANG_MODE}}", lang)
     .replaceAll("{{PAGE_TYPE}}", pageKey)
-
-    .replaceAll("{{TITLE}}", esc(pages[pageKey].title[lang]))
-    .replaceAll("{{DESCRIPTION}}", esc(pages[pageKey].description[lang]))
-    .replaceAll("{{CANONICAL_URL}}", `${BASE_URL}${pages[pageKey].path[lang]}`)
-    .replaceAll("{{JA_URL}}", `${BASE_URL}${pages[pageKey].path.ja}`)
-    .replaceAll("{{EN_URL}}", `${BASE_URL}${pages[pageKey].path.en}`)
-
     .replaceAll("{{SITE_DATA}}", safeJson(siteData))
     .replaceAll("{{SITE_DATA_JSON}}", safeJson(siteData));
 
