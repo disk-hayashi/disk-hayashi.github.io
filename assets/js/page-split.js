@@ -208,20 +208,18 @@
     nav.appendChild(tabs);
   }
 
-  function hideMobileHeaderSubtitle() {
-    if (window.innerWidth > 720) return;
-
+  function hideHeaderSubtitle() {
     const header = document.querySelector("header");
     if (!header) return;
-
+  
     Array.from(header.querySelectorAll("*")).forEach((el) => {
       const text = (el.textContent || "").trim();
-
+  
       const isLeaf = el.children.length === 0;
       const isSubtitle =
         text === "COMPUTER VISION / NLP / 機械学習" ||
         text === "COMPUTER VISION / NLP / Machine Learning";
-
+  
       if (isLeaf && isSubtitle && !el.closest("nav")) {
         el.style.display = "none";
       }
@@ -332,7 +330,7 @@
     splitSections();
     updateNav();
     injectStyle();
-    hideMobileHeaderSubtitle();
+    hideHeaderSubtitle();
     reorderMobileHero();
   }
 
@@ -343,7 +341,7 @@
   }
 
   window.addEventListener("resize", function () {
-    hideMobileHeaderSubtitle();
+    hideHeaderSubtitle();
     reorderMobileHero();
   });
 })();
