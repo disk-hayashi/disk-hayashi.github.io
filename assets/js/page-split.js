@@ -14,6 +14,8 @@
   const pageGroups = {
     overview: [
       "researcher profile",
+      "daisuke hayashi",
+      "林 大介",
       "overview",
       "ハイライト",
       "highlights",
@@ -42,12 +44,13 @@
       "patents",
     ],
     career: [
-      "background",
-      "職歴・学歴",
-      "career & education",
       "recognition",
       "受賞・表彰",
       "awards",
+      "background",
+      "職歴・学歴",
+      "career",
+      "education",
       "credentials",
       "資格",
       "certifications",
@@ -58,13 +61,6 @@
   };
 
   const navItems = {
-    en: [
-      ["Overview", "/"],
-      ["Projects", "/projects/"],
-      ["Publications", "/publications/"],
-      ["Patents", "/patents/"],
-      ["Career", "/career/"],
-    ],
     ja: [
       ["概要", "/ja/"],
       ["プロジェクト", "/ja/projects/"],
@@ -72,22 +68,29 @@
       ["特許", "/ja/patents/"],
       ["経歴", "/ja/career/"],
     ],
+    en: [
+      ["Overview", "/"],
+      ["Projects", "/projects/"],
+      ["Publications", "/publications/"],
+      ["Patents", "/patents/"],
+      ["Career", "/career/"],
+    ],
   };
 
-  const langSwitch = {
+  const langUrls = {
     ja: {
-      overview: "/",
-      projects: "/projects/",
-      publications: "/publications/",
-      patents: "/patents/",
-      career: "/career/",
-    },
-    en: {
       overview: "/ja/",
       projects: "/ja/projects/",
       publications: "/ja/publications/",
       patents: "/ja/patents/",
       career: "/ja/career/",
+    },
+    en: {
+      overview: "/",
+      projects: "/projects/",
+      publications: "/publications/",
+      patents: "/patents/",
+      career: "/career/",
     },
   };
 
@@ -98,26 +101,41 @@
       .trim();
   }
 
-  function getSectionText(section) {
-    const heading = section.querySelector(
-      "h1,h2,h3,.eyebrow,.section-title"
-    );
-    return normalize(heading ? heading.textContent : section.textContent);
+  function sectionText(section) {
+    return normalize(section.textContent || "");
   }
 
-  function isTargetSection(section) {
-    const text = getSectionText(section);
+  function isHeroSection(section) {
+    const text = sectionText(section);
+    return (
+      text.includes("daisuke hayashi") ||
+      text.includes("林 大介") ||
+      text.includes("researcher profile")
+    );
+  }
+
+  function shouldShow(section) {
+    if (pageType === "overview" && isHeroSection(section)) {
+      return true;
+    }
+
     const targets = pageGroups[pageType] || pageGroups.overview;
+    const text = sectionText(section);
 
     return targets.some((target) => text.includes(normalize(target)));
   }
 
   function splitSections() {
-    const sections = Array.from(document.querySelectorAll("section"));
-
-    sections.forEach((section) => {
-      section.style.display = isTargetSection(section) ? "" : "none";
+    document.querySelectorAll("section").forEach((section) => {
+      section.style.display = shouldShow(section) ? "" : "none";
     });
+  }
+
+  function isActive(href) {
+    if (pageType === "overview") {
+      return href === "/" || href === "/ja/";
+    }
+    return href.includes(`/${pageType}/`);
   }
 
   function updateNav() {
@@ -130,93 +148,44 @@
       const a = document.createElement("a");
       a.href = href;
       a.textContent = label;
-
-      if (
-        (pageType === "overview" && (href === "/" || href === "/ja/")) ||
-        href.includes(pageType)
-      ) {
-        a.classList.add("active");
-      }
-
+      if (isActive(href)) a.classList.add("active");
       nav.appendChild(a);
     });
+
+    const ja = document.createElement("a");
+    ja.href = langUrls.ja[pageType] || "/ja/";
+    ja.textContent = "JA";
+    ja.classList.add("lang-pill");
+    if (lang === "ja") ja.classList.add("active");
+    nav.appendChild(ja);
+
+    const en = document.createElement("a");
+    en.href = langUrls.en[pageType] || "/";
+    en.textContent = "EN";
+    en.classList.add("lang-pill");
+    if (lang === "en") en.classList.add("active");
+    nav.appendChild(en);
   }
 
-  function updateLanguageLinks() {
+  function restoreLangLinkIds() {
     const jaLink = document.getElementById("lang-ja-link");
     const enLink = document.getElementById("lang-en-link");
 
     if (jaLink) {
-      jaLink.href = lang === "ja" ? "/ja/" : langSwitch.en[pageType];
+      jaLink.href = langUrls.ja[pageType] || "/ja/";
       jaLink.classList.toggle("active", lang === "ja");
     }
 
     if (enLink) {
-      enLink.href = lang === "en" ? "/" : langSwitch.ja[pageType];
+      enLink.href = langUrls.en[pageType] || "/";
       enLink.classList.toggle("active", lang === "en");
     }
   }
 
-  function applyBoldRestore() {
-    document.documentElement.classList.add("multi-page-ready");
-
-    const styleId = "multi-page-bold-restore";
-    if (document.getElementById(styleId)) return;
-
-    const style = document.createElement("style");
-    style.id = styleId;
-    style.textContent = `
-      body {
-        font-weight: 700;
-      }
-
-      p,
-      .muted,
-      .pub-meta,
-      .award-meta,
-      .cert-meta,
-      .timeline-meta,
-      .product-hero-desc,
-      .patent-authors,
-      .research-impact-card p,
-      figcaption {
-        font-weight: 600;
-      }
-
-      h1,
-      h2,
-      h3,
-      .brand,
-      .pub-title,
-      .patent-title,
-      .award-title,
-      .cert-title,
-      .timeline-title,
-      .product-hero-title,
-      .stat-number,
-      .name-strong {
-        font-weight: 900;
-      }
-
-      nav a,
-      .lang-switch,
-      #lang-ja-link,
-      #lang-en-link,
-      .tag,
-      .chip,
-      .focus-chip,
-      .btn {
-        font-weight: 800;
-      }
-    `;
-    document.head.appendChild(style);
-  }
-
   function init() {
-    updateNav();
-    updateLanguageLinks();
     splitSections();
-    applyBoldRestore();
+    updateNav();
+    restoreLangLinkIds();
   }
 
   if (document.readyState === "loading") {
