@@ -168,19 +168,25 @@ function injectPageSplit(html) {
 
 function render(pageKey, lang) {
   let html = read("template.html");
+  const bodyShell = read("partials/body.shell.html");
 
   html = html
+    .replaceAll("{{HEAD_META}}", buildHead(pageKey, lang))
+    .replaceAll("{{BODY_SHELL}}", bodyShell)
+    .replaceAll("{{BODY}}", bodyShell)
+
+    .replaceAll("{{HTML_LANG}}", lang)
+    .replaceAll("{{LANG_MODE}}", lang)
+    .replaceAll("{{PAGE_TYPE}}", pageKey)
+
     .replaceAll("{{TITLE}}", esc(pages[pageKey].title[lang]))
     .replaceAll("{{DESCRIPTION}}", esc(pages[pageKey].description[lang]))
-    .replaceAll("{{CANONICAL}}", `${BASE_URL}${pages[pageKey].path[lang]}`)
     .replaceAll("{{CANONICAL_URL}}", `${BASE_URL}${pages[pageKey].path[lang]}`)
     .replaceAll("{{JA_URL}}", `${BASE_URL}${pages[pageKey].path.ja}`)
     .replaceAll("{{EN_URL}}", `${BASE_URL}${pages[pageKey].path.en}`)
-    .replaceAll("{{OG_TITLE}}", esc(pages[pageKey].title[lang]))
-    .replaceAll("{{OG_DESCRIPTION}}", esc(pages[pageKey].description[lang]))
-    .replaceAll("{{OG_LOCALE}}", lang === "ja" ? "ja_JP" : "en_US")
-    .replaceAll("{{OG_LOCALE_ALTERNATE}}", lang === "ja" ? "en_US" : "ja_JP")
-    .replaceAll("{{JSON_LD}}", safeJson(jsonLd));
+
+    .replaceAll("{{SITE_DATA}}", safeJson(siteData))
+    .replaceAll("{{SITE_DATA_JSON}}", safeJson(siteData));
 
   html = html.replace(
     /<body([^>]*)>/i,
