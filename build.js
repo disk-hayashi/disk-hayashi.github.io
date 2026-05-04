@@ -170,17 +170,17 @@ function render(pageKey, lang) {
   let html = read("template.html");
 
   html = html
-    .replaceAll("{{HEAD_META}}", buildHead(pageKey, lang))
-    .replaceAll("{{BODY_SHELL}}", read("partials/body.shell.html"))
-    .replaceAll("{{BODY}}", bodyShell)
-    .replaceAll("{{HTML_LANG}}", lang)
-    .replaceAll("{{LANG_MODE}}", lang)
-    .replaceAll("{{PAGE_TYPE}}", pageKey)
     .replaceAll("{{TITLE}}", esc(pages[pageKey].title[lang]))
     .replaceAll("{{DESCRIPTION}}", esc(pages[pageKey].description[lang]))
+    .replaceAll("{{CANONICAL}}", `${BASE_URL}${pages[pageKey].path[lang]}`)
     .replaceAll("{{CANONICAL_URL}}", `${BASE_URL}${pages[pageKey].path[lang]}`)
-    .replaceAll("{{SITE_DATA}}", safeJson(siteData))
-    .replaceAll("{{SITE_DATA_JSON}}", safeJson(siteData));
+    .replaceAll("{{JA_URL}}", `${BASE_URL}${pages[pageKey].path.ja}`)
+    .replaceAll("{{EN_URL}}", `${BASE_URL}${pages[pageKey].path.en}`)
+    .replaceAll("{{OG_TITLE}}", esc(pages[pageKey].title[lang]))
+    .replaceAll("{{OG_DESCRIPTION}}", esc(pages[pageKey].description[lang]))
+    .replaceAll("{{OG_LOCALE}}", lang === "ja" ? "ja_JP" : "en_US")
+    .replaceAll("{{OG_LOCALE_ALTERNATE}}", lang === "ja" ? "en_US" : "ja_JP")
+    .replaceAll("{{JSON_LD}}", safeJson(jsonLd));
 
   html = html.replace(
     /<body([^>]*)>/i,
