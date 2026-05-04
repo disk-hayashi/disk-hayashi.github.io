@@ -1,8 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const config = require("./site.config.js");
-
-const BASE_URL = config.baseUrl || "https://disk-hayashi.github.io";
+const site = require("./site.config.js");
 
 function ensureDir(dir) {
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
@@ -14,216 +12,336 @@ function writeFile(filePath, content) {
   fs.writeFileSync(fullPath, content, "utf8");
 }
 
-function esc(value = "") {
-  return String(value)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
+function esc(s = "") {
+  return String(s)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
 }
 
-function url(pathname) {
-  return `${BASE_URL}${pathname}`;
+function urlFor(page, lang) {
+  return page.path[lang];
 }
 
-function navHtml(lang) {
-  return config.nav[lang]
-    .map(([label, href]) => `<a href="${href}">${esc(label)}</a>`)
+function navHtml(lang, currentKey) {
+  return site.pages
+    .map((p) => {
+      const active = p.key === currentKey ? "active" : "";
+      return `<a class="${active}" href="${urlFor(p, lang)}">${esc(p.nav[lang])}</a>`;
+    })
     .join("");
 }
 
-function langSwitch(pageKey, lang) {
-  const page = config.pages[pageKey];
+function langSwitch(page, lang) {
   const other = lang === "ja" ? "en" : "ja";
-  return `<a class="lang" href="${page.path[other]}">${other.toUpperCase()}</a>`;
+  return `<a class="lang" href="${page.path[other]}">${other === "ja" ? "日本語" : "English"}</a>`;
 }
 
-function head(pageKey, lang) {
-  const page = config.pages[pageKey];
-  const title = page.title[lang];
-  const description = page.description[lang];
-  const canonical = url(page.path[lang]);
-  const jaUrl = url(page.path.ja);
-  const enUrl = url(page.path.en);
+function pageCards(page, lang) {
+  return page.sections[lang]
+    .map(
+      ([title, text]) => `
+      <article class="card">
+        <h2>${esc(title)}</h2>
+        <p>${esc(text)}</p>
+      </article>
+    `
+    )
+    .join("");
+}
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Daisuke Hayashi",
-    alternateName: "林 大介",
-    url: BASE_URL,
-    image: `${BASE_URL}/profile.jpg`,
-    jobTitle: lang === "ja" ? "AI研究者" : "AI Researcher",
-    affiliation: [
-      { "@type": "CollegeOrUniversity", name: "Kyoto University" },
-      { "@type": "Organization", name: "Hitachi, Ltd." }
-    ],
-    knowsAbout: config.focusAreas.en
-  };
+function focusChips(lang) {
+  return site.focusAreas[lang]
+    .map((x) => `<span>${esc(x)}</span>`)
+    .join("");
+}
+
+function renderPage(page, lang) {
+  const canonical = site.baseUrl + page.path[lang];
+  const alternate = site.baseUrl + page.path[lang === "ja" ? "en" : "ja"];
 
   return `<!doctype html>
-<html lang="${lang}" data-lang-mode="${lang}">
+<html lang="${lang}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>${esc(title)}</title>
-  <meta name="description" content="${esc(description)}">
+  <title>${esc(page.title[lang])}</title>
+  <meta name="description" content="${esc(page.description[lang])}">
   <link rel="canonical" href="${canonical}">
-  <link rel="alternate" hreflang="ja" href="${jaUrl}">
-  <link rel="alternate" hreflang="en" href="${enUrl}">
-  <link rel="alternate" hreflang="x-default" href="${enUrl}">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="${esc(title)}">
-  <meta property="og:description" content="${esc(description)}">
+  <link rel="alternate" hreflang="${lang === "ja" ? "en" : "ja"}" href="${alternate}">
+  <link rel="alternate" hreflang="${lang}" href="${canonical}">
+  <link rel="alternate" hreflang="x-default" href="${site.baseUrl}/">
+
+  <meta property="og:title" content="${esc(page.title[lang])}">
+  <meta property="og:description" content="${esc(page.description[lang])}">
   <meta property="og:url" content="${canonical}">
-  <meta property="og:image" content="${BASE_URL}/profile.jpg">
-  <meta name="twitter:card" content="summary_large_image">
-  <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
+  <meta property="og:type" content="website">
+
   <style>
-    body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#111;background:#f7f7f5;line-height:1.7}
-    .wrap{max-width:1040px;margin:auto;padding:32px 20px 80px}
-    header{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:56px}
-    .brand{font-weight:800;letter-spacing:.02em}
-    nav{display:flex;gap:18px;flex-wrap:wrap}
-    a{color:#111;text-decoration:none}
-    nav a,.lang{font-size:14px;border-bottom:1px solid #aaa}
-    .hero{display:grid;grid-template-columns:1.5fr .8fr;gap:40px;align-items:center;margin-bottom:56px}
-    h1{font-size:48px;line-height:1.08;margin:0 0 16px}
-    h2{font-size:28px;margin-top:48px;border-top:1px solid #ddd;padding-top:28px}
-    .lead{font-size:20px;color:#333}
-    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
-    .chip{background:#fff;border:1px solid #ddd;border-radius:999px;padding:7px 12px;font-size:14px}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
-    .card{background:#fff;border:1px solid #e5e5e5;border-radius:18px;padding:22px;box-shadow:0 8px 28px rgba(0,0,0,.04)}
-    .meta{color:#666;font-size:14px}
-    footer{margin-top:72px;color:#777;font-size:14px}
-    @media(max-width:760px){.hero{grid-template-columns:1fr}h1{font-size:36px}header{align-items:flex-start;flex-direction:column}}
+    :root {
+      --bg: #f7f7f5;
+      --text: #171717;
+      --muted: #666;
+      --line: #ddd;
+      --card: #fff;
+      --accent: #111;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.7;
+    }
+
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 28px 22px 64px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 56px;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px;
+      font-size: 14px;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      padding: 6px 2px;
+      border-bottom: 2px solid transparent;
+    }
+
+    nav a.active {
+      color: var(--text);
+      border-bottom-color: var(--text);
+      font-weight: 700;
+    }
+
+    .lang {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 12px;
+      color: var(--text);
+      text-decoration: none;
+      background: #fff;
+    }
+
+    .hero {
+      margin-bottom: 48px;
+    }
+
+    .eyebrow {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(38px, 6vw, 72px);
+      line-height: 1.05;
+      letter-spacing: -0.05em;
+      margin: 0 0 22px;
+    }
+
+    .lead {
+      font-size: clamp(18px, 2.2vw, 24px);
+      color: #333;
+      max-width: 820px;
+      margin: 0 0 24px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .chips span {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 999px;
+      padding: 8px 13px;
+      font-size: 14px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    }
+
+    .card h2 {
+      font-size: 20px;
+      line-height: 1.35;
+      margin: 0 0 10px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 11px 18px;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .btn.secondary {
+      background: #fff;
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+
+    footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 820px) {
+      header {
+        align-items: flex-start;
+        flex-direction: column;
+        margin-bottom: 40px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
-</head>`;
-}
+</head>
 
-function pageBody(pageKey, lang) {
-  const p = config.pages[pageKey];
-
-  if (pageKey === "home") {
-    return `
-<section class="hero">
-  <div>
-    <p class="meta">${esc(config.author.title[lang])}</p>
-    <h1>${esc(config.author.name[lang])}</h1>
-    <p class="lead">${esc(p.hero[lang])}</p>
-    <div class="chips">${config.focusAreas[lang].map(x => `<span class="chip">${esc(x)}</span>`).join("")}</div>
-  </div>
-  <div class="card">
-    <strong>${esc(config.author.affiliation[lang])}</strong>
-    <p>${esc(p.description[lang])}</p>
-  </div>
-</section>
-<section>
-  <h2>${lang === "ja" ? "概要" : "Overview"}</h2>
-  <div class="grid">
-    ${p.sections[lang].map(([title, text]) => `
-      <article class="card">
-        <h3>${esc(title)}</h3>
-        <p>${esc(text)}</p>
-      </article>`).join("")}
-  </div>
-</section>`;
-  }
-
-  if (pageKey === "research") {
-    return `
-<h1>${esc(p.heading[lang])}</h1>
-${p.body[lang].map(text => `<p class="lead">${esc(text)}</p>`).join("")}`;
-  }
-
-  if (pageKey === "projects") {
-    return `
-<h1>${esc(p.heading[lang])}</h1>
-<div class="grid">
-${p.items[lang].map(([title, text]) => `
-  <article class="card">
-    <h3>${esc(title)}</h3>
-    <p>${esc(text)}</p>
-  </article>`).join("")}
-</div>`;
-  }
-
-  if (pageKey === "publications") {
-    return `
-<h1>${esc(p.heading[lang])}</h1>
-<div class="card">
-${p.publications[lang].map(item => `<p>${esc(item)}</p>`).join("")}
-</div>`;
-  }
-
-  if (pageKey === "cv") {
-    return `
-<h1>${esc(p.heading[lang])}</h1>
-<div class="grid">
-${p.entries[lang].map(([title, text]) => `
-  <article class="card">
-    <h3>${esc(title)}</h3>
-    <p>${esc(text)}</p>
-  </article>`).join("")}
-</div>`;
-  }
-
-  return "";
-}
-
-function renderPage(pageKey, lang) {
-  return `${head(pageKey, lang)}
 <body>
   <div class="wrap">
     <header>
-      <div class="brand">Daisuke Hayashi / 林 大介</div>
-      <nav>${navHtml(lang)} ${langSwitch(pageKey, lang)}</nav>
+      <a class="brand" href="${lang === "ja" ? "/ja/" : "/"}">${esc(site.author[lang])}</a>
+      <nav>
+        ${navHtml(lang, page.key)}
+        ${langSwitch(page, lang)}
+      </nav>
     </header>
-    <main>${pageBody(pageKey, lang)}</main>
-    <footer>© ${new Date().getFullYear()} Daisuke Hayashi</footer>
+
+    <main>
+      <section class="hero">
+        <div class="eyebrow">Researcher Profile</div>
+        <h1>${esc(page.heading[lang])}</h1>
+        <p class="lead">${esc(page.description[lang])}</p>
+
+        <div class="chips">
+          ${focusChips(lang)}
+        </div>
+
+        ${
+          page.key === "home"
+            ? `<div class="cta">
+                <a class="btn" href="${lang === "ja" ? "/ja/projects/" : "/projects/"}">${lang === "ja" ? "プロジェクトを見る" : "View Projects"}</a>
+                <a class="btn secondary" href="${lang === "ja" ? "/ja/publications/" : "/publications/"}">${lang === "ja" ? "論文発表を見る" : "View Publications"}</a>
+              </div>`
+            : ""
+        }
+      </section>
+
+      <section class="grid">
+        ${pageCards(page, lang)}
+      </section>
+    </main>
+
+    <footer>
+      © ${new Date().getFullYear()} ${esc(site.author.en)} · ${esc(site.affiliation[lang])}
+    </footer>
   </div>
 </body>
 </html>`;
 }
 
-function pathFromUrlPath(urlPath) {
-  if (urlPath === "/") return "index.html";
-  return path.join(urlPath.replace(/^\//, ""), "index.html");
-}
-
-const pageKeys = Object.keys(config.pages);
-
-for (const pageKey of pageKeys) {
-  for (const lang of ["en", "ja"]) {
-    writeFile(pathFromUrlPath(config.pages[pageKey].path[lang]), renderPage(pageKey, lang));
-  }
-}
-
-const sitemapUrls = pageKeys.flatMap(pageKey =>
-  ["en", "ja"].map(lang => {
-    const loc = url(config.pages[pageKey].path[lang]);
-    return `  <url>
-    <loc>${loc}</loc>
-    <lastmod>${new Date().toISOString().slice(0, 10)}</lastmod>
-  </url>`;
-  })
-);
-
-writeFile("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${sitemapUrls.join("\n")}
-</urlset>
-`);
-
-writeFile("robots.txt", `User-agent: *
+function buildRobots() {
+  return `User-agent: *
 Allow: /
 
-Sitemap: ${BASE_URL}/sitemap.xml
-`);
-
-console.log("Build completed:");
-for (const pageKey of pageKeys) {
-  console.log(`- ${config.pages[pageKey].path.en}`);
-  console.log(`- ${config.pages[pageKey].path.ja}`);
+Sitemap: ${site.baseUrl}/sitemap.xml
+`;
 }
+
+function buildSitemap() {
+  const urls = [];
+
+  for (const page of site.pages) {
+    urls.push(site.baseUrl + page.path.en);
+    urls.push(site.baseUrl + page.path.ja);
+  }
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls
+  .map(
+    (url) => `  <url>
+    <loc>${url}</loc>
+  </url>`
+  )
+  .join("\n")}
+</urlset>
+`;
+}
+
+for (const page of site.pages) {
+  writeFile(path.join(page.path.en.replace(/^\//, ""), "index.html"), renderPage(page, "en"));
+  writeFile(path.join(page.path.ja.replace(/^\//, ""), "index.html"), renderPage(page, "ja"));
+}
+
+writeFile("robots.txt", buildRobots());
+writeFile("sitemap.xml", buildSitemap());
+
+console.log("Generated multi-page site successfully.");
