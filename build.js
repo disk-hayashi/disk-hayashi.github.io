@@ -188,6 +188,7 @@ function render(pageKey, lang) {
   let html = read("template.html");
   const bodyShell = read("partials/body.shell.html")
     .replaceAll("/profile.jpg", "/assets/images/profile.jpg");
+  const BUILD_VERSION = new Date().toISOString().replace(/[-:T.Z]/g, "").slice(0, 14);
 
   html = html
     .replaceAll("{{HEAD_META}}", buildHead(pageKey, lang))
@@ -198,7 +199,9 @@ function render(pageKey, lang) {
     .replaceAll("{{LANG_MODE}}", lang)
     .replaceAll("{{PAGE_TYPE}}", pageKey)
     .replaceAll("{{SITE_DATA}}", safeJson(siteData))
+    .replaceAll("{{BUILD_VERSION}}", BUILD_VERSION)
     .replaceAll("{{SITE_DATA_JSON}}", safeJson(siteData));
+  
 
   html = html.replace(
     /<body([^>]*)>/i,
