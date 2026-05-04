@@ -1,21 +1,9 @@
-<!DOCTYPE html>
-<html lang="{{HTML_LANG}}" lang-mode="{{LANG_MODE}}" data-lang-mode="{{LANG_MODE}}">
+<!doctype html>
+<html lang="{{LANG}}">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <link rel="stylesheet" href="/assets/css/style.css">
-  <script src="/assets/js/site.js" defer></script>
-
   {{HEAD_META}}
 </head>
 <body>
-{{BODY_SHELL}}
-
-  <script>
-    window.__SITE_DATA__ = {{SITE_DATA}};
-    window.__LANG_MODE__ = "{{LANG_MODE}}";
-  </script>
-  <script src="/assets/js/site.js"></script>
+  {{BODY}}
 </body>
 </html>
