@@ -290,6 +290,16 @@
       .research-figure {
         margin-top: 20px;
       }
+      @media (max-width: 720px) {
+        header .brand-subtitle,
+        header .brand-sub,
+        header .site-subtitle,
+        header .tagline,
+        header small,
+        header > div > div:nth-child(2) {
+          display: none !important;
+        }
+      }
     `;
     document.head.appendChild(style);
   }
