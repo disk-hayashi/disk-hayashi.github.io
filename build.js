@@ -176,12 +176,6 @@ function render(pageKey, lang) {
   html = injectAttrs(html, pageKey, lang);
   html = injectPageSplit(html);
 
-  // 存在しないCSSを読みに行っている場合だけ削除
-  html = html.replace(
-    /<link[^>]+href=["']\/assets\/css\/style\.css["'][^>]*>\s*/g,
-    ""
-  );
-
   html = html
   .replaceAll("{{HTML_LANG}}", lang)
   .replaceAll("{{LANG_MODE}}", lang)
