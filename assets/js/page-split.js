@@ -68,25 +68,25 @@
   }
 
   function isHeroSection(section) {
+    const keyText = sectionKeyText(section);
     const text = normalize(section.textContent);
+  
     return (
-      text.includes("researcher profile") ||
-      text.includes("daisuke hayashi") ||
-      text.includes("林 大介") ||
+      keyText.includes("researcher profile") ||
       text.includes("primary affiliation") ||
       text.includes("academic program") ||
       text.includes("focus areas")
     );
   }
-
+  
   function shouldShow(section) {
+    const keyText = sectionKeyText(section);
+  
     if (pageType === "overview") {
-      return isHeroSection(section) || sectionKeyText(section).includes("overview");
+      return isHeroSection(section) || keyText.includes("overview");
     }
   
-    const keyText = sectionKeyText(section);
     const targets = pageGroups[pageType] || [];
-  
     return targets.some((target) => keyText.includes(normalize(target)));
   }
 
