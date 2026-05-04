@@ -28,63 +28,68 @@ const siteData = {
 
 const BASE_URL = config.baseUrl || "https://disk-hayashi.github.io";
 
-const pages = {
-  overview: {
+const pages = [
+  {
+    key: "home",
     path: { en: "/", ja: "/ja/" },
     title: {
-      en: "Daisuke Hayashi | AI Researcher",
-      ja: "林 大介 | AI研究者",
+      en: "Daisuke Hayashi | AI Researcher in Computer Vision, NLP and Machine Learning",
+      ja: "林 大介 | Computer Vision・NLP・機械学習のAI研究者",
     },
-    description: {
-      en: "Profile overview of Daisuke Hayashi.",
-      ja: "林 大介のプロフィール概要。",
+    desc: {
+      en: "Official profile of Daisuke Hayashi, an AI researcher specializing in Computer Vision, NLP, Machine Learning, commercialization, patent creation, and R&D.",
+      ja: "Computer Vision・NLP・機械学習を専門に、研究開発から製品化・特許創出まで一貫して推進する林大介のプロフィールサイト。",
     },
   },
-  projects: {
+  {
+    key: "projects",
     path: { en: "/projects/", ja: "/ja/projects/" },
     title: {
-      en: "Projects | Daisuke Hayashi",
-      ja: "プロジェクト | 林 大介",
+      en: "Projects | AI Commercialization and Research Impact | Daisuke Hayashi",
+      ja: "プロジェクト | AI製品化・研究業績 | 林 大介",
     },
-    description: {
-      en: "Commercialization and research impact projects.",
-      ja: "製品化・研究業績。",
+    desc: {
+      en: "Selected AI projects by Daisuke Hayashi, including commercialization work, product-applied AI, and medical AI research impact.",
+      ja: "林大介のAIプロジェクト一覧。製品化、製品採用AI、医療AI研究業績などを掲載。",
     },
   },
-  publications: {
+  {
+    key: "publications",
     path: { en: "/publications/", ja: "/ja/publications/" },
     title: {
-      en: "Publications | Daisuke Hayashi",
-      ja: "論文発表 | 林 大介",
+      en: "Publications | Papers and Conference Presentations | Daisuke Hayashi",
+      ja: "論文発表 | 論文・学会発表 | 林 大介",
     },
-    description: {
-      en: "Publications and conference presentations.",
-      ja: "論文および学会発表。",
+    desc: {
+      en: "Academic publications and conference presentations by Daisuke Hayashi, including journal papers, international conferences, and domestic conferences.",
+      ja: "林大介の論文・学会発表一覧。ジャーナル論文、国際会議論文、国内会議発表を掲載。",
     },
   },
-  patents: {
+  {
+    key: "patents",
     path: { en: "/patents/", ja: "/ja/patents/" },
     title: {
-      en: "Patents | Daisuke Hayashi",
-      ja: "特許 | 林 大介",
+      en: "Patents | AI and Image Processing Intellectual Property | Daisuke Hayashi",
+      ja: "特許 | AI・画像処理関連の知的財産 | 林 大介",
     },
-    description: {
-      en: "Patent portfolio of Daisuke Hayashi.",
-      ja: "林 大介の特許一覧。",
+    desc: {
+      en: "Patent portfolio by Daisuke Hayashi, including AI, image processing, storage, authentication, and product-applied inventions.",
+      ja: "林大介の特許一覧。AI、画像処理、収納、認証、製品採用特許などの知的財産を掲載。",
     },
   },
-  career: {
+  {
+    key: "career",
     path: { en: "/career/", ja: "/ja/career/" },
     title: {
-      en: "Career | Daisuke Hayashi",
-      ja: "経歴 | 林 大介",
+      en: "Career | Education, Awards, Certifications and Societies | Daisuke Hayashi",
+      ja: "経歴 | 職歴・学歴・受賞・資格・所属学会 | 林 大介",
     },
-    description: {
-      en: "Career, education, awards, certifications, and societies.",
-      ja: "職歴・学歴、受賞・表彰、資格、所属学会。",
+    desc: {
+      en: "Career, education, awards, certifications, and professional societies of Daisuke Hayashi.",
+      ja: "林大介の職歴・学歴、受賞・表彰、資格、所属学会を掲載。",
     },
   },
-};
+];
 
 function read(file) {
   return fs.readFileSync(path.join(__dirname, file), "utf8");
@@ -206,10 +211,7 @@ function render(pageKey, lang) {
 }
 
 function buildSitemap() {
-  const urls = Object.values(pages).flatMap((page) => [
-    page.path.en,
-    page.path.ja,
-  ]);
+  const urls = pages.flatMap((p) => [p.path.en, p.path.ja]);
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
@@ -222,6 +224,14 @@ ${urls
   )
   .join("\n")}
 </urlset>
+`;
+}
+
+function buildRobots() {
+  return `User-agent: *
+Allow: /
+
+Sitemap: ${BASE_URL}/sitemap.xml
 `;
 }
 
