@@ -258,22 +258,41 @@ function escapeHtml(str) {
 
     function renderResearchImpact() {
       const root = document.getElementById("research-impact-list");
+
       root.innerHTML = researchImpactProjects.map(item => {
-        const title = currentLang() === "ja" ? item.jaTitle : item.enTitle;
-        const period = currentLang() === "ja" ? item.periodJa : item.periodEn;
-        const desc = currentLang() === "ja" ? item.jaDescription : item.enDescription;
-        const tags = (item.labels || []).map(label =>
-          makeTag(label.type, label.ja, label.en)
-        ).join("");
+        const isJa = currentLang() === "ja";
+        const title = isJa ? item.jaTitle : item.enTitle;
+        const period = isJa ? item.periodJa : item.periodEn;
+        const desc = isJa ? item.jaDescription : item.enDescription;
+        const tags = (item.labels || [])
+          .map(label => makeTag(label.type, label.ja, label.en))
+          .join("");
+
+        const figureHtml = item.figure ? `
+          <figure class="research-figure">
+            <img
+              src="${escapeHtml(item.figure.src)}"
+              alt="${escapeHtml(isJa ? item.figure.altJa : item.figure.altEn)}"
+              loading="lazy"
+            >
+            <figcaption>
+              ${escapeHtml(isJa ? item.figure.captionJa : item.figure.captionEn)}
+            </figcaption>
+          </figure>
+        ` : "";
 
         return `
-          <article class="impact-card">
-            <div class="impact-card-header">
-              <h3 class="impact-card-title">${escapeHtml(title)}</h3>
-              <div class="impact-card-period">${escapeHtml(period)}</div>
+          <article class="research-impact-card">
+            <div class="research-impact-head">
+              <h3>${escapeHtml(title)}</h3>
+              <span>${escapeHtml(period)}</span>
             </div>
-            ${tags ? `<div class="impact-tags">${tags}</div>` : ""}
-            <p class="impact-card-desc">${escapeHtml(desc)}</p>
+
+            ${tags ? `<div class="tags">${tags}</div>` : ""}
+
+            <p>${escapeHtml(desc).replace(/\n/g, "<br>")}</p>
+
+            ${figureHtml}
           </article>
         `;
       }).join("");
