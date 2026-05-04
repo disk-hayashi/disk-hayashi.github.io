@@ -93,6 +93,15 @@ function esc(value = "") {
     .replace(/"/g, "&quot;");
 }
 
+function safeJson(data) {
+  return JSON.stringify(data)
+    .replace(/</g, "\\u003c")
+    .replace(/>/g, "\\u003e")
+    .replace(/&/g, "\\u0026")
+    .replace(/\u2028/g, "\\u2028")
+    .replace(/\u2029/g, "\\u2029");
+}
+
 function filePathFromUrlPath(urlPath) {
   if (urlPath === "/") return "index.html";
   return path.join(urlPath.replace(/^\//, ""), "index.html");
@@ -111,9 +120,9 @@ function buildHead(pageKey, lang) {
   <link rel="canonical" href="${canonical}">
 
   <script>
-    window.__PAGE_TYPE__ = ${JSON.stringify(pageKey)};
-    window.__LANG_MODE__ = ${JSON.stringify(lang)};
-    window.__SITE_DATA__ = ${JSON.stringify(siteData)};
+    window.__PAGE_TYPE__ = ${safeJson(pageKey)};
+    window.__LANG_MODE__ = ${safeJson(lang)};
+    window.__SITE_DATA__ = ${safeJson(siteData)};
   </script>
 </head>`;
 }
