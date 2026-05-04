@@ -291,14 +291,19 @@
         margin-top: 20px;
       }
       @media (max-width: 720px) {
-        .hero {
+        section:first-of-type {
           display: flex !important;
           flex-direction: column !important;
         }
-        .hero > div:first-child {
+      
+        section:first-of-type > *:has(h1),
+        section:first-of-type > *:has(.profile-info),
+        section:first-of-type > *:has(.primary-affiliation) {
           order: 1 !important;
         }
-        .hero > div:last-child {
+      
+        section:first-of-type > *:has(img),
+        section:first-of-type > *:has(.focus-areas) {
           order: 2 !important;
         }
       }
@@ -327,12 +332,37 @@
       }
     });
   }
+
+  function reorderMobileHero() {
+    if (window.innerWidth > 720) return;
+  
+    const hero = Array.from(document.querySelectorAll("section"))
+      .find((section) => classifySection(section) === "hero");
+  
+    if (!hero) return;
+  
+    const children = Array.from(hero.children);
+    const textBlock = children.find((el) =>
+      normalize(el.textContent).includes("researcher profile") ||
+      el.querySelector("h1")
+    );
+  
+    const imageBlock = children.find((el) =>
+      el.querySelector("img") ||
+      normalize(el.textContent).includes("focus areas")
+    );
+  
+    if (textBlock && imageBlock && hero.firstElementChild !== textBlock) {
+      hero.insertBefore(textBlock, imageBlock);
+    }
+  }
   
   function init() {
     splitSections();
     updateNav();
     injectStyle();
     hideMobileHeaderSubtitle();
+    reorderMobileHero();
   }
 
   if (document.readyState === "loading") {
