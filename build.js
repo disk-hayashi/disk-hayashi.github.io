@@ -139,6 +139,7 @@ function replaceAllPlaceholders(html, pageKey, lang) {
     .replaceAll("{{TITLE}}", esc(page.title[lang]))
     .replaceAll("{{DESCRIPTION}}", esc(page.description[lang]))
     .replaceAll("{{CANONICAL_URL}}", `${BASE_URL}${page.path[lang]}`)
+    .replaceAll("{{SITE_DATA}}", safeJson(siteData))
     .replaceAll("{{SITE_DATA_JSON}}", JSON.stringify(siteData));
 }
 
