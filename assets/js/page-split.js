@@ -62,10 +62,21 @@
     return normalize(heading ? heading.textContent : "");
   }
 
+  function isHeroSection(section) {
+    return section.querySelector("h1") !== null;
+  }
+
   function shouldShow(section) {
+    if (pageType === "overview" && isHeroSection(section)) {
+      return true;
+    }
+  
     const keyText = sectionKeyText(section);
     const targets = pageGroups[pageType] || pageGroups.overview;
-    return targets.some((target) => keyText.includes(normalize(target)));
+  
+    return targets.some((target) =>
+      keyText.includes(normalize(target))
+    );
   }
 
   function splitSections() {
