@@ -11,13 +11,16 @@
     window.__LANG_MODE__ ||
     "ja";
 
-  const pageGroups = {
-    overview: ["overview"],
-    projects: ["featured work", "research themes"],
-    publications: ["publications"],
-    patents: ["intellectual property"],
-    career: ["recognition", "background", "credentials", "professional community"],
+  const pageMap = {
+    home: "overview",
+    overview: "overview",
+    projects: "projects",
+    publications: "publications",
+    patents: "patents",
+    career: "career",
   };
+
+  const currentPage = pageMap[pageType] || "overview";
 
   const navItems = {
     ja: [
@@ -53,69 +56,152 @@
     },
   };
 
+  const sectionRules = {
+    overview: ["hero", "overview"],
+    projects: ["projects", "featured", "research"],
+    publications: ["publications"],
+    patents: ["patents"],
+    career: ["recognition", "background", "credentials", "societies"],
+  };
+
   function normalize(text) {
-    return String(text || "").toLowerCase().replace(/\s+/g, " ").trim();
+    return String(text || "")
+      .toLowerCase()
+      .replace(/\s+/g, " ")
+      .trim();
   }
 
-  function sectionKeyText(section) {
-    const eyebrow = section.querySelector(".eyebrow, .section-kicker");
-    if (eyebrow) return normalize(eyebrow.textContent);
-  
-    const heading = section.querySelector(":scope > h1, :scope > h2, :scope > h3");
-    if (heading) return normalize(heading.textContent);
-  
-    return "";
-  }
-
-  function isHeroSection(section) {
-    const keyText = sectionKeyText(section);
-    const text = normalize(section.textContent);
-  
+  function getDirectHeading(section) {
     return (
-      keyText.includes("researcher profile") ||
+      section.querySelector(":scope > .eyebrow") ||
+      section.querySelector(":scope > .section-kicker") ||
+      section.querySelector(":scope > h1") ||
+      section.querySelector(":scope > h2") ||
+      section.querySelector(":scope > h3") ||
+      section.querySelector(".eyebrow") ||
+      section.querySelector(".section-kicker") ||
+      section.querySelector("h1") ||
+      section.querySelector("h2") ||
+      section.querySelector("h3")
+    );
+  }
+
+  function classifySection(section) {
+    if (section.dataset.section) return section.dataset.section;
+
+    const heading = normalize(getDirectHeading(section)?.textContent || "");
+    const text = normalize(section.textContent || "");
+
+    if (
+      heading.includes("researcher profile") ||
       text.includes("primary affiliation") ||
       text.includes("academic program") ||
       text.includes("focus areas")
-    );
+    ) {
+      return "hero";
+    }
+
+    if (
+      heading.includes("overview") ||
+      heading.includes("ハイライト") ||
+      text.startsWith("overview") ||
+      text.startsWith("ハイライト")
+    ) {
+      return "overview";
+    }
+
+    if (
+      heading.includes("featured work") ||
+      heading.includes("製品化") ||
+      heading.includes("commercialization")
+    ) {
+      return "featured";
+    }
+
+    if (
+      heading.includes("research themes") ||
+      heading.includes("研究業績") ||
+      heading.includes("research impact")
+    ) {
+      return "research";
+    }
+
+    if (
+      heading.includes("publications") ||
+      heading.includes("論文発表")
+    ) {
+      return "publications";
+    }
+
+    if (
+      heading.includes("intellectual property") ||
+      heading.includes("特許") ||
+      heading.includes("patents")
+    ) {
+      return "patents";
+    }
+
+    if (
+      heading.includes("recognition") ||
+      heading.includes("受賞")
+    ) {
+      return "recognition";
+    }
+
+    if (
+      heading.includes("background") ||
+      heading.includes("職歴") ||
+      heading.includes("学歴") ||
+      heading.includes("career")
+    ) {
+      return "background";
+    }
+
+    if (
+      heading.includes("credentials") ||
+      heading.includes("資格") ||
+      heading.includes("certifications")
+    ) {
+      return "credentials";
+    }
+
+    if (
+      heading.includes("professional community") ||
+      heading.includes("所属学会") ||
+      heading.includes("societies")
+    ) {
+      return "societies";
+    }
+
+    return "unknown";
   }
-  
+
   function shouldShow(section) {
-    const keyText = sectionKeyText(section);
-  
-    if (section.querySelector("h1")) return true;
-  
-    if (pageType === "overview") {
-      return (
-        keyText.includes("overview") ||
-        keyText.includes("ハイライト")
-      );
-    }
-  
-    if (pageType === "projects") {
-      return (
-        keyText.includes("featured") ||
-        keyText.includes("research")
-      );
-    }
-  
-    if (pageType === "publications") {
-      return keyText.includes("publication") || keyText.includes("論文");
-    }
-  
-    if (pageType === "patents") {
-      return keyText.includes("patent") || keyText.includes("特許");
-    }
-  
-    if (pageType === "career") {
-      return (
-        keyText.includes("career") ||
-        keyText.includes("background") ||
-        keyText.includes("資格")
-      );
-    }
-  
-    return false;
+    const type = classifySection(section);
+    const allowed = sectionRules[currentPage] || sectionRules.overview;
+    return allowed.includes(type);
   }
+
+  function splitSections() {
+    const sections = Array.from(document.querySelectorAll("section"));
+
+    sections.forEach((section) => {
+      const visible = shouldShow(section);
+      section.style.display = visible ? "" : "none";
+    });
+
+    const visibleSections = sections.filter(
+      (section) => section.style.display !== "none"
+    );
+
+    // 安全弁：何も表示されなくなった場合、概要はHero/Overview候補を復旧
+    if (!visibleSections.length && currentPage === "overview") {
+      sections.slice(0, 2).forEach((section) => {
+        section.style.display = "";
+      });
+    }
+  }
+
   function updateNav() {
     const nav = document.querySelector("nav");
     if (!nav) return;
@@ -126,28 +212,28 @@
       const a = document.createElement("a");
       a.href = href;
       a.textContent = label;
-      if (key === pageType) a.classList.add("active");
+      if (key === currentPage) a.classList.add("active");
       nav.appendChild(a);
     });
 
-    const langBox = document.createElement("span");
-    langBox.className = "lang-tabs";
+    const tabs = document.createElement("span");
+    tabs.className = "lang-tabs";
 
     const ja = document.createElement("a");
-    ja.href = langUrls.ja[pageType] || "/ja/";
+    ja.href = langUrls.ja[currentPage] || "/ja/";
     ja.textContent = "JA";
     ja.className = "lang-tab";
     if (lang === "ja") ja.classList.add("active");
 
     const en = document.createElement("a");
-    en.href = langUrls.en[pageType] || "/";
+    en.href = langUrls.en[currentPage] || "/";
     en.textContent = "EN";
     en.className = "lang-tab";
     if (lang === "en") en.classList.add("active");
 
-    langBox.appendChild(ja);
-    langBox.appendChild(en);
-    nav.appendChild(langBox);
+    tabs.appendChild(ja);
+    tabs.appendChild(en);
+    nav.appendChild(tabs);
   }
 
   function injectStyle() {
