@@ -12,52 +12,11 @@
     "ja";
 
   const pageGroups = {
-    overview: [
-      "researcher profile",
-      "daisuke hayashi",
-      "林 大介",
-      "overview",
-      "ハイライト",
-      "highlights",
-    ],
-    projects: [
-      "featured work",
-      "製品化",
-      "commercialization",
-      "research themes",
-      "研究業績",
-      "research impact",
-    ],
-    publications: [
-      "publications",
-      "論文発表",
-      "journal papers",
-      "ジャーナル論文",
-      "international conference papers",
-      "国際会議論文",
-      "domestic conferences",
-      "国内会議",
-    ],
-    patents: [
-      "intellectual property",
-      "特許",
-      "patents",
-    ],
-    career: [
-      "recognition",
-      "受賞・表彰",
-      "awards",
-      "background",
-      "職歴・学歴",
-      "career",
-      "education",
-      "credentials",
-      "資格",
-      "certifications",
-      "professional community",
-      "所属学会",
-      "societies",
-    ],
+    overview: ["researcher profile", "overview"],
+    projects: ["featured work", "research themes"],
+    publications: ["publications"],
+    patents: ["intellectual property"],
+    career: ["recognition", "background", "credentials", "professional community"],
   };
 
   const navItems = {
@@ -95,34 +54,18 @@
   };
 
   function normalize(text) {
-    return String(text || "")
-      .toLowerCase()
-      .replace(/\s+/g, " ")
-      .trim();
+    return String(text || "").toLowerCase().replace(/\s+/g, " ").trim();
   }
 
-  function sectionText(section) {
-    return normalize(section.textContent || "");
-  }
-
-  function isHeroSection(section) {
-    const text = sectionText(section);
-    return (
-      text.includes("daisuke hayashi") ||
-      text.includes("林 大介") ||
-      text.includes("researcher profile")
-    );
+  function sectionKeyText(section) {
+    const heading = section.querySelector(".eyebrow, .section-kicker, h1, h2");
+    return normalize(heading ? heading.textContent : "");
   }
 
   function shouldShow(section) {
-    if (pageType === "overview" && isHeroSection(section)) {
-      return true;
-    }
-
+    const keyText = sectionKeyText(section);
     const targets = pageGroups[pageType] || pageGroups.overview;
-    const text = sectionText(section);
-
-    return targets.some((target) => text.includes(normalize(target)));
+    return targets.some((target) => keyText.includes(normalize(target)));
   }
 
   function splitSections() {
@@ -132,9 +75,7 @@
   }
 
   function isActive(href) {
-    if (pageType === "overview") {
-      return href === "/" || href === "/ja/";
-    }
+    if (pageType === "overview") return href === "/" || href === "/ja/";
     return href.includes(`/${pageType}/`);
   }
 
@@ -155,37 +96,48 @@
     const ja = document.createElement("a");
     ja.href = langUrls.ja[pageType] || "/ja/";
     ja.textContent = "JA";
-    ja.classList.add("lang-pill");
+    ja.className = "lang-pill";
     if (lang === "ja") ja.classList.add("active");
     nav.appendChild(ja);
 
     const en = document.createElement("a");
     en.href = langUrls.en[pageType] || "/";
     en.textContent = "EN";
-    en.classList.add("lang-pill");
+    en.className = "lang-pill";
     if (lang === "en") en.classList.add("active");
     nav.appendChild(en);
   }
 
-  function restoreLangLinkIds() {
-    const jaLink = document.getElementById("lang-ja-link");
-    const enLink = document.getElementById("lang-en-link");
+  function injectLangButtonStyle() {
+    if (document.getElementById("lang-pill-style")) return;
 
-    if (jaLink) {
-      jaLink.href = langUrls.ja[pageType] || "/ja/";
-      jaLink.classList.toggle("active", lang === "ja");
-    }
+    const style = document.createElement("style");
+    style.id = "lang-pill-style";
+    style.textContent = `
+      nav .lang-pill {
+        margin-left: 8px;
+        padding: 7px 10px;
+        border: 1px solid #cdddf2;
+        border-radius: 999px;
+        background: #fff;
+        color: #0f2a4d;
+        font-weight: 900;
+        box-shadow: 0 4px 12px rgba(15, 42, 77, 0.08);
+      }
 
-    if (enLink) {
-      enLink.href = langUrls.en[pageType] || "/";
-      enLink.classList.toggle("active", lang === "en");
-    }
+      nav .lang-pill.active {
+        background: #2563eb;
+        color: #fff;
+        border-color: #2563eb;
+      }
+    `;
+    document.head.appendChild(style);
   }
 
   function init() {
     splitSections();
     updateNav();
-    restoreLangLinkIds();
+    injectLangButtonStyle();
   }
 
   if (document.readyState === "loading") {
