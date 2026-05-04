@@ -21,18 +21,18 @@
 
   const navItems = {
     ja: [
-      ["概要", "/ja/"],
-      ["プロジェクト", "/ja/projects/"],
-      ["論文発表", "/ja/publications/"],
-      ["特許", "/ja/patents/"],
-      ["経歴", "/ja/career/"],
+      ["概要", "/ja/", "overview"],
+      ["プロジェクト", "/ja/projects/", "projects"],
+      ["論文発表", "/ja/publications/", "publications"],
+      ["特許", "/ja/patents/", "patents"],
+      ["経歴", "/ja/career/", "career"],
     ],
     en: [
-      ["Overview", "/"],
-      ["Projects", "/projects/"],
-      ["Publications", "/publications/"],
-      ["Patents", "/patents/"],
-      ["Career", "/career/"],
+      ["Overview", "/", "overview"],
+      ["Projects", "/projects/", "projects"],
+      ["Publications", "/publications/", "publications"],
+      ["Patents", "/patents/", "patents"],
+      ["Career", "/career/", "career"],
     ],
   };
 
@@ -59,24 +59,28 @@
 
   function sectionKeyText(section) {
     const heading = section.querySelector(".eyebrow, .section-kicker, h1, h2");
-    return normalize(heading ? heading.textContent : "");
+    return normalize(heading ? heading.textContent : section.textContent);
   }
 
   function isHeroSection(section) {
-    return section.querySelector("h1") !== null;
+    const text = normalize(section.textContent);
+    return (
+      text.includes("researcher profile") ||
+      text.includes("daisuke hayashi") ||
+      text.includes("林 大介") ||
+      text.includes("primary affiliation") ||
+      text.includes("academic program") ||
+      text.includes("focus areas")
+    );
   }
 
   function shouldShow(section) {
-    if (pageType === "overview" && isHeroSection(section)) {
-      return true;
-    }
-  
+    if (pageType === "overview" && isHeroSection(section)) return true;
+
     const keyText = sectionKeyText(section);
     const targets = pageGroups[pageType] || pageGroups.overview;
-  
-    return targets.some((target) =>
-      keyText.includes(normalize(target))
-    );
+
+    return targets.some((target) => keyText.includes(normalize(target)));
   }
 
   function splitSections() {
@@ -85,61 +89,93 @@
     });
   }
 
-  function isActive(href) {
-    if (pageType === "overview") return href === "/" || href === "/ja/";
-    return href.includes(`/${pageType}/`);
-  }
-
   function updateNav() {
     const nav = document.querySelector("nav");
     if (!nav) return;
 
     nav.innerHTML = "";
 
-    navItems[lang].forEach(([label, href]) => {
+    navItems[lang].forEach(([label, href, key]) => {
       const a = document.createElement("a");
       a.href = href;
       a.textContent = label;
-      if (isActive(href)) a.classList.add("active");
+      if (key === pageType) a.classList.add("active");
       nav.appendChild(a);
     });
+
+    const langBox = document.createElement("span");
+    langBox.className = "lang-tabs";
 
     const ja = document.createElement("a");
     ja.href = langUrls.ja[pageType] || "/ja/";
     ja.textContent = "JA";
-    ja.className = "lang-pill";
+    ja.className = "lang-tab";
     if (lang === "ja") ja.classList.add("active");
-    nav.appendChild(ja);
 
     const en = document.createElement("a");
     en.href = langUrls.en[pageType] || "/";
     en.textContent = "EN";
-    en.className = "lang-pill";
+    en.className = "lang-tab";
     if (lang === "en") en.classList.add("active");
-    nav.appendChild(en);
+
+    langBox.appendChild(ja);
+    langBox.appendChild(en);
+    nav.appendChild(langBox);
   }
 
-  function injectLangButtonStyle() {
-    if (document.getElementById("lang-pill-style")) return;
+  function injectStyle() {
+    if (document.getElementById("page-split-style")) return;
 
     const style = document.createElement("style");
-    style.id = "lang-pill-style";
+    style.id = "page-split-style";
     style.textContent = `
-      nav .lang-pill {
-        margin-left: 8px;
-        padding: 7px 10px;
+      nav a.active {
+        color: #2563eb !important;
+        font-weight: 900 !important;
+      }
+
+      .lang-tabs {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        margin-left: 14px;
+        padding: 3px;
         border: 1px solid #cdddf2;
         border-radius: 999px;
-        background: #fff;
-        color: #0f2a4d;
-        font-weight: 900;
+        background: #ffffff;
         box-shadow: 0 4px 12px rgba(15, 42, 77, 0.08);
       }
 
-      nav .lang-pill.active {
+      .lang-tabs .lang-tab {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 34px;
+        height: 30px;
+        padding: 0 10px;
+        border-radius: 999px;
+        color: #0f2a4d;
+        text-decoration: none;
+        font-weight: 900;
+      }
+
+      .lang-tabs .lang-tab.active {
         background: #2563eb;
-        color: #fff;
-        border-color: #2563eb;
+        color: #fff !important;
+      }
+
+      .research-impact-card,
+      .research-card,
+      .research-theme-card {
+        border: 1px solid #cdddf2;
+        border-radius: 22px;
+        padding: 24px;
+        background: #fff;
+      }
+
+      .research-impact-card figure,
+      .research-figure {
+        margin-top: 20px;
       }
     `;
     document.head.appendChild(style);
@@ -148,7 +184,7 @@
   function init() {
     splitSections();
     updateNav();
-    injectLangButtonStyle();
+    injectStyle();
   }
 
   if (document.readyState === "loading") {
