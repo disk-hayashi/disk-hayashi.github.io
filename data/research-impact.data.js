@@ -17,9 +17,9 @@ module.exports = [
       altJa: "3D脳MRI画像を用いた多疾患分類と可視化の研究フレームワーク",
       altEn: "Research framework for multi-disease classification and visualization using 3D brain MRI images",
       captionJa:
-        "3D脳MRI画像を用いた多疾患分類フレームワーク。特徴抽出、分類、可視化を統合し、医療AIの解釈性向上を目指した。",
+        "3D脳MRI画像を用いた多疾患分類と可視化の研究フレームワーク",
       captionEn:
-        "Framework for multi-disease classification from 3D brain MRI images, integrating feature extraction, classification, and visualization for interpretable medical AI."
+        "Framework for multi-disease classification from 3D brain MRI images."
     }
   }
 ];
