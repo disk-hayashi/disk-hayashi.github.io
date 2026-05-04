@@ -304,10 +304,33 @@
     document.head.appendChild(style);
   }
 
+  function hideMobileHeaderSubtitle() {
+    if (window.innerWidth > 720) return;
+  
+    const header = document.querySelector("header");
+    if (!header) return;
+  
+    const targets = Array.from(header.querySelectorAll("*")).filter((el) => {
+      const text = (el.textContent || "").trim();
+      return (
+        text === "COMPUTER VISION / NLP / 機械学習" ||
+        text.includes("COMPUTER VISION") ||
+        text.includes("機械学習")
+      );
+    });
+  
+    targets.forEach((el) => {
+      if (!el.closest("nav")) {
+        el.style.display = "none";
+      }
+    });
+  }
+  
   function init() {
     splitSections();
     updateNav();
     injectStyle();
+    hideMobileHeaderSubtitle();
   }
 
   if (document.readyState === "loading") {
