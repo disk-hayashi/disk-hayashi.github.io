@@ -1,62 +1,35 @@
 (function () {
   const pageType =
     document.body.dataset.pageType ||
-    document.documentElement.dataset.pageType ||
     window.__PAGE_TYPE__ ||
     "overview";
 
   const lang =
     document.body.dataset.langMode ||
-    document.documentElement.dataset.langMode ||
     window.__LANG_MODE__ ||
     "ja";
 
+  // =========================
+  // ページごとの表示対象
+  // =========================
   const pageGroups = {
-    overview: [
-      "Researcher Profile",
-      "Overview",
-      "ハイライト",
-      "Highlights",
-    ],
-    projects: [
-      "Featured Work",
-      "製品化",
-      "Commercialization",
-      "Research Themes",
-      "研究業績",
-      "Research Impact",
-    ],
-    patents: [
-      "Intellectual Property",
-      "特許",
-      "Patents",
-    ],
-    publications: [
-      "Publications",
-      "論文発表",
-      "Journal Papers",
-      "International Conference Papers",
-      "Domestic Conferences",
-      "ジャーナル論文",
-      "国際会議論文",
-      "国内会議",
-    ],
+    overview: ["researcher profile", "overview", "ハイライト"],
+    projects: ["featured work", "製品化", "研究業績"],
+    patents: ["intellectual property", "特許"],
+    publications: ["publications", "論文発表"],
     career: [
-      "Background",
-      "職歴・学歴",
-      "Career & Education",
-      "Recognition",
-      "受賞・表彰",
-      "Awards",
-      "Credentials",
+      "career",
+      "職歴",
+      "学歴",
+      "受賞",
       "資格",
-      "Certifications",
-      "Professional Community",
-      "所属学会",
-      "Societies",
+      "所属学会"
     ],
   };
 
+  // =========================
+  // ナビ（ここで定義する）
+  // =========================
   const navItems = {
     en: [
       ["Overview", "/"],
@@ -75,87 +48,89 @@
   };
 
   function normalize(text) {
-    return String(text || "")
-      .replace(/\s+/g, " ")
-      .trim()
-      .toLowerCase();
+    return (text || "").toLowerCase().replace(/\s+/g, "");
   }
 
-  function sectionText(section) {
-    const heading = section.querySelector("h1, h2, h3, .section-title, .eyebrow");
-    return normalize(heading ? heading.textContent : section.textContent);
+  function getSectionText(section) {
+    const h =
+      section.querySelector("h1,h2,h3,.section-title,.eyebrow");
+    return normalize(h ? h.innerText : section.innerText);
   }
 
   function shouldShow(section) {
     const targets = pageGroups[pageType] || pageGroups.overview;
-    const text = sectionText(section);
+    const text = getSectionText(section);
 
-    return targets.some((target) => text.includes(normalize(target)));
+    return targets.some((t) => text.includes(normalize(t)));
   }
 
+  // =========================
+  // セクション分割
+  // =========================
   function splitSections() {
-    const sections = Array.from(document.querySelectorAll("section"));
-
-    if (!sections.length) return;
+    const sections = document.querySelectorAll("section");
 
     sections.forEach((section) => {
       section.style.display = shouldShow(section) ? "" : "none";
     });
   }
 
-  function updateNav() {
+  // =========================
+  // ナビ生成（完全上書き）
+  // =========================
+  function buildNav() {
     const nav = document.querySelector("nav");
     if (!nav) return;
 
-    nav.innerHTML = navItems[lang]
-      .map(([label, href]) => {
-        const active =
-          (pageType === "overview" && (href === "/" || href === "/ja/")) ||
-          href.includes(pageType);
+    nav.innerHTML = "";
 
-        return `<a href="${href}" class="${active ? "active" : ""}">${label}</a>`;
-      })
-      .join("");
+    navItems[lang].forEach(([label, href]) => {
+      const isActive =
+        (pageType === "overview" &&
+          (href === "/" || href === "/ja/")) ||
+        href.includes(pageType);
 
-    const otherLangPath =
-      lang === "ja"
-        ? {
-            overview: "/",
-            projects: "/projects/",
-            patents: "/patents/",
-            publications: "/publications/",
-            career: "/career/",
-          }[pageType]
-        : {
-            overview: "/ja/",
-            projects: "/ja/projects/",
-            patents: "/ja/patents/",
-            publications: "/ja/publications/",
-            career: "/ja/career/",
-          }[pageType];
+      const a = document.createElement("a");
+      a.href = href;
+      a.textContent = label;
+      if (isActive) a.classList.add("active");
 
-    nav.insertAdjacentHTML(
-      "beforeend",
-      `<a href="${otherLangPath}" class="lang-switch">${lang === "ja" ? "EN" : "JA"}</a>`
-    );
+      nav.appendChild(a);
+    });
+
+    // 言語切替
+    const langSwitch = document.createElement("a");
+    langSwitch.className = "lang-switch";
+
+    if (lang === "ja") {
+      langSwitch.href = {
+        overview: "/",
+        projects: "/projects/",
+        patents: "/patents/",
+        publications: "/publications/",
+        career: "/career/",
+      }[pageType];
+      langSwitch.textContent = "EN";
+    } else {
+      langSwitch.href = {
+        overview: "/ja/",
+        projects: "/ja/projects/",
+        patents: "/ja/patents/",
+        publications: "/ja/publications/",
+        career: "/ja/career/",
+      }[pageType];
+      langSwitch.textContent = "JA";
+    }
+
+    nav.appendChild(langSwitch);
   }
 
-  function updateTitleVisibility() {
-    const titleMap = {
-      overview: { ja: "概要", en: "Overview" },
-      projects: { ja: "プロジェクト", en: "Projects" },
-      patents: { ja: "特許", en: "Patents" },
-      publications: { ja: "論文発表", en: "Publications" },
-      career: { ja: "経歴", en: "Career" },
-    };
-
-    document.body.setAttribute("data-current-page-label", titleMap[pageType]?.[lang] || "");
-  }
-
+  // =========================
+  // 実行
+  // =========================
   function init() {
     splitSections();
-    updateNav();
-    updateTitleVisibility();
+    buildNav();
   }
 
   if (document.readyState === "loading") {
