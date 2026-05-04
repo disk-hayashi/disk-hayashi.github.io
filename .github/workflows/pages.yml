@@ -27,11 +27,8 @@ jobs:
         with:
           node-version: 22
 
-      - name: Install dependencies
-        run: npm install
-
       - name: Build
-        run: npm run build
+        run: node build.js
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
