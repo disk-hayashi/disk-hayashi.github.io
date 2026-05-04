@@ -82,20 +82,40 @@
   function shouldShow(section) {
     const keyText = sectionKeyText(section);
   
+    if (section.querySelector("h1")) return true;
+  
     if (pageType === "overview") {
-      return isHeroSection(section) || keyText.includes("overview");
+      return (
+        keyText.includes("overview") ||
+        keyText.includes("ハイライト")
+      );
     }
   
-    const targets = pageGroups[pageType] || [];
-    return targets.some((target) => keyText.includes(normalize(target)));
+    if (pageType === "projects") {
+      return (
+        keyText.includes("featured") ||
+        keyText.includes("research")
+      );
+    }
+  
+    if (pageType === "publications") {
+      return keyText.includes("publication") || keyText.includes("論文");
+    }
+  
+    if (pageType === "patents") {
+      return keyText.includes("patent") || keyText.includes("特許");
+    }
+  
+    if (pageType === "career") {
+      return (
+        keyText.includes("career") ||
+        keyText.includes("background") ||
+        keyText.includes("資格")
+      );
+    }
+  
+    return false;
   }
-
-  function splitSections() {
-    document.querySelectorAll("section").forEach((section) => {
-      section.style.display = shouldShow(section) ? "" : "none";
-    });
-  }
-
   function updateNav() {
     const nav = document.querySelector("nav");
     if (!nav) return;
