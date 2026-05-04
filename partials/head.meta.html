@@ -382,14 +382,37 @@
       html { scroll-behavior: auto; }
       * { transition: none !important; }
     }
+    .impact-list {
+      grid-template-columns: 1fr;
+    }
+    .impact-card {
+      width: 100%;
+    }
+    @media (min-width: 900px) {
+      .impact-card:has(.research-figure) {
+        display: grid;
+        grid-template-columns: minmax(420px, 1fr) minmax(360px, 520px);
+        gap: 28px 36px;
+        align-items: start;
+      }
+      .impact-card:has(.research-figure) .impact-card-header,
+      .impact-card:has(.research-figure) .tags,
+      .impact-card:has(.research-figure) .impact-card-desc {
+        grid-column: 1;
+      }
+      .impact-card:has(.research-figure) .research-figure {
+        grid-column: 2;
+        grid-row: 1 / span 3;
+        margin-top: 0;
+      }
+    }
     .research-figure {
-      margin-top: 18px;
+      margin-top: 20px;
       padding: 12px;
       border: 1px solid rgba(30, 64, 175, 0.12);
       border-radius: 18px;
       background: #f8fbff;
     }
-
     .research-figure img {
       display: block;
       width: 100%;
@@ -397,7 +420,6 @@
       margin: 0 auto;
       border-radius: 12px;
     }
-
     .research-figure figcaption {
       margin-top: 10px;
       font-size: 0.86rem;
@@ -405,40 +427,12 @@
       color: #52637a;
       text-align: center;
     }
-
-    @media (max-width: 768px) {
+    @media (max-width: 899px) {
       .research-figure {
-        margin-top: 14px;
-        padding: 8px;
-        border-radius: 14px;
+        margin-top: 16px;
       }
-
-      .research-figure img {
-        border-radius: 10px;
-      }
-
       .research-figure figcaption {
         font-size: 0.78rem;
-        text-align: left;
-      }
-    }
-    @media (min-width: 900px) {
-      .research-impact-card {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) 480px;
-        gap: 28px;
-        align-items: start;
-      }
-
-      .research-figure {
-        margin-top: 0;
-      }
-
-      .research-figure img {
-        max-width: 100%;
-      }
-
-      .research-figure figcaption {
         text-align: left;
       }
     }
