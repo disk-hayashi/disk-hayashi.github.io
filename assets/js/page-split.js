@@ -1,5 +1,5 @@
 (function () {
-  const pageType =
+  const rawPageType =
     document.body.dataset.pageType ||
     document.documentElement.dataset.pageType ||
     window.__PAGE_TYPE__ ||
@@ -20,7 +20,7 @@
     career: "career",
   };
 
-  const currentPage = pageMap[pageType] || "overview";
+  const currentPage = pageMap[rawPageType] || "overview";
 
   const navItems = {
     ja: [
@@ -58,26 +58,18 @@
 
   const sectionRules = {
     overview: ["hero", "overview"],
-    projects: ["projects", "featured", "research"],
+    projects: ["featured", "research"],
     publications: ["publications"],
     patents: ["patents"],
     career: ["recognition", "background", "credentials", "societies"],
   };
 
   function normalize(text) {
-    return String(text || "")
-      .toLowerCase()
-      .replace(/\s+/g, " ")
-      .trim();
+    return String(text || "").toLowerCase().replace(/\s+/g, " ").trim();
   }
 
-  function getDirectHeading(section) {
+  function directHeading(section) {
     return (
-      section.querySelector(":scope > .eyebrow") ||
-      section.querySelector(":scope > .section-kicker") ||
-      section.querySelector(":scope > h1") ||
-      section.querySelector(":scope > h2") ||
-      section.querySelector(":scope > h3") ||
       section.querySelector(".eyebrow") ||
       section.querySelector(".section-kicker") ||
       section.querySelector("h1") ||
@@ -89,7 +81,7 @@
   function classifySection(section) {
     if (section.dataset.section) return section.dataset.section;
 
-    const heading = normalize(getDirectHeading(section)?.textContent || "");
+    const heading = normalize(directHeading(section)?.textContent || "");
     const text = normalize(section.textContent || "");
 
     if (
@@ -101,12 +93,7 @@
       return "hero";
     }
 
-    if (
-      heading.includes("overview") ||
-      heading.includes("ハイライト") ||
-      text.startsWith("overview") ||
-      text.startsWith("ハイライト")
-    ) {
+    if (heading.includes("overview") || heading.includes("ハイライト")) {
       return "overview";
     }
 
@@ -126,49 +113,43 @@
       return "research";
     }
 
-    if (
-      heading.includes("publications") ||
-      heading.includes("論文発表")
-    ) {
+    if (heading.includes("publications") || heading.includes("論文発表")) {
       return "publications";
     }
 
     if (
       heading.includes("intellectual property") ||
-      heading.includes("特許") ||
-      heading.includes("patents")
+      heading.includes("patents") ||
+      heading.includes("特許")
     ) {
       return "patents";
     }
 
-    if (
-      heading.includes("recognition") ||
-      heading.includes("受賞")
-    ) {
+    if (heading.includes("recognition") || heading.includes("受賞")) {
       return "recognition";
     }
 
     if (
       heading.includes("background") ||
+      heading.includes("career") ||
       heading.includes("職歴") ||
-      heading.includes("学歴") ||
-      heading.includes("career")
+      heading.includes("学歴")
     ) {
       return "background";
     }
 
     if (
       heading.includes("credentials") ||
-      heading.includes("資格") ||
-      heading.includes("certifications")
+      heading.includes("certifications") ||
+      heading.includes("資格")
     ) {
       return "credentials";
     }
 
     if (
       heading.includes("professional community") ||
-      heading.includes("所属学会") ||
-      heading.includes("societies")
+      heading.includes("societies") ||
+      heading.includes("所属学会")
     ) {
       return "societies";
     }
@@ -176,28 +157,19 @@
     return "unknown";
   }
 
-  function shouldShow(section) {
-    const type = classifySection(section);
-    const allowed = sectionRules[currentPage] || sectionRules.overview;
-    return allowed.includes(type);
-  }
-
   function splitSections() {
     const sections = Array.from(document.querySelectorAll("section"));
+    const allowed = sectionRules[currentPage] || sectionRules.overview;
 
     sections.forEach((section) => {
-      const visible = shouldShow(section);
-      section.style.display = visible ? "" : "none";
+      const type = classifySection(section);
+      section.style.display = allowed.includes(type) ? "" : "none";
     });
 
-    const visibleSections = sections.filter(
-      (section) => section.style.display !== "none"
-    );
-
-    // 安全弁：何も表示されなくなった場合、概要はHero/Overview候補を復旧
-    if (!visibleSections.length && currentPage === "overview") {
-      sections.slice(0, 2).forEach((section) => {
-        section.style.display = "";
+    const visible = sections.some((s) => s.style.display !== "none");
+    if (!visible && currentPage === "overview") {
+      sections.slice(0, 2).forEach((s) => {
+        s.style.display = "";
       });
     }
   }
@@ -234,6 +206,63 @@
     tabs.appendChild(ja);
     tabs.appendChild(en);
     nav.appendChild(tabs);
+  }
+
+  function hideMobileHeaderSubtitle() {
+    if (window.innerWidth > 720) return;
+
+    const header = document.querySelector("header");
+    if (!header) return;
+
+    Array.from(header.querySelectorAll("*")).forEach((el) => {
+      const text = (el.textContent || "").trim();
+
+      const isLeaf = el.children.length === 0;
+      const isSubtitle =
+        text === "COMPUTER VISION / NLP / 機械学習" ||
+        text === "COMPUTER VISION / NLP / Machine Learning";
+
+      if (isLeaf && isSubtitle && !el.closest("nav")) {
+        el.style.display = "none";
+      }
+    });
+  }
+
+  function reorderMobileHero() {
+    if (window.innerWidth > 720) return;
+
+    const hero = Array.from(document.querySelectorAll("section")).find(
+      (section) => classifySection(section) === "hero"
+    );
+    if (!hero) return;
+
+    const h1 = hero.querySelector("h1");
+    const img = hero.querySelector("img");
+    if (!h1 || !img) return;
+
+    function pathToRoot(el, stop) {
+      const path = [];
+      let cur = el;
+      while (cur && cur !== stop.parentElement) {
+        path.push(cur);
+        if (cur === stop) break;
+        cur = cur.parentElement;
+      }
+      return path;
+    }
+
+    const hPath = pathToRoot(h1, hero);
+    const iPath = pathToRoot(img, hero);
+
+    const common = hPath.find((el) => iPath.includes(el));
+    if (!common) return;
+
+    const textChild = hPath[hPath.indexOf(common) - 1];
+    const imageChild = iPath[iPath.indexOf(common) - 1];
+
+    if (!textChild || !imageChild || textChild === imageChild) return;
+
+    common.insertBefore(textChild, imageChild);
   }
 
   function injectStyle() {
@@ -286,77 +315,19 @@
         background: #fff;
       }
 
-      .research-impact-card figure,
-      .research-figure {
-        margin-top: 20px;
-      }
       @media (max-width: 720px) {
-        section:first-of-type {
-          display: flex !important;
-          flex-direction: column !important;
+        header {
+          align-items: flex-start !important;
         }
-      
-        section:first-of-type > *:has(h1),
-        section:first-of-type > *:has(.profile-info),
-        section:first-of-type > *:has(.primary-affiliation) {
-          order: 1 !important;
-        }
-      
-        section:first-of-type > *:has(img),
-        section:first-of-type > *:has(.focus-areas) {
-          order: 2 !important;
+
+        nav {
+          gap: 10px !important;
         }
       }
     `;
     document.head.appendChild(style);
   }
 
-  function hideMobileHeaderSubtitle() {
-    if (window.innerWidth > 720) return;
-  
-    const header = document.querySelector("header");
-    if (!header) return;
-  
-    const targets = Array.from(header.querySelectorAll("*")).filter((el) => {
-      const text = (el.textContent || "").trim();
-      return (
-        text === "COMPUTER VISION / NLP / 機械学習" ||
-        text.includes("COMPUTER VISION") ||
-        text.includes("機械学習")
-      );
-    });
-  
-    targets.forEach((el) => {
-      if (!el.closest("nav")) {
-        el.style.display = "none";
-      }
-    });
-  }
-
-  function reorderMobileHero() {
-    if (window.innerWidth > 720) return;
-  
-    const hero = Array.from(document.querySelectorAll("section"))
-      .find((section) => classifySection(section) === "hero");
-  
-    if (!hero) return;
-  
-    const children = Array.from(hero.children);
-    const textBlock = children.find((el) =>
-      normalize(el.textContent).includes("researcher profile") ||
-      el.querySelector("h1")
-    );
-  
-    const imageBlock = children.find((el) =>
-      el.querySelector("img") ||
-      normalize(el.textContent).includes("focus areas")
-    );
-  
-    if (textBlock && imageBlock && hero.firstElementChild !== textBlock) {
-      hero.insertBefore(textBlock, imageBlock);
-    }
-  }
-  
   function init() {
     splitSections();
     updateNav();
@@ -370,4 +341,9 @@
   } else {
     init();
   }
+
+  window.addEventListener("resize", function () {
+    hideMobileHeaderSubtitle();
+    reorderMobileHero();
+  });
 })();
