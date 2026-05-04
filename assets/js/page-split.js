@@ -212,17 +212,49 @@
     const header = document.querySelector("header");
     if (!header) return;
   
-    const patterns = [
-      "COMPUTER VISION / NLP / 機械学習",
-      "COMPUTER VISION / NLP / Machine Learning",
-    ];
+    const walker = document.createTreeWalker(
+      header,
+      NodeFilter.SHOW_TEXT,
+      {
+        acceptNode(node) {
+          const parent = node.parentElement;
+          if (!parent || parent.closest("nav")) {
+            return NodeFilter.FILTER_REJECT;
+          }
+  
+          const text = node.nodeValue || "";
+  
+          if (
+            text.includes("COMPUTER VISION") ||
+            text.includes("Machine Learning") ||
+            text.includes("機械学習")
+          ) {
+            return NodeFilter.FILTER_ACCEPT;
+          }
+  
+          return NodeFilter.FILTER_REJECT;
+        },
+      }
+    );
+  
+    const nodes = [];
+    while (walker.nextNode()) {
+      nodes.push(walker.currentNode);
+    }
+  
+    nodes.forEach((node) => {
+      node.nodeValue = "";
+    });
   
     Array.from(header.querySelectorAll("*")).forEach((el) => {
       if (el.closest("nav")) return;
   
       const text = (el.textContent || "").replace(/\s+/g, " ").trim();
   
-      if (patterns.includes(text)) {
+      if (
+        text === "COMPUTER VISION / NLP / 機械学習" ||
+        text === "COMPUTER VISION / NLP / Machine Learning"
+      ) {
         el.style.display = "none";
       }
     });
@@ -339,6 +371,8 @@
     injectStyle();
     hideHeaderSubtitle();
     reorderMobileHero();
+  
+    setTimeout(hideHeaderSubtitle, 100);
   }
 
   if (document.readyState === "loading") {
