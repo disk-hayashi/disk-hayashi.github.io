@@ -1,45 +1,23 @@
-# GitHub Pages final package
+# Daisuke Hayashi Profile Site
 
-## Files you usually edit
-- `site.config.js`: content, texts, counts, links, lists
-- `template.html`: layout and styling
+## Local build
 
-## Build
-```bash
-node build.js
-```
-
-This generates:
-- `index.html`
-- `ja/index.html`
-- `robots.txt`
-- `sitemap.xml`
-
-## GitHub Pages placement
-Put these files in the root of your repository:
-
-- `build.js`
-- `site.config.js`
-- `template.html`
-- `index.html`
-- `robots.txt`
-- `sitemap.xml`
-- `ja/index.html`
-
-## Notes
-- English page: `/`
-- Japanese page: `/ja/`
-- `robots.txt` points to `/sitemap.xml`
-- `sitemap.xml` includes both EN and JA URLs
-
-
-## Refactor-ready files included
-- `build.js` now reads `partials/head.meta.html` and `partials/body.shell.html`
-- `template.html` is reduced to a thin wrapper
-- `assets/js/site.js` contains the former inline rendering script
-
-### Build
 ```bash
 npm install
 npm run build
 ```
+
+Generated files are placed in `dist/`.
+
+## Local preview
+
+```bash
+npm run dev
+```
+
+## GitHub Pages
+
+1. Put these files in the repository root.
+2. Go to GitHub repository `Settings` → `Pages`.
+3. Set `Source` to `GitHub Actions`.
+4. Push to `main`.
