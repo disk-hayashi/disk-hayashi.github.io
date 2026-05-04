@@ -101,8 +101,6 @@ function filePathFromUrlPath(urlPath) {
 function buildHead(pageKey, lang) {
   const page = pages[pageKey];
   const canonical = `${BASE_URL}${page.path[lang]}`;
-  const jaUrl = `${BASE_URL}${page.path.ja}`;
-  const enUrl = `${BASE_URL}${page.path.en}`;
 
   return `
 <head>
@@ -111,14 +109,7 @@ function buildHead(pageKey, lang) {
   <title>${esc(page.title[lang])}</title>
   <meta name="description" content="${esc(page.description[lang])}">
   <link rel="canonical" href="${canonical}">
-  <link rel="alternate" hreflang="ja" href="${jaUrl}">
-  <link rel="alternate" hreflang="en" href="${enUrl}">
-  <link rel="alternate" hreflang="x-default" href="${enUrl}">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="${esc(page.title[lang])}">
-  <meta property="og:description" content="${esc(page.description[lang])}">
-  <meta property="og:url" content="${canonical}">
-  <meta property="og:image" content="${BASE_URL}/profile.jpg">
+
   <script>
     window.__PAGE_TYPE__ = ${JSON.stringify(pageKey)};
     window.__LANG_MODE__ = ${JSON.stringify(lang)};
@@ -133,6 +124,7 @@ function replaceAllPlaceholders(html, pageKey, lang) {
   return html
     .replaceAll("{{HEAD_META}}", buildHead(pageKey, lang))
     .replaceAll("{{BODY_SHELL}}", read("partials/body.shell.html"))
+    .replaceAll("{{HTML_LANG}}", lang === "ja" ? "ja" : "en")
     .replaceAll("{{LANG_MODE}}", lang)
     .replaceAll("{{PAGE_TYPE}}", pageKey)
     .replaceAll("{{TITLE}}", esc(page.title[lang]))
@@ -179,6 +171,12 @@ function render(pageKey, lang) {
     /<link[^>]+href=["']\/assets\/css\/style\.css["'][^>]*>\s*/g,
     ""
   );
+
+  html = html
+  .replaceAll("{{HTML_LANG}}", lang)
+  .replaceAll("{{LANG_MODE}}", lang)
+  .replaceAll("{{PAGE_TYPE}}", pageKey)
+  .replaceAll("{{SITE_DATA_JSON}}", JSON.stringify(siteData));
 
   return html;
 }
