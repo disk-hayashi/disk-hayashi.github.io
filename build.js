@@ -33,12 +33,12 @@ const pages = [
     key: "home",
     path: { en: "/", ja: "/ja/" },
     title: {
-      en: "Daisuke Hayashi | AI Researcher in Computer Vision, NLP and Machine Learning",
-      ja: "林 大介 | Computer Vision・NLP・機械学習のAI研究者",
+      en: "Daisuke Hayashi | AI Researcher (Computer Vision, NLP) | Kyoto University × Hitachi",
+      ja: "林 大介 | AI研究者（Computer Vision・NLP）| 京都大学 × 日立",
     },
     desc: {
-      en: "Official profile of Daisuke Hayashi, an AI researcher specializing in Computer Vision, NLP, Machine Learning, commercialization, patent creation, and R&D.",
-      ja: "Computer Vision・NLP・機械学習を専門に、研究開発から製品化・特許創出まで一貫して推進する林大介のプロフィールサイト。",
+      en: "Official profile of Daisuke Hayashi, an AI researcher bridging R&D, productization, and patent creation in Computer Vision, NLP, and Machine Learning at Kyoto University and Hitachi.",
+      ja: "AI研究を製品化・特許創出まで一気通貫で推進する林大介のプロフィールサイト。Computer Vision・NLP・機械学習、京都大学、日立での研究開発・社会実装・知財創出を掲載。",
     },
   },
   {
@@ -155,6 +155,12 @@ function buildHead(page, lang) {
     url: canonical,
     image: `${BASE_URL}/assets/images/profile.jpg`,
     jobTitle: "AI Researcher",
+    email: "mailto:daisuke.hayashi.fw@hitachi.com",
+    knowsAbout: ["Computer Vision", "NLP", "Machine Learning", "AI Commercialization", "Patent Creation"],
+    sameAs: [
+      "https://www.linkedin.com/in/daisuke-hayashi/",
+      "https://scholar.google.com/citations?hl=ja&user=mHRLTWoAAAAJ"
+    ],
     affiliation: [
       { "@type": "Organization", name: "Hitachi, Ltd." },
       { "@type": "CollegeOrUniversity", name: "Kyoto University" }
@@ -173,7 +179,6 @@ function buildHead(page, lang) {
     .replaceAll("{{OG_LOCALE}}", lang === "ja" ? "ja_JP" : "en_US")
     .replaceAll("{{OG_LOCALE_ALTERNATE}}", lang === "ja" ? "en_US" : "ja_JP")
     .replaceAll("{{JSON_LD}}", safeJson(jsonLd))
-    .replaceAll("/profile.jpg", "/assets/images/profile.jpg")
     .replaceAll("https://disk-hayashi.github.io/profile.jpg", `${BASE_URL}/assets/images/profile.jpg`);
 }
 
@@ -205,18 +210,27 @@ function render(page, lang) {
 }
 
 function buildSitemap() {
-  const urls = pages.flatMap((p) => [p.path.en, p.path.ja]);
+  const lastmod = new Date().toISOString().slice(0, 10);
+  const entries = [];
+
+  for (const page of pages) {
+    for (const lang of ["en", "ja"]) {
+      entries.push(`  <url>
+    <loc>${BASE_URL}${page.path[lang]}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>${page.key === "home" ? "1.0" : "0.8"}</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="${BASE_URL}${page.path.en}" />
+    <xhtml:link rel="alternate" hreflang="ja" href="${BASE_URL}${page.path.ja}" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="${BASE_URL}${page.path.en}" />
+  </url>`);
+    }
+  }
 
   return `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
-${urls
-  .map(
-    (u) => `  <url>
-    <loc>${BASE_URL}${u}</loc>
-    <lastmod>${new Date().toISOString().slice(0, 10)}</lastmod>
-  </url>`
-  )
-  .join("\n")}
+<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="https://www.w3.org/1999/xhtml">
+${entries.join("\n")}
 </urlset>
 `;
 }
