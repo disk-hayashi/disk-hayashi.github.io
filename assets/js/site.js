@@ -379,5 +379,12 @@ function escapeHtml(str) {
     if (countryFilter) countryFilter.addEventListener("change", renderPatents);
     if (typeFilter) typeFilter.addEventListener("change", renderPatents);
 
+      document.addEventListener("DOMContentLoaded", () => {
+        const hero = document.querySelector(".hero");
+        if (hero) {
+          hero.style.padding = "80px 0 60px";
+        }
+      });
+
     setupLanguageLinks();
     renderAll();
