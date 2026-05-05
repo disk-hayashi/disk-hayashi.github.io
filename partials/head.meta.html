@@ -3,6 +3,8 @@
   <meta name="format-detection" content="telephone=no" />
   <title>{{TITLE}}</title>
   <meta name="description" content="{{DESCRIPTION}}">
+  <meta name="author" content="Daisuke Hayashi">
+  <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#2563eb">
   <link rel="canonical" href="{{CANONICAL}}">
   <link rel="alternate" hreflang="ja" href="{{JA_URL}}">
@@ -438,4 +440,66 @@
         text-align: left;
       }
     }
+
+    /* Top 1% refinement: clearer positioning, calmer shadows, and faster scanning */
+    .lead-strong {
+      font-size: clamp(1.12rem, 1.7vw, 1.34rem);
+      font-weight: 900;
+      letter-spacing: -0.025em;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+    .hero-value {
+      margin: 0 0 18px;
+      color: #334155;
+      font-size: 0.98rem;
+      font-weight: 750;
+      line-height: 1.72;
+    }
+    .btn { box-shadow: 0 8px 18px rgba(15,23,42,0.045); }
+    .btn-primary { box-shadow: 0 10px 22px rgba(37,99,235,0.18); }
+    .btn-social {
+      width: 44px;
+      padding: 0;
+      font-size: 0.88rem;
+      letter-spacing: -0.02em;
+    }
+    .btn-social.wide { width: auto; padding: 0 15px; }
+    .product-hero-card {
+      border-top: 3px solid rgba(37,99,235,0.52);
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+    }
+    .product-hero-desc { font-weight: 650; color: #253247; }
+    .research-impact-card {
+      background: rgba(255,255,255,0.96);
+      border: 1px solid rgba(219,229,240,0.92);
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: 0 10px 24px rgba(15,23,42,0.04);
+    }
+    .research-impact-desc { margin: 10px 0 8px; color: #334155; font-weight: 650; }
+    .research-bullets {
+      margin: 12px 0 0;
+      padding-left: 1.15rem;
+      color: #24324a;
+      font-size: 0.94rem;
+      line-height: 1.76;
+      font-weight: 650;
+    }
+    .research-bullets li::marker { color: var(--accent); }
+    .footer-contact { margin-bottom: 8px; font-weight: 800; }
+    h1, .section-head h2, .product-hero-title, .patent-title, .pub-title { font-weight: 950; }
+    .brand-caption { display: none !important; }
+    @media (max-width: 980px) {
+      .hero-right { order: 0; }
+      .hero-card { align-items: start; }
+    }
+    @media (max-width: 720px) {
+      .hero-card { grid-template-columns: 1fr; }
+      .hero-left { order: 1; }
+      .hero-right { order: 2; }
+      .hero-side-card { margin: 4px auto 0; }
+      .lead-strong { font-size: 1.06rem; }
+    }
+
   </style>
