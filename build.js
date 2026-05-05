@@ -38,7 +38,7 @@ const pages = [
     },
     desc: {
       en: "Official profile of Daisuke Hayashi, an AI researcher bridging R&D, productization, and patent creation in Computer Vision, NLP, and Machine Learning at Kyoto University and Hitachi.",
-      ja: "AI研究を製品化・特許創出まで一気通貫で推進する林大介のプロフィールサイト。Computer Vision・NLP・機械学習、京都大学、日立での研究開発・社会実装・知財創出を掲載。",
+      ja: "AI × 実装 × 事業化の3軸で価値創出する林大介のプロフィールサイト。Computer Vision・NLP・機械学習、京都大学、日立での研究開発・社会実装・知財創出を掲載。",
     },
   },
   {
