@@ -333,9 +333,9 @@ function escapeHtml(str) {
       setText("stat-paper-number", paperCount);
 
       const suffix = ja ? "件" : "";
-      setSuffix("stat-productized-suffix", ja ? "+件" : "+");
+      setSuffix("stat-productized-suffix", suffix);
       setSuffix("stat-awards-suffix", suffix);
-      setSuffix("stat-patents-suffix", ja ? "+件" : "+");
+      setSuffix("stat-patents-suffix", suffix);
       setSuffix("stat-registered-suffix", suffix);
       setSuffix("stat-product-patent-suffix", suffix);
       setSuffix("stat-paper-suffix", suffix);
