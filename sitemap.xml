@@ -1,17 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-xmlns:xhtml="http://www.w3.org/1999/xhtml">
-
-<url>
-<loc>https://disk-hayashi.github.io/</loc>
-<xhtml:link rel="alternate" hreflang="en" href="https://disk-hayashi.github.io/" />
-<xhtml:link rel="alternate" hreflang="ja" href="https://disk-hayashi.github.io/ja/" />
-</url>
-
-<url>
-<loc>https://disk-hayashi.github.io/ja/</loc>
-<xhtml:link rel="alternate" hreflang="en" href="https://disk-hayashi.github.io/" />
-<xhtml:link rel="alternate" hreflang="ja" href="https://disk-hayashi.github.io/ja/" />
-</url>
-
+<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="https://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://disk-hayashi.github.io/</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://disk-hayashi.github.io/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://disk-hayashi.github.io/ja/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://disk-hayashi.github.io/" />
+  </url>
+  <url>
+    <loc>https://disk-hayashi.github.io/ja/</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://disk-hayashi.github.io/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://disk-hayashi.github.io/ja/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://disk-hayashi.github.io/" />
+  </url>
+  <url>
+    <loc>https://disk-hayashi.github.io/projects/</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://disk-hayashi.github.io/projects/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://disk-hayashi.github.io/ja/projects/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://disk-hayashi.github.io/projects/" />
+  </url>
+  <url>
+    <loc>https://disk-hayashi.github.io/ja/projects/</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://disk-hayashi.github.io/projects/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://disk-hayashi.github.io/ja/projects/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://disk-hayashi.github.io/projects/" />
+  </url>
+  <url>
+    <loc>https://disk-hayashi.github.io/publications/</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://disk-hayashi.github.io/publications/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://disk-hayashi.github.io/ja/publications/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://disk-hayashi.github.io/publications/" />
+  </url>
+  <url>
+    <loc>https://disk-hayashi.github.io/ja/publications/</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://disk-hayashi.github.io/publications/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://disk-hayashi.github.io/ja/publications/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://disk-hayashi.github.io/publications/" />
+  </url>
+  <url>
+    <loc>https://disk-hayashi.github.io/patents/</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://disk-hayashi.github.io/patents/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://disk-hayashi.github.io/ja/patents/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://disk-hayashi.github.io/patents/" />
+  </url>
+  <url>
+    <loc>https://disk-hayashi.github.io/ja/patents/</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://disk-hayashi.github.io/patents/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://disk-hayashi.github.io/ja/patents/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://disk-hayashi.github.io/patents/" />
+  </url>
+  <url>
+    <loc>https://disk-hayashi.github.io/career/</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://disk-hayashi.github.io/career/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://disk-hayashi.github.io/ja/career/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://disk-hayashi.github.io/career/" />
+  </url>
+  <url>
+    <loc>https://disk-hayashi.github.io/ja/career/</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://disk-hayashi.github.io/career/" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://disk-hayashi.github.io/ja/career/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://disk-hayashi.github.io/career/" />
+  </url>
 </urlset>
