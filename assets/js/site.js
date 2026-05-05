@@ -53,28 +53,59 @@ function escapeHtml(str) {
       topProductCards
     } = siteData;
 
-    function renderTopProductCards() {
-      const root = document.getElementById("top-product-cards");
-      root.innerHTML = topProductCards.map(card => {
-        const links = currentLang() === "ja" ? card.links.ja : card.links.en;
-        const tags = [];
-        if (card.leader) tags.push(makeTag("primary", "テーマリーダ", "Theme Leader"));
-        if (card.productPatent) tags.push(makeTag("product", "製品採用特許", "Patent Used in Product"));
-        return `
-          <article class="product-hero-card">
-            <div class="product-hero-top">
-              <h3 class="product-hero-title">${escapeHtml(currentLang() === "ja" ? card.jaTitle : card.enTitle)}</h3>
-              <div class="product-hero-date">${escapeHtml(currentLang() === "ja" ? card.jaDate : card.enDate)}</div>
-            </div>
-            ${tags.length ? `<div class="patent-tags">${tags.join("")}</div>` : ""}
-            <div class="product-hero-desc">${escapeHtml(currentLang() === "ja" ? card.jaDesc : card.enDesc)}</div>
-            <div class="product-hero-links">
-              ${links.map(link => `<a href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(link.title)}</a>`).join("")}
-            </div>
-          </article>
-        `;
-      }).join("");
-    }
+      function renderTopProductCards() {
+        const root = document.getElementById("top-product-cards");
+      
+        root.innerHTML = topProductCards.map((card, index) => {
+          const isJa = currentLang() === "ja";
+          const links = isJa ? card.links.ja : card.links.en;
+      
+          const tags = [];
+          if (card.leader) tags.push(makeTag("primary", "テーマリーダ", "Theme Leader"));
+          if (card.productPatent) tags.push(makeTag("product", "製品採用特許", "Patent Used in Product"));
+      
+          const impactLabel = isJa ? "Real-World Impact" : "Real-World Impact";
+          const roleLabel = isJa ? "社会実装" : "Productization";
+          const leadText = isJa
+            ? "研究成果を実製品・サービスへ接続"
+            : "Bridging research outcomes to real products and services";
+      
+          return `
+            <article class="product-hero-card product-impact-card ${index === 0 ? "featured" : ""}">
+              <div class="product-impact-head">
+                <div>
+                  <div class="product-impact-kicker">${impactLabel}</div>
+                  <h3 class="product-hero-title">
+                    ${escapeHtml(isJa ? card.jaTitle : card.enTitle)}
+                  </h3>
+                </div>
+                <div class="product-impact-date">
+                  ${escapeHtml(isJa ? card.jaDate : card.enDate)}
+                </div>
+              </div>
+      
+              <div class="product-impact-role">
+                <span>${roleLabel}</span>
+                <span>${leadText}</span>
+              </div>
+      
+              ${tags.length ? `<div class="patent-tags product-impact-tags">${tags.join("")}</div>` : ""}
+      
+              <p class="product-hero-desc product-impact-desc">
+                ${escapeHtml(isJa ? card.jaDesc : card.enDesc)}
+              </p>
+      
+              <div class="product-impact-links">
+                ${links.map(link => `
+                  <a href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer">
+                    ${escapeHtml(link.title)}
+                  </a>
+                `).join("")}
+              </div>
+            </article>
+          `;
+        }).join("");
+      }
 
     function renderSocieties() {
       const root = document.getElementById("society-list");
