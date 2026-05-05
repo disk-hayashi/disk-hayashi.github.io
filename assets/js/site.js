@@ -290,7 +290,13 @@ function escapeHtml(str) {
 
             ${tags ? `<div class="tags">${tags}</div>` : ""}
 
-            <p>${escapeHtml(desc).replace(/\n/g, "<br>")}</p>
+            <p class="research-impact-desc">${escapeHtml(desc).replace(/\n/g, "<br>")}</p>
+
+            ${(isJa ? item.jaHighlights : item.enHighlights) ? `
+              <ul class="research-bullets">
+                ${(isJa ? item.jaHighlights : item.enHighlights).map(point => `<li>${escapeHtml(point)}</li>`).join("")}
+              </ul>
+            ` : ""}
 
             ${figureHtml}
           </article>
@@ -327,9 +333,9 @@ function escapeHtml(str) {
       setText("stat-paper-number", paperCount);
 
       const suffix = ja ? "件" : "";
-      setSuffix("stat-productized-suffix", suffix);
+      setSuffix("stat-productized-suffix", ja ? "+件" : "+");
       setSuffix("stat-awards-suffix", suffix);
-      setSuffix("stat-patents-suffix", suffix);
+      setSuffix("stat-patents-suffix", ja ? "+件" : "+");
       setSuffix("stat-registered-suffix", suffix);
       setSuffix("stat-product-patent-suffix", suffix);
       setSuffix("stat-paper-suffix", suffix);
