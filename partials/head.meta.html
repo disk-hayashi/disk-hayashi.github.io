@@ -487,21 +487,34 @@
     }
     .research-bullets li::marker { color: var(--accent); }
     .contact-inline {
-      margin: 2px 0 18px;
+      margin-top: 8px;
       font-size: 0.9rem;
-      line-height: 1.7;
-      color: #64748b;
-      font-weight: 650;
+      opacity: 0.7;
     }
+    
     .contact-inline a {
       color: inherit;
       text-decoration: none;
-      border-bottom: 1px solid rgba(100,116,139,0.28);
-      word-break: break-word;
+      border-bottom: 1px solid rgba(0,0,0,0.2);
     }
+    
     .contact-inline a:hover {
-      color: #0f172a;
-      border-bottom-color: rgba(15,23,42,0.55);
+      opacity: 1;
+      border-bottom: 1px solid rgba(0,0,0,0.5);
+    }
+    .btn-linkedin {
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 6px;
+      background-color: #0A66C2; /* LinkedIn blue */
+      color: white;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: opacity 0.2s ease;
+    }
+    
+    .btn-linkedin:hover {
+      opacity: 0.85;
     }
     .hero-card { box-shadow: 0 22px 54px rgba(15,23,42,0.07); }
     .section-card { box-shadow: 0 16px 40px rgba(15,23,42,0.055); }
