@@ -199,29 +199,27 @@ function escapeHtml(str) {
         </article>
       `).join("");
     }
-
     function patentCard(p) {
       const tags = [];
       if (p.isPrimary) tags.push(makeTag("primary", "主発明", "Primary"));
-      // 登録特許・製品採用特許はセクション分類で示すため、カード上のラベルは主発明のみ表示します。
-
+      
       const title = currentLang() === "ja" ? p.jaTitle : p.enTitle;
       const authors = currentLang() === "ja" ? p.authorsJa : p.authorsEn;
       const filingDate = currentLang() === "ja" ? p.filingDate : p.filingDateEn;
       const pubDate = currentLang() === "ja" ? p.publicationDate : p.publicationDateEn;
       const regDate = currentLang() === "ja" ? p.registrationDate : p.registrationDateEn;
       const country = currentLang() === "ja" ? p.country : p.countryEn;
-
+      
       const filingNo = currentLang() === "ja" ? p.filingNumber : patentNumberToEnglish(p.filingNumber);
       const pubNo = currentLang() === "ja" ? (p.publicationNumber || "-") : patentNumberToEnglish(p.publicationNumber || "-");
       const regNo = currentLang() === "ja"
-        ? (p.registrationNumber || "-")
-        : (p.registrationNumber ? patentNumberToEnglish(p.registrationNumber) : "-");
-
+      ? (p.registrationNumber || "-")
+      : (p.registrationNumber ? patentNumberToEnglish(p.registrationNumber) : "-");
+      
       const titleHtml = p.url
-        ? `<a href="${escapeHtml(p.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(title)}</a>`
-        : escapeHtml(title);
-
+      ? `<a href="${escapeHtml(p.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(title)}</a>`
+      : escapeHtml(title);
+      
       const filedLabel = currentLang() === "ja" ? "出願番号" : "Filing";
       const pubLabel = currentLang() === "ja" ? "公開番号" : "Publication";
       const regLabel = currentLang() === "ja" ? "登録番号" : "Registration";
@@ -229,22 +227,22 @@ function escapeHtml(str) {
       const filedDateLabel = currentLang() === "ja" ? "出願日" : "Filing Date";
       const pubDateLabel = currentLang() === "ja" ? "公開日" : "Publication Date";
       const regDateLabel = currentLang() === "ja" ? "登録日" : "Registration Date";
-
+      
       return `
-        <article class="patent-card">
-          <div class="patent-title">${titleHtml}</div>
-          <div class="patent-authors">${highlightMyName(authors)}</div>
-          ${tags.length ? `<div class="patent-tags">${tags.join("")}</div>` : ""}
-          <div class="patent-meta-grid">
-            <div class="patent-meta-item"><strong>${filedLabel}:</strong>${escapeHtml(filingNo || "-")}</div>
-            <div class="patent-meta-item"><strong>${filedDateLabel}:</strong>${escapeHtml(filingDate || "-")}</div>
-            <div class="patent-meta-item"><strong>${pubLabel}:</strong>${escapeHtml(pubNo || "-")}</div>
-            <div class="patent-meta-item"><strong>${pubDateLabel}:</strong>${escapeHtml(pubDate || "-")}</div>
-            <div class="patent-meta-item"><strong>${regLabel}:</strong>${escapeHtml(regNo || "-")}</div>
-            <div class="patent-meta-item"><strong>${regDateLabel}:</strong>${escapeHtml(regDate || "-")}</div>
-            <div class="patent-meta-item full"><strong>${countryLabel}:</strong>${escapeHtml(country)}</div>
-          </div>
-        </article>
+      <article class="patent-card">
+      <div class="patent-title">${titleHtml}</div>
+      <div class="patent-authors">${highlightMyName(authors)}</div>
+      ${tags.length ? `<div class="patent-tags">${tags.join("")}</div>` : ""}
+      <div class="patent-meta-grid">
+        <div class="patent-meta-item"><strong>${filedLabel}:</strong>${escapeHtml(filingNo || "-")}</div>
+        <div class="patent-meta-item"><strong>${filedDateLabel}:</strong>${escapeHtml(filingDate || "-")}</div>
+        <div class="patent-meta-item"><strong>${pubLabel}:</strong>${escapeHtml(pubNo || "-")}</div>
+        <div class="patent-meta-item"><strong>${pubDateLabel}:</strong>${escapeHtml(pubDate || "-")}</div>
+        <div class="patent-meta-item"><strong>${regLabel}:</strong>${escapeHtml(regNo || "-")}</div>
+        <div class="patent-meta-item"><strong>${regDateLabel}:</strong>${escapeHtml(regDate || "-")}</div>
+        <div class="patent-meta-item full"><strong>${countryLabel}:</strong>${escapeHtml(country)}</div>
+      </div>
+      </article>
       `;
     }
 
