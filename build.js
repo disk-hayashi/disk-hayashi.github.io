@@ -33,8 +33,8 @@ const pages = [
     key: "home",
     path: { en: "/", ja: "/ja/" },
     title: {
-      en: "Daisuke Hayashi | AI Researcher (Computer Vision, NLP) | Kyoto University × Hitachi",
-      ja: "林 大介 | AI研究者（Computer Vision・NLP）| 京都大学 × 日立",
+      en: "Daisuke Hayashi",
+      ja: "林 大介",
     },
     desc: {
       en: "Official profile of Daisuke Hayashi, an AI researcher bridging R&D, productization, and patent creation in Computer Vision, NLP, and Machine Learning at Kyoto University and Hitachi.",
