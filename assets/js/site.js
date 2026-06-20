@@ -65,7 +65,7 @@ function escapeHtml(str) {
           if (card.productPatent) tags.push(makeTag("product", "製品採用特許", "Patent Used in Product"));
       
           const impactLabel = isJa ? "Real-World Impact" : "Real-World Impact";
-          const roleLabel = isJa ? "社会実装" : "Productization";
+          const roleLabel = isJa ? "社会実装" : "Real-World Impact";
           const leadText = isJa
             ? "研究成果を実製品・サービスへ接続"
             : "Bridging research outcomes to real products and services";
@@ -203,8 +203,7 @@ function escapeHtml(str) {
     function patentCard(p) {
       const tags = [];
       if (p.isPrimary) tags.push(makeTag("primary", "主発明", "Primary"));
-      if (p.isRegistered) tags.push(makeTag("registered", "登録特許", "Registered Patent"));
-      if (p.isProductUsed) tags.push(makeTag("product", "製品採用特許", "Patent Used in Product"));
+      // 登録特許・製品採用特許はセクション分類で示すため、カード上のラベルは主発明のみ表示します。
 
       const title = currentLang() === "ja" ? p.jaTitle : p.enTitle;
       const authors = currentLang() === "ja" ? p.authorsJa : p.authorsEn;
@@ -292,23 +291,25 @@ function escapeHtml(str) {
         },
       ];
 
+      const emptyText = isJa ? "該当する特許がありません。" : "No patents found.";
       const html = groups
-        .filter(group => group.items.length)
         .map(group => `
           <section class="patent-section">
             <h3 class="group-title">${escapeHtml(isJa ? group.titleJa : group.titleEn)}<span class="count-note">${isJa ? `(${group.items.length}件)` : `(${group.items.length})`}</span></h3>
-            <div class="patent-grid">
-              ${group.items.map(patentCard).join("")}
-            </div>
+            ${group.items.length ? `
+              <div class="patent-grid">
+                ${group.items.map(patentCard).join("")}
+              </div>
+            ` : `
+              <article class="patent-card patent-card-empty">
+                <div class="muted">${emptyText}</div>
+              </article>
+            `}
           </section>
         `)
         .join("");
 
-      root.innerHTML = html || `
-        <article class="patent-card">
-          <div class="muted">${isJa ? "該当する特許がありません。" : "No patents found."}</div>
-        </article>
-      `;
+      root.innerHTML = html;
     }
 
     function renderResearchImpact() {
@@ -402,10 +403,28 @@ function escapeHtml(str) {
 
 
     function setupHighlightNavigation() {
+      const routeMap = {
+        "top-products": { ja: "/ja/projects/#top-products", en: "/projects/#top-products" },
+        "awards": { ja: "/ja/career/#awards", en: "/career/#awards" },
+        "career": { ja: "/ja/career/#awards", en: "/career/#awards" },
+        "patents": { ja: "/ja/patents/#patents", en: "/patents/#patents" },
+        "publications": { ja: "/ja/publications/#publications", en: "/publications/#publications" },
+      };
+
       document.querySelectorAll(".stat-link[data-scroll-target]").forEach((tile) => {
         tile.addEventListener("click", () => {
-          const target = document.getElementById(tile.dataset.scrollTarget);
-          if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+          const targetId = tile.dataset.scrollTarget;
+          const target = document.getElementById(targetId);
+          const targetRoute = routeMap[targetId]?.[currentLang()];
+
+          if (target && target.offsetParent !== null) {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+            return;
+          }
+
+          if (targetRoute) {
+            window.location.href = targetRoute;
+          }
         });
       });
     }
