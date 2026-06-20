@@ -304,10 +304,10 @@ function escapeHtml(str) {
             : `<article class="patent-card patent-card-empty"><div class="muted">${emptyText}</div></article>`;
 
           return `
-            <section class="patent-section" data-patent-group="${escapeHtml(group.titleEn)}">
+            <div class="patent-section" data-patent-group="${escapeHtml(group.titleEn)}">
               <h3 class="group-title">${title} <span class="count-note">${count}</span></h3>
               ${body}
-            </section>
+            </div>
           `;
         })
         .join("");
