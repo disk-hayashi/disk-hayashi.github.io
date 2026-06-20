@@ -5,7 +5,7 @@
     </div>
     <nav class="nav">
       <a href="#highlights"><span data-lang="ja">ハイライト</span><span data-lang="en">Highlights</span></a>
-      <a href="#top-products"><span data-lang="ja">製品化</span><span data-lang="en">Commercialization</span></a>
+      <a href="#top-products"><span data-lang="ja">社会実装</span><span data-lang="en">Real-World Impact</span></a>
       <a href="#research-impact"><span data-lang="ja">研究業績</span><span data-lang="en">Research Impact</span></a>
       <a href="#awards"><span data-lang="ja">受賞・表彰</span><span data-lang="en">Awards</span></a>
       <a href="#publications"><span data-lang="ja">論文発表</span><span data-lang="en">Publications</span></a>
@@ -100,12 +100,12 @@
         </div>
 
         <div class="highlight-grid">
-          <div class="stat-tile"><div class="stat-stack"><span class="stat-label"><span data-lang="ja">製品化</span><span data-lang="en">Commercialization</span></span><span class="stat-value"><span class="stat-number" id="stat-productized-number">0</span><span class="stat-suffix" id="stat-productized-suffix"></span></span></div></div>
-          <div class="stat-tile"><div class="stat-stack"><span class="stat-label"><span data-lang="ja">受賞・表彰</span><span data-lang="en">Awards</span></span><span class="stat-value"><span class="stat-number" id="stat-awards-number">0</span><span class="stat-suffix" id="stat-awards-suffix"></span></span></div></div>
-          <div class="stat-tile"><div class="stat-stack"><span class="stat-label"><span data-lang="ja">特許出願</span><span data-lang="en">Patent Applications</span></span><span class="stat-value"><span class="stat-number" id="stat-patents-number">0</span><span class="stat-suffix" id="stat-patents-suffix"></span></span></div></div>
-          <div class="stat-tile"><div class="stat-stack"><span class="stat-label"><span data-lang="ja">登録特許</span><span data-lang="en">Registered Patents</span></span><span class="stat-value"><span class="stat-number" id="stat-registered-number">0</span><span class="stat-suffix" id="stat-registered-suffix"></span></span></div></div>
-          <div class="stat-tile"><div class="stat-stack"><span class="stat-label"><span data-lang="ja">製品採用特許</span><span data-lang="en">Patents Used in Products</span></span><span class="stat-value"><span class="stat-number" id="stat-product-patent-number">0</span><span class="stat-suffix" id="stat-product-patent-suffix"></span></span></div></div>
-          <div class="stat-tile"><div class="stat-stack"><span class="stat-label"><span data-lang="ja">論文</span><span data-lang="en">Papers</span></span><span class="stat-value"><span class="stat-number" id="stat-paper-number">0</span><span class="stat-suffix" id="stat-paper-suffix"></span></span></div></div>
+          <button class="stat-tile stat-link" type="button" data-scroll-target="top-products"><div class="stat-stack"><span class="stat-label"><span data-lang="ja">社会実装</span><span data-lang="en">Real-World Impact</span></span><span class="stat-value"><span class="stat-number" id="stat-productized-number">0</span><span class="stat-suffix" id="stat-productized-suffix"></span></span></div></button>
+          <button class="stat-tile stat-link" type="button" data-scroll-target="career"><div class="stat-stack"><span class="stat-label"><span data-lang="ja">受賞・表彰</span><span data-lang="en">Awards</span></span><span class="stat-value"><span class="stat-number" id="stat-awards-number">0</span><span class="stat-suffix" id="stat-awards-suffix"></span></span></div></button>
+          <button class="stat-tile stat-link" type="button" data-scroll-target="patents"><div class="stat-stack"><span class="stat-label"><span data-lang="ja">特許出願</span><span data-lang="en">Patent Applications</span></span><span class="stat-value"><span class="stat-number" id="stat-patents-number">0</span><span class="stat-suffix" id="stat-patents-suffix"></span></span></div></button>
+          <button class="stat-tile stat-link" type="button" data-scroll-target="patents"><div class="stat-stack"><span class="stat-label"><span data-lang="ja">登録特許</span><span data-lang="en">Registered Patents</span></span><span class="stat-value"><span class="stat-number" id="stat-registered-number">0</span><span class="stat-suffix" id="stat-registered-suffix"></span></span></div></button>
+          <button class="stat-tile stat-link" type="button" data-scroll-target="patents"><div class="stat-stack"><span class="stat-label"><span data-lang="ja">製品採用特許</span><span data-lang="en">Patents Used in Products</span></span><span class="stat-value"><span class="stat-number" id="stat-product-patent-number">0</span><span class="stat-suffix" id="stat-product-patent-suffix"></span></span></div></button>
+          <button class="stat-tile stat-link" type="button" data-scroll-target="publications"><div class="stat-stack"><span class="stat-label"><span data-lang="ja">論文</span><span data-lang="en">Papers</span></span><span class="stat-value"><span class="stat-number" id="stat-paper-number">0</span><span class="stat-suffix" id="stat-paper-suffix"></span></span></div></button>
         </div>
       </div>
     </div>
@@ -203,7 +203,7 @@
           </select>
         </div>
 
-        <div id="all-patent-list" class="patent-grid"></div>
+        <div id="all-patent-list" class="patent-section-list"></div>
       </div>
     </div>
   </section>
@@ -224,8 +224,6 @@
             <div class="timeline-title timeline-affiliation">
               <span class="timeline-affiliation-main" data-lang="ja">京都大学 博士後期課程（数理・情報科学）</span>
               <span class="timeline-affiliation-main" data-lang="en">Ph.D. Student, Kyoto University (Mathematical &amp; Information Science)</span>
-              <span class="timeline-affiliation-sub" data-lang="ja">社会人博士</span>
-              <span class="timeline-affiliation-sub" data-lang="en">Working Professional Program</span>
             </div>
           </div>
           <div class="timeline-item">
