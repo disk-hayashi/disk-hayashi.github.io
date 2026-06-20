@@ -310,6 +310,7 @@ function escapeHtml(str) {
         .join("");
 
       root.innerHTML = html;
+    }
 
     function renderResearchImpact() {
       const root = document.getElementById("research-impact-list");
