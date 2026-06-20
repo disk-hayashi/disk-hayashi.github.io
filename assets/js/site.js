@@ -288,7 +288,7 @@ function escapeHtml(str) {
           items: registeredPatents,
         },
         {
-          titleJa: "その他",
+          titleJa: "その他特許",
           titleEn: "Other Patents",
           items: otherPatents,
         },
