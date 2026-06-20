@@ -288,12 +288,14 @@ function escapeHtml(str) {
           items: filtered.filter(p => !p.isProductUsed && !p.isRegistered),
         },
       ];
-
       const emptyText = isJa ? "該当する特許がありません。" : "No patents found.";
       const html = groups
         .map(group => `
           <section class="patent-section">
-            <h3 class="group-title">${escapeHtml(isJa ? group.titleJa : group.titleEn)}<span class="count-note">${isJa ? `(${group.items.length}件)` : `(${group.items.length})`}</span></h3>
+            <h3 class="group-title">
+              ${escapeHtml(isJa ? group.titleJa : group.titleEn)}
+              <span class="count-note">${isJa ? `(${group.items.length}件)` : `(${group.items.length})`}</span>
+            </h3>
             ${group.items.length ? `
               <div class="patent-grid">
                 ${group.items.map(patentCard).join("")}
@@ -308,7 +310,6 @@ function escapeHtml(str) {
         .join("");
 
       root.innerHTML = html;
-    }
 
     function renderResearchImpact() {
       const root = document.getElementById("research-impact-list");
