@@ -201,6 +201,8 @@ function escapeHtml(str) {
     }
     function patentCard(p) {
       const tags = [];
+      if (p.isProductUsed) tags.push(makeTag("product", "製品採用特許", "Patent Used in Product"));
+      if (p.isRegistered) tags.push(makeTag("registered", "登録特許", "Registered Patent"));
       if (p.isPrimary) tags.push(makeTag("primary", "主発明", "Primary"));
       
       const title = currentLang() === "ja" ? p.jaTitle : p.enTitle;
@@ -272,23 +274,17 @@ function escapeHtml(str) {
 
       const root = document.getElementById("all-patent-list");
 
-      const productUsedPatents = filtered.filter(p => p.isProductUsed);
-      const registeredPatents = filtered.filter(p => !p.isProductUsed && p.isRegistered);
-      const otherPatents = filtered.filter(p => !p.isProductUsed && !p.isRegistered);
+      const registeredPatents = filtered.filter(p => p.isRegistered);
+      const otherPatents = filtered.filter(p => !p.isRegistered);
 
       const groups = [
-        {
-          titleJa: "製品採用特許",
-          titleEn: "Patents Used in Products",
-          items: productUsedPatents,
-        },
         {
           titleJa: "登録特許",
           titleEn: "Registered Patents",
           items: registeredPatents,
         },
         {
-          titleJa: "その他特許",
+          titleJa: "その他",
           titleEn: "Other Patents",
           items: otherPatents,
         },
