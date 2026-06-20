@@ -253,6 +253,7 @@ function escapeHtml(str) {
       const searchText = (document.getElementById("patent-search").value || "").toLowerCase().trim();
       const countryValue = document.getElementById("country-filter").value;
       const typeValue = document.getElementById("type-filter").value;
+      const isJa = currentLang() === "ja";
 
       const filtered = patents.filter((p) => {
         const textBlob = [
@@ -270,21 +271,44 @@ function escapeHtml(str) {
           (typeValue === "product" && p.isProductUsed);
 
         return matchesSearch && matchesCountry && matchesType;
-      });
+      }).sort((a, b) => String(b.filingDateISO).localeCompare(String(a.filingDateISO)));
 
       const root = document.getElementById("all-patent-list");
-      root.innerHTML = filtered
-        .sort((a, b) => String(b.filingDateISO).localeCompare(String(a.filingDateISO)))
-        .map(patentCard)
+      const groups = [
+        {
+          titleJa: "製品採用特許",
+          titleEn: "Patents Used in Products",
+          items: filtered.filter(p => p.isProductUsed),
+        },
+        {
+          titleJa: "登録特許",
+          titleEn: "Registered Patents",
+          items: filtered.filter(p => !p.isProductUsed && p.isRegistered),
+        },
+        {
+          titleJa: "その他",
+          titleEn: "Other Patents",
+          items: filtered.filter(p => !p.isProductUsed && !p.isRegistered),
+        },
+      ];
+
+      const html = groups
+        .filter(group => group.items.length)
+        .map(group => `
+          <section class="patent-section">
+            <h3 class="group-title">${escapeHtml(isJa ? group.titleJa : group.titleEn)}<span class="count-note">${isJa ? `(${group.items.length}件)` : `(${group.items.length})`}</span></h3>
+            <div class="patent-grid">
+              ${group.items.map(patentCard).join("")}
+            </div>
+          </section>
+        `)
         .join("");
 
-      if (!filtered.length) {
-        root.innerHTML = `
-          <article class="patent-card">
-            <div class="muted">${currentLang() === "ja" ? "該当する特許がありません。" : "No patents found."}</div>
-          </article>
-        `;
-      }
+      root.innerHTML = html || `
+        <article class="patent-card">
+          <div class="muted">${isJa ? "該当する特許がありません。" : "No patents found."}</div>
+        </article>
+      `;
     }
 
     function renderResearchImpact() {
@@ -376,6 +400,16 @@ function escapeHtml(str) {
       document.getElementById("domestic-count-note").textContent = ja ? `(${domesticCount}件)` : `(${domesticCount})`;
     }
 
+
+    function setupHighlightNavigation() {
+      document.querySelectorAll(".stat-link[data-scroll-target]").forEach((tile) => {
+        tile.addEventListener("click", () => {
+          const target = document.getElementById(tile.dataset.scrollTarget);
+          if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      });
+    }
+
     function renderAll() {
       renderTopProductCards();
       renderSocieties();
@@ -418,4 +452,5 @@ function escapeHtml(str) {
       });
 
     setupLanguageLinks();
+    setupHighlightNavigation();
     renderAll();
