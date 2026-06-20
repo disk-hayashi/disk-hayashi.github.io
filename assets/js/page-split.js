@@ -120,6 +120,7 @@
     if (
       heading.includes("intellectual property") ||
       heading.includes("patents") ||
+      heading.includes("その他") ||
       heading.includes("特許")
     ) {
       return "patents";
