@@ -271,42 +271,45 @@ function escapeHtml(str) {
       }).sort((a, b) => String(b.filingDateISO).localeCompare(String(a.filingDateISO)));
 
       const root = document.getElementById("all-patent-list");
+
+      const productUsedPatents = filtered.filter(p => p.isProductUsed);
+      const registeredPatents = filtered.filter(p => !p.isProductUsed && p.isRegistered);
+      const otherPatents = filtered.filter(p => !p.isProductUsed && !p.isRegistered);
+
       const groups = [
         {
           titleJa: "製品採用特許",
           titleEn: "Patents Used in Products",
-          items: filtered.filter(p => p.isProductUsed),
+          items: productUsedPatents,
         },
         {
           titleJa: "登録特許",
           titleEn: "Registered Patents",
-          items: filtered.filter(p => !p.isProductUsed && p.isRegistered),
+          items: registeredPatents,
         },
         {
           titleJa: "その他",
           titleEn: "Other Patents",
-          items: filtered.filter(p => !p.isProductUsed && !p.isRegistered),
+          items: otherPatents,
         },
       ];
+
       const emptyText = isJa ? "該当する特許がありません。" : "No patents found.";
       const html = groups
-        .map(group => `
-          <section class="patent-section">
-            <h3 class="group-title">
-              ${escapeHtml(isJa ? group.titleJa : group.titleEn)}
-              <span class="count-note">${isJa ? `(${group.items.length}件)` : `(${group.items.length})`}</span>
-            </h3>
-            ${group.items.length ? `
-              <div class="patent-grid">
-                ${group.items.map(patentCard).join("")}
-              </div>
-            ` : `
-              <article class="patent-card patent-card-empty">
-                <div class="muted">${emptyText}</div>
-              </article>
-            `}
-          </section>
-        `)
+        .map(group => {
+          const title = escapeHtml(isJa ? group.titleJa : group.titleEn);
+          const count = isJa ? `(${group.items.length}件)` : `(${group.items.length})`;
+          const body = group.items.length
+            ? `<div class="patent-grid">${group.items.map(patentCard).join("")}</div>`
+            : `<article class="patent-card patent-card-empty"><div class="muted">${emptyText}</div></article>`;
+
+          return `
+            <section class="patent-section" data-patent-group="${escapeHtml(group.titleEn)}">
+              <h3 class="group-title">${title} <span class="count-note">${count}</span></h3>
+              ${body}
+            </section>
+          `;
+        })
         .join("");
 
       root.innerHTML = html;
