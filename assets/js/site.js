@@ -229,6 +229,18 @@ function escapeHtml(str) {
       const filedDateLabel = currentLang() === "ja" ? "出願日" : "Filing Date";
       const pubDateLabel = currentLang() === "ja" ? "公開日" : "Publication Date";
       const regDateLabel = currentLang() === "ja" ? "登録日" : "Registration Date";
+      const familyLabel = currentLang() === "ja" ? "パテントファミリー" : "Patent Family";
+      const familyHtml = Array.isArray(p.patentFamily) && p.patentFamily.length
+        ? `<div class="patent-meta-item full"><strong>${familyLabel}:</strong>${p.patentFamily.map((family) => {
+            const familyTitle = currentLang() === "ja" ? family.jaTitle : family.enTitle;
+            const familyCountry = currentLang() === "ja" ? family.country : family.countryEn;
+            const familyNumber = currentLang() === "ja" ? family.filingNumber : patentNumberToEnglish(family.filingNumber);
+            const familyText = `${familyCountry}: ${familyTitle} (${familyNumber})`;
+            return family.url
+              ? `<div><a href="${escapeHtml(family.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(familyText)}</a></div>`
+              : `<div>${escapeHtml(familyText)}</div>`;
+          }).join("")}</div>`
+        : "";
       
       return `
       <article class="patent-card">
@@ -243,6 +255,7 @@ function escapeHtml(str) {
         <div class="patent-meta-item"><strong>${regLabel}:</strong>${escapeHtml(regNo || "-")}</div>
         <div class="patent-meta-item"><strong>${regDateLabel}:</strong>${escapeHtml(regDate || "-")}</div>
         <div class="patent-meta-item full"><strong>${countryLabel}:</strong>${escapeHtml(country)}</div>
+        ${familyHtml}
       </div>
       </article>
       `;
@@ -258,7 +271,11 @@ function escapeHtml(str) {
         const textBlob = [
           p.jaTitle, p.enTitle, p.authorsJa, p.authorsEn,
           p.filingNumber, p.publicationNumber, p.registrationNumber,
-          p.country, p.countryEn
+          p.country, p.countryEn,
+          ...(p.patentFamily || []).flatMap(family => [
+            family.jaTitle, family.enTitle, family.filingNumber,
+            family.country, family.countryEn
+          ])
         ].join(" ").toLowerCase();
 
         const matchesSearch = !searchText || textBlob.includes(searchText);
