@@ -134,7 +134,7 @@ module.exports = [
       ],
       "filingDateISO": "2022-11-29",
       "isPrimary": false,
-      "isRegistered": false,
+      "isRegistered": true,
       "isProductUsed": false
     },
     {
