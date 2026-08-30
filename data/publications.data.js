@@ -44,9 +44,21 @@ international: [
 ],
 domestic: [
     {
+    "jaTitle": "ACFI-DETR：適応的クロススケール特徴統合による衛星画像物体検出モデル",
+    "enTitle": "ACFI-DETR: Satellite Image Object Detection Model with Adaptive Cross-scale Feature Integration",
+    "authors": "Daisuke Hayashi, Hirohisa Hioki",
+    "jaMeta": "電子情報通信学会技術研究報告, vol.126, no.157, pp.39-44, Aug. 2026.",
+    "enMeta": "IEICE Technical Report, vol.126, no.157, pp.39-44, Aug. 2026.",
+    "jaUrl": "https://ken.ieice.org/ken/paper/20260827NcXe/",
+    "enUrl": "https://ken.ieice.org/ken/paper/20260827NcXe/eng/",
+    "labels": [
+        "first",
+    ]
+    },
+    {
     "jaTitle": "3D-CNNを用いた脳MRI画像に基づく脳疾患分類",
     "enTitle": "Brain Disease Classification Based on MRI Images Using 3D-CNN",
-    "authors": "Daisuke Hayashi, Akiaki Nagasaka, Yuji Mochizuki, Takayuki Hayashi, Yubun Ueno",
+    "authors": "Daisuke Hayashi, Akio Nagasaka, Yuji Mochizuki, Takayuki Hayashi, Takefumi Ueno",
     "jaMeta": "電子情報通信学会技術研究報告, vol.123, no.257, pp.15-20, Nov. 2023.",
     "enMeta": "IEICE Technical Report, vol.123, no.257, pp.15-20, Nov. 2023.",
     "jaUrl": "https://ken.ieice.org/ken/paper/20231114FCYH/",
