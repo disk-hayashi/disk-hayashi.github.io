@@ -81,9 +81,9 @@ const site = {
     {
       key: "publications",
       path: { en: "/publications/", ja: "/ja/publications/" },
-      nav: { en: "Publications", ja: "論文発表" },
-      title: { en: "Publications | Daisuke Hayashi", ja: "論文発表 | 林 大介" },
-      heading: { en: "Publications", ja: "論文発表" },
+      nav: { en: "Publications", ja: "研究発表" },
+      title: { en: "Publications | Daisuke Hayashi", ja: "研究発表 | 林 大介" },
+      heading: { en: "Publications", ja: "研究発表" },
       description: {
         en: "Academic publications, conference presentations, and selected research achievements.",
         ja: "論文、学会発表、主要な研究業績。",
