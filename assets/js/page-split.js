@@ -26,7 +26,7 @@
     ja: [
       ["概要", "/ja/", "overview"],
       ["プロジェクト", "/ja/projects/", "projects"],
-      ["論文発表", "/ja/publications/", "publications"],
+      ["研究発表", "/ja/publications/", "publications"],
       ["特許", "/ja/patents/", "patents"],
       ["経歴", "/ja/career/", "career"],
     ],
@@ -113,7 +113,7 @@
       return "research";
     }
 
-    if (heading.includes("publications") || heading.includes("論文発表")) {
+    if (heading.includes("publications") || heading.includes("研究発表")) {
       return "publications";
     }
 
