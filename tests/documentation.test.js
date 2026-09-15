@@ -23,6 +23,17 @@ test("README documents current sources and commands", () => {
   assert.match(readme, /生成ファイルを直接編集しても、次回のビルドで上書きされます/);
 });
 
-test("obsolete template stays removed", () => {
-  assert.equal(fs.existsSync("template.html"), false);
+test("build sources do not depend on the obsolete template", () => {
+  const buildSources = [
+    "build.js",
+    ...fs
+      .readdirSync("lib", { withFileTypes: true })
+      .filter((entry) => entry.isFile() && entry.name.endsWith(".js"))
+      .map((entry) => `lib/${entry.name}`),
+  ];
+
+  for (const sourcePath of buildSources) {
+    const source = fs.readFileSync(sourcePath, "utf8");
+    assert.doesNotMatch(source, /template\.html/, sourcePath);
+  }
 });
