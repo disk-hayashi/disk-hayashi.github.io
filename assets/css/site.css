@@ -53,15 +53,19 @@
     .header-inner { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 0; }
     .brand { font-size: 1rem; font-weight: 900; letter-spacing: 0.02em; color: var(--text); white-space: nowrap; }
     .nav { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; justify-content: flex-end; min-width: 0; }
-    .nav a { font-size: 0.8rem; font-weight: 800; color: var(--muted); padding: 4px 2px; }
-    .nav a:hover { color: var(--accent); }
-    .lang-switch { display: flex; gap: 6px; margin-left: 8px; }
-    .lang-btn {
+    .nav > a { font-size: 0.8rem; font-weight: 800; color: var(--muted); padding: 4px 2px; }
+    .nav > a:hover { color: var(--accent); }
+    .lang-tabs { display: flex; gap: 6px; margin-left: 8px; }
+    .lang-tab {
+      display: inline-flex; align-items: center; justify-content: center; min-width: 34px;
       border: 1px solid var(--line); background: rgba(255,255,255,0.78); color: var(--text);
       border-radius: 999px; padding: 6px 11px; font-size: 0.74rem; font-weight: 900;
       box-shadow: 0 6px 14px rgba(15,23,42,0.04);
     }
-    .lang-btn.active { background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%); color: white; border-color: var(--accent); box-shadow: 0 10px 22px rgba(37, 99, 235, 0.25); }
+    .lang-tab:hover { color: var(--accent); border-color: rgba(37,99,235,0.40); }
+    .lang-tab.active { background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%); color: white; border-color: var(--accent); box-shadow: 0 10px 22px rgba(37, 99, 235, 0.25); }
+    .lang-tab.active:hover { color: white; }
+    .lang-tab:focus-visible { outline: 3px solid rgba(37,99,235,0.25); outline-offset: 2px; }
     .hero { padding: 28px 0 14px; }
     .hero-card {
       display: grid; grid-template-columns: 1.46fr 0.7fr; gap: 30px; align-items: center;

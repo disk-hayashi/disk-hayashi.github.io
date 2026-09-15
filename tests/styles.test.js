@@ -15,3 +15,15 @@ test("highlight breakpoints preserve 4+3, 2, and 1 layouts", () => {
   assert.match(css, /max-width:\s*980px[\s\S]*repeat\(2,/);
   assert.match(css, /max-width:\s*720px[\s\S]*grid-template-columns:\s*1fr/);
 });
+
+test("rendered language links keep pill styling, active state, and keyboard focus", () => {
+  const html = fs.readFileSync("ja/index.html", "utf8");
+  const css = fs.readFileSync("assets/css/site.css", "utf8");
+
+  assert.match(html, /class="lang-tabs"/);
+  assert.match(html, /class="lang-tab active"[^>]*lang="ja"/);
+  assert.match(css, /\.lang-tabs\s*\{/);
+  assert.match(css, /\.lang-tab\s*\{[^}]*border-radius:\s*999px/s);
+  assert.match(css, /\.lang-tab\.active\s*\{[^}]*background:/s);
+  assert.match(css, /\.lang-tab:focus-visible\s*\{[^}]*outline:/s);
+});
