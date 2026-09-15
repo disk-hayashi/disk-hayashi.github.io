@@ -62,7 +62,7 @@ function escapeHtml(str) {
       
           const tags = [];
           if (card.leader) tags.push(makeTag("primary", "テーマリーダ", "Theme Leader"));
-          if (card.productPatent) tags.push(makeTag("product", "製品採用特許", "Patent Used in Product"));
+          if (card.productPatent) tags.push(makeTag("product", "採用特許", "Adopted Patent"));
       
           const impactLabel = isJa ? "Real-World Impact" : "Real-World Impact";
           const roleLabel = isJa ? "社会実装" : "Real-World Impact";
@@ -201,7 +201,7 @@ function escapeHtml(str) {
     }
     function patentCard(p) {
       const tags = [];
-      if (p.isProductUsed) tags.push(makeTag("product", "製品採用特許", "Patent Used in Product"));
+      if (p.isProductUsed) tags.push(makeTag("product", "採用特許", "Adopted Patent"));
       if (p.isRegistered) tags.push(makeTag("registered", "登録特許", "Registered Patent"));
       if (p.isPrimary) tags.push(makeTag("primary", "主発明", "Primary"));
       
@@ -385,7 +385,9 @@ function escapeHtml(str) {
       const patentCount = patents.length;
       const registeredCount = patents.filter(p => p.isRegistered).length;
       const productPatentCount = patents.filter(p => p.isProductUsed).length;
-      const paperCount = journalCount + internationalCount;
+      const researchOutputs = Object.values(publications).flat();
+      const researchOutputCount = researchOutputs.length;
+      const reviewedPaperCount = researchOutputs.filter(item => item.labels?.includes("reviewed")).length;
       const ja = currentLang() === "ja";
 
       const setText = (id, value) => {
@@ -402,7 +404,8 @@ function escapeHtml(str) {
       setText("stat-patents-number", patentCount);
       setText("stat-registered-number", registeredCount);
       setText("stat-product-patent-number", productPatentCount);
-      setText("stat-paper-number", paperCount);
+      setText("stat-research-output-number", researchOutputCount);
+      setText("stat-reviewed-paper-number", reviewedPaperCount);
 
       const suffix = ja ? "件" : "";
       setSuffix("stat-productized-suffix", suffix);
@@ -410,7 +413,8 @@ function escapeHtml(str) {
       setSuffix("stat-patents-suffix", suffix);
       setSuffix("stat-registered-suffix", suffix);
       setSuffix("stat-product-patent-suffix", suffix);
-      setSuffix("stat-paper-suffix", suffix);
+      setSuffix("stat-research-output-suffix", suffix);
+      setSuffix("stat-reviewed-paper-suffix", suffix);
 
       document.getElementById("journal-count-note").textContent = ja ? `(${journalCount}件)` : `(${journalCount})`;
       document.getElementById("international-count-note").textContent = ja ? `(${internationalCount}件)` : `(${internationalCount})`;
