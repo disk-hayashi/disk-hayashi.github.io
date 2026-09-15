@@ -167,11 +167,11 @@
         <h3 class="group-title"><span data-lang="ja">ジャーナル論文</span><span data-lang="en">Journal Papers</span><span class="count-note" id="journal-count-note"></span></h3>
         <div id="journal-list" class="publication-grid-2"></div>
 
-        <div style="height:8px"></div>
+        <div class="spacer-8" aria-hidden="true"></div>
         <h3 class="group-title"><span data-lang="ja">国際会議論文</span><span data-lang="en">International Conference Papers</span><span class="count-note" id="international-count-note"></span></h3>
         <div id="international-list" class="publication-grid-2"></div>
 
-        <div style="height:8px"></div>
+        <div class="spacer-8" aria-hidden="true"></div>
         <h3 class="group-title"><span data-lang="ja">国内会議</span><span data-lang="en">Domestic Conferences</span><span class="count-note" id="domestic-count-note"></span></h3>
         <div id="domestic-list" class="patent-grid"></div>
       </div>
@@ -189,13 +189,16 @@
         </div>
 
         <div class="tools">
+          <label class="sr-only" for="patent-search"><span data-lang="ja">特許を検索</span><span data-lang="en">Search patents</span></label>
           <input id="patent-search" class="search-input" type="text" placeholder="Search patents / 特許検索" />
+          <label class="sr-only" for="country-filter"><span data-lang="ja">出願国で絞り込む</span><span data-lang="en">Filter by country</span></label>
           <select id="country-filter" class="select-input">
             <option value="">All countries / すべての出願国</option>
             <option value="日本">Japan / 日本</option>
             <option value="PCT">PCT</option>
             <option value="中国">China / 中国</option>
           </select>
+          <label class="sr-only" for="type-filter"><span data-lang="ja">属性で絞り込む</span><span data-lang="en">Filter by tag</span></label>
           <select id="type-filter" class="select-input">
             <option value="">All tags / すべての属性</option>
             <option value="primary">Primary / 主発明</option>
@@ -203,6 +206,7 @@
             <option value="product">Used in Product / 採用特許</option>
           </select>
         </div>
+        <p id="patent-filter-status" class="sr-only" aria-live="polite"></p>
 
         <div id="all-patent-list" class="patent-section-list"></div>
       </div>
@@ -236,7 +240,7 @@
           </div>
         </div>
 
-        <div style="height:12px"></div>
+        <div class="spacer-12" aria-hidden="true"></div>
         <h3 class="group-title"><span data-lang="ja">主要インターンシップ</span><span data-lang="en">Selected Internships</span></h3>
         <div class="internship-grid">
           <div class="internship-item">

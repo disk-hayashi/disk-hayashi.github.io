@@ -27,8 +27,11 @@ jobs:
         with:
           node-version: 22
 
+      - name: Test
+        run: npm test
+
       - name: Build
-        run: node build.js
+        run: npm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

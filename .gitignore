@@ -1,0 +1,17 @@
+node_modules/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Editors and local tooling
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs and local preview output
+*.log
+.serve/
+.cache/
+coverage/

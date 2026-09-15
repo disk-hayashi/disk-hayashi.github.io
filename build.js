@@ -1,257 +1,54 @@
-const fs = require("fs");
-const path = require("path");
+const fs = require("node:fs");
+const path = require("node:path");
+const crypto = require("node:crypto");
 
 const config = require("./site.config.js");
-
-function safeRequire(file, fallback = {}) {
-  try {
-    return require(file);
-  } catch (e) {
-    return fallback;
-  }
-}
-
-const siteData = {
-  ...safeRequire("./data/site.data.js", {}),
-  topProductCards: safeRequire("./data/products.data.js", []),
-  patents: safeRequire("./data/patents.data.js", []),
-  publications: safeRequire("./data/publications.data.js", {
-    journals: [],
-    international: [],
-    domestic: [],
-  }),
-  researchImpactProjects: safeRequire("./data/research-impact.data.js", []),
-  awards: safeRequire("./data/awards.data.js", []),
-  certifications: safeRequire("./data/certifications.data.js", { ja: [], en: [] }),
-  societies: safeRequire("./data/societies.data.js", []),
-};
+const siteData = require("./data/site.data.js");
+const { createSiteModel } = require("./lib/site-model.js");
+const { pages, renderPage } = require("./lib/render.js");
 
 const BASE_URL = config.baseUrl || "https://disk-hayashi.github.io";
+const model = createSiteModel(siteData);
+const buildVersion = crypto
+  .createHash("sha256")
+  .update(fs.readFileSync(path.join(__dirname, "assets/css/site.css")))
+  .update(fs.readFileSync(path.join(__dirname, "assets/js/site.js")))
+  .digest("hex")
+  .slice(0, 12);
 
-const pages = [
-  {
-    key: "home",
-    path: { en: "/", ja: "/ja/" },
-    title: {
-      en: "Daisuke Hayashi",
-      ja: "林 大介",
-    },
-    desc: {
-      en: "Official profile of Daisuke Hayashi, an AI researcher bridging R&D, productization, and patent creation in Computer Vision, NLP, and Machine Learning at Kyoto University and Hitachi.",
-      ja: "AI × 実装 × 事業化の3軸で価値創出する林大介のプロフィールサイト。Computer Vision・NLP・機械学習、京都大学、日立での研究開発・社会実装・知財創出を掲載。",
-    },
-  },
-  {
-    key: "projects",
-    path: { en: "/projects/", ja: "/ja/projects/" },
-    title: {
-      en: "Projects | AI Commercialization and Research Impact | Daisuke Hayashi",
-      ja: "プロジェクト | AI製品化・研究業績 | 林 大介",
-    },
-    desc: {
-      en: "Selected AI projects by Daisuke Hayashi, including commercialization work, product-applied AI, and medical AI research impact.",
-      ja: "林大介のAIプロジェクト一覧。製品化、製品採用AI、医療AI研究業績などを掲載。",
-    },
-  },
-  {
-    key: "publications",
-    path: { en: "/publications/", ja: "/ja/publications/" },
-    title: {
-      en: "Publications | Papers and Conference Presentations | Daisuke Hayashi",
-      ja: "研究発表 | 査読論文・学会発表 | 林 大介",
-    },
-    desc: {
-      en: "Academic publications and conference presentations by Daisuke Hayashi, including journal papers, international conferences, and domestic conferences.",
-      ja: "林大介の論文・学会発表一覧。ジャーナル論文、国際会議論文、国内会議発表を掲載。",
-    },
-  },
-  {
-    key: "patents",
-    path: { en: "/patents/", ja: "/ja/patents/" },
-    title: {
-      en: "Patents | AI and Image Processing Intellectual Property | Daisuke Hayashi",
-      ja: "特許 | AI・画像処理関連の知的財産 | 林 大介",
-    },
-    desc: {
-      en: "Patent portfolio by Daisuke Hayashi, including AI, image processing, storage, authentication, and product-applied inventions.",
-      ja: "林大介の特許一覧。AI、画像処理、収納、認証、製品採用特許などの知的財産を掲載。",
-    },
-  },
-  {
-    key: "career",
-    path: { en: "/career/", ja: "/ja/career/" },
-    title: {
-      en: "Career | Education, Awards, Certifications and Societies | Daisuke Hayashi",
-      ja: "経歴 | 職歴・学歴・受賞・資格・所属学会 | 林 大介",
-    },
-    desc: {
-      en: "Career, education, awards, certifications, and professional societies of Daisuke Hayashi.",
-      ja: "林大介の職歴・学歴、受賞・表彰、資格、所属学会を掲載。",
-    },
-  },
-];
-
-function read(file) {
-  return fs.readFileSync(path.join(__dirname, file), "utf8");
-}
-
-function ensureDir(dir) {
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
-  }
+function outputPathFromUrlPath(urlPath) {
+  return urlPath === "/" ? "index.html" : path.join(urlPath.replace(/^\//, ""), "index.html");
 }
 
 function write(file, content) {
   const full = path.join(__dirname, file);
-  ensureDir(path.dirname(full));
+  fs.mkdirSync(path.dirname(full), { recursive: true });
   fs.writeFileSync(full, content, "utf8");
 }
 
-function esc(value = "") {
-  return String(value)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
-}
-
-function safeJson(data) {
-  return JSON.stringify(data)
-    .replace(/</g, "\\u003c")
-    .replace(/>/g, "\\u003e")
-    .replace(/&/g, "\\u0026")
-    .replace(/\u2028/g, "\\u2028")
-    .replace(/\u2029/g, "\\u2029");
-}
-
-function outputPathFromUrlPath(urlPath) {
-  if (urlPath === "/") return "index.html";
-  return path.join(urlPath.replace(/^\//, ""), "index.html");
-}
-
-function injectPageSplit(html) {
-  if (html.includes("/assets/js/page-split.js")) return html;
-
-  if (html.includes("</body>")) {
-    return html.replace(
-      "</body>",
-      `  <script src="/assets/js/page-split.js"></script>
-</body>`
-    );
-  }
-
-  return `${html}
-<script src="/assets/js/page-split.js"></script>`;
-}
-
-function buildHead(page, lang) {
-  const canonical = `${BASE_URL}${page.path[lang]}`;
-
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: lang === "ja" ? "林 大介" : "Daisuke Hayashi",
-    alternateName: lang === "ja" ? "Daisuke Hayashi" : "林 大介",
-    url: canonical,
-    image: `${BASE_URL}/assets/images/profile.jpg`,
-    jobTitle: "AI Researcher",
-    email: "mailto:daisuke.hayashi.fw@hitachi.com",
-    knowsAbout: ["Computer Vision", "NLP", "Machine Learning", "AI Commercialization", "Patent Creation"],
-    sameAs: [
-      "https://www.linkedin.com/in/daisuke-hayashi/",
-      "https://scholar.google.com/citations?hl=ja&user=mHRLTWoAAAAJ"
-    ],
-    affiliation: [
-      { "@type": "Organization", name: "Hitachi, Ltd." },
-      { "@type": "CollegeOrUniversity", name: "Kyoto University" }
-    ],
-  };
-
-  return read("partials/head.meta.html")
-    .replaceAll("{{TITLE}}", esc(page.title[lang]))
-    .replaceAll("{{DESCRIPTION}}", esc(page.desc[lang]))
-    .replaceAll("{{CANONICAL}}", canonical)
-    .replaceAll("{{CANONICAL_URL}}", canonical)
-    .replaceAll("{{JA_URL}}", `${BASE_URL}${page.path.ja}`)
-    .replaceAll("{{EN_URL}}", `${BASE_URL}${page.path.en}`)
-    .replaceAll("{{OG_TITLE}}", esc(page.title[lang]))
-    .replaceAll("{{OG_DESCRIPTION}}", esc(page.desc[lang]))
-    .replaceAll("{{OG_LOCALE}}", lang === "ja" ? "ja_JP" : "en_US")
-    .replaceAll("{{OG_LOCALE_ALTERNATE}}", lang === "ja" ? "en_US" : "ja_JP")
-    .replaceAll("{{JSON_LD}}", safeJson(jsonLd))
-    .replaceAll("https://disk-hayashi.github.io/profile.jpg", `${BASE_URL}/assets/images/profile.jpg`);
-}
-
-function render(page, lang) {
-  let html = read("template.html");
-  const bodyShell = read("partials/body.shell.html")
-    .replaceAll("/profile.jpg", "/assets/images/profile.jpg");
-
-  const BUILD_VERSION = new Date().toISOString().replace(/[-:T.Z]/g, "").slice(0, 14);
-
-  html = html
-    .replaceAll("{{HEAD_META}}", buildHead(page, lang))
-    .replaceAll("{{BODY_SHELL}}", bodyShell)
-    .replaceAll("{{BODY}}", bodyShell)
-    .replaceAll("{{HTML_LANG}}", lang)
-    .replaceAll("{{LANG}}", lang)
-    .replaceAll("{{LANG_MODE}}", lang)
-    .replaceAll("{{PAGE_TYPE}}", page.key)
-    .replaceAll("{{SITE_DATA}}", safeJson(siteData))
-    .replaceAll("{{BUILD_VERSION}}", BUILD_VERSION)
-    .replaceAll("{{SITE_DATA_JSON}}", safeJson(siteData));
-
-  html = html.replace(
-    /<body([^>]*)>/i,
-    `<body$1 data-lang-mode="${lang}" data-page-type="${page.key}">`
-  );
-
-  return html;
-}
-
 function buildSitemap() {
-  const lastmod = new Date().toISOString().slice(0, 10);
-  const entries = [];
-
-  for (const page of pages) {
-    for (const lang of ["en", "ja"]) {
-      entries.push(`  <url>
+  const entries = pages.flatMap((page) => ["en", "ja"].map((lang) => `  <url>
     <loc>${BASE_URL}${page.path[lang]}</loc>
-    <lastmod>${lastmod}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>${page.key === "home" ? "1.0" : "0.8"}</priority>
     <xhtml:link rel="alternate" hreflang="en" href="${BASE_URL}${page.path.en}" />
     <xhtml:link rel="alternate" hreflang="ja" href="${BASE_URL}${page.path.ja}" />
     <xhtml:link rel="alternate" hreflang="x-default" href="${BASE_URL}${page.path.en}" />
-  </url>`);
-    }
-  }
-
+  </url>`));
   return `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="https://www.w3.org/1999/xhtml">
+<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${entries.join("\n")}
-</urlset>
-`;
-}
-
-function buildRobots() {
-  return `User-agent: *
-Allow: /
-
-Sitemap: ${BASE_URL}/sitemap.xml
-`;
+</urlset>\n`;
 }
 
 for (const page of pages) {
   for (const lang of ["en", "ja"]) {
-    const outputPath = outputPathFromUrlPath(page.path[lang]);
-    write(outputPath, render(page, lang));
-    console.log(`Generated: ${outputPath}`);
+    const output = outputPathFromUrlPath(page.path[lang]);
+    write(output, renderPage({ page, lang, model, config, buildVersion }));
+    console.log(`Generated: ${output}`);
   }
 }
 
 write("sitemap.xml", buildSitemap());
-write("robots.txt", buildRobots());
-
+write("robots.txt", `User-agent: *\nAllow: /\n\nSitemap: ${BASE_URL}/sitemap.xml\n`);
 console.log("Build completed.");

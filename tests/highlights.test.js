@@ -8,7 +8,7 @@ const read = (file) => fs.readFileSync(path.join(root, file), "utf8");
 
 test("highlight cards use the agreed labels and data-driven counters", () => {
   const body = read("partials/body.shell.html");
-  const script = read("assets/js/site.js");
+  const model = read("lib/site-model.js");
 
   assert.match(body, /data-lang="ja">研究発表<\/span>/);
   assert.match(body, /id="stat-research-output-number"/);
@@ -16,8 +16,8 @@ test("highlight cards use the agreed labels and data-driven counters", () => {
   assert.match(body, /id="stat-reviewed-paper-number"/);
   assert.match(body, /data-lang="ja">採用特許<\/span>/);
 
-  assert.match(script, /Object\.values\(publications\)\.flat\(\)/);
-  assert.match(script, /labels\?\.includes\("reviewed"\)/);
+  assert.match(model, /Object\.values\(data\.publications\)\.flat\(\)/);
+  assert.match(model, /labels\?\.includes\("reviewed"\)/);
 });
 
 test("current publication data yields 9 research outputs and 3 peer-reviewed papers", () => {
@@ -32,7 +32,7 @@ test("current publication data yields 9 research outputs and 3 peer-reviewed pap
 });
 
 test("desktop highlights are 4 + 3 centered, with responsive 2 and 1 columns", () => {
-  const css = read("partials/head.meta.html");
+  const css = read("assets/css/site.css");
 
   assert.match(css, /\.highlight-grid\s*\{[^}]*grid-template-columns:\s*repeat\(8,/s);
   assert.match(css, /\.highlight-grid\s+\.stat-tile\s*\{[^}]*grid-column:\s*span 2/s);
@@ -42,7 +42,7 @@ test("desktop highlights are 4 + 3 centered, with responsive 2 and 1 columns", (
 });
 
 test("Japanese publication navigation and heading are renamed to research presentations", () => {
-  for (const file of ["partials/body.shell.html", "assets/js/page-split.js", "site.config.js", "build.js"]) {
+  for (const file of ["partials/body.shell.html", "site.config.js", "build.js", "lib/render.js"]) {
     const source = read(file);
     assert.doesNotMatch(source, /論文発表/);
   }
