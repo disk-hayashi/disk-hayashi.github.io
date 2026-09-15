@@ -12,7 +12,7 @@ module.exports = [
       "enMeta": "June 2024, IEICE MI Research Meeting"
     },
     {
-      "jaTitle": "ET研究奨励賞",
+      "jaTitle": "ET研究奨励賞 ",
       "enTitle": "ET Research Encouragement Award",
       "jaMeta": "2019年11月 電子情報通信学会 ET研究会",
       "enMeta": "Nov. 2019, IEICE ET Research Meeting"
