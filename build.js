@@ -58,7 +58,7 @@ const pages = [
     path: { en: "/publications/", ja: "/ja/publications/" },
     title: {
       en: "Publications | Papers and Conference Presentations | Daisuke Hayashi",
-      ja: "論文発表 | 論文・学会発表 | 林 大介",
+      ja: "研究発表 | 査読論文・学会発表 | 林 大介",
     },
     desc: {
       en: "Academic publications and conference presentations by Daisuke Hayashi, including journal papers, international conferences, and domestic conferences.",
