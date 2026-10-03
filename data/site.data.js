@@ -4,7 +4,7 @@ const certifications = require('./certifications.data.js');
 const awards = require('./awards.data.js');
 const patents = require('./patents.data.js');
 const topProductCards = require('./products.data.js');
-const researchImpactProjects = require('./research-impact.data.js');
+const researchProjects = require('./research-projects.data.js');
 
 module.exports = {
   societies,
@@ -13,5 +13,5 @@ module.exports = {
   awards,
   patents,
   topProductCards,
-  researchImpactProjects
+  researchProjects
 };

@@ -22,7 +22,7 @@ npm install
 | `data/publications.data.js` | 論文・国際会議・国内会議 |
 | `data/patents.data.js` | 特許 |
 | `data/products.data.js` | 製品化・社会実装プロジェクト |
-| `data/research-impact.data.js` | 研究インパクト |
+| `data/research-projects.data.js` | 研究プロジェクト |
 | `data/awards.data.js` | 受賞歴 |
 | `data/certifications.data.js` | 資格・認定 |
 | `data/societies.data.js` | 所属学会 |
@@ -32,6 +32,19 @@ npm install
 | `assets/js/site.js` | 特許ページの絞り込み動作 |
 
 トップページの研究発表数、査読論文数、特許数などは `data/` の内容からビルド時に自動集計されます。集計値を生成済み HTML に直接書き込んで管理しないでください。
+
+### 日常的な更新の早見表
+
+- 論文・学会発表を追加する → `data/publications.data.js`
+- 特許を追加・更新する → `data/patents.data.js`
+- 社会実装プロジェクトを追加する → `data/products.data.js`
+- 研究プロジェクトを追加する → `data/research-projects.data.js`
+- 受賞を追加する → `data/awards.data.js`
+- 資格・所属学会を更新する → 対応する `data/*.data.js`
+- Hero、ナビゲーションなど固定表示を変更する → `partials/body.shell.html`
+- 見た目を変更する → `assets/css/site.css`
+
+通常のコンテンツ更新では、`lib/` や生成済み `index.html` を直接編集する必要はありません。更新後は `npm test` を実行してください。`npm test` はビルドも含むため、テストが成功すれば生成ファイルも最新化されます。
 
 ## 開発コマンド
 

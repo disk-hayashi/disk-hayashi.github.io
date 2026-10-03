@@ -30,7 +30,7 @@
 
 **Interfaces:**
 - Consumes: data collections from `data/site.data.js`.
-- Produces: `createSiteModel(siteData)` returning `{ stats, publications, patents, awards, topProductCards, researchImpactProjects, certifications, societies }`.
+- Produces: `createSiteModel(siteData)` returning `{ stats, publications, patents, awards, topProductCards, researchProjects, certifications, societies }`.
 - Produces: `validateSiteData(siteData)` that throws a descriptive `TypeError` for missing required collections.
 
 - [ ] **Step 1: Write failing model tests**
@@ -74,7 +74,7 @@ function validateSiteData(data) {
       throw new TypeError(`publications.${key} must be an array`);
     }
   }
-  for (const key of ["patents", "awards", "topProductCards", "researchImpactProjects", "societies"]) {
+  for (const key of ["patents", "awards", "topProductCards", "researchProjects", "societies"]) {
     if (!Array.isArray(data[key])) throw new TypeError(`${key} must be an array`);
   }
 }

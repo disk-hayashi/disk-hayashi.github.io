@@ -42,7 +42,7 @@ The output is useful before JavaScript runs. Search engines and no-script client
 The existing routes and their content ownership remain:
 
 - `/` and `/ja/`: profile hero and highlights.
-- `/projects/` and `/ja/projects/`: real-world impact and research impact.
+- `/projects/` and `/ja/projects/`: real-world impact and research projects.
 - `/publications/` and `/ja/publications/`: research outputs.
 - `/patents/` and `/ja/patents/`: patents and filters.
 - `/career/` and `/ja/career/`: awards, career, certifications, and societies.
