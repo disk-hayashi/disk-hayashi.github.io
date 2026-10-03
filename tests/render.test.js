@@ -50,8 +50,9 @@ test("English output uses English navigation and content", () => {
 
 test("patent filter controls have accessible labels and live status", () => {
   const html = context("patents", "ja");
-  for (const id of ["patent-search", "country-filter", "type-filter"]) {
+  for (const id of ["patent-search", "type-filter"]) {
     assert.match(html, new RegExp(`<label[^>]+for="${id}"`));
   }
+  assert.doesNotMatch(html, /id="country-filter"/);
   assert.match(html, /id="patent-filter-status"[^>]+aria-live="polite"/);
 });

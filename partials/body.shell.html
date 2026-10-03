@@ -180,16 +180,11 @@
           </div>
         </div>
 
-        <div class="tools">
+        <div id="patent-summary" class="patent-summary" aria-label="Patent summary"></div>
+
+        <div class="tools patent-tools">
           <label class="sr-only" for="patent-search"><span data-lang="ja">特許を検索</span><span data-lang="en">Search patents</span></label>
           <input id="patent-search" class="search-input" type="text" placeholder="Search patents / 特許検索" />
-          <label class="sr-only" for="country-filter"><span data-lang="ja">出願国で絞り込む</span><span data-lang="en">Filter by country</span></label>
-          <select id="country-filter" class="select-input">
-            <option value="">All countries / すべての出願国</option>
-            <option value="日本">Japan / 日本</option>
-            <option value="PCT">PCT</option>
-            <option value="中国">China / 中国</option>
-          </select>
           <label class="sr-only" for="type-filter"><span data-lang="ja">属性で絞り込む</span><span data-lang="en">Filter by tag</span></label>
           <select id="type-filter" class="select-input">
             <option value="">All tags / すべての属性</option>

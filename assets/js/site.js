@@ -1,13 +1,12 @@
 (function () {
   function setupPatentFilters() {
     const search = document.getElementById("patent-search");
-    const country = document.getElementById("country-filter");
     const type = document.getElementById("type-filter");
     const cards = Array.from(document.querySelectorAll("[data-patent-card]"));
     const groups = Array.from(document.querySelectorAll(".patent-section"));
     const status = document.getElementById("patent-filter-status");
 
-    if (!search || !country || !type || !cards.length) return;
+    if (!search || !type || !cards.length) return;
 
     const applyFilters = () => {
       const query = search.value.trim().toLowerCase();
@@ -15,9 +14,8 @@
 
       for (const card of cards) {
         const matchesQuery = !query || card.dataset.query.includes(query);
-        const matchesCountry = !country.value || card.dataset.country === country.value;
         const matchesType = !type.value || card.dataset.status.split(" ").includes(type.value);
-        card.hidden = !(matchesQuery && matchesCountry && matchesType);
+        card.hidden = !(matchesQuery && matchesType);
         if (!card.hidden) totalVisible += 1;
       }
 
@@ -37,7 +35,6 @@
     };
 
     search.addEventListener("input", applyFilters);
-    country.addEventListener("change", applyFilters);
     type.addEventListener("change", applyFilters);
   }
 
