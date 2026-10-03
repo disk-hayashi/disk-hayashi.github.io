@@ -671,8 +671,17 @@
   background: rgba(248,251,255,0.9);
   text-align: center;
 }
-.patent-summary-item strong { font-size: 1.42rem; line-height: 1; color: var(--accent-2); }
-.patent-summary-item span { margin-top: 7px; font-size: 0.78rem; font-weight: 800; color: #475569; }
+.patent-summary-item .summary-label,
+.publication-summary-item .summary-label {
+  margin: 0 0 8px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+.summary-count { display: flex; align-items: baseline; justify-content: center; gap: 3px; }
+.patent-summary-item .summary-count strong,
+.publication-summary-item .summary-count strong { font-size: 1.42rem; line-height: 1; color: var(--accent-2); }
+.summary-unit { font-size: 0.72rem; font-weight: 800; color: #0f172a; }
 .tools.patent-tools { grid-template-columns: minmax(0, 1fr) minmax(190px, .38fr); }
 .patent-meta-secondary {
   margin-top: 9px;
@@ -695,8 +704,9 @@
 @media (max-width: 700px) {
   .patent-summary { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; }
   .patent-summary-item { min-height: 72px; padding: 10px 5px; }
-  .patent-summary-item strong { font-size: 1.2rem; }
-  .patent-summary-item span { font-size: 0.68rem; }
+  .patent-summary-item .summary-count strong { font-size: 1.2rem; }
+  .patent-summary-item .summary-label { font-size: 0.68rem; }
+  .patent-summary-item .summary-unit { font-size: 0.64rem; }
   .tools.patent-tools { grid-template-columns: 1fr; }
 }
 
@@ -719,8 +729,7 @@
   background: rgba(248,251,255,0.9);
   text-align: center;
 }
-.publication-summary-item strong { font-size: 1.42rem; line-height: 1; color: var(--accent-2); }
-.publication-summary-item span { margin-top: 7px; font-size: 0.78rem; font-weight: 800; color: #475569; }
+
 .pub-item { display: flex; flex-direction: column; }
 .pub-main { flex: 1 1 auto; }
 .pub-title { line-height: 1.5; }
@@ -736,6 +745,7 @@
 @media (max-width: 700px) {
   .publication-summary { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; }
   .publication-summary-item { min-height: 72px; padding: 10px 5px; }
-  .publication-summary-item strong { font-size: 1.2rem; }
-  .publication-summary-item span { font-size: 0.68rem; }
+  .publication-summary-item .summary-count strong { font-size: 1.2rem; }
+  .publication-summary-item .summary-label { font-size: 0.68rem; }
+  .publication-summary-item .summary-unit { font-size: 0.64rem; }
 }
