@@ -31,6 +31,8 @@ test("Japanese publications contains publication cards but no hero", () => {
   assert.match(html, /ACFI-DETR/);
   assert.match(html, /研究発表/);
   assert.match(html, /class="pub-item"/);
+  assert.match(html, /id="publication-summary"[\s\S]*?>9<[\s\S]*?>研究発表<[\s\S]*?>1<[\s\S]*?>ジャーナル論文<[\s\S]*?>2<[\s\S]*?>国際会議論文</);
+  assert.doesNotMatch(html, /publication-summary[\s\S]{0,500}>受賞</);
   assert.doesNotMatch(html, /class="hero"/);
 });
 

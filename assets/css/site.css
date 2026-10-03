@@ -699,3 +699,43 @@
   .patent-summary-item span { font-size: 0.68rem; }
   .tools.patent-tools { grid-template-columns: 1fr; }
 }
+
+/* Publications: compact summary and clearer bibliographic hierarchy */
+.publication-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0 0 16px;
+}
+.publication-summary-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 82px;
+  padding: 12px 10px;
+  border: 1px solid rgba(219,229,240,0.95);
+  border-radius: 16px;
+  background: rgba(248,251,255,0.9);
+  text-align: center;
+}
+.publication-summary-item strong { font-size: 1.42rem; line-height: 1; color: var(--accent-2); }
+.publication-summary-item span { margin-top: 7px; font-size: 0.78rem; font-weight: 800; color: #475569; }
+.pub-item { display: flex; flex-direction: column; }
+.pub-main { flex: 1 1 auto; }
+.pub-title { line-height: 1.5; }
+.pub-authors { line-height: 1.55; }
+.pub-tags { margin-top: 6px; }
+.pub-meta {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(226,232,240,0.9);
+  line-height: 1.55;
+  font-size: 0.8rem;
+}
+@media (max-width: 700px) {
+  .publication-summary { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; }
+  .publication-summary-item { min-height: 72px; padding: 10px 5px; }
+  .publication-summary-item strong { font-size: 1.2rem; }
+  .publication-summary-item span { font-size: 0.68rem; }
+}
