@@ -16,7 +16,7 @@
   <text x="95" y="225" font-family="DejaVu Sans, sans-serif" font-size="58" font-weight="700" fill="#0f172a">Daisuke Hayashi</text>
   <text x="98" y="270" font-family="DejaVu Sans, sans-serif" font-size="25" font-weight="700" fill="#2563eb">Kyoto University / Hitachi R&amp;D</text>
   <line x1="98" y1="318" x2="690" y2="318" stroke="#d7e4f7" stroke-width="2"/>
-  <text x="98" y="375" font-family="DejaVu Sans, sans-serif" font-size="25" font-weight="700" fill="#334155">Computer Vision  ·  NLP  ·  Machine Learning</text>
+  <text x="98" y="375" font-family="DejaVu Sans, sans-serif" font-size="25" font-weight="700" fill="#334155">Computer Vision  ·  Machine Learning  ·  Object Detection  ·  Remote Sensing</text>
   <text x="98" y="425" font-family="DejaVu Sans, sans-serif" font-size="22" fill="#64748b">Research · Implementation · Real-World Impact</text>
   <rect x="98" y="475" width="510" height="5" rx="2.5" fill="#2563eb"/>
   <circle cx="980" cy="300" r="166" fill="#dce9ff" filter="url(#shadow)"/>
