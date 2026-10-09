@@ -14,7 +14,10 @@ test("highlight cards use the agreed labels and data-driven counters", () => {
   assert.match(body, /id="stat-research-output-number"/);
   assert.match(body, /data-lang="ja">査読論文<\/span>/);
   assert.match(body, /id="stat-reviewed-paper-number"/);
-  assert.match(body, /data-lang="ja">採用特許<\/span>/);
+  assert.doesNotMatch(body, /id="stat-product-patent-number"/);
+
+  const patentPage = read("ja/patents/index.html");
+  assert.match(patentPage, /<span class="summary-label">採用特許<\/span>/);
 
   assert.match(model, /Object\.values\(data\.publications\)\.flat\(\)/);
   assert.match(model, /labels\?\.includes\("reviewed"\)/);
@@ -31,12 +34,11 @@ test("current publication data yields 9 research outputs and 3 peer-reviewed pap
   );
 });
 
-test("desktop highlights are 4 + 3 centered, with responsive 2 and 1 columns", () => {
+test("desktop highlights are a balanced 3 x 2 grid, with responsive 2 and 1 columns", () => {
   const css = read("assets/css/site.css");
 
-  assert.match(css, /\.highlight-grid\s*\{[^}]*grid-template-columns:\s*repeat\(8,/s);
-  assert.match(css, /\.highlight-grid\s+\.stat-tile\s*\{[^}]*grid-column:\s*span 2/s);
-  assert.match(css, /\.highlight-grid\s+\.stat-tile:nth-child\(5\)\s*\{[^}]*grid-column:\s*2\s*\/\s*span 2/s);
+  assert.match(css, /\.highlight-grid\s*\{[^}]*grid-template-columns:\s*repeat\(3,/s);
+  assert.doesNotMatch(css, /\.highlight-grid\s+\.stat-tile:nth-child\(5\)/);
   assert.match(css, /@media \(max-width:\s*980px\)[\s\S]*?\.highlight-grid\s*\{[^}]*grid-template-columns:\s*repeat\(2,/);
   assert.match(css, /@media \(max-width:\s*720px\)[\s\S]*?\.highlight-grid\s*\{[^}]*grid-template-columns:\s*1fr/);
 });
