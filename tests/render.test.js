@@ -58,3 +58,14 @@ test("patent filter controls have accessible labels and live status", () => {
   assert.doesNotMatch(html, /id="country-filter"/);
   assert.match(html, /id="patent-filter-status"[^>]+aria-live="polite"/);
 });
+
+test("publication cards expose named publication-platform links separately from titles", () => {
+  const ja = context("publications", "ja");
+  const en = context("publications", "en");
+  assert.match(ja, /class="pub-links"[\s\S]*?>IEICE</);
+  assert.match(ja, /class="pub-links"[\s\S]*?>IEEE Xplore</);
+  assert.match(ja, /class="pub-links"[\s\S]*?>SpringerLink</);
+  assert.match(ja, /class="pub-links"[\s\S]*?>J-STAGE</);
+  assert.match(en, /class="pub-links"/);
+  assert.doesNotMatch(ja, /class="pub-title"><a /);
+});

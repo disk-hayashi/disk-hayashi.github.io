@@ -8,6 +8,9 @@ journals: [
     "enMeta": "Japanese Journal of Educational Technology, vol.42, Suppl., pp.101-104, Dec. 2018.",
     "jaUrl": "https://www.jstage.jst.go.jp/article/jjet/42/Suppl./42_S42051/_pdf/-char/ja",
     "enUrl": "https://www.jstage.jst.go.jp/article/jjet/42/Suppl./42_S42051/_article/-char/en",
+    "publicationLinks": [
+        { "label": "J-STAGE", "jaUrl": "https://www.jstage.jst.go.jp/article/jjet/42/Suppl./42_S42051/_pdf/-char/ja", "enUrl": "https://www.jstage.jst.go.jp/article/jjet/42/Suppl./42_S42051/_article/-char/en" }
+    ],
     "labels": [
         "first",
         "reviewed"
@@ -23,6 +26,9 @@ international: [
     "enMeta": "2020 IEEE 2nd Global Conference on Life Sciences and Technologies (LifeTech), pp.318-319, March 2020.",
     "jaUrl": "https://doi.org/10.1109/lifetech48969.2020.1570618991",
     "enUrl": "https://doi.org/10.1109/lifetech48969.2020.1570618991",
+    "publicationLinks": [
+        { "label": "IEEE Xplore", "jaUrl": "https://doi.org/10.1109/lifetech48969.2020.1570618991", "enUrl": "https://doi.org/10.1109/lifetech48969.2020.1570618991" }
+    ],
     "labels": [
         "first",
         "reviewed"
@@ -36,6 +42,9 @@ international: [
     "enMeta": "Human Interface and the Management of Information. Information in Applications and Services, vol.10905, LNCS, pp.253-265, June 2018.",
     "jaUrl": "https://doi.org/10.1007/978-3-319-92046-7_23",
     "enUrl": "https://doi.org/10.1007/978-3-319-92046-7_23",
+    "publicationLinks": [
+        { "label": "SpringerLink", "jaUrl": "https://doi.org/10.1007/978-3-319-92046-7_23", "enUrl": "https://doi.org/10.1007/978-3-319-92046-7_23" }
+    ],
     "labels": [
         "first",
         "reviewed"
@@ -51,6 +60,9 @@ domestic: [
     "enMeta": "IEICE Technical Report, vol.126, no.157, pp.39-44, Aug. 2026.",
     "jaUrl": "https://ken.ieice.org/ken/paper/20260827NcXe/",
     "enUrl": "https://ken.ieice.org/ken/paper/20260827NcXe/eng/",
+    "publicationLinks": [
+        { "label": "IEICE", "jaUrl": "https://ken.ieice.org/ken/paper/20260827NcXe/", "enUrl": "https://ken.ieice.org/ken/paper/20260827NcXe/eng/" }
+    ],
     "labels": [
         "first",
     ]
@@ -63,6 +75,9 @@ domestic: [
     "enMeta": "IEICE Technical Report, vol.123, no.257, pp.15-20, Nov. 2023.",
     "jaUrl": "https://ken.ieice.org/ken/paper/20231114FCYH/",
     "enUrl": "https://ken.ieice.org/ken/paper/20231114FCYH/eng/",
+    "publicationLinks": [
+        { "label": "IEICE", "jaUrl": "https://ken.ieice.org/ken/paper/20231114FCYH/", "enUrl": "https://ken.ieice.org/ken/paper/20231114FCYH/eng/" }
+    ],
     "labels": [
         "first",
         "award"
@@ -76,6 +91,9 @@ domestic: [
     "enMeta": "IEICE Technical Report, vol.120, no.220, pp.15-20, Oct. 2020.",
     "jaUrl": "https://ken.ieice.org/ken/paper/20201104BC01/",
     "enUrl": "https://ken.ieice.org/ken/paper/20201104BC01/eng/",
+    "publicationLinks": [
+        { "label": "IEICE", "jaUrl": "https://ken.ieice.org/ken/paper/20201104BC01/", "enUrl": "https://ken.ieice.org/ken/paper/20201104BC01/eng/" }
+    ],
     "labels": [
         "first"
     ]
@@ -88,6 +106,9 @@ domestic: [
     "enMeta": "IEICE Technical Report, vol.119, no.360, pp.67-74, Jan. 2020.",
     "jaUrl": "https://ken.ieice.org/ken/paper/20200110K1UU/",
     "enUrl": "https://ken.ieice.org/ken/paper/20200110K1UU/eng/",
+    "publicationLinks": [
+        { "label": "IEICE", "jaUrl": "https://ken.ieice.org/ken/paper/20200110K1UU/", "enUrl": "https://ken.ieice.org/ken/paper/20200110K1UU/eng/" }
+    ],
     "labels": [
         "first"
     ]
@@ -100,6 +121,9 @@ domestic: [
     "enMeta": "IEICE Technical Report, vol.119, no.328, pp.49-54, Dec. 2019.",
     "jaUrl": "https://ken.ieice.org/ken/paper/20191206n1Tf/",
     "enUrl": "https://ken.ieice.org/ken/paper/20191206n1Tf/eng/",
+    "publicationLinks": [
+        { "label": "IEICE", "jaUrl": "https://ken.ieice.org/ken/paper/20191206n1Tf/", "enUrl": "https://ken.ieice.org/ken/paper/20191206n1Tf/eng/" }
+    ],
     "labels": [
         "first"
     ]
@@ -112,6 +136,9 @@ domestic: [
     "enMeta": "IEICE Technical Report, vol.118, no.294, pp.43-46, Nov. 2018.",
     "jaUrl": "https://ken.ieice.org/ken/paper/20181110a1Hv/",
     "enUrl": "https://ken.ieice.org/ken/paper/20181110a1Hv/eng/",
+    "publicationLinks": [
+        { "label": "IEICE", "jaUrl": "https://ken.ieice.org/ken/paper/20181110a1Hv/", "enUrl": "https://ken.ieice.org/ken/paper/20181110a1Hv/eng/" }
+    ],
     "labels": [
         "first",
         "award"
