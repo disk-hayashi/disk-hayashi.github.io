@@ -69,3 +69,12 @@ test("publication cards expose named publication-platform links separately from 
   assert.match(en, /class="pub-links"/);
   assert.doesNotMatch(ja, /class="pub-title"><a /);
 });
+
+test("Japanese publication cards can use Japanese author names while English keeps English names", () => {
+  const ja = context("publications", "ja");
+  const en = context("publications", "en");
+  assert.match(ja, /name-strong">林 大介<\/span>, 日置 尋久/);
+  assert.match(ja, /name-strong">林 大介<\/span>, 赤倉 貴子/);
+  assert.match(en, /name-strong">Daisuke Hayashi<\/span>, Hirohisa Hioki/);
+  assert.match(en, /name-strong">Daisuke Hayashi<\/span>, Takako Akakura/);
+});
