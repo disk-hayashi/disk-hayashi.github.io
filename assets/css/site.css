@@ -194,6 +194,8 @@
     .product-hero-top, .impact-card-header { display:flex; justify-content:space-between; gap: 10px; align-items:flex-start; margin-bottom: 8px; }
     .product-hero-title, .impact-card-title, .patent-title, .pub-title, .award-title, .cert-title, .timeline-title { margin: 0; font-size: 1rem; font-weight: 900; line-height: 1.45; }
     .product-hero-date, .impact-card-period, .award-meta, .cert-meta, .pub-meta, .muted { color: var(--muted); font-size: 0.85rem; }
+    .award-note { margin-top: 4px; color: #334155; font-size: 0.86rem; font-weight: 800; }
+    .award-note + .award-meta { margin-top: 3px; }
     .product-hero-desc, .impact-card-desc { color: #334155; font-size: 0.93rem; margin: 0; }
     .product-hero-links { display:flex; flex-wrap:wrap; gap: 10px; margin-top: 8px; }
     .product-hero-links a { font-size: 0.84rem; font-weight: 800; }

@@ -46,7 +46,7 @@ test("navigation and highlight cards work without JavaScript", () => {
 test("English output uses English navigation and content", () => {
   const html = context("home", "en");
   assert.match(html, />Research Outputs</);
-  assert.match(html, />Projects<\/a>/);
+  assert.match(html, />Real-World Impact<\/a>/);
   assert.doesNotMatch(html.slice(html.indexOf("<body")), /data-lang="ja"/);
 });
 
