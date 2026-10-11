@@ -22,8 +22,8 @@ const routes = [
 const sectionsByRoute = {
   "/": ["highlights"],
   "/ja/": ["highlights"],
-  "/projects/": ["top-products", "research-impact"],
-  "/ja/projects/": ["top-products", "research-impact"],
+  "/projects/": ["top-products"],
+  "/ja/projects/": ["top-products"],
   "/publications/": ["publications"],
   "/ja/publications/": ["publications"],
   "/patents/": ["patents"],

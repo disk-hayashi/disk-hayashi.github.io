@@ -6,8 +6,8 @@ module.exports = [
       "enMeta": "Dec. 2024, Hitachi, Ltd."
     },
     {
-      "jaTitle": "令和5年度MI研究奨励賞",
-      "enTitle": "FY2023 MI Research Encouragement Award",
+      "jaTitle": "令和5年度MI研究奨励賞（66件中3件選出、日立初）",
+      "enTitle": "FY2023 MI Research Encouragement Award (3 of 66 selected; first at Hitachi)",
       "jaMeta": "2024年6月 電子情報通信学会 MI研究会",
       "enMeta": "June 2024, IEICE MI Research Meeting"
     },
