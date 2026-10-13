@@ -65,7 +65,8 @@ domestic: [
     "jaUrl": "https://ken.ieice.org/ken/paper/20260827NcXe/",
     "enUrl": "https://ken.ieice.org/ken/paper/20260827NcXe/eng/",
     "publicationLinks": [
-        { "label": "IEICE", "jaUrl": "https://ken.ieice.org/ken/paper/20260827NcXe/", "enUrl": "https://ken.ieice.org/ken/paper/20260827NcXe/eng/" }
+        { "label": "IEICE", "jaUrl": "https://ken.ieice.org/ken/paper/20260827NcXe/", "enUrl": "https://ken.ieice.org/ken/paper/20260827NcXe/eng/" },
+        { "label": "KURENAI", "jaUrl": "https://repository.kulib.kyoto-u.ac.jp/server/api/core/bitstreams/99f503f3-9a3a-41ca-bfd3-9d50d67d1cab/content", "enUrl": "https://repository.kulib.kyoto-u.ac.jp/server/api/core/bitstreams/99f503f3-9a3a-41ca-bfd3-9d50d67d1cab/content" }
     ],
     "labels": [
         "first",
