@@ -17,6 +17,7 @@ test("highlight cards use the agreed labels and data-driven counters", () => {
   assert.doesNotMatch(body, /id="stat-product-patent-number"/);
 
   const patentPage = read("ja/patents/index.html");
+  assert.match(patentPage, /<span class="summary-label">特許出願<\/span>/);
   assert.match(patentPage, /<span class="summary-label">海外登録<\/span>/);
 
   assert.match(model, /Object\.values\(data\.publications\)\.flat\(\)/);
