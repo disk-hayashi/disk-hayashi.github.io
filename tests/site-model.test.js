@@ -15,6 +15,10 @@ test("derives all highlight statistics from source data", () => {
     patentApplications: 9,
     registeredPatents: 5,
     adoptedPatents: 1,
+    patentFamilies: 9,
+    domesticRegisteredPatents: 5,
+    overseasRegisteredPatents: 1,
+    totalRegisteredPatents: 6,
   });
 });
 
@@ -24,4 +28,13 @@ test("rejects a missing publication collection", () => {
     () => validateSiteData({ ...siteData, publications: null }),
     /publications must be an object/
   );
+});
+
+test("patent stats distinguish families, domestic grants, overseas grants, and total grants", () => {
+  const { createSiteModel } = require("../lib/site-model.js");
+  const model = createSiteModel(siteData);
+  assert.equal(model.stats.patentFamilies, 9);
+  assert.equal(model.stats.domesticRegisteredPatents, 5);
+  assert.equal(model.stats.overseasRegisteredPatents, 1);
+  assert.equal(model.stats.totalRegisteredPatents, 6);
 });

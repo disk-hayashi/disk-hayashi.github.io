@@ -78,3 +78,10 @@ test("Japanese publication cards can use Japanese author names while English kee
   assert.match(en, /name-strong">Daisuke Hayashi<\/span>, Hirohisa Hioki/);
   assert.match(en, /name-strong">Daisuke Hayashi<\/span>, Takako Akakura/);
 });
+
+test("patent page summarizes families and domestic/overseas grants", () => {
+  const html = context("patents", "ja");
+  assert.match(html, /特許ファミリー/);
+  assert.match(html, /国内登録/);
+  assert.match(html, /海外登録/);
+});

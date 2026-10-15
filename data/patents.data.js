@@ -208,11 +208,16 @@ module.exports = [
           "url": "https://patents.google.com/patent/WO2023062880A1/ja?oq=WO%2F2023%2F062880"
         },
         {
-          "jaTitle": "Area management device and program",
+          "jaTitle": "領域管理機器およびプログラム",
           "enTitle": "Area Management Device and Program",
-          "filingNumber": "CN202280049854.1A",
+          "filingNumber": "202280049854.1",
+          "publicationNumber": "CN117716436A",
+          "registrationNumber": "ZL202280049854.1",
+          "registrationDate": "2026年8月25日",
+          "registrationDateEn": "Aug. 25, 2026",
           "country": "中国",
           "countryEn": "China",
+          "isRegistered": true,
           "url": "https://patents.google.com/patent/CN117716436A/en?oq=CN117716436"
         }
       ],
