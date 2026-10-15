@@ -85,4 +85,5 @@ test("patent page summarizes applications and domestic/overseas grants", () => {
   assert.doesNotMatch(html, /特許ファミリー/);
   assert.match(html, /国内登録/);
   assert.match(html, /海外登録/);
+  assert.match(html, /採用特許[\s\S]{0,200}<strong>1<\/strong>/);
 });
