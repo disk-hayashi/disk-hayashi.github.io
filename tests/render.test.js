@@ -20,6 +20,8 @@ test("Japanese home contains real counts and excludes publication lists", () => 
   const html = context("home", "ja");
   assert.match(html, /研究発表[\s\S]{0,500}stat-number[^>]*>9</);
   assert.match(html, /査読論文[\s\S]{0,500}stat-number[^>]*>3</);
+  assert.match(html, /登録特許[\s\S]{0,500}stat-number[^>]*>5</);
+  assert.doesNotMatch(html, /国内登録[\s\S]{0,500}stat-number[^>]*>5</);
   assert.match(html, /id="highlights"/);
   assert.doesNotMatch(html, /\$2/);
   assert.doesNotMatch(html, /id="journal-list"/);
