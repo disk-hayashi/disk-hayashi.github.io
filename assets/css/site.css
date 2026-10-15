@@ -206,7 +206,7 @@
       font-size: 0.73rem; font-weight: 900; color: #334155; border: 1px solid transparent;
     }
     .tag.primary { background: var(--patent); color: #1d4ed8; }
-    .tag.registered { background: var(--registered); color: #166534; }
+    .tag.registered, .tag.china-granted { background: var(--registered); color: #166534; }
     .tag.product { background: var(--product); color: #92400e; }
     .tag.award { background: var(--award); color: #b91c1c; }
     .tag.author { background: var(--author); color: #0f766e; }
