@@ -211,14 +211,14 @@ module.exports = [
           "jaTitle": "領域管理機器およびプログラム",
           "enTitle": "Area Management Device and Program",
           "filingNumber": "202280049854.1",
-          "publicationNumber": "CN117716436A",
+          "publicationNumber": "CN117716436B",
           "registrationNumber": "ZL202280049854.1",
           "registrationDate": "2026年8月25日",
           "registrationDateEn": "Aug. 25, 2026",
           "country": "中国",
           "countryEn": "China",
           "isRegistered": true,
-          "url": "https://patents.google.com/patent/CN117716436A/en?oq=CN117716436"
+          "url": "https://eureka.patsnap.com/patent/CN117716436B"
         }
       ],
       "filingDateISO": "2021-10-14",
