@@ -20,7 +20,7 @@ test("Japanese home contains real counts and excludes publication lists", () => 
   const html = context("home", "ja");
   assert.match(html, /研究発表[\s\S]{0,500}stat-number[^>]*>9</);
   assert.match(html, /査読論文[\s\S]{0,500}stat-number[^>]*>3</);
-  assert.match(html, /登録特許[\s\S]{0,500}stat-number[^>]*>5</);
+  assert.match(html, /登録特許[\s\S]{0,500}stat-number[^>]*>6</);
   assert.doesNotMatch(html, /国内登録[\s\S]{0,500}stat-number[^>]*>5</);
   assert.match(html, /id="highlights"/);
   assert.doesNotMatch(html, /\$2/);
@@ -81,11 +81,11 @@ test("Japanese publication cards can use Japanese author names while English kee
   assert.match(en, /name-strong">Daisuke Hayashi<\/span>, Takako Akakura/);
 });
 
-test("patent page summarizes applications and domestic/overseas grants", () => {
+test("patent page summarizes families, international filings, and total grants", () => {
   const html = context("patents", "ja");
-  assert.match(html, /特許出願/);
-  assert.doesNotMatch(html, /特許ファミリー/);
-  assert.match(html, /国内登録/);
-  assert.match(html, /海外登録/);
+  assert.match(html, /特許ファミリー[\s\S]{0,200}<strong>9<\/strong>/);
+  assert.match(html, /PCT出願[\s\S]{0,200}<strong>2<\/strong>/);
+  assert.match(html, /海外出願[\s\S]{0,200}<strong>3<\/strong>/);
+  assert.match(html, /登録特許[\s\S]{0,200}<strong>6<\/strong>/);
   assert.match(html, /採用特許[\s\S]{0,200}<strong>1<\/strong>/);
 });

@@ -16,10 +16,12 @@ test("derives all highlight statistics from source data", () => {
     registeredPatents: 5,
     adoptedPatents: 1,
     patentFamilies: 9,
+    pctApplications: 2,
+    overseasApplications: 3,
     domesticRegisteredPatents: 5,
     overseasRegisteredPatents: 1,
     totalRegisteredPatents: 6,
-    homepageRegisteredPatents: 5,
+    homepageRegisteredPatents: 6,
   });
 });
 
@@ -35,13 +37,15 @@ test("patent stats distinguish families, domestic grants, overseas grants, and t
   const { createSiteModel } = require("../lib/site-model.js");
   const model = createSiteModel(siteData);
   assert.equal(model.stats.patentFamilies, 9);
+  assert.equal(model.stats.pctApplications, 2);
+  assert.equal(model.stats.overseasApplications, 3);
   assert.equal(model.stats.domesticRegisteredPatents, 5);
   assert.equal(model.stats.overseasRegisteredPatents, 1);
   assert.equal(model.stats.totalRegisteredPatents, 6);
 });
 
-test("homepage registration highlight uses domestic grants so its scope matches patent applications", () => {
+test("homepage registration highlight uses total domestic and overseas grants", () => {
   const { createSiteModel } = require("../lib/site-model.js");
   const model = createSiteModel(siteData);
-  assert.equal(model.stats.homepageRegisteredPatents, 5);
+  assert.equal(model.stats.homepageRegisteredPatents, 6);
 });
